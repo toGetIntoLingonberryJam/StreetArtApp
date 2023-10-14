@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:street_art_witnesses/pages/home_page.dart';
+import 'package:street_art_witnesses/pages/intro/intro_slider.dart';
+import 'package:street_art_witnesses/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,11 +13,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'StreetArt Witnesses',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey),
-        useMaterial3: true,
-      ),
-      home: const HomePage(),
+      debugShowCheckedModeBanner: false,
+      theme: appTheme,
+      home: const IntroSlider(),
     );
   }
 }
