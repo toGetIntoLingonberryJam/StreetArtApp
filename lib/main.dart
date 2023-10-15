@@ -4,9 +4,10 @@ import 'package:street_art_witnesses/src/models/user/guest_user.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/theme.dart';
 import 'package:provider/provider.dart';
+import 'package:street_art_witnesses/utils.dart';
 
 void main() async {
-  // Synchronizing user
+  // TODO: User synchronization
   await Future.delayed(const Duration(seconds: 1));
 
   runApp(const MyApp());
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        scaffoldMessengerKey: Utils.messengerKey,
         title: 'Свидетели Стрит-Арта',
         debugShowCheckedModeBanner: false,
         theme: appTheme,
