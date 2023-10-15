@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:street_art_witnesses/pages/home_page.dart';
+import 'package:street_art_witnesses/pages/home/home_page.dart';
 import 'package:street_art_witnesses/pages/intro/intro_auth_page.dart';
 import 'package:street_art_witnesses/pages/intro/slider_dots.dart';
 import 'package:street_art_witnesses/pages/intro/intro_page.dart';
