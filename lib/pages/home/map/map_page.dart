@@ -8,7 +8,7 @@ class MapPage extends StatelessWidget {
     return const Scaffold(
       body: Center(
         child: Text(
-          'Map Page',
+          'Карта',
           style: TextStyle(fontSize: 20),
         ),
       ),

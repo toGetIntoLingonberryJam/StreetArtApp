@@ -8,7 +8,7 @@ class CollectionPage extends StatelessWidget {
     return const Scaffold(
       body: Center(
         child: Text(
-          'Collection Page',
+          'Коллекция',
           style: TextStyle(fontSize: 20),
         ),
       ),
