@@ -7,14 +7,13 @@ abstract class ErrorHandler {
   }
 
   static void handleDioException(DioException e) {
-    print(e.message);
-    print(e.response?.statusCode);
-    print(e.response?.data);
+    print('Data: ${e.response?.data}');
 
     switch (e.response?.statusCode) {
       case 500:
         // Server unavailable
-        Utils.showSnackBar('Сервер недоступен. Пожалуйста, попробуйте еще раз');
+        Utils.showSnackBar(
+            'Не удалось подключиться к серверу. Пожалуйста, попробуйте ещё раз');
         break;
       case 422:
         // Validation error

@@ -2,37 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/services/api_service.dart';
-import 'package:street_art_witnesses/src/utils/utils.dart';
 import 'package:street_art_witnesses/src/widgets/my_text_form_field.dart';
+import 'package:street_art_witnesses/src/utils/utils.dart';
 
-class RegisterView extends StatefulWidget {
-  const RegisterView({super.key});
+class LoginView extends StatefulWidget {
+  const LoginView({super.key});
 
   @override
-  State<RegisterView> createState() => _RegisterViewState();
+  State<LoginView> createState() => _LoginViewState();
 }
 
-class _RegisterViewState extends State<RegisterView> {
+class _LoginViewState extends State<LoginView> {
   final loginController = TextEditingController();
-  final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final passwordConfirmController = TextEditingController();
 
   @override
   void dispose() {
     loginController.dispose();
-    emailController.dispose();
-    passwordController.dispose();
-    passwordConfirmController.dispose();
     super.dispose();
   }
 
-  void _register() async {
+  void _login() async {
     final user = await Utils.showLoading(
         context,
-        ApiService.register(
-          username: loginController.text.trim(),
-          email: emailController.text.trim(),
+        ApiService.login(
+          email: loginController.text.trim(),
           password: passwordController.text.trim(),
         ));
 
@@ -46,38 +40,41 @@ class _RegisterViewState extends State<RegisterView> {
   Widget build(BuildContext context) {
     return Form(
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           MyTextFormField(
             controller: loginController,
-            hintText: 'Придумайте логин',
-          ),
-          const SizedBox(height: 25),
-          MyTextFormField(
-            controller: emailController,
-            hintText: 'Введите почту',
+            hintText: 'Логин',
           ),
           const SizedBox(height: 25),
           MyTextFormField(
             controller: passwordController,
-            hintText: 'Введите пароль',
-          ),
-          const SizedBox(height: 25),
-          MyTextFormField(
-            controller: passwordConfirmController,
-            hintText: 'Повторите пароль',
+            hintText: 'Пароль',
           ),
           const SizedBox(height: 60),
           FilledButton(
             style: FilledButton.styleFrom(
               minimumSize: const Size(300, 45),
             ),
-            onPressed: _register,
+            onPressed: _login,
             child: const Text(
-              'Зарегистрироваться',
+              'Войти в профиль',
               style: TextStyle(fontSize: 17),
             ),
           ),
+          const SizedBox(height: 20),
+          _forgotPasswordButton(),
         ],
+      ),
+    );
+  }
+
+  GestureDetector _forgotPasswordButton() {
+    return GestureDetector(
+      onTap: () => print('Forgot password pressed'),
+      child: const Text(
+        'Забыли пароль?',
+        style: TextStyle(decoration: TextDecoration.underline),
       ),
     );
   }
