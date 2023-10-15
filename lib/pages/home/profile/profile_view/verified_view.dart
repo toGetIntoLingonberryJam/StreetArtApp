@@ -4,8 +4,8 @@ import 'package:street_art_witnesses/src/models/user/guest_user.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/widgets/skeleton.dart';
 
-class AuthorizedView extends StatelessWidget {
-  const AuthorizedView({super.key});
+class VerifiedView extends StatelessWidget {
+  const VerifiedView({super.key});
 
   void _logout(BuildContext context) {
     final user = GuestUser();
@@ -34,6 +34,8 @@ class AuthorizedView extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
+            const SizedBox(width: 8),
+            const Icon(Icons.verified),
           ],
         ),
         Expanded(
