@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:street_art_witnesses/src/models/user/authorized_user.dart';
-import 'package:street_art_witnesses/src/providers/user_provider.dart';
+import 'package:street_art_witnesses/pages/auth/auth_page.dart';
 import 'package:street_art_witnesses/src/widgets/skeleton.dart';
 
 class GuestView extends StatelessWidget {
   const GuestView({super.key});
 
   void _login(BuildContext context) {
-    final user = AuthorizedUser(
-      username: 'Username',
-      email: 'example@google.com',
-    );
-
-    context.read<UserProvider>().updateUser(user);
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (_) => const AuthPage(),
+    ));
   }
 
   @override

@@ -15,6 +15,8 @@ class AuthorizedView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = context.read<UserProvider>().user;
+
     return Column(
       children: [
         Row(
@@ -24,10 +26,10 @@ class AuthorizedView extends StatelessWidget {
               backgroundColor: Theme.of(context).colorScheme.secondary,
             ),
             const SizedBox(width: 16),
-            const Expanded(
+            Expanded(
               child: Text(
-                'Username',
-                style: TextStyle(fontSize: 24),
+                user.username,
+                style: const TextStyle(fontSize: 24),
               ),
             ),
           ],

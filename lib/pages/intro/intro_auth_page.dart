@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/pages/auth/auth_page.dart';
 import 'package:street_art_witnesses/pages/home/home_page.dart';
 
 class IntroAuthPage extends StatelessWidget {
@@ -7,6 +8,14 @@ class IntroAuthPage extends StatelessWidget {
   void _navigateToHome(BuildContext context) {
     Navigator.of(context).pushReplacement(MaterialPageRoute(
       builder: (_) => const HomePage(),
+    ));
+  }
+
+  void _navigateToAuth(BuildContext context) {
+    _navigateToHome(context);
+
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (_) => const AuthPage(),
     ));
   }
 
@@ -36,7 +45,7 @@ class IntroAuthPage extends StatelessWidget {
               style: FilledButton.styleFrom(
                 minimumSize: const Size(300, 45),
               ),
-              onPressed: () => _navigateToHome(context),
+              onPressed: () => _navigateToAuth(context),
               child:
                   const Text('Войти в профиль', style: TextStyle(fontSize: 17)),
             ),
