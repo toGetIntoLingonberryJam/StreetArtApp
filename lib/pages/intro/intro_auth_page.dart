@@ -29,7 +29,10 @@ class IntroAuthPage extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 20),
-            const Image(image: AssetImage('assets/logo.png')),
+            const Expanded(
+              flex: 4,
+              child: Image(image: AssetImage('assets/logo.png')),
+            ),
             const SizedBox(height: 40),
             const Text(
               'Свидетели Стрит-Арта',
