@@ -63,6 +63,9 @@ class _RegisterViewState extends State<RegisterView> {
           ),
           const SizedBox(height: 60),
           FilledButton(
+            style: FilledButton.styleFrom(
+              minimumSize: const Size(300, 45),
+            ),
             onPressed: _register,
             child: const Text(
               'Зарегистрироваться',

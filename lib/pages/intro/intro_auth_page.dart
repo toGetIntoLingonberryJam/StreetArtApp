@@ -3,7 +3,9 @@ import 'package:street_art_witnesses/pages/auth/auth_page.dart';
 import 'package:street_art_witnesses/pages/home/home_page.dart';
 
 class IntroAuthPage extends StatelessWidget {
-  const IntroAuthPage({super.key});
+  const IntroAuthPage({super.key, required this.content});
+
+  final String content;
 
   void _navigateToHome(BuildContext context) {
     Navigator.of(context).pushReplacement(MaterialPageRoute(
@@ -30,14 +32,14 @@ class IntroAuthPage extends StatelessWidget {
             const Image(image: AssetImage('assets/logo.png')),
             const SizedBox(height: 40),
             const Text(
-              'Street Art Witnesses',
+              'Свидетели Стрит-Арта',
               style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 30),
-            const Text(
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-              style: TextStyle(fontSize: 17),
+            Text(
+              content,
+              style: const TextStyle(fontSize: 17),
               textAlign: TextAlign.center,
             ),
             const Expanded(flex: 2, child: SizedBox()),

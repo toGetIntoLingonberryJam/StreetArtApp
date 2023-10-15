@@ -48,6 +48,9 @@ class _LoginViewState extends State<LoginView> {
           ),
           const SizedBox(height: 60),
           FilledButton(
+            style: FilledButton.styleFrom(
+              minimumSize: const Size(300, 45),
+            ),
             onPressed: _login,
             child: const Text(
               'Войти в профиль',

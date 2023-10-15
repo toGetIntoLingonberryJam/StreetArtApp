@@ -46,9 +46,20 @@ class _IntroSliderState extends State<IntroSlider> {
                   },
                   controller: controller,
                   children: [
-                    IntroPage(onButtonClicked: _nextPage),
-                    IntroPage(onButtonClicked: _nextPage),
-                    const IntroAuthPage(),
+                    IntroPage(
+                      onButtonClicked: _nextPage,
+                      content:
+                          'Добро пожаловать в приложение "Свидетели стрит-арта"!',
+                    ),
+                    IntroPage(
+                      onButtonClicked: _nextPage,
+                      content:
+                          'Откройте для себя удивительный мир стрит-арта с нашим приложением!',
+                    ),
+                    const IntroAuthPage(
+                      content:
+                          "Присоединяйтесь к нам, чтобы сохранять и делиться своими впечатлениями о стрит-арте",
+                    ),
                   ],
                 ),
               ),

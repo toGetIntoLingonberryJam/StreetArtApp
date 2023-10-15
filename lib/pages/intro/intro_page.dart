@@ -4,9 +4,11 @@ class IntroPage extends StatelessWidget {
   const IntroPage({
     super.key,
     required this.onButtonClicked,
+    required this.content,
   });
 
   final VoidCallback onButtonClicked;
+  final String content;
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +21,14 @@ class IntroPage extends StatelessWidget {
             const Image(image: AssetImage('assets/logo.png')),
             const SizedBox(height: 40),
             const Text(
-              'Street Art Witnesses',
+              'Свидетели Стрит-Арта',
               style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 30),
-            const Text(
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-              style: TextStyle(fontSize: 17),
+            Text(
+              content,
+              style: const TextStyle(fontSize: 17),
               textAlign: TextAlign.center,
             ),
             const Expanded(flex: 2, child: SizedBox()),

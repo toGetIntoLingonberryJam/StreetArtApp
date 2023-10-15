@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'StreetArt Witnesses',
+        title: 'Свидетели Стрит-Арта',
         debugShowCheckedModeBanner: false,
         theme: appTheme,
         home: const IntroSlider(),
