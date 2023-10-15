@@ -1,19 +1,16 @@
 import 'package:street_art_witnesses/src/models/user/user.dart';
 
 class AuthorizedUser extends User {
-  AuthorizedUser(
-      {required String username,
-      required String email,
-      required String token}) {
+  AuthorizedUser({
+    required String username,
+    required String email,
+  }) {
     _username = username;
     _email = email;
-    _token = token;
   }
 
   late String _username;
   late String _email;
-  // ignore: unused_field
-  late String _token;
 
   @override
   String get username => _username;

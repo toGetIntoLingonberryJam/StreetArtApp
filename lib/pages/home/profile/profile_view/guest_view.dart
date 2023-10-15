@@ -11,7 +11,6 @@ class GuestView extends StatelessWidget {
     final user = AuthorizedUser(
       username: 'Username',
       email: 'example@google.com',
-      token: 'auth12345678',
     );
 
     context.read<UserProvider>().updateUser(user);

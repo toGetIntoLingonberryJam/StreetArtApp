@@ -4,13 +4,17 @@ class VerifiedUser extends User {
   VerifiedUser({
     required String username,
     required String email,
+    required String token,
   }) {
     _username = username;
     _email = email;
+    _token = token;
   }
 
   late String _username;
   late String _email;
+  // ignore: unused_field
+  late String _token;
 
   @override
   String get username => _username;
