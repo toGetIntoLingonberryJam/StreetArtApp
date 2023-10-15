@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:street_art_witnesses/src/models/user/authorized_user.dart';
 import 'package:street_art_witnesses/src/models/user/user.dart';
 import 'package:street_art_witnesses/src/utils/error_handler.dart';
-import 'package:street_art_witnesses/src/utils/utils.dart';
 
 abstract class ApiService {
   static final dio = Dio(
@@ -14,8 +13,8 @@ abstract class ApiService {
       return await apiCall();
     } on DioException catch (e) {
       ErrorHandler.handleDioException(e);
+      return null;
     }
-    return null;
   }
 
   static Future<User?> login({
@@ -28,12 +27,16 @@ abstract class ApiService {
           options: Options(contentType: Headers.formUrlEncodedContentType),
         ));
 
-    final String? token = response?.data['access_token'];
-    if (token != null) {
-      return AuthorizedUser(username: 'username', email: email, token: token);
-    } else {
-      ErrorHandler.handleUnknownError();
+    if (response == null) {
       return null;
+    } else {
+      final String? token = response.data['access_token'];
+      if (token != null) {
+        return AuthorizedUser(username: 'username', email: email, token: token);
+      } else {
+        ErrorHandler.handleUnknownError();
+        return null;
+      }
     }
   }
 
@@ -48,8 +51,7 @@ abstract class ApiService {
         ));
 
     if (response != null) {
-      Utils.showSnackBar(
-          'Отлично, вы зарегистрированы! Теперь вы можете войти в свой аккаунт через форму входа');
+      return await login(email: email, password: password);
     }
     return null;
 
