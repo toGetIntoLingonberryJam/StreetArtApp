@@ -4,7 +4,7 @@ import 'package:street_art_witnesses/src/models/user/guest_user.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/theme.dart';
 import 'package:provider/provider.dart';
-import 'package:street_art_witnesses/utils.dart';
+import 'package:street_art_witnesses/src/utils/utils.dart';
 
 void main() async {
   // TODO: User synchronization

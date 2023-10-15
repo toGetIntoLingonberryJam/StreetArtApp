@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:street_art_witnesses/src/models/user/authorized_user.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
+import 'package:street_art_witnesses/src/services/api_service.dart';
+import 'package:street_art_witnesses/src/utils/utils.dart';
 import 'package:street_art_witnesses/src/widgets/my_text_form_field.dart';
 
 class RegisterView extends StatefulWidget {
@@ -26,15 +27,19 @@ class _RegisterViewState extends State<RegisterView> {
     super.dispose();
   }
 
-  void _register() {
-    final user = AuthorizedUser(
-      username: loginController.text.trim(),
-      email: 'example@google.com',
-      token: 'auth12345678',
-    );
-    context.read<UserProvider>().updateUser(user);
+  void _register() async {
+    final user = await Utils.showLoading(
+        context,
+        ApiService.register(
+          username: loginController.text.trim(),
+          email: emailController.text.trim(),
+          password: passwordController.text.trim(),
+        ));
 
-    Navigator.of(context).pop();
+    if (mounted && user != null) {
+      context.read<UserProvider>().updateUser(user);
+      Navigator.of(context).pop();
+    }
   }
 
   @override

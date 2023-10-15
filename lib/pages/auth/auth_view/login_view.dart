@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:street_art_witnesses/src/models/user/authorized_user.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
+import 'package:street_art_witnesses/src/services/api_service.dart';
 import 'package:street_art_witnesses/src/widgets/my_text_form_field.dart';
+import 'package:street_art_witnesses/src/utils/utils.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -21,15 +22,18 @@ class _LoginViewState extends State<LoginView> {
     super.dispose();
   }
 
-  void _login() {
-    final user = AuthorizedUser(
-      username: loginController.text.trim(),
-      email: 'exapmle@google.com',
-      token: 'auth12345678',
-    );
-    context.read<UserProvider>().updateUser(user);
+  void _login() async {
+    final user = await Utils.showLoading(
+        context,
+        ApiService.login(
+          email: loginController.text.trim(),
+          password: passwordController.text.trim(),
+        ));
 
-    Navigator.of(context).pop();
+    if (mounted && user != null) {
+      context.read<UserProvider>().updateUser(user);
+      Navigator.of(context).pop();
+    }
   }
 
   @override

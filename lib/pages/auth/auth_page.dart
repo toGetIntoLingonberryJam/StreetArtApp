@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/pages/auth/auth_view/login_view.dart';
 import 'package:street_art_witnesses/pages/auth/auth_view/register_view.dart';
 
-enum AuthType { login, register }
+enum AuthForm { login, register }
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -12,7 +12,7 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
-  AuthType authType = AuthType.login;
+  AuthForm authForm = AuthForm.login;
 
   @override
   Widget build(BuildContext context) {
@@ -34,22 +34,22 @@ class _AuthPageState extends State<AuthPage> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   GestureDetector(
-                    onTap: () => setState(() => authType = AuthType.login),
+                    onTap: () => setState(() => authForm = AuthForm.login),
                     child: Text('Вход',
                         style: TextStyle(
                           fontSize: 20,
-                          fontWeight: authType == AuthType.login
+                          fontWeight: authForm == AuthForm.login
                               ? FontWeight.bold
                               : FontWeight.normal,
                         )),
                   ),
                   const SizedBox(width: 70),
                   GestureDetector(
-                    onTap: () => setState(() => authType = AuthType.register),
+                    onTap: () => setState(() => authForm = AuthForm.register),
                     child: Text('Регистрация',
                         style: TextStyle(
                           fontSize: 20,
-                          fontWeight: authType == AuthType.register
+                          fontWeight: authForm == AuthForm.register
                               ? FontWeight.bold
                               : FontWeight.normal,
                         )),
@@ -59,7 +59,7 @@ class _AuthPageState extends State<AuthPage> {
               Expanded(
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.fromLTRB(20, 50, 20, 20),
-                  child: authType == AuthType.login
+                  child: authForm == AuthForm.login
                       ? const LoginView()
                       : const RegisterView(),
                 ),
