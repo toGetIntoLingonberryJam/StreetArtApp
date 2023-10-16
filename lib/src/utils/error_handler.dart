@@ -7,7 +7,8 @@ abstract class ErrorHandler {
   }
 
   static void handleDioException(DioException e) {
-    print('Data: ${e.response?.data}');
+    print(
+        'Handling DioException\nmessage: ${e.message}\nerrorData: ${e.response?.data}');
 
     switch (e.response?.statusCode) {
       case 500:

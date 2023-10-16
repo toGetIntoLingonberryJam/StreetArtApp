@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:street_art_witnesses/src/models/user/guest_user.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
+import 'package:street_art_witnesses/src/utils/utils.dart';
 import 'package:street_art_witnesses/src/widgets/skeleton.dart';
 
 class AuthorizedView extends StatelessWidget {
   const AuthorizedView({super.key});
 
-  void _logout(BuildContext context) {
-    final user = GuestUser();
-
-    context.read<UserProvider>().updateUser(user);
+  void _logout(BuildContext context) async {
+    await Utils.showLoading(
+      context,
+      context.read<UserProvider>().logout(),
+    );
   }
 
   @override

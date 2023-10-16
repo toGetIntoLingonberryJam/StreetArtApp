@@ -1,32 +1,50 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/pages/home/home_page.dart';
 import 'package:street_art_witnesses/pages/intro/intro_slider.dart';
 import 'package:street_art_witnesses/src/models/user/guest_user.dart';
+import 'package:street_art_witnesses/src/models/user/user.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
+import 'package:street_art_witnesses/src/services/api_service.dart';
+import 'package:street_art_witnesses/src/services/storage_service.dart';
 import 'package:street_art_witnesses/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
 
+Future<User> getUser() async {
+  // Retrieve token from localstore, if exists
+  final token = await StorageService.retrieveToken();
+
+  if (token != null) {
+    final user = await ApiService.getUserByToken(token: token);
+    return user;
+  }
+
+  return GuestUser();
+}
+
 void main() async {
-  // TODO: User synchronization
-  await Future.delayed(const Duration(seconds: 1));
+  WidgetsFlutterBinding.ensureInitialized();
+  final user = await getUser();
 
   runApp(DevicePreview(
     enabled: !kReleaseMode,
-    builder: (context) => const MyApp(),
+    builder: (context) => MyApp(user: user),
   ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({super.key, required this.user});
+
+  final User user;
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => UserProvider(user: GuestUser()),
+          create: (_) => UserProvider(user: user),
           lazy: false,
         ),
       ],
@@ -39,7 +57,7 @@ class MyApp extends StatelessWidget {
         title: 'Свидетели Стрит-Арта',
         debugShowCheckedModeBanner: false,
         theme: appTheme,
-        home: const IntroSlider(),
+        home: user.isAuthorized ? const HomePage() : const IntroSlider(),
       ),
     );
   }

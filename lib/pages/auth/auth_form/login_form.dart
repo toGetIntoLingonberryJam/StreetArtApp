@@ -44,7 +44,7 @@ class _LoginViewState extends State<LoginView> {
         children: [
           MyTextFormField(
             controller: loginController,
-            hintText: 'Логин',
+            hintText: 'Почта',
           ),
           const SizedBox(height: 25),
           MyTextFormField(
