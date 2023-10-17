@@ -11,9 +11,9 @@ abstract class ApiService {
     BaseOptions(baseUrl: 'https://streetartback.onrender.com'),
   );
 
-  static Future<T?> _makeApiCall<T>(Function() apiCall) async {
+  static Future<T?> _makeApiCall<T>(Future<T> apiCall) async {
     try {
-      return await apiCall();
+      return await apiCall;
     } on DioException catch (e) {
       ErrorHandler.handleDioException(e);
       return null;
@@ -24,11 +24,11 @@ abstract class ApiService {
     required String email,
     required String password,
   }) async {
-    final response = await _makeApiCall<Response>(() => dio.post(
-          '/auth/login',
-          data: {'username': email, 'password': password},
-          options: Options(contentType: Headers.formUrlEncodedContentType),
-        ));
+    final response = await _makeApiCall<Response>(dio.post(
+      '/auth/login',
+      data: {'username': email, 'password': password},
+      options: Options(contentType: Headers.formUrlEncodedContentType),
+    ));
 
     if (response == null) {
       return null;
@@ -50,10 +50,10 @@ abstract class ApiService {
     required String email,
     required String password,
   }) async {
-    final response = await _makeApiCall<Response>(() => dio.post(
-          '/auth/register',
-          data: {'username': username, 'email': email, 'password': password},
-        ));
+    final response = await _makeApiCall<Response>(dio.post(
+      '/auth/register',
+      data: {'username': username, 'email': email, 'password': password},
+    ));
 
     if (response != null) {
       return await login(email: email, password: password);
@@ -70,12 +70,12 @@ abstract class ApiService {
   }
 
   static Future<User> getUserByToken({required String token}) async {
-    final response = await _makeApiCall<Response>(() => dio.get(
-          '/user/me',
-          options: Options(headers: {
-            'Authorization': 'Bearer $token',
-          }),
-        ));
+    final response = await _makeApiCall<Response>(dio.get(
+      '/user/me',
+      options: Options(headers: {
+        'Authorization': 'Bearer $token',
+      }),
+    ));
 
     if (response?.statusCode == 200 && response?.data != null) {
       final data = response!.data;
