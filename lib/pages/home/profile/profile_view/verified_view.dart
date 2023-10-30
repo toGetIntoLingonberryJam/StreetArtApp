@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
+import 'package:street_art_witnesses/src/widgets/app_button.dart';
 import 'package:street_art_witnesses/src/widgets/skeleton.dart';
 
 class VerifiedView extends StatelessWidget {
@@ -49,8 +50,8 @@ class VerifiedView extends StatelessWidget {
                   style: TextStyle(fontSize: 20),
                 ),
                 const SizedBox(height: 20),
-                FilledButton(
-                  onPressed: () => _logout(context),
+                AppButton.primary(
+                  onTap: () => _logout(context),
                   child: const Text(
                     'Выйти из профиля',
                     style: TextStyle(fontSize: 16),

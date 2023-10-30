@@ -3,7 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/services/api_service.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
-import 'package:street_art_witnesses/src/widgets/my_text_form_field.dart';
+import 'package:street_art_witnesses/src/widgets/app_button.dart';
+import 'package:street_art_witnesses/src/widgets/app_text_form_field.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
@@ -48,31 +49,28 @@ class _RegisterViewState extends State<RegisterView> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          MyTextFormField(
+          AppTextFormField(
             controller: loginController,
             hintText: 'Придумайте логин',
           ),
           const SizedBox(height: 25),
-          MyTextFormField(
+          AppTextFormField(
             controller: emailController,
             hintText: 'Введите почту',
           ),
           const SizedBox(height: 25),
-          MyTextFormField(
+          AppTextFormField(
             controller: passwordController,
             hintText: 'Введите пароль',
           ),
           const SizedBox(height: 25),
-          MyTextFormField(
+          AppTextFormField(
             controller: passwordConfirmController,
             hintText: 'Повторите пароль',
           ),
           const SizedBox(height: 60),
-          FilledButton(
-            style: FilledButton.styleFrom(
-              minimumSize: const Size(300, 45),
-            ),
-            onPressed: _register,
+          AppButton.primary(
+            onTap: _register,
             child: const Text(
               'Зарегистрироваться',
               style: TextStyle(fontSize: 17),

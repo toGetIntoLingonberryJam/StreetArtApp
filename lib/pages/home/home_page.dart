@@ -20,6 +20,7 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: BottomNavigationBar(
         unselectedFontSize: 14,
         currentIndex: pageIndex,
+        selectedItemColor: Theme.of(context).colorScheme.secondary,
         onTap: (value) => setState(() => pageIndex = value),
         items: _navbarItems,
       ),
@@ -30,18 +31,18 @@ class _HomePageState extends State<HomePage> {
 const _navbarItems = [
   BottomNavigationBarItem(
     label: 'Карта',
-    icon: Icon(Icons.map_outlined),
-    activeIcon: Icon(Icons.map),
+    icon: Icon(Icons.map),
+    // activeIcon: Icon(Icons.map),
   ),
   BottomNavigationBarItem(
     label: 'Коллекция',
-    icon: Icon(Icons.favorite_border),
-    activeIcon: Icon(Icons.favorite),
+    icon: Icon(Icons.favorite),
+    // activeIcon: Icon(Icons.favorite),
   ),
   BottomNavigationBarItem(
     label: 'Профиль',
-    icon: Icon(Icons.person_outline),
-    activeIcon: Icon(Icons.person),
+    icon: Icon(Icons.person),
+    // activeIcon: Icon(Icons.person),
   ),
 ];
 

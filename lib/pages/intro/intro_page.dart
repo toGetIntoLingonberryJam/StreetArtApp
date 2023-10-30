@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/constants.dart';
+import 'package:street_art_witnesses/src/widgets/app_button.dart';
+import 'package:street_art_witnesses/src/widgets/app_logo.dart';
 
 class IntroPage extends StatelessWidget {
   const IntroPage({
@@ -14,14 +17,14 @@ class IntroPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: kDefaultHorizontalPadding,
         child: Center(
           child: Column(
             children: [
               const SizedBox(height: 20),
               const Expanded(
                 flex: 4,
-                child: Image(image: AssetImage('assets/logo.png')),
+                child: AppLogo(),
               ),
               const SizedBox(height: 40),
               const Text(
@@ -36,15 +39,9 @@ class IntroPage extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               const Expanded(flex: 2, child: SizedBox()),
-              FilledButton.tonal(
-                style: FilledButton.styleFrom(
-                  minimumSize: const Size(300, 45),
-                ),
-                onPressed: onButtonClicked,
-                child: const Text(
-                  'Далее',
-                  style: TextStyle(fontSize: 17),
-                ),
+              AppButton.primary(
+                onTap: onButtonClicked,
+                child: const Text('Далее'),
               ),
               const Expanded(flex: 2, child: SizedBox()),
             ],

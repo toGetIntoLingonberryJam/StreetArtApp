@@ -62,7 +62,8 @@ class MyApp extends StatelessWidget {
         scaffoldMessengerKey: Utils.messengerKey,
         title: 'Свидетели Стрит-Арта',
         debugShowCheckedModeBanner: false,
-        theme: appTheme,
+        theme: lightTheme,
+        darkTheme: darkTheme,
         home: user.isAuthorized ? const HomePage() : const IntroSlider(),
       ),
     );

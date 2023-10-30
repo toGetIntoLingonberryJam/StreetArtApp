@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/pages/home/home_page.dart';
 import 'package:street_art_witnesses/pages/intro/intro_auth_page.dart';
 import 'package:street_art_witnesses/pages/intro/slider_dots.dart';
@@ -33,7 +34,7 @@ class _IntroSliderState extends State<IntroSlider> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 30),
+          padding: kDefaultVerticalPadding,
           child: Column(
             children: [
               _skipButton(),
@@ -73,7 +74,7 @@ class _IntroSliderState extends State<IntroSlider> {
 
   Padding _skipButton() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: kDefaultHorizontalPadding,
       child: Row(children: [
         const Expanded(child: SizedBox()),
         GestureDetector(

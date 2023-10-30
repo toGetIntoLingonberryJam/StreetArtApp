@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
+import 'package:street_art_witnesses/src/widgets/app_button.dart';
 import 'package:street_art_witnesses/src/widgets/skeleton.dart';
 
 class AuthorizedView extends StatelessWidget {
@@ -21,13 +22,14 @@ class AuthorizedView extends StatelessWidget {
     return Column(
       children: [
         Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CircleAvatar(
               radius: 24,
               backgroundColor: Theme.of(context).colorScheme.secondary,
             ),
             const SizedBox(width: 16),
-            Flexible(
+            Expanded(
               child: Text(
                 user.email!,
                 style: const TextStyle(fontSize: 24),
@@ -47,8 +49,8 @@ class AuthorizedView extends StatelessWidget {
                   style: TextStyle(fontSize: 20),
                 ),
                 const SizedBox(height: 20),
-                FilledButton(
-                  onPressed: () => _logout(context),
+                AppButton.primary(
+                  onTap: () => _logout(context),
                   child: const Text(
                     'Выйти из профиля',
                     style: TextStyle(fontSize: 16),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/pages/auth/auth_page.dart';
 import 'package:street_art_witnesses/pages/home/home_page.dart';
+import 'package:street_art_witnesses/src/widgets/app_button.dart';
+import 'package:street_art_witnesses/src/widgets/app_logo.dart';
 
 class IntroAuthPage extends StatelessWidget {
   const IntroAuthPage({super.key, required this.content});
@@ -32,7 +34,7 @@ class IntroAuthPage extends StatelessWidget {
               const SizedBox(height: 20),
               const Expanded(
                 flex: 4,
-                child: Image(image: AssetImage('assets/logo.png')),
+                child: AppLogo(),
               ),
               const SizedBox(height: 40),
               const Text(
@@ -47,21 +49,14 @@ class IntroAuthPage extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               const Expanded(flex: 2, child: SizedBox()),
-              FilledButton(
-                style: FilledButton.styleFrom(
-                  minimumSize: const Size(300, 45),
-                ),
-                onPressed: () => _navigateToAuth(context),
-                child: const Text('Войти в профиль',
-                    style: TextStyle(fontSize: 17)),
+              AppButton.primary(
+                onTap: () => _navigateToAuth(context),
+                child: const Text('Войти в профиль'),
               ),
-              const SizedBox(height: 10),
-              FilledButton.tonal(
-                style: FilledButton.styleFrom(
-                  minimumSize: const Size(300, 45),
-                ),
-                onPressed: () => _navigateToHome(context),
-                child: const Text('Позже', style: TextStyle(fontSize: 17)),
+              const SizedBox(height: 12),
+              AppButton.secondary(
+                onTap: () => _navigateToHome(context),
+                child: const Text('Позже'),
               ),
               const Expanded(flex: 2, child: SizedBox()),
             ],

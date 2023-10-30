@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/pages/auth/auth_page.dart';
+import 'package:street_art_witnesses/src/widgets/app_button.dart';
 import 'package:street_art_witnesses/src/widgets/skeleton.dart';
 
 class GuestView extends StatelessWidget {
@@ -27,12 +28,9 @@ class GuestView extends StatelessWidget {
                   style: TextStyle(fontSize: 20),
                 ),
                 const SizedBox(height: 20),
-                FilledButton(
-                  onPressed: () => _login(context),
-                  child: const Text(
-                    'Войти в профиль',
-                    style: TextStyle(fontSize: 16),
-                  ),
+                AppButton.primary(
+                  onTap: () => _login(context),
+                  child: const Text('Войти в профиль'),
                 ),
               ],
             ),

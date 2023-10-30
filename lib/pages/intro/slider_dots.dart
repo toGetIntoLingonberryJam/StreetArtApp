@@ -46,8 +46,8 @@ class Dot extends StatelessWidget {
       height: radius,
       decoration: BoxDecoration(
         color: isActive
-            ? Theme.of(context).colorScheme.primary
-            : Theme.of(context).colorScheme.secondary,
+            ? Theme.of(context).colorScheme.inverseSurface
+            : Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular((radius)),
       ),
     );
