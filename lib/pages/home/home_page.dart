@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/pages/home/collection/collection_page.dart';
 import 'package:street_art_witnesses/pages/home/map/map_page.dart';
 import 'package:street_art_witnesses/pages/home/profile/profile_page.dart';
+import 'package:street_art_witnesses/pages/home/tours/tours_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,7 +12,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int pageIndex = 2;
+  int pageIndex = 3;
   late final PageController pageController = PageController(
     initialPage: pageIndex,
   );
@@ -31,7 +32,8 @@ class _HomePageState extends State<HomePage> {
         children: _pages,
       ),
       bottomNavigationBar: BottomNavigationBar(
-        unselectedFontSize: 14,
+        type: BottomNavigationBarType.fixed,
+        showUnselectedLabels: false,
         currentIndex: pageIndex,
         selectedItemColor: Theme.of(context).colorScheme.secondary,
         onTap: (newIndex) => setState(() {
@@ -51,6 +53,11 @@ const _navbarItems = [
     // activeIcon: Icon(Icons.map),
   ),
   BottomNavigationBarItem(
+    label: 'Экскурсии',
+    icon: Icon(Icons.directions_walk),
+    // activeIcon: Icon(Icons.favorite),
+  ),
+  BottomNavigationBarItem(
     label: 'Коллекция',
     icon: Icon(Icons.favorite),
     // activeIcon: Icon(Icons.favorite),
@@ -64,6 +71,7 @@ const _navbarItems = [
 
 const _pages = [
   MapPage(),
+  ToursPage(),
   CollectionPage(),
   ProfilePage(),
 ];
