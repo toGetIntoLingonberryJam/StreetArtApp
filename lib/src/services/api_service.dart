@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:street_art_witnesses/src/models/artwork/artwork_geopoint.dart';
 import 'package:street_art_witnesses/src/models/user/authorized_user.dart';
 import 'package:street_art_witnesses/src/models/user/guest_user.dart';
 import 'package:street_art_witnesses/src/models/user/user.dart';
@@ -96,4 +97,30 @@ abstract class ApiService {
     }
     return GuestUser();
   }
+
+  static Future<List<ArtworkGeopoint>> getArtworkGeopoints() async {
+    await Future.delayed(const Duration(seconds: 2));
+    return mockArtworkGeopoints;
+  }
 }
+
+const mockArtworkGeopoints = [
+  ArtworkGeopoint(
+    latitude: 56.852554,
+    longitude: 60.636610,
+    address: 'Ул. Уральская, 74',
+    previewUrl: null,
+  ),
+  ArtworkGeopoint(
+    latitude: 56.837827,
+    longitude: 60.603358,
+    address: 'Плотинка',
+    previewUrl: null,
+  ),
+  ArtworkGeopoint(
+    latitude: 56.843856,
+    longitude: 60.653828,
+    address: 'ул. Мира, 19',
+    previewUrl: null,
+  ),
+];

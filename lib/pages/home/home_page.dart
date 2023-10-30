@@ -12,16 +12,32 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int pageIndex = 2;
+  late final PageController pageController = PageController(
+    initialPage: pageIndex,
+  );
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[pageIndex],
+      body: PageView(
+        controller: pageController,
+        physics: const NeverScrollableScrollPhysics(),
+        children: _pages,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         unselectedFontSize: 14,
         currentIndex: pageIndex,
         selectedItemColor: Theme.of(context).colorScheme.secondary,
-        onTap: (value) => setState(() => pageIndex = value),
+        onTap: (newIndex) => setState(() {
+          pageIndex = newIndex;
+          pageController.jumpToPage(pageIndex);
+        }),
         items: _navbarItems,
       ),
     );

@@ -30,7 +30,8 @@ void main() async {
   final user = await getUser();
 
   runApp(DevicePreview(
-    enabled: !kReleaseMode,
+    // enabled: !kReleaseMode,
+    enabled: false,
     builder: (context) => MyApp(user: user),
   ));
 }
