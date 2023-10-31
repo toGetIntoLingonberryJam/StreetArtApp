@@ -2,6 +2,7 @@ import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 
 class ArtworkGeopoint {
   const ArtworkGeopoint({
+    required this.id,
     required this.latitude,
     required this.longitude,
     required this.address,
@@ -12,6 +13,7 @@ class ArtworkGeopoint {
   final double longitude;
   final String address;
   final String? previewUrl;
+  final int id;
 
   GeoPoint asGeoPoint() => GeoPoint(latitude: latitude, longitude: longitude);
 }

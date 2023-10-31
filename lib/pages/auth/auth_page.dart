@@ -5,7 +5,7 @@ import 'package:street_art_witnesses/pages/auth/auth_form/register_form.dart';
 import 'package:street_art_witnesses/src/widgets/app_button.dart';
 import 'package:street_art_witnesses/src/widgets/app_logo.dart';
 
-enum AuthForm { login, register }
+enum _Form { login, register }
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -15,11 +15,11 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
-  AuthForm authForm = AuthForm.login;
+  _Form authForm = _Form.login;
 
-  void _switchToLogin() => setState(() => authForm = AuthForm.login);
+  void _switchToLogin() => setState(() => authForm = _Form.login);
 
-  void _switchToRegister() => setState(() => authForm = AuthForm.register);
+  void _switchToRegister() => setState(() => authForm = _Form.register);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class _AuthPageState extends State<AuthPage> {
               Row(
                 children: [
                   Expanded(
-                    child: authForm == AuthForm.login
+                    child: authForm == _Form.login
                         ? AppButton.primary(
                             onTap: _switchToLogin,
                             child: const Text('Вход'),
@@ -49,7 +49,7 @@ class _AuthPageState extends State<AuthPage> {
                   ),
                   const SizedBox(width: 20),
                   Expanded(
-                    child: authForm == AuthForm.register
+                    child: authForm == _Form.register
                         ? AppButton.primary(
                             onTap: _switchToRegister,
                             child: const Text('Регистрация'),
@@ -62,7 +62,7 @@ class _AuthPageState extends State<AuthPage> {
                 ],
               ),
               const SizedBox(height: 48),
-              authForm == AuthForm.login
+              authForm == _Form.login
                   ? const LoginView()
                   : const RegisterView(),
             ],

@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
 import 'package:street_art_witnesses/src/widgets/app_button.dart';
-import 'package:street_art_witnesses/src/widgets/skeleton.dart';
+import 'package:street_art_witnesses/src/widgets/skeletons/skeleton.dart';
 
 class VerifiedView extends StatelessWidget {
   const VerifiedView({super.key});

@@ -6,6 +6,7 @@ import 'package:street_art_witnesses/pages/home/home_page.dart';
 import 'package:street_art_witnesses/pages/intro/intro_slider.dart';
 import 'package:street_art_witnesses/src/models/user/guest_user.dart';
 import 'package:street_art_witnesses/src/models/user/user.dart';
+import 'package:street_art_witnesses/src/providers/favourites_provider.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/services/api_service.dart';
 import 'package:street_art_witnesses/src/services/storage_service.dart';
@@ -30,8 +31,8 @@ void main() async {
   final user = await getUser();
 
   runApp(DevicePreview(
-    // enabled: !kReleaseMode,
-    enabled: false,
+    enabled: !kReleaseMode,
+    // enabled: false,
     builder: (context) => MyApp(user: user),
   ));
 }
@@ -53,6 +54,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => UserProvider(user: user),
           lazy: false,
+        ),
+        ChangeNotifierProvider(
+          create: (_) => FavouritesProvider(),
         ),
       ],
       child: MaterialApp(

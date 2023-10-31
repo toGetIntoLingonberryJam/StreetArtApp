@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork_geopoint.dart';
+import 'package:street_art_witnesses/src/models/author/author.dart';
 import 'package:street_art_witnesses/src/models/user/authorized_user.dart';
 import 'package:street_art_witnesses/src/models/user/guest_user.dart';
 import 'package:street_art_witnesses/src/models/user/user.dart';
@@ -102,25 +104,68 @@ abstract class ApiService {
     await Future.delayed(const Duration(seconds: 2));
     return mockArtworkGeopoints;
   }
+
+  static Future<List<Author>> getAuthors() async {
+    await Future.delayed(const Duration(seconds: 2));
+    return mockAuthors;
+  }
+
+  static Future<List<Artwork>> getArtworks() async {
+    await Future.delayed(const Duration(seconds: 2));
+    return mockArtworks;
+  }
 }
 
 const mockArtworkGeopoints = [
   ArtworkGeopoint(
+    id: 1,
     latitude: 56.852554,
     longitude: 60.636610,
     address: 'Ул. Уральская, 74',
     previewUrl: null,
   ),
   ArtworkGeopoint(
+    id: 2,
     latitude: 56.837827,
     longitude: 60.603358,
     address: 'Плотинка',
     previewUrl: null,
   ),
   ArtworkGeopoint(
+    id: 3,
     latitude: 56.843856,
     longitude: 60.653828,
     address: 'ул. Мира, 19',
     previewUrl: null,
+  ),
+];
+
+const mockAuthors = [
+  Author(
+    name: 'Покрас Лампас',
+    thumbnailUrl: null,
+  ),
+  Author(
+    name: 'Roma Bantik',
+    thumbnailUrl: null,
+  ),
+  Author(
+    name: 'Philippenzo',
+    thumbnailUrl: null,
+  ),
+];
+
+const mockArtworks = [
+  Artwork(
+    author: 'Roma Bantik',
+    name: 'Мы станем лучше',
+    address: 'Ул. Пушкина, 24',
+    previewUrl: '',
+  ),
+  Artwork(
+    author: 'Philippenzo',
+    name: 'Лебединое озеро',
+    address: 'Ул. Куйбышева, 121Б',
+    previewUrl: '',
   ),
 ];

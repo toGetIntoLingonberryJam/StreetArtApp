@@ -17,6 +17,7 @@ class UserProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // TODO: Clear all user data: favourites, search history, tours, everyhting that depends on user
   Future<void> logout() async {
     _user = GuestUser();
     await StorageService.deleteUserInfo();

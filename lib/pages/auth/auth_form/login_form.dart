@@ -69,7 +69,6 @@ class _LoginViewState extends State<LoginView> {
 
   GestureDetector _forgotPasswordButton() {
     return GestureDetector(
-      onTap: () => print('Forgot password pressed'),
       child: const Text(
         'Забыли пароль?',
         style: TextStyle(decoration: TextDecoration.underline),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/pages/auth/auth_page.dart';
 import 'package:street_art_witnesses/src/widgets/app_button.dart';
-import 'package:street_art_witnesses/src/widgets/skeleton.dart';
+import 'package:street_art_witnesses/src/widgets/skeletons/skeleton.dart';
 
 class GuestView extends StatelessWidget {
   const GuestView({super.key});
