@@ -31,7 +31,7 @@ class AuthorizedView extends StatelessWidget {
             const SizedBox(width: 16),
             Expanded(
               child: Text(
-                user.email!,
+                user.username,
                 style: const TextStyle(fontSize: 24),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,

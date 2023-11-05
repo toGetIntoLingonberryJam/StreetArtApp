@@ -30,7 +30,7 @@ class VerifiedView extends StatelessWidget {
             const SizedBox(width: 16),
             Flexible(
               child: Text(
-                user.email!,
+                user.username,
                 style: const TextStyle(fontSize: 24),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
