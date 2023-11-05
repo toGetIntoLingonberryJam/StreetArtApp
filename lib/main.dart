@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:street_art_witnesses/pages/home/home_page.dart';
 import 'package:street_art_witnesses/pages/intro/intro_slider.dart';
-import 'package:street_art_witnesses/src/models/user/guest_user.dart';
-import 'package:street_art_witnesses/src/models/user/user.dart';
+import 'package:street_art_witnesses/src/models/user.dart';
 import 'package:street_art_witnesses/src/providers/favourites_provider.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/services/api_service.dart';
@@ -23,7 +22,7 @@ Future<User> getUser() async {
     return user;
   }
 
-  return GuestUser();
+  return User.guest();
 }
 
 void main() async {

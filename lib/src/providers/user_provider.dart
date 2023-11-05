@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:street_art_witnesses/src/models/user/guest_user.dart';
-import 'package:street_art_witnesses/src/models/user/user.dart';
+import 'package:street_art_witnesses/src/models/user.dart';
 import 'package:street_art_witnesses/src/services/storage_service.dart';
 
 class UserProvider extends ChangeNotifier {
@@ -19,7 +18,7 @@ class UserProvider extends ChangeNotifier {
 
   // TODO: Clear all user data: favourites, search history, tours, everyhting that depends on user
   Future<void> logout() async {
-    _user = GuestUser();
+    _user = User.guest();
     await StorageService.deleteUserInfo();
     notifyListeners();
   }

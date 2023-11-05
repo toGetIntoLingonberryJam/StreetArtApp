@@ -2,11 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork_geopoint.dart';
 import 'package:street_art_witnesses/src/models/author/author.dart';
-import 'package:street_art_witnesses/src/models/user/authorized_user.dart';
-import 'package:street_art_witnesses/src/models/user/guest_user.dart';
-import 'package:street_art_witnesses/src/models/user/user.dart';
-import 'package:street_art_witnesses/src/models/user/verified_user.dart';
+import 'package:street_art_witnesses/src/models/user.dart';
 import 'package:street_art_witnesses/src/services/storage_service.dart';
+import 'package:street_art_witnesses/src/utils/debugging.dart';
 import 'package:street_art_witnesses/src/utils/error_handler.dart';
 
 abstract class ApiService {
@@ -38,9 +36,10 @@ abstract class ApiService {
     } else {
       final String? token = response.data['access_token'];
       if (token != null) {
-        print('Saving token: $token');
+        Debug.log('Saving token: $token');
         await StorageService.saveToken(token);
-        return AuthorizedUser(username: 'username', email: email, token: token);
+
+        return await getUserByToken(token: token);
       } else {
         ErrorHandler.handleUnknownError();
         return null;
@@ -81,28 +80,12 @@ abstract class ApiService {
     ));
 
     if (response?.statusCode == 200 && response?.data != null) {
-      final data = response!.data;
+      final json = response!.data as Map<String, dynamic>;
 
-      try {
-        if (data['is_verified']) {
-          return VerifiedUser(
-            username: data['username'],
-            email: data['email'],
-            token: token,
-          );
-        } else {
-          return AuthorizedUser(
-            username: data['username'],
-            email: data['email'],
-            token: token,
-          );
-        }
-      } catch (e) {
-        print(e);
-      }
+      return User.fromJson(json);
     }
 
-    return GuestUser();
+    return User.guest();
   }
 
   static Future<List<ArtworkGeopoint>> getArtworkGeopoints() async {

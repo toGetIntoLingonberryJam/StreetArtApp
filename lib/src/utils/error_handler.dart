@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:street_art_witnesses/src/utils/debugging.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
 
 abstract class ErrorHandler {
@@ -7,7 +8,7 @@ abstract class ErrorHandler {
   }
 
   static void handleDioException(DioException e) {
-    print(
+    Debug.log(
         'Handling DioException\nmessage: ${e.message}\nerrorData: ${e.response?.data}');
 
     switch (e.response?.statusCode) {
