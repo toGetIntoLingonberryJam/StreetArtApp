@@ -83,20 +83,25 @@ abstract class ApiService {
     if (response?.statusCode == 200 && response?.data != null) {
       final data = response!.data;
 
-      if (data['is_verified']) {
-        return VerifiedUser(
-          username: data['username'],
-          email: data['email'],
-          token: token,
-        );
-      } else {
-        return AuthorizedUser(
-          username: data['username'],
-          email: data['email'],
-          token: token,
-        );
+      try {
+        if (data['is_verified']) {
+          return VerifiedUser(
+            username: data['username'],
+            email: data['email'],
+            token: token,
+          );
+        } else {
+          return AuthorizedUser(
+            username: data['username'],
+            email: data['email'],
+            token: token,
+          );
+        }
+      } catch (e) {
+        print(e);
       }
     }
+
     return GuestUser();
   }
 
