@@ -24,6 +24,11 @@ class _AuthPageState extends State<AuthPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        forceMaterialTransparency: true,
+        toolbarHeight: 40,
+      ),
       body: Center(
         child: SingleChildScrollView(
           padding: kDefaultPadding,
