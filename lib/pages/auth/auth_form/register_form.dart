@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/services/api_service.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
+import 'package:street_art_witnesses/src/utils/validator.dart';
 import 'package:street_art_witnesses/src/widgets/app_button.dart';
 import 'package:street_art_witnesses/src/widgets/app_text_form_field.dart';
 
@@ -18,6 +19,7 @@ class _RegisterViewState extends State<RegisterView> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final passwordConfirmController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
@@ -43,34 +45,45 @@ class _RegisterViewState extends State<RegisterView> {
     }
   }
 
+  void _tryRegister() {
+    if (formKey.currentState?.validate() ?? false) {
+      _register();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: formKey,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           AppTextFormField(
             controller: loginController,
             hintText: 'Придумайте логин',
+            validate: Validate.login,
           ),
-          const SizedBox(height: 25),
+          const SizedBox(height: 10),
           AppTextFormField(
             controller: emailController,
             hintText: 'Введите почту',
+            validate: Validate.email,
           ),
-          const SizedBox(height: 25),
+          const SizedBox(height: 10),
           AppTextFormField(
             controller: passwordController,
             hintText: 'Введите пароль',
+            validate: Validate.password,
           ),
-          const SizedBox(height: 25),
+          const SizedBox(height: 10),
           AppTextFormField(
             controller: passwordConfirmController,
             hintText: 'Повторите пароль',
+            validate: Validate.password,
           ),
           const SizedBox(height: 60),
           AppButton.primary(
-            onTap: _register,
+            onTap: _tryRegister,
             child: const Text(
               'Зарегистрироваться',
               style: TextStyle(fontSize: 17),

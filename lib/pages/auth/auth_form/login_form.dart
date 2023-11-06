@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/services/api_service.dart';
+import 'package:street_art_witnesses/src/utils/validator.dart';
 import 'package:street_art_witnesses/src/widgets/app_button.dart';
 import 'package:street_art_witnesses/src/widgets/app_text_form_field.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
@@ -16,10 +17,12 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   final loginController = TextEditingController();
   final passwordController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
     loginController.dispose();
+    passwordController.dispose();
     super.dispose();
   }
 
@@ -37,24 +40,33 @@ class _LoginViewState extends State<LoginView> {
     }
   }
 
+  void _tryLogin() {
+    if (formKey.currentState?.validate() ?? false) {
+      _login();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: formKey,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           AppTextFormField(
             controller: loginController,
             hintText: 'Почта',
+            validate: Validate.email,
           ),
-          const SizedBox(height: 25),
+          const SizedBox(height: 10),
           AppTextFormField(
             controller: passwordController,
             hintText: 'Пароль',
+            validate: Validate.password,
           ),
           const SizedBox(height: 60),
           AppButton.primary(
-            onTap: _login,
+            onTap: _tryLogin,
             child: const Text(
               'Войти в профиль',
               style: TextStyle(fontSize: 17),
