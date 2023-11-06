@@ -40,6 +40,9 @@ abstract class Utils {
     BuildContext dialogContext,
     Future<T> future,
   ) async {
+    // Dismissing keyboard if opened
+    FocusManager.instance.primaryFocus?.unfocus();
+
     showDialog(
       context: dialogContext,
       barrierDismissible: false,
