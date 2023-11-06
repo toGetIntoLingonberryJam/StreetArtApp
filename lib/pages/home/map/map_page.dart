@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});
@@ -10,16 +12,14 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage>
     with AutomaticKeepAliveClientMixin<MapPage> {
-  final MapController controller = MapController.withPosition(
-    initPosition: GeoPoint(latitude: 56.835180, longitude: 60.613433),
-  );
+  final mapController = MapController();
 
   @override
   bool get wantKeepAlive => true;
 
   @override
   void dispose() {
-    controller.dispose();
+    mapController.dispose();
     super.dispose();
   }
 
@@ -28,17 +28,27 @@ class _MapPageState extends State<MapPage>
     super.build(context);
     return Scaffold(
       body: Center(
-        child: OSMFlutter(
-          mapIsLoading: const Center(child: CircularProgressIndicator()),
-          controller: controller,
-          osmOption: const OSMOption(
-            showContributorBadgeForOSM: true,
-            zoomOption: ZoomOption(
-              initZoom: 13,
-              maxZoomLevel: 19,
-              minZoomLevel: 10,
-            ),
+        child: FlutterMap(
+          mapController: mapController,
+          options: MapOptions(
+            backgroundColor: Theme.of(context).colorScheme.background,
+            initialCenter: const LatLng(56.8519, 60.6122),
           ),
+          children: [
+            TileLayer(
+              urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+            ),
+            RichAttributionWidget(
+              attributions: [
+                TextSourceAttribution(
+                  'OpenStreetMap contributors',
+                  onTap: () => launchUrl(
+                    Uri.parse('https://openstreetmap.org/copyright'),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

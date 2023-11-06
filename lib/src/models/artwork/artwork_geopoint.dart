@@ -1,5 +1,3 @@
-import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
-
 class ArtworkGeopoint {
   const ArtworkGeopoint({
     required this.id,
@@ -14,6 +12,4 @@ class ArtworkGeopoint {
   final String address;
   final String? previewUrl;
   final int id;
-
-  GeoPoint asGeoPoint() => GeoPoint(latitude: latitude, longitude: longitude);
 }
