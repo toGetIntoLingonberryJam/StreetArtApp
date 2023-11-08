@@ -61,25 +61,30 @@ class _RegisterViewState extends State<RegisterView> {
           AppTextFormField(
             controller: loginController,
             hintText: 'Придумайте логин',
-            validate: Validate.login,
+            validator: Validator.get(Validate.login),
           ),
           const SizedBox(height: 10),
           AppTextFormField(
             controller: emailController,
             hintText: 'Введите почту',
-            validate: Validate.email,
+            validator: Validator.get(Validate.email),
           ),
           const SizedBox(height: 10),
-          AppTextFormField(
+          AppTextFormField.withToggleEye(
             controller: passwordController,
             hintText: 'Введите пароль',
-            validate: Validate.password,
+            validator: Validator.get(Validate.password),
           ),
           const SizedBox(height: 10),
-          AppTextFormField(
+          AppTextFormField.withToggleEye(
             controller: passwordConfirmController,
             hintText: 'Повторите пароль',
-            validate: Validate.password,
+            validator: (String? password) {
+              if (passwordController.text != passwordConfirmController.text) {
+                return 'Пароли не совпадают';
+              }
+              return Validator.get(Validate.password)!(password);
+            },
           ),
           const SizedBox(height: 60),
           AppButton.primary(

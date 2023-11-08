@@ -56,13 +56,13 @@ class _LoginViewState extends State<LoginView> {
           AppTextFormField(
             controller: loginController,
             hintText: 'Почта',
-            validate: Validate.email,
+            validator: Validator.get(Validate.email),
           ),
           const SizedBox(height: 10),
-          AppTextFormField(
+          AppTextFormField.withToggleEye(
             controller: passwordController,
             hintText: 'Пароль',
-            validate: Validate.password,
+            validator: Validator.get(Validate.password),
           ),
           const SizedBox(height: 60),
           AppButton.primary(
