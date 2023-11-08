@@ -64,6 +64,7 @@ const _navbarItems = [
     label: 'Профиль',
     icon: Badge(
       label: Text('1'),
+      textColor: Colors.white,
       child: Icon(Icons.person_outline),
     ),
   ),

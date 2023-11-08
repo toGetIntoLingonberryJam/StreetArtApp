@@ -12,19 +12,16 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Consumer<UserProvider>(
-            builder: (_, provider, __) {
-              if (provider.user.isVerified) {
-                return const VerifiedView();
-              }
-              if (provider.user.isAuthorized) {
-                return const AuthorizedView();
-              }
-              return const GuestView();
-            },
-          ),
+        child: Consumer<UserProvider>(
+          builder: (_, provider, __) {
+            if (provider.user.isVerified) {
+              return const VerifiedView();
+            }
+            if (provider.user.isAuthorized) {
+              return const AuthorizedView();
+            }
+            return const GuestView();
+          },
         ),
       ),
     );

@@ -1,82 +1,74 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
-import 'package:street_art_witnesses/src/widgets/app_button.dart';
-import 'package:street_art_witnesses/src/widgets/skeletons/skeleton.dart';
+import 'package:street_art_witnesses/src/widgets/profile_tile.dart';
+import 'package:street_art_witnesses/src/widgets/settings_tile.dart';
 
 class VerifiedView extends StatelessWidget {
   const VerifiedView({super.key});
 
   void _logout(BuildContext context) async {
-    await Utils.showLoading(
-      context,
-      context.read<UserProvider>().logout(),
-    );
+    final isLogout = await Utils.showWarning(
+          context,
+          title: 'Выйти из аккаунта',
+          content:
+              'Вы уверены, что хотите выйти из аккаунта? Это действие нельзя будет отменить.',
+        ) ??
+        false;
+
+    if (context.mounted && isLogout) {
+      await Utils.showLoading(
+        context,
+        context.read<UserProvider>().logout(),
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final user = context.read<UserProvider>().user;
 
-    return Column(
-      children: [
-        Row(
-          children: [
-            CircleAvatar(
-              radius: 24,
-              backgroundColor: Theme.of(context).colorScheme.secondary,
-            ),
-            const SizedBox(width: 16),
-            Flexible(
-              child: Text(
-                user.username,
-                style: const TextStyle(fontSize: 24),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-            const SizedBox(width: 8),
-            const Icon(Icons.verified),
-          ],
-        ),
-        Expanded(
-          child: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Text(
-                  'Вы авторизованы!',
-                  style: TextStyle(fontSize: 20),
-                ),
-                const SizedBox(height: 20),
-                AppButton.primary(
-                  onTap: () => _logout(context),
-                  child: const Text(
-                    'Выйти из профиля',
-                    style: TextStyle(fontSize: 16),
-                  ),
-                ),
-              ],
-            ),
+    return SingleChildScrollView(
+      padding: kDefaultPadding,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          ProfileTile(
+            username: user.username,
+            email: user.email!,
           ),
-        ),
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _settingsTile('Настройки'),
-            _settingsTile('О нас'),
-          ],
-        ),
-      ],
-    );
-  }
-
-  ListTile _settingsTile(String title) {
-    return ListTile(
-      contentPadding: const EdgeInsets.all(0),
-      leading: const Skeleton(size: 30, borderRadius: 0),
-      title: Text(title, style: const TextStyle(fontSize: 17)),
+          const SizedBox(height: 24),
+          const SettingsTile(
+            iconData: Icons.add_circle_outline,
+            text: 'Добавить работу',
+          ),
+          const SizedBox(height: 8),
+          const SettingsTile(
+            iconData: Icons.collections_outlined,
+            text: 'Мои публикации',
+            notificationsCount: 1,
+          ),
+          const SizedBox(height: 8),
+          const SettingsTile(
+            iconData: Icons.settings_outlined,
+            text: 'Настройки',
+          ),
+          const SizedBox(height: 8),
+          const SettingsTile(
+            iconData: Icons.info_outline,
+            text: 'О нас',
+          ),
+          const SizedBox(height: 8),
+          SettingsTile(
+            iconData: Icons.logout,
+            text: 'Выйти',
+            onTap: () => _logout(context),
+            foregroundColor: Theme.of(context).colorScheme.error,
+          ),
+        ],
+      ),
     );
   }
 }

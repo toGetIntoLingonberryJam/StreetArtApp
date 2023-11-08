@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/src/widgets/app_button.dart';
 
 abstract class Utils {
   static final messengerKey = GlobalKey<ScaffoldMessengerState>();
 
   static void showSnackBar(String message) {
-    final snackBar = SnackBar(content: Text(message));
+    final snackBar = SnackBar(
+      content: Text(
+        message,
+        style: const TextStyle(
+          fontSize: 18,
+        ),
+      ),
+    );
 
     messengerKey.currentState
       ?..clearSnackBars()
@@ -21,16 +29,23 @@ abstract class Utils {
         context: context,
         barrierDismissible: barrierDismissible,
         builder: (context) => AlertDialog(
+          backgroundColor: Theme.of(context).colorScheme.background,
+          surfaceTintColor: Colors.transparent,
           title: Text(title),
-          content: content == null ? null : Text(content),
+          content: content == null
+              ? null
+              : Text(
+                  content,
+                  style: const TextStyle(fontSize: 16),
+                ),
           actions: [
-            ElevatedButton(
-              onPressed: () => Navigator.pop(context, false),
-              child: const Text('Нет'),
-            ),
-            TextButton(
-              onPressed: () => Navigator.pop(context, true),
+            AppButton.primary(
+              onTap: () => Navigator.pop(context, true),
               child: const Text('Да'),
+            ),
+            AppButton.secondary(
+              onTap: () => Navigator.pop(context, false),
+              child: const Text('Нет'),
             ),
           ],
         ),
