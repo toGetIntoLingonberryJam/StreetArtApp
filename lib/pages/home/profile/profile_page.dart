@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:street_art_witnesses/pages/home/profile/profile_view/artist_view.dart';
 import 'package:street_art_witnesses/pages/home/profile/profile_view/authorized_view.dart';
 import 'package:street_art_witnesses/pages/home/profile/profile_view/guest_view.dart';
-import 'package:street_art_witnesses/pages/home/profile/profile_view/moderator_view.dart';
 import 'package:street_art_witnesses/pages/home/profile/profile_view/verified_view.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
 
@@ -16,8 +14,6 @@ class ProfilePage extends StatelessWidget {
       body: SafeArea(
         child: Consumer<UserProvider>(
           builder: (_, provider, __) {
-            return const ArtistView();
-
             if (provider.user.isVerified) {
               return const VerifiedView();
             }
