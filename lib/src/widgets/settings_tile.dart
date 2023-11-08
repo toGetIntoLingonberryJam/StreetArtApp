@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:street_art_witnesses/src/utils/utils.dart';
 
 class SettingsTile extends StatelessWidget {
   const SettingsTile({
@@ -17,13 +16,11 @@ class SettingsTile extends StatelessWidget {
   final Color? foregroundColor;
   final int? notificationsCount;
 
-  void _showDebugMessage() => Utils.showSnackBar(text);
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(12),
-      onTap: onTap ?? _showDebugMessage,
+      onTap: onTap ?? () {},
       child: Ink(
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
