@@ -1,6 +1,6 @@
 enum Validate { notEmpty, email, password, login }
 
-typedef ValidateFunction = String? Function(String?);
+typedef ValidateFunction = String? Function(String?)?;
 
 abstract class Validator {
   static ValidateFunction get(Validate validate) {
