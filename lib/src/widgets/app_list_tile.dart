@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SettingsTile extends StatelessWidget {
-  const SettingsTile({
+class AppListTile extends StatelessWidget {
+  const AppListTile({
     super.key,
     required this.iconData,
     required this.text,
