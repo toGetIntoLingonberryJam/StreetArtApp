@@ -1,81 +1,109 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
-import 'package:street_art_witnesses/src/widgets/app_button.dart';
-import 'package:street_art_witnesses/src/widgets/skeletons/skeleton.dart';
+import 'package:street_art_witnesses/pages/home/profile/widgets/profile_tile.dart';
+import 'package:street_art_witnesses/src/widgets/app_list_tile.dart';
 
 class AuthorizedView extends StatelessWidget {
   const AuthorizedView({super.key});
 
   void _logout(BuildContext context) async {
-    await Utils.showLoading(
-      context,
-      context.read<UserProvider>().logout(),
-    );
+    final isLogout = await Utils.showWarning(
+          context,
+          title: 'Выйти из аккаунта',
+          content:
+              'Вы уверены, что хотите выйти из аккаунта? Это действие нельзя будет отменить.',
+        ) ??
+        false;
+
+    if (context.mounted && isLogout) {
+      await Utils.showLoading(
+        context,
+        context.read<UserProvider>().logout(),
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final user = context.read<UserProvider>().user;
 
-    return Column(
-      children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            CircleAvatar(
-              radius: 24,
-              backgroundColor: Theme.of(context).colorScheme.secondary,
-            ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Text(
-                user.username,
-                style: const TextStyle(fontSize: 24),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-          ],
-        ),
-        Expanded(
-          child: Center(
+    return SingleChildScrollView(
+      padding: kDefaultPadding,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          ProfileTile(
+            username: user.username,
+            email: user.email!,
+          ),
+          const SizedBox(height: 24),
+          const _LoginWarningTile(),
+          const SizedBox(height: 24),
+          const AppListTile(
+            iconData: Icons.settings_outlined,
+            text: 'Настройки',
+          ),
+          const SizedBox(height: 8),
+          const AppListTile(
+            iconData: Icons.info_outline,
+            text: 'О нас',
+          ),
+          const SizedBox(height: 8),
+          AppListTile(
+            iconData: Icons.logout,
+            text: 'Выйти',
+            onTap: () => _logout(context),
+            foregroundColor: Theme.of(context).colorScheme.error,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _LoginWarningTile extends StatelessWidget {
+  const _LoginWarningTile();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.onBackground,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        children: [
+          Icon(
+            Icons.info_outline,
+            color: Theme.of(context).colorScheme.error,
+          ),
+          const SizedBox(width: 12),
+          Expanded(
             child: Column(
-              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  'Вы авторизованы!',
-                  style: TextStyle(fontSize: 20),
+                  'Чтобы пользоваться всеми функциями приложения, подтвердите почту.',
+                  style: TextStyle(fontSize: 16),
                 ),
-                const SizedBox(height: 20),
-                AppButton.primary(
-                  onTap: () => _logout(context),
-                  child: const Text(
-                    'Выйти из профиля',
-                    style: TextStyle(fontSize: 16),
+                Text(
+                  'Отправить письмо еще раз',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Theme.of(context).colorScheme.surface,
+                    decoration: TextDecoration.underline,
+                    decorationColor: Theme.of(context).colorScheme.surface,
                   ),
                 ),
               ],
             ),
           ),
-        ),
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _settingsTile('Настройки'),
-            _settingsTile('О нас'),
-          ],
-        ),
-      ],
-    );
-  }
-
-  ListTile _settingsTile(String title) {
-    return ListTile(
-      contentPadding: const EdgeInsets.all(0),
-      leading: const Skeleton(size: 30, borderRadius: 0),
-      title: Text(title, style: const TextStyle(fontSize: 17)),
+        ],
+      ),
     );
   }
 }

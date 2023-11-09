@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/src/models/author/author.dart';
 import 'package:street_art_witnesses/src/providers/favourites_provider.dart';
+import 'package:street_art_witnesses/src/widgets/app_placeholder.dart';
 
 class AuthorsView extends StatelessWidget {
   const AuthorsView({
@@ -52,9 +53,9 @@ class AuthorCard extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const CircleAvatar(
+          CircleAvatar(
             radius: 50,
-            backgroundImage: AssetImage('assets/placeholder.png'),
+            backgroundImage: AppPlaceholder.assetImage(),
           ),
           const SizedBox(width: 8),
           Expanded(

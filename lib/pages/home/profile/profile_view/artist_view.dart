@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/constants.dart';
+import 'package:street_art_witnesses/pages/home/profile/widgets/role_tile.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
 import 'package:street_art_witnesses/pages/home/profile/widgets/profile_tile.dart';
 import 'package:street_art_witnesses/src/widgets/app_list_tile.dart';
 
-class VerifiedView extends StatelessWidget {
-  const VerifiedView({super.key});
+class ArtistView extends StatelessWidget {
+  const ArtistView({super.key});
 
   void _logout(BuildContext context) async {
     final isLogout = await Utils.showWarning(
@@ -35,10 +36,9 @@ class VerifiedView extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          ProfileTile(
-            username: user.username,
-            email: user.email!,
-          ),
+          ProfileTile(username: user.username, email: user.email!),
+          const SizedBox(height: 24),
+          const RoleTile(role: 'Аккаунт художника'),
           const SizedBox(height: 24),
           const AppListTile(
             iconData: Icons.add_circle_outline,

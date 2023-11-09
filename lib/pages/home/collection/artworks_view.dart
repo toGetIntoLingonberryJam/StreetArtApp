@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/src/providers/favourites_provider.dart';
+import 'package:street_art_witnesses/src/widgets/app_placeholder.dart';
 
 class ArtworksView extends StatelessWidget {
   const ArtworksView({
@@ -59,12 +60,7 @@ class ArtworkCard extends StatelessWidget {
                 width: 100,
                 height: 100,
                 color: Theme.of(context).colorScheme.surface,
-                child: Image.asset(
-                  'assets/placeholder.png',
-                  fit: BoxFit.cover,
-                ),
-                // TODO: Add network image
-                // child: Image.network(artwork.previewUrl),
+                child: const AppPlaceholder(),
               ),
             ),
             const SizedBox(width: 8),
