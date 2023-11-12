@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
-import 'package:street_art_witnesses/src/models/artwork/artwork_geopoint.dart';
+import 'package:street_art_witnesses/src/models/artwork/artwork_location.dart';
 import 'package:street_art_witnesses/src/models/author/author.dart';
 import 'package:street_art_witnesses/src/models/user.dart';
 import 'package:street_art_witnesses/src/services/storage_service.dart';
@@ -13,8 +13,11 @@ abstract class ApiService {
   );
 
   static Future<T?> _makeApiCall<T>(Future<T> apiCall) async {
+    Debug.log('Making API call: ${apiCall.toString()}');
     try {
-      return await apiCall;
+      final result = await apiCall;
+      Debug.log('API returned data:\n${result.toString()}');
+      return result;
     } on DioException catch (e) {
       ErrorHandler.handleDioException(e);
       return null;
@@ -61,14 +64,6 @@ abstract class ApiService {
       return await login(email: email, password: password);
     }
     return null;
-
-    // final String? token = response?.data['access_token'];
-    // if (token != null) {
-    //   return AuthorizedUser(username: username, email: email, token: token);
-    // } else {
-    //   ErrorHandler.handleUnknownError();
-    //   return null;
-    // }
   }
 
   static Future<User> getUserByToken({required String token}) async {
@@ -88,9 +83,23 @@ abstract class ApiService {
     return User.guest();
   }
 
-  static Future<List<ArtworkGeopoint>> getArtworkGeopoints() async {
-    await Future.delayed(const Duration(seconds: 2));
-    return mockArtworkGeopoints;
+  static Future<List<ArtworkLocation>> getArtworkLocations() async {
+    final response = await _makeApiCall<Response>(dio.get(
+      '/artwork/show/locations/',
+    ));
+
+    List<ArtworkLocation> locations = [];
+
+    if (response == null) {
+      return [];
+    } else {
+      final List<dynamic> dataList = response.data;
+      for (var locationData in dataList) {
+        locations.add(ArtworkLocation.fromJson(locationData));
+      }
+    }
+
+    return locations;
   }
 
   static Future<List<Author>> getAuthors() async {
@@ -103,30 +112,6 @@ abstract class ApiService {
     return mockArtworks;
   }
 }
-
-const mockArtworkGeopoints = [
-  ArtworkGeopoint(
-    id: 1,
-    latitude: 56.852554,
-    longitude: 60.636610,
-    address: 'Ул. Уральская, 74',
-    previewUrl: null,
-  ),
-  ArtworkGeopoint(
-    id: 2,
-    latitude: 56.837827,
-    longitude: 60.603358,
-    address: 'Плотинка',
-    previewUrl: null,
-  ),
-  ArtworkGeopoint(
-    id: 3,
-    latitude: 56.843856,
-    longitude: 60.653828,
-    address: 'ул. Мира, 19',
-    previewUrl: null,
-  ),
-];
 
 const mockAuthors = [
   Author(
