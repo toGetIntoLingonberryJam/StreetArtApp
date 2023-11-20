@@ -13,7 +13,7 @@ abstract class ApiService {
   );
 
   static Future<T?> _makeApiCall<T>(Future<T> apiCall) async {
-    Debug.log('Making API call: ${apiCall.toString()}');
+    Debug.log('Making API call...');
     try {
       final result = await apiCall;
       Debug.log('API returned data:\n${result.toString()}');
@@ -29,7 +29,7 @@ abstract class ApiService {
     required String password,
   }) async {
     final response = await _makeApiCall<Response>(dio.post(
-      '/auth/login',
+      '/v1/auth/login',
       data: {'username': email, 'password': password},
       options: Options(contentType: Headers.formUrlEncodedContentType),
     ));
@@ -56,7 +56,7 @@ abstract class ApiService {
     required String password,
   }) async {
     final response = await _makeApiCall<Response>(dio.post(
-      '/auth/register',
+      '/v1/auth/register',
       data: {'username': username, 'email': email, 'password': password},
     ));
 
@@ -68,7 +68,7 @@ abstract class ApiService {
 
   static Future<User> getUserByToken({required String token}) async {
     final response = await _makeApiCall<Response>(dio.get(
-      '/user/me',
+      '/v1/users/me',
       options: Options(headers: {
         'Authorization': 'Bearer $token',
       }),
@@ -85,7 +85,7 @@ abstract class ApiService {
 
   static Future<List<ArtworkLocation>> getArtworkLocations() async {
     final response = await _makeApiCall<Response>(dio.get(
-      '/artwork/show/locations/',
+      '/v1/artworks/locations',
     ));
 
     List<ArtworkLocation> locations = [];
