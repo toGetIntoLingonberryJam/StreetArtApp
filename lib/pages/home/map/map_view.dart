@@ -18,6 +18,8 @@ class MapView extends StatelessWidget {
     return FlutterMap(
       mapController: mapController,
       options: MapOptions(
+        initialZoom: 12,
+        // keepAlive: true,
         backgroundColor: Theme.of(context).colorScheme.background,
         initialCenter: const LatLng(56.8519, 60.6122),
       ),

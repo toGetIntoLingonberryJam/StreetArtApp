@@ -14,13 +14,9 @@ class MapPage extends StatefulWidget {
   State<MapPage> createState() => _MapPageState();
 }
 
-class _MapPageState extends State<MapPage>
-    with AutomaticKeepAliveClientMixin<MapPage> {
+class _MapPageState extends State<MapPage> {
   final mapController = MapController();
   final artworksFuture = ApiService.getArtworkLocations();
-
-  @override
-  bool get wantKeepAlive => true;
 
   @override
   void dispose() {
@@ -38,7 +34,6 @@ class _MapPageState extends State<MapPage>
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
     return Scaffold(
       body: Center(
         child: FutureBuilder(
