@@ -18,7 +18,7 @@ Future<User> getUser() async {
   final token = await StorageService.retrieveToken();
 
   if (token != null) {
-    final user = await ApiService.getUserByToken(token: token);
+    final user = await ApiService.getUserViaToken(token: token);
     return user;
   }
 

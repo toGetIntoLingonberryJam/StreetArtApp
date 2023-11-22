@@ -1,4 +1,5 @@
 import 'package:localstore/localstore.dart';
+import 'package:street_art_witnesses/src/utils/debugging.dart';
 
 abstract class StorageService {
   static final _db = Localstore.instance;
@@ -7,6 +8,8 @@ abstract class StorageService {
 
   static Future<String?> retrieveToken() async {
     final userJson = await _collection.doc('user').get();
+    Debug.log('[RETRIEVING TOKEN]: ${userJson?['token']}');
+
     return userJson?['token'];
   }
 
@@ -14,9 +17,11 @@ abstract class StorageService {
     await _collection.doc('user').set({
       'token': token,
     });
+    Debug.log('[SAVED TOKEN]: $token');
   }
 
   static Future<void> deleteUserInfo() async {
     await _collection.doc('user').delete();
+    Debug.log('[TOKEN DELETED]');
   }
 }

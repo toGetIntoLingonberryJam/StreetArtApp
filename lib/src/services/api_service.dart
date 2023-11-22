@@ -12,14 +12,16 @@ abstract class ApiService {
     BaseOptions(baseUrl: 'https://streetartback.onrender.com'),
   );
 
-  static Future<T?> _makeApiCall<T>(Future<T> apiCall) async {
-    Debug.log('Making API call...');
+  static Future<Response?> _makeApiRequest(
+    Future<Response> request, {
+    RequestType? requestType,
+  }) async {
     try {
-      final result = await apiCall;
-      Debug.log('API returned data:\n${result.toString()}');
+      final result = await request;
+      Debug.log('[API CALL RESULT] ${result.toString()}');
       return result;
     } on DioException catch (e) {
-      ErrorHandler.handleDioException(e);
+      ErrorHandler.dio(e, requestType: requestType);
       return null;
     }
   }
@@ -28,23 +30,25 @@ abstract class ApiService {
     required String email,
     required String password,
   }) async {
-    final response = await _makeApiCall<Response>(dio.post(
-      '/v1/auth/login',
-      data: {'username': email, 'password': password},
-      options: Options(contentType: Headers.formUrlEncodedContentType),
-    ));
+    final response = await _makeApiRequest(
+      dio.post(
+        '/v1/auth/login',
+        data: {'username': email, 'password': password},
+        options: Options(contentType: Headers.formUrlEncodedContentType),
+      ),
+      requestType: RequestType.login,
+    );
 
     if (response == null) {
       return null;
     } else {
       final String? token = response.data['access_token'];
       if (token != null) {
-        Debug.log('Saving token: $token');
         await StorageService.saveToken(token);
 
-        return await getUserByToken(token: token);
+        return await getUserViaToken(token: token);
       } else {
-        ErrorHandler.handleUnknownError();
+        ErrorHandler.unknown();
         return null;
       }
     }
@@ -55,10 +59,13 @@ abstract class ApiService {
     required String email,
     required String password,
   }) async {
-    final response = await _makeApiCall<Response>(dio.post(
-      '/v1/auth/register',
-      data: {'username': username, 'email': email, 'password': password},
-    ));
+    final response = await _makeApiRequest(
+      dio.post(
+        '/v1/auth/register',
+        data: {'username': username, 'email': email, 'password': password},
+      ),
+      requestType: RequestType.register,
+    );
 
     if (response != null) {
       return await login(email: email, password: password);
@@ -66,27 +73,31 @@ abstract class ApiService {
     return null;
   }
 
-  static Future<User> getUserByToken({required String token}) async {
-    final response = await _makeApiCall<Response>(dio.get(
-      '/v1/users/me',
-      options: Options(headers: {
-        'Authorization': 'Bearer $token',
-      }),
-    ));
+  static Future<User> getUserViaToken({required String token}) async {
+    final response = await _makeApiRequest(
+      dio.get(
+        '/v1/users/me',
+        options: Options(headers: {
+          'Authorization': 'Bearer $token',
+        }),
+      ),
+      requestType: RequestType.getUserViaToken,
+    );
 
     if (response?.statusCode == 200 && response?.data != null) {
       final json = response!.data as Map<String, dynamic>;
-
       return User.fromJson(json);
     }
-
     return User.guest();
   }
 
   static Future<List<ArtworkLocation>> getArtworkLocations() async {
-    final response = await _makeApiCall<Response>(dio.get(
-      '/v1/artworks/locations',
-    ));
+    final response = await _makeApiRequest(
+      dio.get(
+        '/v1/artworks/locations',
+      ),
+      requestType: RequestType.getArtworkLocations,
+    );
 
     List<ArtworkLocation> locations = [];
 

@@ -3,31 +3,49 @@ import 'package:street_art_witnesses/src/utils/debugging.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
 
 abstract class ErrorHandler {
-  static void handleUnknownError() {
-    Utils.showSnackBar('Что-то пошло не так. Пожалуйста, попробуйте позже');
+  static void unknown() {
+    Utils.showSnackBar('Произошла неизвестная ошибка');
   }
 
-  static void handleDioException(DioException e) {
-    Debug.log(
-        'Handling DioException\nmessage: ${e.message}\nerrorData: ${e.response?.data}');
+  static void message(String message) {
+    Utils.showSnackBar(message);
+  }
 
-    switch (e.response?.statusCode) {
-      case 500:
-        // Server unavailable
-        Utils.showSnackBar(
-            'Не удалось подключиться к серверу. Пожалуйста, попробуйте ещё раз');
-        break;
-      case 422:
-        // Validation error
-        Utils.showSnackBar(
-            'Не удалось обработать запрос. Пожалуйста, проверьте правильность заполнения всех полей');
-      case 400:
-        // Bad request
-        Utils.showSnackBar(
-            'Такого пользователя не существует. Возможно, он был удален. А может, вы пытаетесь зарегистрироваться. Тогда такой пользователь уже есть и вам надо попробовать выполнить вход');
-      default:
-        Utils.showSnackBar(
-            'Произошла неизвестная ошибка. Пожалуйста, попробуйте позже');
+  static void dio(DioException e, {RequestType? requestType}) {
+    Debug.log(e);
+
+    try {
+      Utils.showSnackBar(
+        _requestErrorComments[requestType!]![e.response!.statusCode!]!,
+      );
+    } on Exception {
+      unknown();
     }
   }
 }
+
+enum RequestType {
+  login,
+  register,
+  getUserViaToken,
+  getArtworkLocations,
+  getAuthors,
+  getArtworks,
+}
+
+const Map<RequestType, Map<int, String>> _requestErrorComments = {
+  RequestType.login: {
+    400: 'Такого пользователя не существует',
+    422: 'Произошла ошибка валидации',
+  },
+  RequestType.register: {
+    400: 'Такой пользователь уже существует (или длина пароля < 3 символов)',
+    422: 'Произошла ошибка валидации',
+  },
+  RequestType.getUserViaToken: {
+    401: 'Ошибка авторизации. Пожалуйста, войдите в аккаунт'
+  },
+  RequestType.getArtworkLocations: {},
+  RequestType.getAuthors: {},
+  RequestType.getArtworks: {},
+};
