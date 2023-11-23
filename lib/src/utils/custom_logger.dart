@@ -67,15 +67,15 @@ enum RequestType {
 
 const Map<RequestType, Map<int, String>> _requestErrorComments = {
   RequestType.login: {
-    400: 'Такого пользователя не существует',
-    422: 'Произошла ошибка валидации',
+    400: 'Wrong credentials',
+    422: 'Validation error',
   },
   RequestType.register: {
-    400: 'Такой пользователь уже существует (или длина пароля < 3 символов)',
-    422: 'Произошла ошибка валидации',
+    400: 'User with this email already exists',
+    422: 'Validation error',
   },
   RequestType.getUserViaToken: {
-    401: 'Ошибка авторизации. Пожалуйста, войдите в аккаунт'
+    401: 'Authorization error, please login',
   },
   RequestType.getArtworkLocations: {},
   RequestType.getAuthors: {},
