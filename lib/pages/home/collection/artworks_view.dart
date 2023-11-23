@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
-import 'package:street_art_witnesses/src/providers/favourites_provider.dart';
+import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/widgets/app_placeholder.dart';
 
 class ArtworksView extends StatelessWidget {
@@ -12,8 +12,8 @@ class ArtworksView extends StatelessWidget {
 
   final List<Artwork>? artworks;
 
-  Future<void> _refresh(BuildContext context) {
-    return context.read<FavouritesProvider>().updateFromApi();
+  Future<void> _refresh(BuildContext context) async {
+    return await context.read<UserProvider>().syncUserData();
   }
 
   @override

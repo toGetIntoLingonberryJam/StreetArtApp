@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/pages/home/collection/artworks_view.dart';
 import 'package:street_art_witnesses/pages/home/collection/authors_view.dart';
-import 'package:street_art_witnesses/src/providers/favourites_provider.dart';
+import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/widgets/app_button.dart';
 
 enum _Page { artworks, authors }
@@ -24,7 +24,7 @@ class _CollectionPageState extends State<CollectionPage> {
 
   @override
   Widget build(BuildContext context) {
-    final favourites = context.watch<FavouritesProvider>();
+    final user = context.watch<UserProvider>();
 
     return Scaffold(
       body: SafeArea(
@@ -38,8 +38,8 @@ class _CollectionPageState extends State<CollectionPage> {
               const SizedBox(height: 20),
               Expanded(
                 child: page == _Page.authors
-                    ? AuthorsView(authors: favourites.authors)
-                    : ArtworksView(artworks: favourites.artworks),
+                    ? AuthorsView(authors: user.likedAuthors)
+                    : ArtworksView(artworks: user.likedArtworks),
               ),
             ],
           ),

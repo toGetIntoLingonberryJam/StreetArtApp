@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
-import 'package:street_art_witnesses/src/services/api_service.dart';
+import 'package:street_art_witnesses/src/services/user_service.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
 import 'package:street_art_witnesses/src/utils/validator.dart';
 import 'package:street_art_witnesses/src/widgets/app_button.dart';
@@ -33,14 +33,14 @@ class _RegisterViewState extends State<RegisterView> {
   void _register() async {
     final user = await Utils.showLoading(
         context,
-        ApiService.register(
+        UserService.register(
           username: loginController.text.trim(),
           email: emailController.text.trim(),
           password: passwordController.text.trim(),
         ));
 
     if (mounted && user != null) {
-      context.read<UserProvider>().updateUser(user);
+      context.read<UserProvider>().setUser(user);
       Navigator.of(context).pop();
     }
   }

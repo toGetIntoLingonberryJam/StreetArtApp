@@ -5,10 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:street_art_witnesses/pages/home/home_page.dart';
 import 'package:street_art_witnesses/pages/intro/intro_slider.dart';
 import 'package:street_art_witnesses/src/models/user.dart';
-import 'package:street_art_witnesses/src/providers/favourites_provider.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
-import 'package:street_art_witnesses/src/services/api_service.dart';
 import 'package:street_art_witnesses/src/services/storage_service.dart';
+import 'package:street_art_witnesses/src/services/user_service.dart';
 import 'package:street_art_witnesses/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
@@ -18,7 +17,7 @@ Future<User> getUser() async {
   final token = await StorageService.retrieveToken();
 
   if (token != null) {
-    final user = await ApiService.getUserViaToken(token: token);
+    final user = await UserService.getUserViaToken(token: token);
     return user;
   }
 
@@ -31,7 +30,6 @@ void main() async {
 
   runApp(DevicePreview(
     enabled: !kReleaseMode,
-    // enabled: false,
     builder: (context) => MyApp(user: user),
   ));
 }
@@ -54,15 +52,10 @@ class MyApp extends StatelessWidget {
           create: (_) => UserProvider(user: user),
           lazy: false,
         ),
-        ChangeNotifierProvider(
-          create: (_) => FavouritesProvider(),
-        ),
       ],
       child: MaterialApp(
-        // TODO: Remove in production
         locale: DevicePreview.locale(context),
         builder: DevicePreview.appBuilder,
-        // Do not touch this
         scaffoldMessengerKey: Utils.messengerKey,
         title: 'Свидетели Стрит-Арта',
         debugShowCheckedModeBanner: false,

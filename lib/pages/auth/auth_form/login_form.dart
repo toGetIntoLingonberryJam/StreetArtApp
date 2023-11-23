@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
-import 'package:street_art_witnesses/src/services/api_service.dart';
+import 'package:street_art_witnesses/src/services/user_service.dart';
 import 'package:street_art_witnesses/src/utils/validator.dart';
 import 'package:street_art_witnesses/src/widgets/app_button.dart';
 import 'package:street_art_witnesses/src/widgets/app_text_form_field.dart';
@@ -29,13 +29,13 @@ class _LoginViewState extends State<LoginView> {
   void _login() async {
     final user = await Utils.showLoading(
         context,
-        ApiService.login(
+        UserService.login(
           email: loginController.text.trim(),
           password: passwordController.text.trim(),
         ));
 
     if (mounted && user != null) {
-      context.read<UserProvider>().updateUser(user);
+      context.read<UserProvider>().setUser(user);
       Navigator.of(context).pop();
     }
   }

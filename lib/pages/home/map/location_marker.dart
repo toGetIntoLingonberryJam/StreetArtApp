@@ -3,19 +3,19 @@ import 'package:street_art_witnesses/src/models/artwork/artwork_location.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
 
 class LocationMarker extends StatelessWidget {
-  const LocationMarker({super.key, required this.artwork});
+  const LocationMarker({super.key, required this.location});
 
-  final ArtworkLocation artwork;
+  final ArtworkLocation location;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => Utils.showSnackBar(
-          'Artwork at: ${artwork.latitude}, ${artwork.longitude}'),
+          'Artwork at: ${location.latitude}, ${location.longitude}'),
       child: CircleAvatar(
-        foregroundImage: artwork.previewUrl == null
+        foregroundImage: location.previewUrl == null
             ? null
-            : NetworkImage(artwork.previewUrl!),
+            : NetworkImage(location.previewUrl!),
       ),
     );
   }

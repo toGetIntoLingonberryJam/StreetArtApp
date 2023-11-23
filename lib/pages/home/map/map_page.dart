@@ -4,7 +4,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/pages/home/map/location_marker.dart';
 import 'package:street_art_witnesses/pages/home/map/map_view.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork_location.dart';
-import 'package:street_art_witnesses/src/services/api_service.dart';
+import 'package:street_art_witnesses/src/services/artwork_service.dart';
 import 'package:street_art_witnesses/src/widgets/app_error_widget.dart';
 
 class MapPage extends StatefulWidget {
@@ -16,7 +16,7 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage> {
   final mapController = MapController();
-  final artworksFuture = ApiService.getArtworkLocations();
+  final locationsFuture = ArtworkService.locations();
 
   @override
   void dispose() {
@@ -24,11 +24,12 @@ class _MapPageState extends State<MapPage> {
     super.dispose();
   }
 
-  List<Marker> getMarkers(List<ArtworkLocation> artworks) {
-    return artworks
-        .map((artwork) => Marker(
-            point: LatLng(artwork.latitude, artwork.longitude),
-            child: LocationMarker(artwork: artwork)))
+  List<Marker> getMarkers(List<ArtworkLocation> locations) {
+    return locations
+        .where((element) => element.latitude >= -90 && element.latitude <= 90)
+        .map((location) => Marker(
+            point: LatLng(location.latitude, location.longitude),
+            child: LocationMarker(location: location)))
         .toList();
   }
 
@@ -37,7 +38,7 @@ class _MapPageState extends State<MapPage> {
     return Scaffold(
       body: Center(
         child: FutureBuilder(
-            future: artworksFuture,
+            future: locationsFuture,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 final markers = getMarkers(snapshot.data!);

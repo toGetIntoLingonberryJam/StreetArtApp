@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/src/models/author/author.dart';
-import 'package:street_art_witnesses/src/providers/favourites_provider.dart';
+import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/widgets/app_placeholder.dart';
 
 class AuthorsView extends StatelessWidget {
@@ -12,14 +12,17 @@ class AuthorsView extends StatelessWidget {
 
   final List<Author>? authors;
 
-  Future<void> _refresh(BuildContext context) {
-    return context.read<FavouritesProvider>().updateFromApi();
+  Future<void> _refresh(BuildContext context) async {
+    return await context.read<UserProvider>().syncUserData();
   }
 
   @override
   Widget build(BuildContext context) {
     if (authors == null) {
       return const Center(child: CircularProgressIndicator());
+    }
+    if (authors!.isEmpty) {
+      return const Center(child: Text('У вас нет сохраненных авторов'));
     }
 
     return RefreshIndicator(
