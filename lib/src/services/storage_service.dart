@@ -27,6 +27,6 @@ abstract class StorageService {
 
   static Future<void> deleteUserInfo() async {
     await _collection.doc('user').delete();
-    CustomLogger.showSuccess('[TOKEN DELETED]');
+    CustomLogger.showWarning('[TOKEN DELETED]');
   }
 }

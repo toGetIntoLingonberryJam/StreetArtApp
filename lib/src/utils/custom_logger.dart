@@ -63,6 +63,7 @@ enum RequestType {
   getArtworkLocations,
   getAuthors,
   getArtworks,
+  getArtworkById,
 }
 
 const Map<RequestType, Map<int, String>> _requestErrorComments = {
@@ -80,4 +81,8 @@ const Map<RequestType, Map<int, String>> _requestErrorComments = {
   RequestType.getArtworkLocations: {},
   RequestType.getAuthors: {},
   RequestType.getArtworks: {},
+  RequestType.getArtworkById: {
+    404: 'Artwork not found',
+    422: 'Validation error',
+  },
 };

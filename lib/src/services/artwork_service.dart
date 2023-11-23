@@ -15,7 +15,21 @@ abstract class ArtworkService {
     return mockArtworks;
   }
 
-  static Future<List<ArtworkLocation>> locations() async {
+  static Future<Artwork?> artwork(int id) async {
+    final response = await GeneralApiService.get(
+      '/v1/artworks/$id',
+      requestType: RequestType.getArtworkById,
+    );
+
+    if (response == null) {
+      return null;
+    } else {
+      final Map<String, dynamic> data = response.data!;
+      return Artwork.fromJson(data);
+    }
+  }
+
+  static Future<List<ArtworkLocation>?> locations() async {
     final response = await GeneralApiService.get(
       '/v1/artworks/locations',
       requestType: RequestType.getArtworkLocations,
@@ -51,17 +65,4 @@ const mockAuthors = [
   ),
 ];
 
-const mockArtworks = [
-  Artwork(
-    author: 'Roma Bantik',
-    name: 'Мы станем лучше',
-    address: 'Ул. Пушкина, 24',
-    previewUrl: '',
-  ),
-  Artwork(
-    author: 'Philippenzo',
-    name: 'Лебединое озеро',
-    address: 'Ул. Куйбышева, 121Б',
-    previewUrl: '',
-  ),
-];
+const mockArtworks = <Artwork>[];

@@ -72,7 +72,7 @@ class ArtworkCard extends StatelessWidget {
                     children: [
                       Expanded(
                           child: Text(
-                        artwork.author,
+                        'Artist ID: ${artwork.artistId}',
                         style: const TextStyle(fontSize: 14),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -84,14 +84,14 @@ class ArtworkCard extends StatelessWidget {
                     ],
                   ),
                   Text(
-                    artwork.name,
+                    artwork.title,
                     style: const TextStyle(fontSize: 20, height: 1),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const Expanded(child: SizedBox()),
                   Text(
-                    artwork.address,
+                    artwork.location.address,
                     style: const TextStyle(fontSize: 12),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
