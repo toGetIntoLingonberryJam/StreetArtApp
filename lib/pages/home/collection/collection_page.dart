@@ -29,7 +29,7 @@ class _CollectionPageState extends State<CollectionPage> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: kDefaultHorizontalPadding,
+          padding: kDefaultPadding,
           child: Column(
             children: [
               _appbar(),
