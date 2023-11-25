@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/src/models/author/author.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
-import 'package:street_art_witnesses/src/widgets/app_placeholder.dart';
+import 'package:street_art_witnesses/src/widgets/skeletons/app_placeholder.dart';
 
 class AuthorsView extends StatelessWidget {
   const AuthorsView({

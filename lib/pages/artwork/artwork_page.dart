@@ -7,7 +7,7 @@ import 'package:street_art_witnesses/pages/artwork/widgets/artwork_info.dart';
 import 'package:street_art_witnesses/pages/artwork/widgets/links_info.dart';
 import 'package:street_art_witnesses/pages/artwork/widgets/state_info.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
-import 'package:street_art_witnesses/src/widgets/app_container.dart';
+import 'package:street_art_witnesses/src/widgets/containers/app_container.dart';
 import 'package:street_art_witnesses/src/widgets/buttons/app_icon_button.dart';
 import 'package:street_art_witnesses/src/widgets/image_slider.dart';
 

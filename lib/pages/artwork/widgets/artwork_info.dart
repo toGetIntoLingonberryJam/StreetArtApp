@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
-import 'package:street_art_witnesses/src/widgets/app_circle_avatar.dart';
-import 'package:street_art_witnesses/src/widgets/app_container.dart';
-import 'package:street_art_witnesses/src/widgets/app_placeholder.dart';
+import 'package:street_art_witnesses/src/widgets/containers/app_circle_avatar.dart';
+import 'package:street_art_witnesses/src/widgets/containers/app_container.dart';
+import 'package:street_art_witnesses/src/widgets/skeletons/app_placeholder.dart';
 
 class ArtworkInfo extends StatelessWidget {
   const ArtworkInfo({super.key, required this.artwork});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:street_art_witnesses/src/widgets/app_placeholder.dart';
+import 'package:street_art_witnesses/src/widgets/skeletons/app_placeholder.dart';
 
 class ProfileTile extends StatelessWidget {
   const ProfileTile({
