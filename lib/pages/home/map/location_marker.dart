@@ -35,14 +35,14 @@ class LocationMarker extends StatelessWidget {
         ),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return AppCircleAvatar(image: snapshot.data);
+            return AppMarkerAvatar(image: snapshot.data);
           }
 
           if (snapshot.hasError) {
-            return const AppCircleAvatar();
+            return const AppMarkerAvatar();
           }
 
-          return AppCircleAvatar(
+          return AppMarkerAvatar(
             bgColor: Theme.of(context).colorScheme.surface,
           );
         },
