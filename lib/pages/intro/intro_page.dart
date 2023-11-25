@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:street_art_witnesses/constants.dart';
-import 'package:street_art_witnesses/src/widgets/app_button.dart';
+import 'package:street_art_witnesses/src/widgets/buttons/app_button.dart';
 import 'package:street_art_witnesses/src/widgets/app_logo.dart';
 
 class IntroPage extends StatelessWidget {
@@ -17,7 +16,7 @@ class IntroPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: kDefaultHorizontalPadding,
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Center(
           child: Column(
             children: [

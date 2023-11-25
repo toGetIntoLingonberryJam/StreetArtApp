@@ -6,7 +6,7 @@ import 'package:street_art_witnesses/src/services/artwork_service.dart';
 import 'package:street_art_witnesses/src/services/storage_service.dart';
 import 'package:street_art_witnesses/src/utils/custom_logger.dart';
 
-class UserProvider extends ChangeNotifier {
+class UserProvider with ChangeNotifier {
   UserProvider({required User user}) {
     setUser(user);
   }

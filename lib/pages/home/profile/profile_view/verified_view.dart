@@ -30,7 +30,7 @@ class VerifiedView extends StatelessWidget {
     final user = context.read<UserProvider>().user;
 
     return SingleChildScrollView(
-      padding: kDefaultPadding,
+      padding: kPagePadding,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

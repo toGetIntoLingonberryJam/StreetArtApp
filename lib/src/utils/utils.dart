@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:street_art_witnesses/src/widgets/app_button.dart';
+import 'package:street_art_witnesses/src/widgets/buttons/app_button.dart';
 
 abstract class Utils {
   static final messengerKey = GlobalKey<ScaffoldMessengerState>();

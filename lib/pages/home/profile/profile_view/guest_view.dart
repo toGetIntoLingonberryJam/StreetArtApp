@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/pages/auth/auth_page.dart';
-import 'package:street_art_witnesses/src/widgets/app_button.dart';
+import 'package:street_art_witnesses/src/widgets/buttons/app_button.dart';
 import 'package:street_art_witnesses/src/widgets/app_list_tile.dart';
 
 class GuestView extends StatelessWidget {
@@ -16,7 +16,7 @@ class GuestView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: kDefaultPadding,
+      padding: kPagePadding,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

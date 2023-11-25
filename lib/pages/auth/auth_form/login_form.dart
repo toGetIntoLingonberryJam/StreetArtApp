@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/services/user_service.dart';
 import 'package:street_art_witnesses/src/utils/validator.dart';
-import 'package:street_art_witnesses/src/widgets/app_button.dart';
+import 'package:street_art_witnesses/src/widgets/buttons/app_button.dart';
 import 'package:street_art_witnesses/src/widgets/app_text_form_field.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
 
