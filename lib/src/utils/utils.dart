@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
@@ -6,6 +7,10 @@ abstract class Utils {
   static final messengerKey = GlobalKey<ScaffoldMessengerState>();
 
   static void showDebugMessage(String message) {
+    if (!kDebugMode) {
+      return;
+    }
+
     final snackBar = SnackBar(
       content: Text(message, style: TextStyles.headlines.w400),
     );
