@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/src/widgets/app_container.dart';
+import 'package:street_art_witnesses/src/widgets/app_link.dart';
 
 class LinksInfo extends StatelessWidget {
   const LinksInfo({
@@ -9,36 +10,24 @@ class LinksInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: Make a UrlParser
+    final url = Uri.parse('https://google.com/');
+
     return AppContainer(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('Интересные ссылки', style: TextStyles.titles.w500),
           const SizedBox(height: 8),
-          const _AppLink(),
+          AppLink(url: url, name: 'Ссылка'),
           const SizedBox(height: 4),
-          const _AppLink(),
+          AppLink(url: url, name: 'Ссылка'),
           const SizedBox(height: 4),
-          const _AppLink(),
+          AppLink(url: url, name: 'Ссылка'),
           const SizedBox(height: 4),
-          const _AppLink(),
+          AppLink(url: url, name: 'Ссылка'),
         ],
       ),
-    );
-  }
-}
-
-class _AppLink extends StatelessWidget {
-  const _AppLink();
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const Icon(Icons.link),
-        const SizedBox(width: 8),
-        Text('Ссылка', style: TextStyles.headlines.w400)
-      ],
     );
   }
 }

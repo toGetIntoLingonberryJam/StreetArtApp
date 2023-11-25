@@ -24,6 +24,8 @@ abstract class Utils {
     required String title,
     String? content,
     bool barrierDismissible = true,
+    String acceptText = 'Да',
+    String declineText = 'Нет',
   }) async =>
       showDialog(
         context: context,
@@ -31,21 +33,22 @@ abstract class Utils {
         builder: (context) => AlertDialog(
           backgroundColor: Theme.of(context).colorScheme.background,
           surfaceTintColor: Colors.transparent,
-          title: Text(title),
+          title: Text(title, textAlign: TextAlign.center),
           content: content == null
               ? null
               : Text(
                   content,
                   style: const TextStyle(fontSize: 16),
+                  textAlign: TextAlign.center,
                 ),
           actions: [
             AppButton.primary(
               onTap: () => Navigator.pop(context, true),
-              child: const Text('Да'),
+              child: Text(acceptText),
             ),
             AppButton.secondary(
               onTap: () => Navigator.pop(context, false),
-              child: const Text('Нет'),
+              child: Text(declineText),
             ),
           ],
         ),
@@ -57,6 +60,7 @@ abstract class Utils {
   ) async {
     // Dismissing keyboard if opened
     FocusManager.instance.primaryFocus?.unfocus();
+    print('Loading...');
 
     showDialog(
       context: dialogContext,
