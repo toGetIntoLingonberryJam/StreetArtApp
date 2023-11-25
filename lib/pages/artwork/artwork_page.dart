@@ -8,9 +8,9 @@ import 'package:street_art_witnesses/pages/artwork/widgets/links_info.dart';
 import 'package:street_art_witnesses/pages/artwork/widgets/state_info.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork_image.dart';
-import 'package:street_art_witnesses/src/widgets/containers/app_container.dart';
-import 'package:street_art_witnesses/src/widgets/buttons/app_icon_button.dart';
-import 'package:street_art_witnesses/src/widgets/image_slider.dart';
+import 'package:street_art_witnesses/widgets/containers/app_container.dart';
+import 'package:street_art_witnesses/widgets/buttons/app_icon_button.dart';
+import 'package:street_art_witnesses/widgets/image_slider.dart';
 
 class ArtworkPage extends StatelessWidget {
   const ArtworkPage({super.key, required this.artwork});

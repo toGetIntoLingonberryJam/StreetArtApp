@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/pages/home/home_page.dart';
 import 'package:street_art_witnesses/pages/intro/intro_auth_page.dart';
-import 'package:street_art_witnesses/src/widgets/slider_dots.dart';
+import 'package:street_art_witnesses/widgets/slider_dots.dart';
 import 'package:street_art_witnesses/pages/intro/intro_page.dart';
 
 class IntroSlider extends StatefulWidget {

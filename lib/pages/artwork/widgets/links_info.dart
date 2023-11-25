@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/constants.dart';
-import 'package:street_art_witnesses/src/widgets/containers/app_container.dart';
-import 'package:street_art_witnesses/src/widgets/app_link.dart';
+import 'package:street_art_witnesses/widgets/containers/app_container.dart';
+import 'package:street_art_witnesses/widgets/app_link.dart';
 
 class LinksInfo extends StatelessWidget {
   const LinksInfo({

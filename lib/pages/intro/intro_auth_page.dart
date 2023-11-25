@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/pages/auth/auth_page.dart';
 import 'package:street_art_witnesses/pages/home/home_page.dart';
-import 'package:street_art_witnesses/src/widgets/buttons/app_button.dart';
-import 'package:street_art_witnesses/src/widgets/app_logo.dart';
+import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
+import 'package:street_art_witnesses/widgets/app_logo.dart';
 
 class IntroAuthPage extends StatelessWidget {
   const IntroAuthPage({super.key, required this.content});

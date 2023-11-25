@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/constants.dart';
+import 'package:street_art_witnesses/src/utils/utils.dart';
 
 class AppListTile extends StatelessWidget {
   const AppListTile({
@@ -21,7 +22,7 @@ class AppListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(12),
-      onTap: onTap ?? () {},
+      onTap: onTap ?? () => Utils.showMessage(context, text),
       child: Ink(
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(

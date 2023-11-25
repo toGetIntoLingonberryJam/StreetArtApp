@@ -5,7 +5,7 @@ import 'package:street_art_witnesses/pages/home/profile/widgets/role_tile.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
 import 'package:street_art_witnesses/pages/home/profile/widgets/profile_tile.dart';
-import 'package:street_art_witnesses/src/widgets/containers/app_list_tile.dart';
+import 'package:street_art_witnesses/widgets/containers/app_list_tile.dart';
 
 class ArtistView extends StatelessWidget {
   const ArtistView({super.key});

@@ -4,7 +4,7 @@ import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork_image.dart';
 import 'package:street_art_witnesses/src/providers/slider_provider.dart';
 import 'package:street_art_witnesses/src/services/images_service.dart';
-import 'package:street_art_witnesses/src/widgets/slider_dots.dart';
+import 'package:street_art_witnesses/widgets/slider_dots.dart';
 
 class ImageSlider extends StatelessWidget {
   const ImageSlider({super.key, required this.images});

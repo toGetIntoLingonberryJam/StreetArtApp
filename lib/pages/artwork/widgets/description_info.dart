@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/constants.dart';
-import 'package:street_art_witnesses/src/widgets/containers/app_container.dart';
+import 'package:street_art_witnesses/widgets/containers/app_container.dart';
 
 class DescriptionInfo extends StatelessWidget {
   const DescriptionInfo(this.description, {super.key});

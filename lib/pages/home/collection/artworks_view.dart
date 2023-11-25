@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
-import 'package:street_art_witnesses/src/widgets/skeletons/app_placeholder.dart';
+import 'package:street_art_witnesses/widgets/skeletons/app_placeholder.dart';
 
 class ArtworksView extends StatelessWidget {
   const ArtworksView({
