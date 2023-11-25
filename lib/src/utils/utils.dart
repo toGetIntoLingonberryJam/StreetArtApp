@@ -18,7 +18,13 @@ abstract class Utils {
   static void showMessage(BuildContext context, String message) {
     final snackBar = SnackBar(
       behavior: SnackBarBehavior.floating,
-      content: Text(message, style: TextStyles.headlines.w400),
+      content: Text(message,
+          style: TextStyles.headlines.w400.copyWith(
+            color: Theme.of(context).colorScheme.inverseSurface,
+          )),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      duration: const Duration(milliseconds: 2500),
+      backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
     );
 
     ScaffoldMessenger.of(context)

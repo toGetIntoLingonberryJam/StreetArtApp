@@ -8,6 +8,7 @@ import 'package:street_art_witnesses/pages/artwork/widgets/links_info.dart';
 import 'package:street_art_witnesses/pages/artwork/widgets/state_info.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork_image.dart';
+import 'package:street_art_witnesses/src/utils/utils.dart';
 import 'package:street_art_witnesses/widgets/containers/app_container.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_icon_button.dart';
 import 'package:street_art_witnesses/widgets/image_slider.dart';
@@ -100,9 +101,16 @@ class _ArtworkImageSliderState extends State<_ArtworkImageSlider> {
                   iconData: Icons.arrow_back,
                 ),
                 const Expanded(child: SizedBox()),
-                AppIconButton(onTap: () {}, iconData: Icons.edit_outlined),
+                AppIconButton(
+                  onTap: () => Utils.showMessage(context, 'Изменить работу'),
+                  iconData: Icons.edit_outlined,
+                ),
                 const SizedBox(width: 10),
-                AppIconButton(onTap: () {}, iconData: Icons.favorite_border),
+                AppIconButton(
+                  onTap: () =>
+                      Utils.showMessage(context, 'Добавить в избранное'),
+                  iconData: Icons.favorite_border,
+                ),
               ],
             )),
       ],
