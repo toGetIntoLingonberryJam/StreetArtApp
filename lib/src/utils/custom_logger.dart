@@ -8,6 +8,7 @@ enum LogType {
   message,
   success,
   warning,
+  error,
   exception,
   dioException,
 }
@@ -19,6 +20,7 @@ abstract class CustomLogger {
     LogType.message: '37',
     LogType.success: '32',
     LogType.warning: '33',
+    LogType.error: '31',
     LogType.exception: '31',
     LogType.dioException: '31',
   };
@@ -44,14 +46,17 @@ abstract class CustomLogger {
   static void showException(Exception e) =>
       _log(e.toString(), LogType.exception);
 
+  static void showError(Error e) => _log(e.toString(), LogType.exception);
+
   static void showDioException(DioException e, RequestType req) {
     _log('RequestType.${req.name}: ${e.toString()}', LogType.dioException);
     try {
-      Utils.showSnackBar(
-        _requestErrorComments[req]![e.response!.statusCode!]!,
-      );
+      final message = _requestErrorComments[req]![e.response!.statusCode!]!;
+      Utils.showDebugMessage(message);
     } on Exception catch (e) {
       CustomLogger.showException(e);
+    } on TypeError catch (e) {
+      CustomLogger.showError(e);
     }
   }
 }
@@ -64,6 +69,7 @@ enum RequestType {
   getAuthors,
   getArtworks,
   getArtworkById,
+  loadImageFromDisk,
 }
 
 const Map<RequestType, Map<int, String>> _requestErrorComments = {

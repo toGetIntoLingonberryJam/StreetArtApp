@@ -8,16 +8,20 @@ class AppCircleAvatar extends StatelessWidget {
     this.radius = 12,
   });
 
+  final double radius;
   final Color? bgColor;
   final ImageProvider<Object>? image;
-  final double radius;
 
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      radius: radius,
       backgroundColor: bgColor ?? Theme.of(context).colorScheme.secondary,
-      foregroundImage: image,
+      radius: radius + 0.5,
+      child: CircleAvatar(
+        radius: radius,
+        foregroundImage: image,
+        backgroundColor: Colors.transparent,
+      ),
     );
   }
 }

@@ -4,7 +4,7 @@ import 'package:street_art_witnesses/src/widgets/buttons/app_button.dart';
 abstract class Utils {
   static final messengerKey = GlobalKey<ScaffoldMessengerState>();
 
-  static void showSnackBar(String message) {
+  static void showDebugMessage(String message) {
     final snackBar = SnackBar(
       content: Text(
         message,
@@ -16,6 +16,22 @@ abstract class Utils {
 
     messengerKey.currentState
       ?..clearSnackBars()
+      ..showSnackBar(snackBar);
+  }
+
+  static void showMessage(BuildContext context, String message) {
+    final snackBar = SnackBar(
+      behavior: SnackBarBehavior.floating,
+      content: Text(
+        message,
+        style: const TextStyle(
+          fontSize: 18,
+        ),
+      ),
+    );
+
+    ScaffoldMessenger.of(context)
+      ..clearSnackBars()
       ..showSnackBar(snackBar);
   }
 

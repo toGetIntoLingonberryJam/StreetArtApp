@@ -12,7 +12,7 @@ class ArtworkLocation {
         latitude = json['latitude'],
         longitude = json['longitude'],
         address = json['address'],
-        previewUrl = json['previewUrl'];
+        previewUrl = json['thumbnail_image'];
 
   final int artworkId;
   final double latitude;

@@ -7,6 +7,7 @@ import 'package:street_art_witnesses/pages/artwork/widgets/artwork_info.dart';
 import 'package:street_art_witnesses/pages/artwork/widgets/links_info.dart';
 import 'package:street_art_witnesses/pages/artwork/widgets/state_info.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
+import 'package:street_art_witnesses/src/models/artwork/artwork_image.dart';
 import 'package:street_art_witnesses/src/widgets/containers/app_container.dart';
 import 'package:street_art_witnesses/src/widgets/buttons/app_icon_button.dart';
 import 'package:street_art_witnesses/src/widgets/image_slider.dart';
@@ -26,7 +27,7 @@ class ArtworkPage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const _ArtworkImageSlider(),
+              _ArtworkImageSlider(images: artwork.images),
               ArtworkInfo(artwork: artwork),
               const SizedBox(height: 8),
               FestivalInfo(artwork.festival),
@@ -61,14 +62,35 @@ class ArtworkPage extends StatelessWidget {
   }
 }
 
-class _ArtworkImageSlider extends StatelessWidget {
-  const _ArtworkImageSlider();
+class _ArtworkImageSlider extends StatefulWidget {
+  const _ArtworkImageSlider({required this.images});
+
+  final List<ArtworkImage>? images;
 
   @override
+  State<_ArtworkImageSlider> createState() => _ArtworkImageSliderState();
+}
+
+class _ArtworkImageSliderState extends State<_ArtworkImageSlider> {
+  @override
   Widget build(BuildContext context) {
+    if (widget.images == null) {
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 8),
+        child: AppContainer.small(
+          child: Text(
+            'Фотографии отсутствуют',
+            style: TextStyles.titles.w500,
+            textAlign: TextAlign.center,
+          ),
+        ),
+      );
+    }
+    final images = widget.images!;
+
     return Stack(
       children: [
-        const ImageSlider(length: 4),
+        ImageSlider(images: images),
         Padding(
             padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
             child: Row(

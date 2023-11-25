@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:street_art_witnesses/src/models/user.dart';
-import 'package:street_art_witnesses/src/services/general_api_service.dart';
+import 'package:street_art_witnesses/src/data/backend_datasource.dart';
 import 'package:street_art_witnesses/src/services/storage_service.dart';
 import 'package:street_art_witnesses/src/utils/custom_logger.dart';
 
@@ -9,7 +9,7 @@ abstract class UserService {
     required String email,
     required String password,
   }) async {
-    final response = await GeneralApiService.post(
+    final response = await BackendDataSource.post(
       '/v1/auth/login',
       data: {'username': email, 'password': password},
       options: Options(contentType: Headers.formUrlEncodedContentType),
@@ -36,7 +36,7 @@ abstract class UserService {
     required String email,
     required String password,
   }) async {
-    final response = await GeneralApiService.post(
+    final response = await BackendDataSource.post(
       '/v1/auth/register',
       data: {'username': username, 'email': email, 'password': password},
       requestType: RequestType.register,
@@ -49,7 +49,7 @@ abstract class UserService {
   }
 
   static Future<User> getUserViaToken({required String token}) async {
-    final response = await GeneralApiService.get(
+    final response = await BackendDataSource.get(
       '/v1/users/me',
       options: Options(headers: {'Authorization': 'Bearer $token'}),
       requestType: RequestType.getUserViaToken,

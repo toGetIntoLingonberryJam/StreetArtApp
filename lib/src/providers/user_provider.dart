@@ -30,8 +30,8 @@ class UserProvider with ChangeNotifier {
   }
 
   Future<void> syncUserData() async {
-    final authorsFuture = ArtworkService.authors();
-    final artworksFuture = ArtworkService.artworks();
+    final authorsFuture = ArtworkService.gatAuthors();
+    final artworksFuture = ArtworkService.getArtworks();
 
     final result = await Future.wait([
       authorsFuture,

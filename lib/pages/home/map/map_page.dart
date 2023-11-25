@@ -16,7 +16,7 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage> {
   final mapController = MapController();
-  final locationsFuture = ArtworkService.locations();
+  final locationsFuture = ArtworkService.getLocations();
 
   @override
   void dispose() {

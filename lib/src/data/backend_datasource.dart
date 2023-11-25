@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:street_art_witnesses/src/utils/custom_logger.dart';
 
-abstract class GeneralApiService {
-  static final dio = Dio(
+abstract class BackendDataSource {
+  static final _dio = Dio(
     BaseOptions(baseUrl: 'https://streetartback.onrender.com'),
   );
 
@@ -30,7 +30,7 @@ abstract class GeneralApiService {
     required RequestType requestType,
   }) async {
     return await _makeApiRequest(
-      dio.get(
+      _dio.get(
         url,
         data: data,
         options: options,
@@ -49,7 +49,7 @@ abstract class GeneralApiService {
     required RequestType requestType,
   }) async {
     return await _makeApiRequest(
-      dio.post(
+      _dio.post(
         url,
         data: data,
         options: options,
@@ -68,7 +68,7 @@ abstract class GeneralApiService {
     required RequestType requestType,
   }) async {
     return await _makeApiRequest(
-      dio.patch(
+      _dio.patch(
         url,
         data: data,
         options: options,
@@ -87,7 +87,7 @@ abstract class GeneralApiService {
     required RequestType requestType,
   }) async {
     return await _makeApiRequest(
-      dio.delete(
+      _dio.delete(
         url,
         data: data,
         options: options,

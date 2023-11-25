@@ -1,3 +1,4 @@
+import 'package:street_art_witnesses/src/models/artwork/artwork_image.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork_location.dart';
 
 class Artwork {
@@ -48,18 +49,4 @@ class Artwork {
 
   final ArtworkLocation location;
   final List<ArtworkImage>? images;
-}
-
-class ArtworkImage {
-  const ArtworkImage({
-    required this.imageUrl,
-    required this.id,
-  });
-
-  ArtworkImage.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        imageUrl = json['image_url'];
-
-  final String imageUrl;
-  final int id;
 }

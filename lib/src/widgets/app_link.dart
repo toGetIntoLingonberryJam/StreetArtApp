@@ -17,7 +17,7 @@ class AppLink extends StatelessWidget {
     final success = await Utils.showLoading(context, launchUrl(url));
 
     if (!success) {
-      Utils.showSnackBar('Could not launch $url');
+      Utils.showDebugMessage('Could not launch $url');
     }
   }
 

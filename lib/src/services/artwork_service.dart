@@ -1,22 +1,22 @@
 import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork_location.dart';
 import 'package:street_art_witnesses/src/models/author/author.dart';
-import 'package:street_art_witnesses/src/services/general_api_service.dart';
+import 'package:street_art_witnesses/src/data/backend_datasource.dart';
 import 'package:street_art_witnesses/src/utils/custom_logger.dart';
 
 abstract class ArtworkService {
-  static Future<List<Author>> authors() async {
+  static Future<List<Author>> gatAuthors() async {
     await Future.delayed(const Duration(seconds: 2));
     return mockAuthors;
   }
 
-  static Future<List<Artwork>> artworks() async {
+  static Future<List<Artwork>> getArtworks() async {
     await Future.delayed(const Duration(seconds: 2));
     return mockArtworks;
   }
 
-  static Future<Artwork?> artwork(int id) async {
-    final response = await GeneralApiService.get(
+  static Future<Artwork?> getArtworkById(int id) async {
+    final response = await BackendDataSource.get(
       '/v1/artworks/$id',
       requestType: RequestType.getArtworkById,
     );
@@ -29,8 +29,8 @@ abstract class ArtworkService {
     }
   }
 
-  static Future<List<ArtworkLocation>?> locations() async {
-    final response = await GeneralApiService.get(
+  static Future<List<ArtworkLocation>?> getLocations() async {
+    final response = await BackendDataSource.get(
       '/v1/artworks/locations',
       requestType: RequestType.getArtworkLocations,
     );

@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/constants.dart';
+import 'package:street_art_witnesses/src/models/artwork/artwork_image.dart';
 import 'package:street_art_witnesses/src/providers/slider_provider.dart';
-import 'package:street_art_witnesses/src/widgets/skeletons/app_placeholder.dart';
+import 'package:street_art_witnesses/src/services/images_service.dart';
 import 'package:street_art_witnesses/src/widgets/slider_dots.dart';
 
 class ImageSlider extends StatelessWidget {
-  const ImageSlider({super.key, required this.length});
+  const ImageSlider({super.key, required this.images});
 
-  final int length;
+  final List<ArtworkImage> images;
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => SliderProvider(length: length),
-      child: const _ImageSlider(),
+      create: (context) => SliderProvider(length: images.length),
+      child: _ImageSlider(images: images),
     );
   }
 }
 
 class _ImageSlider extends StatelessWidget {
-  const _ImageSlider();
+  const _ImageSlider({required this.images});
+
+  final List<ArtworkImage> images;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +41,13 @@ class _ImageSlider extends StatelessWidget {
               onPageChanged: (value) => sliderProvider.updateIndex(value),
               itemCount: sliderProvider.length,
               itemBuilder: (context, index) {
-                return const AppPlaceholder();
+                final image = images[index];
+                final imageLoader = ImagesService.loadFromDisk(
+                  image.imageUrl,
+                  quality: ImageQuality.l,
+                );
+
+                return LoadingImage(imageLoader: imageLoader);
               },
             ),
           ),
@@ -50,6 +59,38 @@ class _ImageSlider extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class LoadingImage extends StatelessWidget {
+  const LoadingImage({super.key, required this.imageLoader});
+
+  final Future<ImageProvider?> imageLoader;
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: imageLoader,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return Image(
+            image: snapshot.data!,
+            fit: BoxFit.cover,
+          );
+        }
+
+        if (snapshot.hasError) {
+          return Center(
+            child: Text(
+              'Не удалось загрузить картинку',
+              style: TextStyles.titles.w500,
+            ),
+          );
+        }
+
+        return const Center(child: CircularProgressIndicator());
+      },
     );
   }
 }
