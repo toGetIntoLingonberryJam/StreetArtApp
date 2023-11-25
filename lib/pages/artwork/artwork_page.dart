@@ -8,6 +8,7 @@ import 'package:street_art_witnesses/pages/artwork/widgets/links_info.dart';
 import 'package:street_art_witnesses/pages/artwork/widgets/state_info.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/src/widgets/app_container.dart';
+import 'package:street_art_witnesses/src/widgets/buttons/app_icon_button.dart';
 import 'package:street_art_witnesses/src/widgets/image_slider.dart';
 
 class ArtworkPage extends StatelessWidget {
@@ -25,7 +26,7 @@ class ArtworkPage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const ImageSlider(length: 4),
+              const _ArtworkImageSlider(),
               ArtworkInfo(artwork: artwork),
               const SizedBox(height: 8),
               FestivalInfo(artwork.festival),
@@ -56,6 +57,33 @@ class ArtworkPage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _ArtworkImageSlider extends StatelessWidget {
+  const _ArtworkImageSlider();
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        const ImageSlider(length: 4),
+        Padding(
+            padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+            child: Row(
+              children: [
+                AppIconButton(
+                  onTap: () => Navigator.of(context).pop(),
+                  iconData: Icons.arrow_back,
+                ),
+                const Expanded(child: SizedBox()),
+                AppIconButton(onTap: () {}, iconData: Icons.edit_outlined),
+                const SizedBox(width: 10),
+                AppIconButton(onTap: () {}, iconData: Icons.favorite_border),
+              ],
+            )),
+      ],
     );
   }
 }

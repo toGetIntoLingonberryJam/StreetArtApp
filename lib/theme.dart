@@ -9,7 +9,7 @@ final lightTheme = ThemeData(
     // Works as inverse color, as for slider dots
     inverseSurface: Color.fromRGBO(11, 11, 11, 1),
     // For circular icon buttons
-    surfaceVariant: Color.fromRGBO(47, 47, 47, 1),
+    surfaceVariant: Color.fromRGBO(191, 191, 191, 1),
     primary: Color.fromRGBO(61, 232, 202, 1),
     secondary: Color.fromRGBO(135, 95, 250, 1),
     tertiary: Color.fromRGBO(252, 213, 56, 1),

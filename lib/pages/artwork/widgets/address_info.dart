@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/src/widgets/app_container.dart';
-import 'package:street_art_witnesses/src/widgets/buttons/app_icon_button.dart';
+import 'package:street_art_witnesses/src/widgets/buttons/app_custom_button.dart';
 
 class AddressInfo extends StatelessWidget {
   const AddressInfo({
