@@ -14,8 +14,7 @@ class ModeratorView extends StatelessWidget {
     final isLogout = await Utils.showWarning(
           context,
           title: 'Выйти из аккаунта',
-          content:
-              'Вы уверены, что хотите выйти из аккаунта? Это действие нельзя будет отменить.',
+          content: 'Вы уверены, что хотите выйти из аккаунта?',
         ) ??
         false;
 
