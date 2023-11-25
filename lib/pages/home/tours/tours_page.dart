@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/constants.dart';
 
 class ToursPage extends StatelessWidget {
   const ToursPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
         child: Text(
           'Экскурсии',
-          style: TextStyle(fontSize: 20),
+          style: TextStyles.titles.w400,
         ),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/pages/home/home_page.dart';
 import 'package:street_art_witnesses/pages/intro/intro_auth_page.dart';
 import 'package:street_art_witnesses/src/widgets/slider_dots.dart';
@@ -80,7 +81,7 @@ class _IntroSliderState extends State<IntroSlider> {
           onTap: () => Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: (_) => const HomePage(),
           )),
-          child: const Text('Пропустить'),
+          child: Text('Пропустить', style: TextStyles.labels.w400),
         ),
       ]),
     );

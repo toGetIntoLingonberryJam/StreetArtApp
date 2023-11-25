@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/constants.dart';
 
 class AppErrorWidget extends StatelessWidget {
   const AppErrorWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return Center(
       child: Text(
         'Что-то пошло не так. :(',
-        style: TextStyle(fontSize: 20),
+        style: TextStyles.titles.w400,
       ),
     );
   }

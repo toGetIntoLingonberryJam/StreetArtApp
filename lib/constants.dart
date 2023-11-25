@@ -14,15 +14,23 @@ const kSmallContainerRadius = 10.0;
 
 // TextStyles
 abstract class TextStyles {
+  static final body = TextStylesBody();
   static final titles = TextStyleTitles();
   static final headlines = TextStyleHeadlines();
   static final labels = TextStyleLabels();
   static final captions = TextStyleCaptions();
 }
 
+class TextStylesBody {
+  final w400 = const TextStyle(fontSize: 28);
+  final w700 = const TextStyle(fontSize: 28, fontWeight: FontWeight.w700);
+}
+
 class TextStyleTitles {
+  final w400 = const TextStyle(fontSize: 20);
   final w500 = const TextStyle(fontSize: 20, fontWeight: FontWeight.w500);
-  final w700 = const TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
+  final w600 = const TextStyle(fontSize: 20, fontWeight: FontWeight.w600);
+  final w700 = const TextStyle(fontSize: 20, fontWeight: FontWeight.w700);
 }
 
 class TextStyleHeadlines {
@@ -31,7 +39,9 @@ class TextStyleHeadlines {
 }
 
 class TextStyleLabels {
+  final w400 = const TextStyle(fontSize: 14);
   final w500 = const TextStyle(fontSize: 14, fontWeight: FontWeight.w500);
+  final w600 = const TextStyle(fontSize: 14, fontWeight: FontWeight.w600);
 }
 
 class TextStyleCaptions {

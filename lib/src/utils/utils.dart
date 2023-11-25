@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/src/widgets/buttons/app_button.dart';
 
 abstract class Utils {
@@ -6,12 +7,7 @@ abstract class Utils {
 
   static void showDebugMessage(String message) {
     final snackBar = SnackBar(
-      content: Text(
-        message,
-        style: const TextStyle(
-          fontSize: 18,
-        ),
-      ),
+      content: Text(message, style: TextStyles.headlines.w400),
     );
 
     messengerKey.currentState
@@ -22,12 +18,7 @@ abstract class Utils {
   static void showMessage(BuildContext context, String message) {
     final snackBar = SnackBar(
       behavior: SnackBarBehavior.floating,
-      content: Text(
-        message,
-        style: const TextStyle(
-          fontSize: 18,
-        ),
-      ),
+      content: Text(message, style: TextStyles.headlines.w400),
     );
 
     ScaffoldMessenger.of(context)
@@ -49,22 +40,26 @@ abstract class Utils {
         builder: (context) => AlertDialog(
           backgroundColor: Theme.of(context).colorScheme.background,
           surfaceTintColor: Colors.transparent,
-          title: Text(title, textAlign: TextAlign.center),
+          title: Text(
+            title,
+            style: TextStyles.body.w400,
+            textAlign: TextAlign.center,
+          ),
           content: content == null
               ? null
               : Text(
                   content,
-                  style: const TextStyle(fontSize: 16),
+                  style: TextStyles.headlines.w400,
                   textAlign: TextAlign.center,
                 ),
           actions: [
             AppButton.primary(
               onTap: () => Navigator.pop(context, true),
-              child: Text(acceptText),
+              child: Text(acceptText, style: TextStyles.headlines.w400),
             ),
             AppButton.secondary(
               onTap: () => Navigator.pop(context, false),
-              child: Text(declineText),
+              child: Text(declineText, style: TextStyles.headlines.w400),
             ),
           ],
         ),

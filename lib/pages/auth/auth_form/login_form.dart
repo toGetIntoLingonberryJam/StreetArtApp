@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/services/user_service.dart';
 import 'package:street_art_witnesses/src/utils/validator.dart';
@@ -67,10 +68,7 @@ class _LoginViewState extends State<LoginView> {
           const SizedBox(height: 60),
           AppButton.primary(
             onTap: _tryLogin,
-            child: const Text(
-              'Войти в профиль',
-              style: TextStyle(fontSize: 17),
-            ),
+            child: Text('Войти в профиль', style: TextStyles.headlines.w500),
           ),
           const SizedBox(height: 20),
           _forgotPasswordButton(),
@@ -81,9 +79,11 @@ class _LoginViewState extends State<LoginView> {
 
   GestureDetector _forgotPasswordButton() {
     return GestureDetector(
-      child: const Text(
+      child: Text(
         'Забыли пароль?',
-        style: TextStyle(decoration: TextDecoration.underline),
+        style: TextStyles.labels.w500.copyWith(
+          decoration: TextDecoration.underline,
+        ),
       ),
     );
   }

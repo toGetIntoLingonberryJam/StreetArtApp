@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/widgets/skeletons/app_placeholder.dart';
@@ -73,7 +74,7 @@ class ArtworkCard extends StatelessWidget {
                       Expanded(
                           child: Text(
                         'Artist ID: ${artwork.artistId}',
-                        style: const TextStyle(fontSize: 14),
+                        style: TextStyles.labels.w400,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       )),
@@ -85,14 +86,14 @@ class ArtworkCard extends StatelessWidget {
                   ),
                   Text(
                     artwork.title,
-                    style: const TextStyle(fontSize: 20, height: 1),
+                    style: TextStyles.titles.w500.copyWith(height: 1),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const Expanded(child: SizedBox()),
                   Text(
                     artwork.location.address,
-                    style: const TextStyle(fontSize: 12),
+                    style: TextStyles.captions.w400,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),

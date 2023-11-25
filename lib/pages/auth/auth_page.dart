@@ -45,11 +45,13 @@ class _AuthPageState extends State<AuthPage> {
                     child: authForm == _Form.login
                         ? AppButton.primary(
                             onTap: _switchToLogin,
-                            child: const Text('Вход'),
+                            child:
+                                Text('Вход', style: TextStyles.headlines.w400),
                           )
                         : AppButton.secondary(
                             onTap: _switchToLogin,
-                            child: const Text('Вход'),
+                            child:
+                                Text('Вход', style: TextStyles.headlines.w400),
                           ),
                   ),
                   const SizedBox(width: 20),
@@ -57,11 +59,13 @@ class _AuthPageState extends State<AuthPage> {
                     child: authForm == _Form.register
                         ? AppButton.primary(
                             onTap: _switchToRegister,
-                            child: const Text('Регистрация'),
+                            child: Text('Регистрация',
+                                style: TextStyles.headlines.w400),
                           )
                         : AppButton.secondary(
                             onTap: _switchToRegister,
-                            child: const Text('Регистрация'),
+                            child: Text('Регистрация',
+                                style: TextStyles.headlines.w400),
                           ),
                   ),
                 ],

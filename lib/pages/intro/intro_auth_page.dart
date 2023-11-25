@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/pages/auth/auth_page.dart';
 import 'package:street_art_witnesses/pages/home/home_page.dart';
 import 'package:street_art_witnesses/src/widgets/buttons/app_button.dart';
@@ -37,26 +38,27 @@ class IntroAuthPage extends StatelessWidget {
                 child: AppLogo(),
               ),
               const SizedBox(height: 40),
-              const Text(
+              Text(
                 'Свидетели Стрит-Арта',
-                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                style: TextStyles.body.w700,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 30),
               Text(
                 content,
-                style: const TextStyle(fontSize: 17),
+                style: TextStyles.headlines.w400,
                 textAlign: TextAlign.center,
               ),
               const Expanded(flex: 2, child: SizedBox()),
               AppButton.primary(
                 onTap: () => _navigateToAuth(context),
-                child: const Text('Войти в профиль'),
+                child:
+                    Text('Войти в профиль', style: TextStyles.headlines.w400),
               ),
               const SizedBox(height: 12),
               AppButton.secondary(
                 onTap: () => _navigateToHome(context),
-                child: const Text('Позже'),
+                child: Text('Позже', style: TextStyles.headlines.w400),
               ),
               const Expanded(flex: 2, child: SizedBox()),
             ],

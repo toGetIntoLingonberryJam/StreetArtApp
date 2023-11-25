@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/src/widgets/skeletons/app_placeholder.dart';
 
 class ProfileTile extends StatelessWidget {
@@ -33,15 +34,12 @@ class ProfileTile extends StatelessWidget {
               children: [
                 Text(
                   username,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 20,
-                  ),
+                  style: TextStyles.titles.w600,
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
                   email,
-                  style: const TextStyle(fontSize: 16),
+                  style: TextStyles.headlines.w400,
                   overflow: TextOverflow.ellipsis,
                 ),
               ],

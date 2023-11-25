@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/constants.dart';
 
 class RoleTile extends StatelessWidget {
   const RoleTile({
@@ -21,7 +22,7 @@ class RoleTile extends StatelessWidget {
           Expanded(
             child: Text(
               role,
-              style: const TextStyle(fontSize: 16),
+              style: TextStyles.headlines.w400,
               overflow: TextOverflow.ellipsis,
             ),
           ),

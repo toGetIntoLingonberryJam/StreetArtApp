@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/constants.dart';
 
 class AppListTile extends StatelessWidget {
   const AppListTile({
@@ -34,8 +35,7 @@ class AppListTile extends StatelessWidget {
             Expanded(
               child: Text(
                 text,
-                style: TextStyle(
-                  fontSize: 16,
+                style: TextStyles.headlines.w400.copyWith(
                   color: foregroundColor,
                 ),
                 overflow: TextOverflow.ellipsis,
@@ -65,9 +65,8 @@ class _Badge extends StatelessWidget {
       ),
       child: Text(
         '$count',
-        style: const TextStyle(
+        style: TextStyles.labels.w600.copyWith(
           color: Colors.white,
-          fontWeight: FontWeight.w600,
         ),
       ),
     );

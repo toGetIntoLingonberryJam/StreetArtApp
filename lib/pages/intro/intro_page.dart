@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/src/widgets/buttons/app_button.dart';
 import 'package:street_art_witnesses/src/widgets/app_logo.dart';
 
@@ -26,21 +27,21 @@ class IntroPage extends StatelessWidget {
                 child: AppLogo(),
               ),
               const SizedBox(height: 40),
-              const Text(
+              Text(
                 'Свидетели Стрит-Арта',
-                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                style: TextStyles.body.w700,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 30),
               Text(
                 content,
-                style: const TextStyle(fontSize: 17),
+                style: TextStyles.headlines.w400,
                 textAlign: TextAlign.center,
               ),
               const Expanded(flex: 2, child: SizedBox()),
               AppButton.primary(
                 onTap: onButtonClicked,
-                child: const Text('Далее'),
+                child: Text('Далее', style: TextStyles.headlines.w400),
               ),
               const Expanded(flex: 2, child: SizedBox()),
             ],

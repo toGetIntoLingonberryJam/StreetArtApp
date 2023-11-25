@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/src/models/author/author.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/widgets/skeletons/app_placeholder.dart';
@@ -22,7 +23,11 @@ class AuthorsView extends StatelessWidget {
       return const Center(child: CircularProgressIndicator());
     }
     if (authors!.isEmpty) {
-      return const Center(child: Text('У вас нет сохраненных авторов'));
+      return Center(
+          child: Text(
+        'У вас нет сохраненных авторов',
+        style: TextStyles.headlines.w500,
+      ));
     }
 
     return RefreshIndicator(
@@ -67,7 +72,7 @@ class AuthorCard extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Text(
                 author.name,
-                style: const TextStyle(fontSize: 20),
+                style: TextStyles.titles.w400,
               ),
             ),
           ),
