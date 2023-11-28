@@ -2,7 +2,7 @@ name: street_art_witnesses
 description: A new Flutter project.
 publish_to: 'none'
 
-version: 0.5.0+7
+version: 0.5.1+8
 
 environment:
   sdk: '>=3.1.3 <4.0.0'
