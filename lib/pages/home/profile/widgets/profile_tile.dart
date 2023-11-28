@@ -34,12 +34,12 @@ class ProfileTile extends StatelessWidget {
               children: [
                 Text(
                   username,
-                  style: TextStyles.titles.w600,
+                  style: TextStyles.headline1,
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
                   email,
-                  style: TextStyles.headlines.w400,
+                  style: TextStyles.text,
                   overflow: TextOverflow.ellipsis,
                 ),
               ],

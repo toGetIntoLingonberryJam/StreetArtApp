@@ -22,11 +22,12 @@ class AddressInfo extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Адрес:', style: TextStyles.headlines.w500),
+                const Text('Адрес:', style: TextStyles.headline2),
                 const SizedBox(height: 10),
-                Text(artwork.location.address, style: TextStyles.labels.w500),
+                Text(artwork.location.address,
+                    style: TextStyles.textAdditional),
                 const SizedBox(height: 10),
-                Text('N метров от вас', style: TextStyles.captions.w400),
+                const Text('N метров от вас', style: TextStyles.caption),
               ],
             ),
           ),

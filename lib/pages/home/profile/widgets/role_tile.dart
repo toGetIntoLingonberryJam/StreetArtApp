@@ -20,11 +20,8 @@ class RoleTile extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Text(
-              role,
-              style: TextStyles.headlines.w400,
-              overflow: TextOverflow.ellipsis,
-            ),
+            child: Text(role,
+                style: TextStyles.text, overflow: TextOverflow.ellipsis),
           ),
         ],
       ),

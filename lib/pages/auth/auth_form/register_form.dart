@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/services/user_service.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
@@ -88,13 +87,7 @@ class _RegisterViewState extends State<RegisterView> {
             },
           ),
           const SizedBox(height: 60),
-          AppButton.primary(
-            onTap: _tryRegister,
-            child: Text(
-              'Зарегистрироваться',
-              style: TextStyles.headlines.w500,
-            ),
-          ),
+          AppButton.primary(onTap: _tryRegister, text: 'Зарегистрироваться'),
         ],
       ),
     );

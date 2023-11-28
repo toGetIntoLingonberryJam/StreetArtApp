@@ -4,19 +4,19 @@ import 'package:street_art_witnesses/constants.dart';
 class AppButton extends StatelessWidget {
   const AppButton.primary({
     super.key,
-    required this.child,
+    required this.text,
     required this.onTap,
     this.isPrimary = true,
   });
 
   const AppButton.secondary({
     super.key,
-    required this.child,
+    required this.text,
     required this.onTap,
     this.isPrimary = false,
   });
 
-  final Widget? child;
+  final String text;
   final VoidCallback? onTap;
   final bool isPrimary;
 
@@ -31,12 +31,12 @@ class AppButton extends StatelessWidget {
           foregroundColor: isPrimary
               ? Colors.black
               : Theme.of(context).colorScheme.inverseSurface,
-          textStyle: const TextStyle(fontSize: 16),
+          textStyle: TextStyles.button,
           shape: RoundedRectangleBorder(
             borderRadius: kButtonBorderRadius,
           )),
       onPressed: onTap,
-      child: child,
+      child: Text(text, style: TextStyles.button),
     );
   }
 }

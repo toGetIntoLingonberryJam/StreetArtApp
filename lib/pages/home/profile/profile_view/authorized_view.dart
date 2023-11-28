@@ -85,13 +85,13 @@ class _LoginWarningTile extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Чтобы пользоваться всеми функциями приложения, подтвердите почту.',
-                  style: TextStyles.headlines.w400,
+                  style: TextStyles.text,
                 ),
                 Text(
                   'Отправить письмо еще раз',
-                  style: TextStyles.headlines.w400.copyWith(
+                  style: TextStyles.text.copyWith(
                     color: Theme.of(context).colorScheme.surface,
                     decoration: TextDecoration.underline,
                     decorationColor: Theme.of(context).colorScheme.surface,

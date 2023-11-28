@@ -81,7 +81,7 @@ class _IntroSliderState extends State<IntroSlider> {
           onTap: () => Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: (_) => const HomePage(),
           )),
-          child: Text('Пропустить', style: TextStyles.labels.w400),
+          child: const Text('Пропустить', style: TextStyles.textAdditional),
         ),
       ]),
     );

@@ -52,10 +52,10 @@ class _CollectionPageState extends State<CollectionPage> {
     return Row(
       children: [
         const SizedBox(width: 48),
-        Expanded(
+        const Expanded(
             child: Text(
           'Ваша Коллекция',
-          style: TextStyles.titles.w400,
+          style: TextStyles.headline1,
           textAlign: TextAlign.center,
         )),
         IconButton(
@@ -72,26 +72,14 @@ class _CollectionPageState extends State<CollectionPage> {
       children: [
         Expanded(
           child: page == _Page.artworks
-              ? AppButton.primary(
-                  onTap: _switchToArtworks,
-                  child: Text('Работы', style: TextStyles.headlines.w400),
-                )
-              : AppButton.secondary(
-                  onTap: _switchToArtworks,
-                  child: Text('Работы', style: TextStyles.headlines.w400),
-                ),
+              ? AppButton.primary(onTap: _switchToArtworks, text: 'Работы')
+              : AppButton.secondary(onTap: _switchToArtworks, text: 'Работы'),
         ),
         const SizedBox(width: 16),
         Expanded(
           child: page == _Page.authors
-              ? AppButton.primary(
-                  onTap: _switchToAuthors,
-                  child: Text('Авторы', style: TextStyles.headlines.w400),
-                )
-              : AppButton.secondary(
-                  onTap: _switchToAuthors,
-                  child: Text('Авторы', style: TextStyles.headlines.w400),
-                ),
+              ? AppButton.primary(onTap: _switchToAuthors, text: 'Авторы')
+              : AppButton.secondary(onTap: _switchToAuthors, text: 'Авторы'),
         ),
       ],
     );

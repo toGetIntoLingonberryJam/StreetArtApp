@@ -74,7 +74,7 @@ class ArtworkCard extends StatelessWidget {
                       Expanded(
                           child: Text(
                         'Artist ID: ${artwork.artistId}',
-                        style: TextStyles.labels.w400,
+                        style: TextStyles.text,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       )),
@@ -86,14 +86,14 @@ class ArtworkCard extends StatelessWidget {
                   ),
                   Text(
                     artwork.title,
-                    style: TextStyles.titles.w500.copyWith(height: 1),
+                    style: TextStyles.headline1,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const Expanded(child: SizedBox()),
                   Text(
                     artwork.location.address,
-                    style: TextStyles.captions.w400,
+                    style: TextStyles.caption,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),

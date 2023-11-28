@@ -23,10 +23,10 @@ class AuthorsView extends StatelessWidget {
       return const Center(child: CircularProgressIndicator());
     }
     if (authors!.isEmpty) {
-      return Center(
+      return const Center(
           child: Text(
         'У вас нет сохраненных авторов',
-        style: TextStyles.headlines.w500,
+        style: TextStyles.headline2,
       ));
     }
 
@@ -72,7 +72,7 @@ class AuthorCard extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Text(
                 author.name,
-                style: TextStyles.titles.w400,
+                style: TextStyles.headline1,
               ),
             ),
           ),

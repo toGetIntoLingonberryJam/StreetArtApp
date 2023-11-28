@@ -14,37 +14,21 @@ const kSmallContainerRadius = 10.0;
 
 // TextStyles
 abstract class TextStyles {
-  static final body = TextStylesBody();
-  static final titles = TextStyleTitles();
-  static final headlines = TextStyleHeadlines();
-  static final labels = TextStyleLabels();
-  static final captions = TextStyleCaptions();
-}
+  static const title1 =
+      TextStyle(fontSize: 32, height: 1.25, fontWeight: FontWeight.bold);
+  static const title2 =
+      TextStyle(fontSize: 24, height: 1.25, fontWeight: FontWeight.w400);
 
-class TextStylesBody {
-  final w400 = const TextStyle(fontSize: 28);
-  final w700 = const TextStyle(fontSize: 28, fontWeight: FontWeight.w700);
-}
+  static const headline1 =
+      TextStyle(fontSize: 20, height: 1.3, fontWeight: FontWeight.w600);
+  static const headline2 =
+      TextStyle(fontSize: 16, height: 1.25, fontWeight: FontWeight.w600);
 
-class TextStyleTitles {
-  final w400 = const TextStyle(fontSize: 20);
-  final w500 = const TextStyle(fontSize: 20, fontWeight: FontWeight.w500);
-  final w600 = const TextStyle(fontSize: 20, fontWeight: FontWeight.w600);
-  final w700 = const TextStyle(fontSize: 20, fontWeight: FontWeight.w700);
-}
+  static const text = TextStyle(fontSize: 16, height: 1.25);
+  static const button = TextStyle(fontSize: 16, height: 1.25);
+  static const input = TextStyle(fontSize: 16, height: 1.25);
 
-class TextStyleHeadlines {
-  final w400 = const TextStyle(fontSize: 16, fontWeight: FontWeight.w400);
-  final w500 = const TextStyle(fontSize: 16, fontWeight: FontWeight.w500);
-}
-
-class TextStyleLabels {
-  final w400 = const TextStyle(fontSize: 14);
-  final w500 = const TextStyle(fontSize: 14, fontWeight: FontWeight.w500);
-  final w600 = const TextStyle(fontSize: 14, fontWeight: FontWeight.w600);
-}
-
-class TextStyleCaptions {
-  final w400 = const TextStyle(fontSize: 12);
-  final w500 = const TextStyle(fontSize: 12, fontWeight: FontWeight.w500);
+  static const textAdditional =
+      TextStyle(fontSize: 14, height: 1.4, fontWeight: FontWeight.w500);
+  static const caption = TextStyle(fontSize: 12, height: 1);
 }

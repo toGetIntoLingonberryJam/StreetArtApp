@@ -14,9 +14,9 @@ class DescriptionInfo extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text('Описание:', style: TextStyles.titles.w700),
+          const Text('Описание', style: TextStyles.headline1),
           const SizedBox(height: 8),
-          Text(description, style: TextStyles.headlines.w400),
+          Text(description, style: TextStyles.text),
         ],
       ),
     );

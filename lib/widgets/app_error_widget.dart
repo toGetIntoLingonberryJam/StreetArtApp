@@ -6,10 +6,10 @@ class AppErrorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text(
         'Что-то пошло не так. :(',
-        style: TextStyles.titles.w400,
+        style: TextStyles.headline1,
       ),
     );
   }

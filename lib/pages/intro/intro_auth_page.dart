@@ -38,27 +38,26 @@ class IntroAuthPage extends StatelessWidget {
                 child: AppLogo(),
               ),
               const SizedBox(height: 40),
-              Text(
+              const Text(
                 'Свидетели Стрит-Арта',
-                style: TextStyles.body.w700,
+                style: TextStyles.title1,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 30),
               Text(
                 content,
-                style: TextStyles.headlines.w400,
+                style: TextStyles.text,
                 textAlign: TextAlign.center,
               ),
               const Expanded(flex: 2, child: SizedBox()),
               AppButton.primary(
                 onTap: () => _navigateToAuth(context),
-                child:
-                    Text('Войти в профиль', style: TextStyles.headlines.w400),
+                text: 'Войти в профиль',
               ),
               const SizedBox(height: 12),
               AppButton.secondary(
                 onTap: () => _navigateToHome(context),
-                child: Text('Позже', style: TextStyles.headlines.w400),
+                text: 'Позже',
               ),
               const Expanded(flex: 2, child: SizedBox()),
             ],

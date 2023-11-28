@@ -12,7 +12,7 @@ abstract class Utils {
     }
 
     final snackBar = SnackBar(
-      content: Text(message, style: TextStyles.headlines.w400),
+      content: Text(message, style: TextStyles.text),
     );
 
     messengerKey.currentState
@@ -24,7 +24,7 @@ abstract class Utils {
     final snackBar = SnackBar(
       behavior: SnackBarBehavior.floating,
       content: Text(message,
-          style: TextStyles.headlines.w400.copyWith(
+          style: TextStyles.text.copyWith(
             color: Theme.of(context).colorScheme.inverseSurface,
           )),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -53,24 +53,24 @@ abstract class Utils {
           surfaceTintColor: Colors.transparent,
           title: Text(
             title,
-            style: TextStyles.body.w400,
+            style: TextStyles.title2,
             textAlign: TextAlign.center,
           ),
           content: content == null
               ? null
               : Text(
                   content,
-                  style: TextStyles.headlines.w400,
+                  style: TextStyles.text,
                   textAlign: TextAlign.center,
                 ),
           actions: [
             AppButton.primary(
               onTap: () => Navigator.pop(context, true),
-              child: Text(acceptText, style: TextStyles.headlines.w400),
+              text: acceptText,
             ),
             AppButton.secondary(
               onTap: () => Navigator.pop(context, false),
-              child: Text(declineText, style: TextStyles.headlines.w400),
+              text: declineText,
             ),
           ],
         ),

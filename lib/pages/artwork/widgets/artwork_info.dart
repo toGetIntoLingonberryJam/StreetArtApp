@@ -24,15 +24,15 @@ class ArtworkInfo extends StatelessWidget {
               Expanded(
                 child: Text(
                   'Artist Id: ${artwork.artistId}',
-                  style: TextStyles.headlines.w500,
+                  style: TextStyles.headline2,
                 ),
               ),
             ],
           ),
           const SizedBox(height: 4),
-          Text(artwork.title, style: TextStyles.titles.w700),
+          Text(artwork.title, style: TextStyles.headline1),
           const SizedBox(height: 8),
-          Text('${artwork.yearCreated}', style: TextStyles.captions.w400),
+          Text('${artwork.yearCreated}', style: TextStyles.caption),
         ],
       ),
     );

@@ -81,10 +81,10 @@ class LoadingImage extends StatelessWidget {
         }
 
         if (snapshot.hasError) {
-          return Center(
+          return const Center(
             child: Text(
               'Не удалось загрузить картинку',
-              style: TextStyles.titles.w500,
+              style: TextStyles.headline1,
             ),
           );
         }

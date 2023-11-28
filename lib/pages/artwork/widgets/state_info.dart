@@ -14,7 +14,7 @@ class StateInfo extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Состояние работы', style: TextStyles.titles.w500),
+          const Text('Состояние работы', style: TextStyles.headline1),
           const SizedBox(height: 10),
           Wrap(
             spacing: 10,
@@ -26,9 +26,9 @@ class StateInfo extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
-          Text(
+          const Text(
             'юзернейм и юзернейм отметили, что эта работа затегана',
-            style: TextStyles.captions.w500,
+            style: TextStyles.caption,
           )
         ],
       ),

@@ -66,10 +66,7 @@ class _LoginViewState extends State<LoginView> {
             validator: Validator.get(Validate.password),
           ),
           const SizedBox(height: 60),
-          AppButton.primary(
-            onTap: _tryLogin,
-            child: Text('Войти в профиль', style: TextStyles.headlines.w500),
-          ),
+          AppButton.primary(onTap: _tryLogin, text: 'Войти в профиль'),
           const SizedBox(height: 20),
           _forgotPasswordButton(),
         ],
@@ -81,7 +78,7 @@ class _LoginViewState extends State<LoginView> {
     return GestureDetector(
       child: Text(
         'Забыли пароль?',
-        style: TextStyles.labels.w500.copyWith(
+        style: TextStyles.text.copyWith(
           decoration: TextDecoration.underline,
         ),
       ),

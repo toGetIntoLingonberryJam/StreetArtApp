@@ -71,7 +71,7 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
             ),
           ),
           hintText: widget.hintText,
-          hintStyle: TextStyle(
+          hintStyle: TextStyles.input.copyWith(
             color: Theme.of(context).colorScheme.inverseSurface,
           )),
     );

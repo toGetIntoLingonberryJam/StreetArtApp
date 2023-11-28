@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/constants.dart';
 
 class AppTextButton extends StatelessWidget {
-  AppTextButton.filled({
+  const AppTextButton.filled({
     super.key,
     required this.onTap,
     this.isFilled = true,
     this.text,
   });
 
-  AppTextButton.outlined({
+  const AppTextButton.outlined({
     super.key,
     required this.onTap,
     this.isFilled = false,
@@ -17,7 +17,7 @@ class AppTextButton extends StatelessWidget {
   });
 
   final String? text;
-  final TextStyle? style = TextStyles.headlines.w400;
+  final TextStyle? style = TextStyles.button;
   final VoidCallback? onTap;
   final bool isFilled;
 

@@ -17,7 +17,7 @@ class LinksInfo extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Интересные ссылки', style: TextStyles.titles.w500),
+          const Text('Интересные ссылки', style: TextStyles.headline1),
           const SizedBox(height: 8),
           AppLink(url: url, name: 'Ссылка'),
           const SizedBox(height: 4),

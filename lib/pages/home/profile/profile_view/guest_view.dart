@@ -54,22 +54,19 @@ class _LoginContainer extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
+          const Text(
             'Войдите в профиль',
-            style: TextStyles.titles.w500,
+            style: TextStyles.headline1,
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 8),
-          Text(
+          const Text(
             'Чтобы пользоваться всеми функциями приложения',
-            style: TextStyles.headlines.w400,
+            style: TextStyles.text,
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 16),
-          AppButton.primary(
-            onTap: login,
-            child: Text('Войти', style: TextStyles.headlines.w400),
-          ),
+          AppButton.primary(onTap: login, text: 'Войти'),
         ],
       ),
     );

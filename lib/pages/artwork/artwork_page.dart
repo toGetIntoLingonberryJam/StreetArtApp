@@ -41,17 +41,17 @@ class ArtworkPage extends StatelessWidget {
               const SizedBox(height: 8),
               const LinksInfo(),
               const SizedBox(height: 8),
-              AppContainer.small(
+              const AppContainer.small(
                 child: Text(
                   'Добавлено: юзернейм',
-                  style: TextStyles.headlines.w500,
+                  style: TextStyles.headline2,
                 ),
               ),
               const SizedBox(height: 8),
-              AppContainer.small(
+              const AppContainer.small(
                 child: Text(
                   'Есть неточности? Напишите',
-                  style: TextStyles.headlines.w500,
+                  style: TextStyles.headline2,
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -76,12 +76,12 @@ class _ArtworkImageSliderState extends State<_ArtworkImageSlider> {
   @override
   Widget build(BuildContext context) {
     if (widget.images == null) {
-      return Padding(
-        padding: const EdgeInsets.only(bottom: 8),
+      return const Padding(
+        padding: EdgeInsets.only(bottom: 8),
         child: AppContainer.small(
           child: Text(
             'Фотографии отсутствуют',
-            style: TextStyles.titles.w500,
+            style: TextStyles.headline1,
             textAlign: TextAlign.center,
           ),
         ),
