@@ -5,7 +5,7 @@ class AppCircleAvatar extends StatelessWidget {
     super.key,
     this.bgColor,
     this.image,
-    this.radius = 12,
+    this.radius = 14,
   });
 
   final double radius;

@@ -21,12 +21,16 @@ class AppIconButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(100),
         onTap: onTap,
         child: Ink(
-          padding: const EdgeInsets.all(4),
+          padding: const EdgeInsets.all(6),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(100),
-            color: colorScheme.surfaceVariant,
+            color: colorScheme.surfaceVariant.withOpacity(0.5),
           ),
-          child: Icon(iconData, color: colorScheme.inverseSurface),
+          child: Icon(
+            iconData,
+            color: colorScheme.inverseSurface,
+            size: 28,
+          ),
         ),
       ),
     );

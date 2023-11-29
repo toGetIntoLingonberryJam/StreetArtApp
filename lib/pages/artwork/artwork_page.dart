@@ -48,11 +48,23 @@ class ArtworkPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              const AppContainer.small(
-                child: Text(
-                  'Есть неточности? Напишите',
-                  style: TextStyles.headline2,
-                  textAlign: TextAlign.center,
+              AppContainer.small(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Есть неточности? ',
+                      style: TextStyles.headline2,
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      'Напишите',
+                      style: TextStyles.headline2.copyWith(
+                        decoration: TextDecoration.underline,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
                 ),
               ),
             ],

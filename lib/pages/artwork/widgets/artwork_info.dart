@@ -19,7 +19,7 @@ class ArtworkInfo extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              AppCircleAvatar(radius: 8, image: AppPlaceholder.assetImage()),
+              AppCircleAvatar(image: AppPlaceholder.assetImage()),
               const SizedBox(width: 8),
               Expanded(
                 child: Text(
