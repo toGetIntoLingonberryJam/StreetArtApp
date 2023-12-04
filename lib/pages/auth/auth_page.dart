@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/constants.dart';
-import 'package:street_art_witnesses/pages/auth/auth_form/login_form.dart';
-import 'package:street_art_witnesses/pages/auth/auth_form/register_form.dart';
+import 'package:street_art_witnesses/pages/auth/forms/login_form.dart';
+import 'package:street_art_witnesses/pages/auth/forms/register_form.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
 import 'package:street_art_witnesses/widgets/app_logo.dart';
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:street_art_witnesses/pages/auth/check_email/check_email_page.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/services/user_service.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
@@ -41,7 +42,9 @@ class _RegisterViewState extends State<RegisterView> {
 
     if (mounted && user != null) {
       context.read<UserProvider>().setUser(user);
-      Navigator.of(context).pop();
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (context) => const CheckEmailPage(),
+      ));
     }
   }
 
