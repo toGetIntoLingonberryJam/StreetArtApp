@@ -1,69 +1,37 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/constants.dart';
+import 'package:street_art_witnesses/src/providers/email_counter_provider.dart';
+import 'package:street_art_witnesses/src/providers/user_provider.dart';
+import 'package:street_art_witnesses/src/utils/utils.dart';
 
-class EmailCounter extends StatefulWidget {
-  const EmailCounter({super.key, required this.startCount});
+class EmailCounter extends StatelessWidget {
+  const EmailCounter({super.key});
 
-  final int startCount;
-
-  @override
-  State<EmailCounter> createState() => _EmailCounterState();
-}
-
-class _EmailCounterState extends State<EmailCounter> {
-  late int count = 0;
-  StreamSubscription? subscription;
-  bool canSend = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _reset();
-  }
-
-  @override
-  void dispose() {
-    subscription?.cancel();
-    super.dispose();
-  }
-
-  void _reset() {
-    // TODO: Send email
-
-    setState(() {
-      canSend = false;
-      count = widget.startCount;
-      subscription = Stream.periodic(const Duration(seconds: 1))
-          .take(widget.startCount)
-          .listen((event) => updateTimer());
-    });
-  }
-
-  void updateTimer() {
-    setState(() {
-      count -= 1;
-      print('count = $count');
-      if (count == 0) {
-        canSend = true;
-      }
-    });
+  void _sendEmail(BuildContext context) {
+    final user = context.read<UserProvider>().user;
+    if (user.token == null) {
+      Utils.showMessage(context, 'Для начала, пожалуйста, создайте аккаунт');
+    } else {
+      context.read<EmailCounterProvider>().sendEmail(context, user.token!);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final counter = context.watch<EmailCounterProvider>();
+
     return Wrap(
       alignment: WrapAlignment.center,
       spacing: 10,
       children: [
-        canSend ? _resendButton() : _resendText(),
-        Text('Через $count сек', style: TextStyles.text)
+        counter.canSend ? _resendButton(context) : _resendText(context),
+        Text('Через ${counter.count} сек', style: TextStyles.text)
       ],
     );
   }
 
-  Text _resendText() {
+  Text _resendText(BuildContext context) {
     return Text(
       'Отправить повторно',
       style: TextStyles.text
@@ -71,9 +39,9 @@ class _EmailCounterState extends State<EmailCounter> {
     );
   }
 
-  Widget _resendButton() {
+  Widget _resendButton(BuildContext context) {
     return GestureDetector(
-      onTap: () => _reset(),
+      onTap: () => _sendEmail(context),
       child: Text(
         'Отправить повторно',
         style: TextStyles.text.copyWith(

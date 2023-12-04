@@ -28,7 +28,8 @@ abstract class ImagesService {
         final Map<String, dynamic> data = response.data!;
         return NetworkImage(data['preview']);
       } on Exception catch (e) {
-        CustomLogger.showException(e);
+        CustomLogger.showException(e,
+            className: 'ImagesService', methodName: 'loadFromDisk');
         return null;
       }
     }

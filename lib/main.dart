@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:street_art_witnesses/pages/home/home_page.dart';
 import 'package:street_art_witnesses/pages/intro/intro_slider.dart';
 import 'package:street_art_witnesses/src/models/user.dart';
+import 'package:street_art_witnesses/src/providers/email_counter_provider.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/services/storage_service.dart';
 import 'package:street_art_witnesses/src/services/user_service.dart';
@@ -49,9 +50,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => UserProvider(user: user),
-          lazy: false,
-        ),
+            create: (_) => UserProvider(user: user), lazy: false),
+        ChangeNotifierProvider(create: (_) => EmailCounterProvider(length: 30)),
       ],
       child: MaterialApp(
         locale: DevicePreview.locale(context),

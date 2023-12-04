@@ -57,8 +57,25 @@ abstract class UserService {
 
     if (response?.statusCode == 200 && response?.data != null) {
       final json = response!.data as Map<String, dynamic>;
-      return User.fromJson(json);
+      return User.fromJson(json, token: token);
     }
     return User.guest();
+  }
+
+  static Future<bool> verify({required String token}) async {
+    final response = await BackendDataSource.post(
+      '/v1/users/verify',
+      requestType: RequestType.verify,
+      data: {'token': token},
+      options: Options(
+        contentType: 'application/x-www-form-urlencoded',
+        headers: {'Authorization': 'Bearer $token'},
+      ),
+    );
+
+    if (response?.statusCode == 200 && response?.data != null) {
+      return true;
+    }
+    return false;
   }
 }

@@ -89,9 +89,9 @@ abstract class Utils {
       barrierDismissible: false,
       builder: (context) {
         dialogContext = context;
-        return WillPopScope(
-          onWillPop: () => Future.value(false),
-          child: const Center(
+        return const PopScope(
+          canPop: false,
+          child: Center(
             child: CircularProgressIndicator(),
           ),
         );

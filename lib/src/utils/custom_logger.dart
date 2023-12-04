@@ -43,18 +43,24 @@ abstract class CustomLogger {
 
   static void showWarning(String warning) => _log(warning, LogType.warning);
 
-  static void showException(Exception e) =>
-      _log(e.toString(), LogType.exception);
+  static void showException(
+    Exception e, {
+    required String className,
+    required String methodName,
+  }) =>
+      _log('$className.$methodName, ${e.toString()}', LogType.exception);
 
   static void showError(Error e) => _log(e.toString(), LogType.exception);
 
   static void showDioException(DioException e, RequestType req) {
+    _log('RequestType.${req.name}: ${e.response?.data}', LogType.dioException);
     _log('RequestType.${req.name}: ${e.toString()}', LogType.dioException);
     try {
       final message = _requestErrorComments[req]![e.response!.statusCode!]!;
       Utils.showDebugMessage(message);
     } on Exception catch (e) {
-      CustomLogger.showException(e);
+      CustomLogger.showException(e,
+          className: 'CustomLogger', methodName: 'showException');
     } on TypeError catch (e) {
       CustomLogger.showError(e);
     }
@@ -64,6 +70,7 @@ abstract class CustomLogger {
 enum RequestType {
   login,
   register,
+  verify,
   getUserViaToken,
   getArtworkLocations,
   getAuthors,

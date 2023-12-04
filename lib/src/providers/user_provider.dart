@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/src/models/author/author.dart';
 import 'package:street_art_witnesses/src/models/user.dart';
+import 'package:street_art_witnesses/src/providers/email_counter_provider.dart';
 import 'package:street_art_witnesses/src/services/artwork_service.dart';
 import 'package:street_art_witnesses/src/services/storage_service.dart';
 import 'package:street_art_witnesses/src/utils/custom_logger.dart';
@@ -47,6 +48,7 @@ class UserProvider with ChangeNotifier {
   Future<void> logout() async {
     CustomLogger.showMessage('[USER LOGGED OUT]');
     await StorageService.deleteUserInfo();
+    EmailCounterProvider.firstOpened = true;
     setUser(User.guest());
   }
 }

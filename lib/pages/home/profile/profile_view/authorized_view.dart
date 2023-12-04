@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/constants.dart';
+import 'package:street_art_witnesses/pages/auth/check_email/check_email_page.dart';
+import 'package:street_art_witnesses/src/providers/email_counter_provider.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
 import 'package:street_art_witnesses/pages/home/profile/widgets/profile_tile.dart';
@@ -66,6 +68,21 @@ class AuthorizedView extends StatelessWidget {
 class _LoginWarningTile extends StatelessWidget {
   const _LoginWarningTile();
 
+  void _sendEmail(BuildContext context) {
+    final user = context.read<UserProvider>().user;
+    final counter = context.read<EmailCounterProvider>();
+
+    // When opening for the first time, send email instantly
+    if (EmailCounterProvider.firstOpened) {
+      counter.sendEmail(context, user.token!);
+      EmailCounterProvider.firstOpened = false;
+    }
+
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => const CheckEmailPage(),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -89,12 +106,15 @@ class _LoginWarningTile extends StatelessWidget {
                   'Чтобы пользоваться всеми функциями приложения, подтвердите почту.',
                   style: TextStyles.text,
                 ),
-                Text(
-                  'Отправить письмо',
-                  style: TextStyles.text.copyWith(
-                    color: Theme.of(context).colorScheme.surface,
-                    decoration: TextDecoration.underline,
-                    decorationColor: Theme.of(context).colorScheme.surface,
+                GestureDetector(
+                  onTap: () => _sendEmail(context),
+                  child: Text(
+                    'Отправить письмо',
+                    style: TextStyles.text.copyWith(
+                      color: Theme.of(context).colorScheme.surface,
+                      decoration: TextDecoration.underline,
+                      decorationColor: Theme.of(context).colorScheme.surface,
+                    ),
                   ),
                 ),
               ],
