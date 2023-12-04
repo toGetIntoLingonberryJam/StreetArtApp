@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
         locale: DevicePreview.locale(context),
         builder: DevicePreview.appBuilder,
         scaffoldMessengerKey: Utils.messengerKey,
-        title: 'Свидетели Стрит-Арта',
+        title: 'Свидетели',
         debugShowCheckedModeBanner: false,
         theme: lightTheme,
         darkTheme: darkTheme,

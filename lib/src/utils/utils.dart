@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 abstract class Utils {
   static final messengerKey = GlobalKey<ScaffoldMessengerState>();
@@ -82,7 +83,6 @@ abstract class Utils {
   ) async {
     // Dismissing keyboard if opened
     FocusManager.instance.primaryFocus?.unfocus();
-    print('Loading...');
 
     showDialog(
       context: dialogContext,
@@ -101,5 +101,25 @@ abstract class Utils {
     await future;
     if (dialogContext.mounted) Navigator.of(dialogContext).pop();
     return future;
+  }
+
+  static Future<bool> tryLaunchUrl(BuildContext context, Uri url) async {
+    final response = await Utils.showWarning(
+      context,
+      title: 'Переход по ссылке',
+      content: 'Вы собираетесь перейти на сайт: $url',
+      acceptText: 'Перейти',
+      declineText: 'Отмена',
+    );
+
+    if (response != null && response == true && context.mounted) {
+      final success = await Utils.showLoading(context, launchUrl(url));
+
+      if (!success) {
+        Utils.showDebugMessage('Could not launch $url');
+        return false;
+      }
+    }
+    return true;
   }
 }
