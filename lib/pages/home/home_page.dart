@@ -32,6 +32,7 @@ class _HomePageState extends State<HomePage> {
         children: _pages,
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Theme.of(context).colorScheme.onBackground,
         type: BottomNavigationBarType.fixed,
         showUnselectedLabels: true,
         selectedFontSize: 12,

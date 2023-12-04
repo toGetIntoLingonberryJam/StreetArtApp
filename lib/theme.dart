@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 final lightTheme = ThemeData(
   colorScheme: const ColorScheme.light(
     brightness: Brightness.light,
-    background: Colors.white,
-    onBackground: Color.fromRGBO(240, 240, 240, 1),
+    background: Color.fromRGBO(242, 242, 247, 1),
+    onBackground: Colors.white,
     surface: Color.fromRGBO(173, 173, 173, 1),
     // Works as inverse color, as for slider dots
     inverseSurface: Color.fromRGBO(11, 11, 11, 1),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
+import 'package:street_art_witnesses/widgets/containers/app_container.dart';
 
 class AppListTile extends StatelessWidget {
   const AppListTile({
@@ -23,12 +24,8 @@ class AppListTile extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(12),
       onTap: onTap ?? () => Utils.showMessage(context, text),
-      child: Ink(
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.onBackground,
-          borderRadius: BorderRadius.circular(12),
-        ),
+      child: AppContainer(
+        borderRadius: 12,
         child: Row(
           children: [
             Icon(iconData, color: foregroundColor),
