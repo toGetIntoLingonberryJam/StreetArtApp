@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/pages/auth/auth_page.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
-import 'package:street_art_witnesses/widgets/containers/app_list_tile.dart';
+import 'package:street_art_witnesses/widgets/containers/user_tiles.dart';
 
 class GuestView extends StatelessWidget {
   const GuestView({super.key});
@@ -22,15 +22,9 @@ class GuestView extends StatelessWidget {
         children: [
           _LoginContainer(login: () => _login(context)),
           const SizedBox(height: 24),
-          const AppListTile(
-            iconData: Icons.settings_outlined,
-            text: 'Настройки',
-          ),
+          UserTiles.settings(context),
           const SizedBox(height: 8),
-          const AppListTile(
-            iconData: Icons.info_outline,
-            text: 'О нас',
-          ),
+          UserTiles.about(context),
         ],
       ),
     );

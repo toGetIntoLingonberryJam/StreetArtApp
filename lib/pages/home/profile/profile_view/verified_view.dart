@@ -4,7 +4,7 @@ import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
 import 'package:street_art_witnesses/pages/home/profile/widgets/profile_tile.dart';
-import 'package:street_art_witnesses/widgets/containers/app_list_tile.dart';
+import 'package:street_art_witnesses/widgets/containers/user_tiles.dart';
 
 class VerifiedView extends StatelessWidget {
   const VerifiedView({super.key});
@@ -39,33 +39,15 @@ class VerifiedView extends StatelessWidget {
             email: user.email!,
           ),
           const SizedBox(height: 24),
-          const AppListTile(
-            iconData: Icons.add_circle_outline,
-            text: 'Добавить работу',
-          ),
+          UserTiles.addArtwork(context),
           const SizedBox(height: 8),
-          const AppListTile(
-            iconData: Icons.collections_outlined,
-            text: 'Мои публикации',
-            notificationsCount: 1,
-          ),
+          UserTiles.publications(context),
           const SizedBox(height: 8),
-          const AppListTile(
-            iconData: Icons.settings_outlined,
-            text: 'Настройки',
-          ),
+          UserTiles.settings(context),
           const SizedBox(height: 8),
-          const AppListTile(
-            iconData: Icons.info_outline,
-            text: 'О нас',
-          ),
+          UserTiles.about(context),
           const SizedBox(height: 8),
-          AppListTile(
-            iconData: Icons.logout,
-            text: 'Выйти',
-            onTap: () => _logout(context),
-            foregroundColor: Theme.of(context).colorScheme.error,
-          ),
+          UserTiles.logout(context),
         ],
       ),
     );
