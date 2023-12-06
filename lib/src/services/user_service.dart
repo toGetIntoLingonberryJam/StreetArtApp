@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:street_art_witnesses/src/models/user.dart';
 import 'package:street_art_witnesses/src/data/backend_datasource.dart';
-import 'package:street_art_witnesses/src/services/storage_service.dart';
+import 'package:street_art_witnesses/src/services/local_store_service.dart';
 import 'package:street_art_witnesses/src/utils/custom_logger.dart';
 
 abstract class UserService {
@@ -21,7 +21,7 @@ abstract class UserService {
     } else {
       final String? token = response.data['access_token'];
       if (token != null) {
-        await StorageService.saveToken(token);
+        await LocalStoreService.saveToken(token);
 
         return await getUserViaToken(token: token);
       } else {
@@ -62,15 +62,11 @@ abstract class UserService {
     return User.guest();
   }
 
-  static Future<bool> verify({required String token}) async {
+  static Future<bool> verify({required String email}) async {
     final response = await BackendDataSource.post(
-      '/v1/users/verify',
+      '/v1/users/request-verify-token',
       requestType: RequestType.verify,
-      data: {'token': token},
-      options: Options(
-        contentType: 'application/x-www-form-urlencoded',
-        headers: {'Authorization': 'Bearer $token'},
-      ),
+      data: {'email': email},
     );
 
     if (response?.statusCode == 200 && response?.data != null) {

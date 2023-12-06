@@ -7,7 +7,7 @@ import 'package:street_art_witnesses/pages/intro/intro_slider.dart';
 import 'package:street_art_witnesses/src/models/user.dart';
 import 'package:street_art_witnesses/src/providers/email_counter_provider.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
-import 'package:street_art_witnesses/src/services/storage_service.dart';
+import 'package:street_art_witnesses/src/services/local_store_service.dart';
 import 'package:street_art_witnesses/src/services/user_service.dart';
 import 'package:street_art_witnesses/theme.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +15,7 @@ import 'package:street_art_witnesses/src/utils/utils.dart';
 
 Future<User> getUser() async {
   // Retrieve token from localstore, if exists
-  final token = await StorageService.retrieveToken();
+  final token = await LocalStoreService.retrieveToken();
 
   if (token != null) {
     final user = await UserService.getUserViaToken(token: token);

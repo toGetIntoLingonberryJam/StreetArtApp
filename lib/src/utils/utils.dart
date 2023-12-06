@@ -30,7 +30,7 @@ abstract class Utils {
           )),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       duration: const Duration(milliseconds: 2500),
-      backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
+      backgroundColor: Theme.of(context).colorScheme.onBackground,
     );
 
     ScaffoldMessenger.of(context)

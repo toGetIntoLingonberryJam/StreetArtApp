@@ -74,7 +74,7 @@ class _LoginWarningTile extends StatelessWidget {
 
     // When opening for the first time, send email instantly
     if (EmailCounterProvider.firstOpened) {
-      counter.sendEmail(context, user.token!);
+      counter.sendEmail(context, user.email!);
       EmailCounterProvider.firstOpened = false;
     }
 

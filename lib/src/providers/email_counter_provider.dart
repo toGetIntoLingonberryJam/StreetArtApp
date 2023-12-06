@@ -37,10 +37,10 @@ class EmailCounterProvider with ChangeNotifier {
     _count = length;
   }
 
-  void sendEmail(BuildContext context, String token) {
+  void sendEmail(BuildContext context, String email) {
     if (canSend) {
       _initCounting();
-      UserService.verify(token: token);
+      UserService.verify(email: email);
       Utils.showMessage(context, 'Письмо успешно отправлено');
       notifyListeners();
     }

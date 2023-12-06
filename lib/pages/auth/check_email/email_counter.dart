@@ -3,18 +3,13 @@ import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/src/providers/email_counter_provider.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
-import 'package:street_art_witnesses/src/utils/utils.dart';
 
 class EmailCounter extends StatelessWidget {
   const EmailCounter({super.key});
 
   void _sendEmail(BuildContext context) {
     final user = context.read<UserProvider>().user;
-    if (user.token == null) {
-      Utils.showMessage(context, 'Для начала, пожалуйста, создайте аккаунт');
-    } else {
-      context.read<EmailCounterProvider>().sendEmail(context, user.token!);
-    }
+    context.read<EmailCounterProvider>().sendEmail(context, user.email!);
   }
 
   @override

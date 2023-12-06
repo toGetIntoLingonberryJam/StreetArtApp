@@ -24,7 +24,7 @@ class AppIconButton extends StatelessWidget {
           padding: const EdgeInsets.all(6),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(100),
-            color: colorScheme.surfaceVariant.withOpacity(0.5),
+            color: colorScheme.surfaceVariant,
           ),
           child: Icon(
             iconData,

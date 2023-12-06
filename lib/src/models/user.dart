@@ -1,7 +1,6 @@
 class User {
   final String _username;
   final String? _email;
-  final String? _token;
   final bool _isAuthorized;
   final bool _isVerified;
   final bool _isArtist;
@@ -10,14 +9,12 @@ class User {
   User({
     required String username,
     required String? email,
-    required String? token,
     required bool isAuthorized,
     required bool isVerified,
     required bool isArtist,
     required bool isModerator,
   })  : _username = username,
         _email = email,
-        _token = token,
         _isAuthorized = isAuthorized,
         _isVerified = isVerified,
         _isArtist = isArtist,
@@ -26,7 +23,6 @@ class User {
   User.fromJson(Map<String, dynamic> json, {required String token})
       : _username = json['username'],
         _email = json['email'],
-        _token = token,
         _isAuthorized = true,
         _isVerified = json['is_verified'] ?? false,
         _isArtist = json['is_artist'] ?? false,
@@ -35,7 +31,6 @@ class User {
   User.guest()
       : _username = 'Гость',
         _email = null,
-        _token = null,
         _isAuthorized = false,
         _isVerified = false,
         _isArtist = false,
@@ -43,7 +38,6 @@ class User {
 
   String get username => _username;
   String? get email => _email;
-  String? get token => _token;
 
   bool get isAuthorized => _isAuthorized;
   bool get isVerified => _isVerified;
