@@ -1,4 +1,5 @@
 import 'package:street_art_witnesses/src/data/local_store_datasource.dart';
+import 'package:street_art_witnesses/src/providers/settings_provider.dart';
 import 'package:street_art_witnesses/src/utils/custom_logger.dart';
 
 abstract class LocalStoreService {
@@ -21,8 +22,25 @@ abstract class LocalStoreService {
     CustomLogger.showSuccess('[TOKEN SAVED]: $token');
   }
 
-  static Future<void> deleteUserInfo() async {
-    await LocalStoreDataSource.userDoc.delete();
-    CustomLogger.showWarning('[USER DOCREF DELETED]');
+  static Future<ImageQuality> getImageQuality() async {
+    final settingsJson = await LocalStoreDataSource.settingsDoc.get();
+    final String? qualityName = settingsJson?['image_quality'];
+    final ImageQuality? quality = _mapNameToImgQuality[qualityName];
+
+    return quality ?? ImageQuality.good;
+  }
+
+  static Future<void> setImageQuality(ImageQuality quality) async {
+    await LocalStoreDataSource.settingsDoc.set({
+      'image_quality': quality.name,
+    });
+    CustomLogger.showMessage('[IMAGE_QUALITY SET]: $quality');
   }
 }
+
+const _mapNameToImgQuality = {
+  'preview': ImageQuality.preview,
+  'bad': ImageQuality.bad,
+  'good': ImageQuality.good,
+  'best': ImageQuality.best,
+};

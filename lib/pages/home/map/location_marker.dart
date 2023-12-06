@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/pages/artwork/artwork_page.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork_location.dart';
+import 'package:street_art_witnesses/src/providers/settings_provider.dart';
 import 'package:street_art_witnesses/src/services/artwork_service.dart';
 import 'package:street_art_witnesses/src/services/images_service.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
@@ -31,7 +32,7 @@ class LocationMarker extends StatelessWidget {
       child: FutureBuilder(
         future: ImagesService.loadFromDisk(
           location.previewUrl,
-          quality: ImageQuality.s,
+          quality: ImageQuality.preview,
         ),
         builder: (context, snapshot) {
           if (snapshot.hasData) {

@@ -6,6 +6,7 @@ import 'package:street_art_witnesses/pages/home/home_page.dart';
 import 'package:street_art_witnesses/pages/intro/intro_slider.dart';
 import 'package:street_art_witnesses/src/models/user.dart';
 import 'package:street_art_witnesses/src/providers/email_counter_provider.dart';
+import 'package:street_art_witnesses/src/providers/settings_provider.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/services/local_store_service.dart';
 import 'package:street_art_witnesses/src/services/user_service.dart';
@@ -25,20 +26,32 @@ Future<User> getUser() async {
   return User.guest();
 }
 
+Future<ImageQuality> getImageQuality() async =>
+    await LocalStoreService.getImageQuality();
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final user = await getUser();
+  final quality = await getImageQuality();
 
   runApp(DevicePreview(
     enabled: !kReleaseMode,
-    builder: (context) => MyApp(user: user),
+    builder: (context) => MyApp(
+      user: user,
+      initImageQuality: quality,
+    ),
   ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key, required this.user});
+  const MyApp({
+    super.key,
+    required this.user,
+    required this.initImageQuality,
+  });
 
   final User user;
+  final ImageQuality initImageQuality;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +63,13 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-            create: (_) => UserProvider(user: user), lazy: false),
+          create: (_) => UserProvider(user: user),
+          lazy: false,
+        ),
+        ChangeNotifierProvider(
+          create: (_) => SettingsProvider(initImageQuality: initImageQuality),
+          lazy: false,
+        ),
         ChangeNotifierProvider(create: (_) => EmailCounterProvider(length: 30)),
       ],
       child: MaterialApp(

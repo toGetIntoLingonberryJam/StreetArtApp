@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:street_art_witnesses/src/data/local_store_datasource.dart';
 import 'package:street_art_witnesses/src/models/user.dart';
 import 'package:street_art_witnesses/src/data/backend_datasource.dart';
 import 'package:street_art_witnesses/src/services/local_store_service.dart';
@@ -73,5 +74,10 @@ abstract class UserService {
       return true;
     }
     return false;
+  }
+
+  static Future<void> deleteUserData() async {
+    await LocalStoreDataSource.userDoc.delete();
+    CustomLogger.showWarning('[USER DATA DELETED]');
   }
 }

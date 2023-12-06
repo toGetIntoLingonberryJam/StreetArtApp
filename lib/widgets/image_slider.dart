@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork_image.dart';
+import 'package:street_art_witnesses/src/providers/settings_provider.dart';
 import 'package:street_art_witnesses/src/providers/slider_provider.dart';
 import 'package:street_art_witnesses/src/services/images_service.dart';
 import 'package:street_art_witnesses/widgets/slider_dots.dart';
@@ -44,7 +45,7 @@ class _ImageSlider extends StatelessWidget {
                 final image = images[index];
                 final imageLoader = ImagesService.loadFromDisk(
                   image.imageUrl,
-                  quality: ImageQuality.l,
+                  quality: context.read<SettingsProvider>().imageQuality,
                 );
 
                 return LoadingImage(imageLoader: imageLoader);

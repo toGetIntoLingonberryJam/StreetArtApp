@@ -4,6 +4,7 @@ import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/pages/home/collection/artworks_view.dart';
 import 'package:street_art_witnesses/pages/home/collection/authors_view.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
+import 'package:street_art_witnesses/widgets/app_appbar.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
 
 enum _Page { artworks, authors }
@@ -32,8 +33,14 @@ class _CollectionPageState extends State<CollectionPage> {
           padding: kPagePadding,
           child: Column(
             children: [
-              _appbar(),
-              const SizedBox(height: 10),
+              AppAppbar(
+                title: 'Ваша Коллекция',
+                action: GestureDetector(
+                  onTap: () {},
+                  child: const Icon(Icons.search),
+                ),
+              ),
+              const SizedBox(height: 20),
               _headerButtons(),
               const SizedBox(height: 20),
               Expanded(
@@ -45,25 +52,6 @@ class _CollectionPageState extends State<CollectionPage> {
           ),
         ),
       ),
-    );
-  }
-
-  Row _appbar() {
-    return Row(
-      children: [
-        const SizedBox(width: 48),
-        const Expanded(
-            child: Text(
-          'Ваша Коллекция',
-          style: TextStyles.headline1,
-          textAlign: TextAlign.center,
-        )),
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.search),
-          visualDensity: VisualDensity.comfortable,
-        ),
-      ],
     );
   }
 

@@ -6,4 +6,6 @@ abstract class LocalStoreDataSource {
       _db.collection('street_art_witnesses');
 
   static DocumentRef get userDoc => _collection.doc('user');
+
+  static DocumentRef get settingsDoc => _collection.doc('settings');
 }
