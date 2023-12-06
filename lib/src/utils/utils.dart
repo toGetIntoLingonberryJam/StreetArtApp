@@ -49,7 +49,7 @@ abstract class Utils {
       showDialog(
         context: context,
         barrierDismissible: barrierDismissible,
-        builder: (context) => AlertDialog(
+        builder: (_) => AlertDialog(
           backgroundColor: Theme.of(context).colorScheme.background,
           surfaceTintColor: Colors.transparent,
           title: Text(

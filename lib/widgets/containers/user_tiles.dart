@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:street_art_witnesses/pages/home/profile/about_page.dart';
 import 'package:street_art_witnesses/pages/home/profile/settings_page.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
@@ -8,13 +9,16 @@ import 'package:street_art_witnesses/widgets/containers/app_list_tile.dart';
 abstract class UserTiles {
   static AppListTile settings(BuildContext context) => AppListTile(
         onTap: () => Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => const SettingsPage(),
+          builder: (_) => const SettingsPage(),
         )),
         iconData: Icons.settings_outlined,
         text: 'Настройки',
       );
 
-  static AppListTile about(BuildContext context) => const AppListTile(
+  static AppListTile about(BuildContext context) => AppListTile(
+        onTap: () => Navigator.of(context).push(MaterialPageRoute(
+          builder: (_) => const AboutPage(),
+        )),
         iconData: Icons.info_outline,
         text: 'О нас',
       );

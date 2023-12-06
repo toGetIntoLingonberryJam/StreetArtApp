@@ -68,7 +68,7 @@ class _LoginWarningTile extends StatelessWidget {
     }
 
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => const CheckEmailPage(),
+      builder: (_) => const CheckEmailPage(),
     ));
   }
 

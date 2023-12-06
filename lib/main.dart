@@ -36,7 +36,7 @@ void main() async {
 
   runApp(DevicePreview(
     enabled: !kReleaseMode,
-    builder: (context) => MyApp(
+    builder: (_) => MyApp(
       user: user,
       initImageQuality: quality,
     ),

@@ -20,7 +20,7 @@ class LocationMarker extends StatelessWidget {
       Utils.showDebugMessage('Не удалось получить данные о работе');
     } else if (context.mounted) {
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => ArtworkPage(artwork: artwork),
+        builder: (_) => ArtworkPage(artwork: artwork),
       ));
     }
   }
