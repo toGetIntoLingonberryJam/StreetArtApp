@@ -12,7 +12,7 @@ class LocationMarker extends StatelessWidget {
 
   final ArtworkLocation location;
 
-  void _onTap(BuildContext context, ArtworkLocation location) async {
+  void _openArtwork(BuildContext context) async {
     final future = ArtworkService.getArtworkById(location.artworkId);
     final artwork = await Utils.showLoading(context, future);
 
@@ -28,26 +28,31 @@ class LocationMarker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _onTap(context, location),
-      child: FutureBuilder(
-        future: ImagesService.loadFromDisk(
-          location.previewUrl,
-          quality: ImageQuality.preview,
-        ),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return AppMarkerAvatar(image: snapshot.data);
-          }
+      onTap: () => _openArtwork(context),
+      child: location.previewUrl == null
+          ? const AppMarkerAvatar(child: Icon(Icons.color_lens_outlined))
+          : FutureBuilder(
+              future: ImagesService.loadFromDisk(
+                location.previewUrl,
+                quality: ImageQuality.preview,
+              ),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return AppMarkerAvatar(image: snapshot.data);
+                }
 
-          if (snapshot.hasError) {
-            return const AppMarkerAvatar();
-          }
+                if (snapshot.hasError) {
+                  return AppMarkerAvatar(
+                    bgColor: Theme.of(context).colorScheme.error,
+                  );
+                }
 
-          return AppMarkerAvatar(
-            bgColor: Theme.of(context).colorScheme.surface,
-          );
-        },
-      ),
+                return AppMarkerAvatar(
+                  bgColor: Theme.of(context).colorScheme.surface,
+                  child: const CircularProgressIndicator(),
+                );
+              },
+            ),
     );
   }
 }

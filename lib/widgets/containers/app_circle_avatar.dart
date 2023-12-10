@@ -27,12 +27,14 @@ class AppMarkerAvatar extends StatelessWidget {
     super.key,
     this.bgColor,
     this.image,
+    this.child,
     this.radius = 12,
-  });
+  }) : assert(image == null || child == null);
 
   final double radius;
   final Color? bgColor;
   final ImageProvider<Object>? image;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +45,7 @@ class AppMarkerAvatar extends StatelessWidget {
         radius: radius,
         foregroundImage: image,
         backgroundColor: Colors.transparent,
+        child: child,
       ),
     );
   }
