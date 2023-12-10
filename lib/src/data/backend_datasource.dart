@@ -3,7 +3,7 @@ import 'package:street_art_witnesses/src/utils/custom_logger.dart';
 
 abstract class BackendDataSource {
   static final _dio = Dio(
-    BaseOptions(baseUrl: 'https://streetartback.onrender.com'),
+    BaseOptions(baseUrl: 'https://streetartwitnesses.fvds.ru'),
   );
 
   static Future<Response?> _makeApiRequest(
