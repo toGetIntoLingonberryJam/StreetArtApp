@@ -3,13 +3,17 @@ import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/src/providers/email_counter_provider.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
+import 'package:street_art_witnesses/src/utils/utils.dart';
 
-class EmailCounter extends StatelessWidget {
-  const EmailCounter({super.key});
+class EmailCounterWidget extends StatelessWidget {
+  const EmailCounterWidget({super.key});
 
-  void _sendEmail(BuildContext context) {
+  Future<void> _sendEmail(BuildContext context) async {
     final user = context.read<UserProvider>().user;
-    context.read<EmailCounterProvider>().sendEmail(context, user.email!);
+    await Utils.showLoading(
+      context,
+      context.read<EmailCounterProvider>().sendEmail(context, user.email!),
+    );
   }
 
   @override

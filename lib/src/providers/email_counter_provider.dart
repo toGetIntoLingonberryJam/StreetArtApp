@@ -12,6 +12,7 @@ class EmailCounterProvider with ChangeNotifier {
 
   final int length;
   StreamSubscription? subscription;
+  bool showUpdateButton = false;
 
   bool get canSend => _count == 0;
 
@@ -37,11 +38,21 @@ class EmailCounterProvider with ChangeNotifier {
     _count = length;
   }
 
-  void sendEmail(BuildContext context, String email) {
+  Future<void> sendEmail(BuildContext context, String email) async {
     if (canSend) {
       _initCounting();
-      UserService.verify(email: email);
-      Utils.showMessage(context, 'Письмо успешно отправлено');
+      firstOpened = false;
+      showUpdateButton = true;
+      final success = await UserService.verify(email: email);
+
+      if (context.mounted) {
+        if (success == true) {
+          Utils.showMessage(context, 'Письмо успешно отправлено');
+        } else if (success == false) {
+          Utils.showMessage(context, 'Произошла ошибка при отправке письма');
+        }
+      }
+
       notifyListeners();
     }
   }

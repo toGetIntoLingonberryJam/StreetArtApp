@@ -45,7 +45,7 @@ class CheckEmailPage extends StatelessWidget {
                     onTap: () => Navigator.of(context).pop(),
                   ),
                   const SizedBox(height: 12),
-                  const EmailCounter(),
+                  const EmailCounterWidget(),
                 ],
               ),
             ],

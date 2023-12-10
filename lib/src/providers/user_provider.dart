@@ -4,12 +4,25 @@ import 'package:street_art_witnesses/src/models/author/author.dart';
 import 'package:street_art_witnesses/src/models/user.dart';
 import 'package:street_art_witnesses/src/providers/email_counter_provider.dart';
 import 'package:street_art_witnesses/src/services/artwork_service.dart';
+import 'package:street_art_witnesses/src/services/local_store_service.dart';
 import 'package:street_art_witnesses/src/services/user_service.dart';
 import 'package:street_art_witnesses/src/utils/custom_logger.dart';
 
 class UserProvider with ChangeNotifier {
   UserProvider({required User user}) {
     setUser(user);
+  }
+
+  static Future<User> getCurrentUser() async {
+    // Retrieve token from localstore, if exists
+    final token = await LocalStoreService.retrieveToken();
+
+    if (token != null) {
+      final user = await UserService.getUserViaToken(token: token);
+      return user;
+    }
+
+    return User.guest();
   }
 
   User _user = User.guest();
