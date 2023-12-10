@@ -6,9 +6,9 @@ import 'package:street_art_witnesses/src/utils/custom_logger.dart';
 // enum ImageQuality { xxxs, xxs, xs, s, m, l, xl, xxl, xxxl, c }
 const _mapQualityToSize = {
   ImageQuality.preview: 'S',
-  ImageQuality.bad: 'M',
-  ImageQuality.good: 'L',
-  ImageQuality.best: 'XL',
+  ImageQuality.bad: 'L',
+  ImageQuality.good: 'XL',
+  ImageQuality.best: 'XXXL',
 };
 
 abstract class ImagesService {
@@ -18,6 +18,7 @@ abstract class ImagesService {
       CustomLogger.showWarning('loadFromDisk: No URL provided.');
       return null;
     }
+    CustomLogger.showMessage(_mapQualityToSize[quality].toString());
 
     final response = await YandexDiskDataSource.get(
       '/v1/disk/public/resources/',
