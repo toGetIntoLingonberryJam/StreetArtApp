@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/constants.dart';
-import 'package:street_art_witnesses/src/utils/utils.dart';
+import 'package:street_art_witnesses/pages/home/profile/pages/profile_info_page.dart';
 import 'package:street_art_witnesses/widgets/skeletons/app_placeholder.dart';
 
 class ProfileTile extends StatelessWidget {
@@ -17,9 +17,11 @@ class ProfileTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(kContainerRadius),
-      onTap: () => Utils.showMessage(context, 'Профиль'),
+      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+        builder: (_) => const ProfileInfoPage(),
+      )),
       child: Ink(
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.onBackground,
           borderRadius: BorderRadius.circular(18),

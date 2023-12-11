@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:street_art_witnesses/pages/home/profile/about_page.dart';
-import 'package:street_art_witnesses/pages/home/profile/settings_page.dart';
+import 'package:street_art_witnesses/pages/home/profile/pages/about_page.dart';
+import 'package:street_art_witnesses/pages/home/profile/pages/settings_page.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
 import 'package:street_art_witnesses/widgets/containers/app_list_tile.dart';
@@ -46,6 +46,11 @@ abstract class UserTiles {
   static AppListTile addArtwork(BuildContext context) => const AppListTile(
         iconData: Icons.add_circle_outline,
         text: 'Добавить работу',
+      );
+
+  static AppListTile changePassword(BuildContext context) => const AppListTile(
+        iconData: Icons.lock_person_outlined,
+        text: 'Изменить пароль',
       );
 }
 
