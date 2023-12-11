@@ -36,11 +36,14 @@ class AppListTile extends StatelessWidget {
                 style: TextStyles.text.copyWith(
                   color: foregroundColor,
                 ),
-                overflow: TextOverflow.ellipsis,
               ),
             ),
             if (notificationsCount != null && notificationsCount! > 0)
-              _Badge(notificationsCount!),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: _Badge(notificationsCount!),
+              ),
+            const Icon(Icons.chevron_right),
           ],
         ),
       ),

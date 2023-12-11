@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/pages/auth/auth_page.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
-import 'package:street_art_witnesses/widgets/containers/user_tiles.dart';
+import 'package:street_art_witnesses/pages/home/profile/widgets/profile_list_tiles.dart';
 
 class GuestView extends StatelessWidget {
   const GuestView({super.key});

@@ -7,7 +7,7 @@ import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/pages/home/profile/widgets/profile_tile.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
-import 'package:street_art_witnesses/widgets/containers/user_tiles.dart';
+import 'package:street_art_witnesses/pages/home/profile/widgets/profile_list_tiles.dart';
 
 class AuthorizedView extends StatelessWidget {
   const AuthorizedView({super.key});
