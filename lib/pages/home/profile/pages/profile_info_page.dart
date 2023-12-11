@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/pages/home/profile/widgets/profile_list_tiles.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
+import 'package:street_art_witnesses/src/utils/utils.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
 import 'package:street_art_witnesses/widgets/containers/app_circle_avatar.dart';
 import 'package:street_art_witnesses/widgets/containers/app_container.dart';
@@ -29,7 +30,7 @@ class ProfileInfoPage extends StatelessWidget {
               UserTiles.changePassword(context),
               const SizedBox(height: 40),
               AppButton.primary(
-                onTap: () {},
+                onTap: () => Utils.showMessage(context, 'Изменения сохранены'),
                 text: 'Сохранить',
               ),
             ],
