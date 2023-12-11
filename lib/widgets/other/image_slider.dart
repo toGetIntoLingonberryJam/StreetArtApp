@@ -7,8 +7,8 @@ import 'package:street_art_witnesses/src/models/artwork/artwork_image.dart';
 import 'package:street_art_witnesses/src/providers/settings_provider.dart';
 import 'package:street_art_witnesses/src/providers/slider_provider.dart';
 import 'package:street_art_witnesses/src/services/images_service.dart';
-import 'package:street_art_witnesses/widgets/app_loading_indicator.dart';
-import 'package:street_art_witnesses/widgets/slider_dots.dart';
+import 'package:street_art_witnesses/widgets/other/app_loading_indicator.dart';
+import 'package:street_art_witnesses/widgets/other/slider_dots.dart';
 
 class ImageSlider extends StatelessWidget {
   const ImageSlider({super.key, required this.images});

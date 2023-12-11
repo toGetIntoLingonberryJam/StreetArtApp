@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/constants.dart';
-import 'package:street_art_witnesses/widgets/app_loading_indicator.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
+import 'package:street_art_witnesses/widgets/other/app_loading_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 abstract class Utils {

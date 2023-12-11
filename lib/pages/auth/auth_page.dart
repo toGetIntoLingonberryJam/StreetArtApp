@@ -3,7 +3,7 @@ import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/pages/auth/forms/login_form.dart';
 import 'package:street_art_witnesses/pages/auth/forms/register_form.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
-import 'package:street_art_witnesses/widgets/app_logo.dart';
+import 'package:street_art_witnesses/widgets/other/app_logo.dart';
 
 enum _Form { login, register }
 

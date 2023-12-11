@@ -5,7 +5,7 @@ import 'package:street_art_witnesses/src/services/user_service.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
 import 'package:street_art_witnesses/src/utils/validator.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
-import 'package:street_art_witnesses/widgets/app_text_form_field.dart';
+import 'package:street_art_witnesses/widgets/other/app_text_form_field.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});

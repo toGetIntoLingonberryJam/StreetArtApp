@@ -4,8 +4,8 @@ import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/pages/home/collection/artworks_view.dart';
 import 'package:street_art_witnesses/pages/home/collection/authors_view.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
-import 'package:street_art_witnesses/widgets/app_appbar.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
+import 'package:street_art_witnesses/widgets/other/app_appbar.dart';
 
 enum _Page { artworks, authors }
 

@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/src/models/author/author.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
-import 'package:street_art_witnesses/widgets/app_loading_indicator.dart';
+import 'package:street_art_witnesses/widgets/other/app_loading_indicator.dart';
 import 'package:street_art_witnesses/widgets/skeletons/app_placeholder.dart';
 
 class AuthorsView extends StatelessWidget {
