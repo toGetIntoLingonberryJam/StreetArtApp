@@ -7,6 +7,7 @@ import 'package:street_art_witnesses/src/models/artwork/artwork_image.dart';
 import 'package:street_art_witnesses/src/providers/settings_provider.dart';
 import 'package:street_art_witnesses/src/providers/slider_provider.dart';
 import 'package:street_art_witnesses/src/services/images_service.dart';
+import 'package:street_art_witnesses/widgets/app_loading_indicator.dart';
 import 'package:street_art_witnesses/widgets/slider_dots.dart';
 
 class ImageSlider extends StatelessWidget {
@@ -103,16 +104,13 @@ class LoadingImage extends StatelessWidget {
               }
               if (loadingProgress.expectedTotalBytes != null) {
                 return Center(
-                  child: CircularProgressIndicator(
+                  child: AppLoadingIndicator(
                     value: loadingProgress.cumulativeBytesLoaded /
                         loadingProgress.expectedTotalBytes!,
-                    color: Theme.of(context).colorScheme.secondary,
-                    strokeWidth: 8,
-                    strokeCap: StrokeCap.round,
                   ),
                 );
               }
-              return const CircularProgressIndicator();
+              return const Center(child: AppLoadingIndicator());
             },
             image: snapshot.data!,
             fit: BoxFit.cover,
@@ -130,7 +128,6 @@ class LoadingImage extends StatelessWidget {
         }
 
         return const SizedBox();
-        // return const Center(child: CircularProgressIndicator());
       },
     );
   }

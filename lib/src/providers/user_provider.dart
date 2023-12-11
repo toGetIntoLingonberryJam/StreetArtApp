@@ -61,7 +61,7 @@ class UserProvider with ChangeNotifier {
   Future<void> logout() async {
     CustomLogger.showMessage('[USER LOGGED OUT]');
     await UserService.deleteUserData();
-    EmailCounterProvider.firstOpened = true;
+    EmailCounterProvider.reset();
     setUser(User.guest());
   }
 }

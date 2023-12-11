@@ -109,8 +109,8 @@ class _LoginWarningTile extends StatelessWidget {
             ],
           ),
           Consumer<EmailCounterProvider>(
-            builder: (context, counter, __) {
-              if (counter.showUpdateButton) {
+            builder: (context, _, __) {
+              if (EmailCounterProvider.showUpdateButton) {
                 return Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: AppButton.primary(

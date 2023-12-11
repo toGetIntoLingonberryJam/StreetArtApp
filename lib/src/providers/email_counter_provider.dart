@@ -7,12 +7,17 @@ import 'package:street_art_witnesses/src/utils/utils.dart';
 class EmailCounterProvider with ChangeNotifier {
   EmailCounterProvider({required this.length});
 
-  // When opening first time, send mail automatically
+  // When opening first time, send mail automatically and show update button
   static bool firstOpened = true;
+  static bool showUpdateButton = false;
+
+  static void reset() {
+    firstOpened = true;
+    showUpdateButton = false;
+  }
 
   final int length;
   StreamSubscription? subscription;
-  bool showUpdateButton = false;
 
   bool get canSend => _count == 0;
 

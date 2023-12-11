@@ -6,6 +6,7 @@ import 'package:street_art_witnesses/pages/home/map/map_view.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork_location.dart';
 import 'package:street_art_witnesses/src/services/artwork_service.dart';
 import 'package:street_art_witnesses/widgets/app_error_widget.dart';
+import 'package:street_art_witnesses/widgets/app_loading_indicator.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});
@@ -50,7 +51,7 @@ class _MapPageState extends State<MapPage> {
                 return const AppErrorWidget();
               }
 
-              return const CircularProgressIndicator();
+              return const AppLoadingIndicator();
             }),
       ),
     );

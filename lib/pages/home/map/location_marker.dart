@@ -5,6 +5,7 @@ import 'package:street_art_witnesses/src/providers/settings_provider.dart';
 import 'package:street_art_witnesses/src/services/artwork_service.dart';
 import 'package:street_art_witnesses/src/services/images_service.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
+import 'package:street_art_witnesses/widgets/app_loading_indicator.dart';
 import 'package:street_art_witnesses/widgets/containers/app_circle_avatar.dart';
 
 class LocationMarker extends StatelessWidget {
@@ -49,7 +50,7 @@ class LocationMarker extends StatelessWidget {
 
                 return AppMarkerAvatar(
                   bgColor: Theme.of(context).colorScheme.surface,
-                  child: const CircularProgressIndicator(),
+                  child: const AppLoadingIndicator(),
                 );
               },
             ),

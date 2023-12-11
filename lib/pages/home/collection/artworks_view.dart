@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
+import 'package:street_art_witnesses/widgets/app_loading_indicator.dart';
 import 'package:street_art_witnesses/widgets/skeletons/app_placeholder.dart';
 
 class ArtworksView extends StatelessWidget {
@@ -20,7 +21,7 @@ class ArtworksView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (artworks == null) {
-      return const Center(child: CircularProgressIndicator());
+      return const Center(child: AppLoadingIndicator());
     }
 
     return RefreshIndicator(
