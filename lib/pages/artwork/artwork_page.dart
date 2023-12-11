@@ -23,46 +23,53 @@ class ArtworkPage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: kDensePagePadding,
+          padding: const EdgeInsets.symmetric(vertical: 10),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _ArtworkImageSlider(images: artwork.images),
-              ArtworkInfo(artwork: artwork),
-              const SizedBox(height: 8),
-              FestivalInfo(artwork.festival),
-              const SizedBox(height: 8),
-              AddressInfo(artwork: artwork),
-              const SizedBox(height: 8),
-              DescriptionInfo(artwork.description),
-              const SizedBox(height: 8),
-              const StateInfo(),
-              const SizedBox(height: 8),
-              const LinksInfo(),
-              const SizedBox(height: 8),
-              const AppContainer.small(
-                child: Text(
-                  'Добавлено: юзернейм',
-                  style: TextStyles.headline2,
-                ),
-              ),
-              const SizedBox(height: 8),
-              AppContainer.small(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Column(
                   children: [
-                    const Text(
-                      'Есть неточности? ',
-                      style: TextStyles.headline2,
-                      textAlign: TextAlign.center,
-                    ),
-                    Text(
-                      'Напишите',
-                      style: TextStyles.headline2.copyWith(
-                        decoration: TextDecoration.underline,
+                    ArtworkInfo(artwork: artwork),
+                    const SizedBox(height: 8),
+                    FestivalInfo(artwork.festival),
+                    const SizedBox(height: 8),
+                    AddressInfo(artwork: artwork),
+                    const SizedBox(height: 8),
+                    DescriptionInfo(artwork.description),
+                    const SizedBox(height: 8),
+                    const StateInfo(),
+                    const SizedBox(height: 8),
+                    const LinksInfo(),
+                    const SizedBox(height: 8),
+                    const AppContainer.small(
+                      child: Text(
+                        'Добавлено: юзернейм',
+                        style: TextStyles.headline2,
                       ),
-                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 8),
+                    AppContainer.small(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'Есть неточности? ',
+                            style: TextStyles.headline2,
+                            textAlign: TextAlign.center,
+                          ),
+                          Text(
+                            'Напишите',
+                            style: TextStyles.headline2.copyWith(
+                              decoration: TextDecoration.underline,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -105,7 +112,7 @@ class _ArtworkImageSliderState extends State<_ArtworkImageSlider> {
       children: [
         ImageSlider(images: images),
         Padding(
-            padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+            padding: const EdgeInsets.all(20),
             child: Row(
               children: [
                 AppIconButton(

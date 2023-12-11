@@ -63,7 +63,7 @@ class _ImageSliderState extends State<_ImageSlider> {
             children: imageLoaders
                 .map(
                   (imageLoader) => Padding(
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(10),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(kContainerRadius),
                       child: LoadingImage(imageLoader: imageLoader),
