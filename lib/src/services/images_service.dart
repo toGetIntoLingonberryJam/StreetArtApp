@@ -18,7 +18,6 @@ abstract class ImagesService {
       CustomLogger.showWarning('loadFromDisk: No URL provided.');
       return null;
     }
-    CustomLogger.showMessage(_mapQualityToSize[quality].toString());
 
     final response = await YandexDiskDataSource.get(
       '/v1/disk/public/resources/',

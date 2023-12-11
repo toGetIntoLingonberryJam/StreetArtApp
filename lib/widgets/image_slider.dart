@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/constants.dart';
@@ -21,10 +23,29 @@ class ImageSlider extends StatelessWidget {
   }
 }
 
-class _ImageSlider extends StatelessWidget {
+class _ImageSlider extends StatefulWidget {
   const _ImageSlider({required this.images});
 
   final List<ArtworkImage> images;
+
+  @override
+  State<_ImageSlider> createState() => _ImageSliderState();
+}
+
+class _ImageSliderState extends State<_ImageSlider> {
+  late List<Future<ImageProvider?>> imageLoaders;
+
+  @override
+  void initState() {
+    imageLoaders = List.generate(
+      widget.images.length,
+      (i) => ImagesService.loadFromDisk(
+        widget.images[i].imageUrl,
+        quality: context.read<SettingsProvider>().imageQuality,
+      ),
+    );
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,32 +54,32 @@ class _ImageSlider extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(kContainerRadius),
-          child: SizedBox(
-            height: 400,
-            child: PageView.builder(
-              physics: const ClampingScrollPhysics(),
-              onPageChanged: (value) => sliderProvider.updateIndex(value),
-              itemCount: sliderProvider.length,
-              itemBuilder: (context, index) {
-                final image = images[index];
-                final imageLoader = ImagesService.loadFromDisk(
-                  image.imageUrl,
-                  quality: context.read<SettingsProvider>().imageQuality,
-                );
-
-                return LoadingImage(imageLoader: imageLoader);
-              },
+        SizedBox(
+          height: 400,
+          child: PageView(
+            physics: const ClampingScrollPhysics(),
+            onPageChanged: (value) => sliderProvider.updateIndex(value),
+            children: imageLoaders
+                .map(
+                  (imageLoader) => Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(kContainerRadius),
+                      child: LoadingImage(imageLoader: imageLoader),
+                    ),
+                  ),
+                )
+                .toList(),
+          ),
+        ),
+        if (widget.images.length > 1)
+          Consumer<SliderProvider>(
+            builder: (_, slider, __) => Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child:
+                  SliderDots(count: slider.length, activeIndex: slider.index),
             ),
           ),
-        ),
-        Consumer<SliderProvider>(
-          builder: (_, slider, __) => Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: SliderDots(count: slider.length, activeIndex: slider.index),
-          ),
-        ),
       ],
     );
   }
@@ -76,6 +97,23 @@ class LoadingImage extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return Image(
+            loadingBuilder: (context, child, loadingProgress) {
+              if (loadingProgress == null) {
+                return child;
+              }
+              if (loadingProgress.expectedTotalBytes != null) {
+                return Center(
+                  child: CircularProgressIndicator(
+                    value: loadingProgress.cumulativeBytesLoaded /
+                        loadingProgress.expectedTotalBytes!,
+                    color: Theme.of(context).colorScheme.secondary,
+                    strokeWidth: 8,
+                    strokeCap: StrokeCap.round,
+                  ),
+                );
+              }
+              return const CircularProgressIndicator();
+            },
             image: snapshot.data!,
             fit: BoxFit.cover,
           );
@@ -86,11 +124,13 @@ class LoadingImage extends StatelessWidget {
             child: Text(
               'Не удалось загрузить картинку',
               style: TextStyles.headline1,
+              textAlign: TextAlign.center,
             ),
           );
         }
 
-        return const Center(child: CircularProgressIndicator());
+        return const SizedBox();
+        // return const Center(child: CircularProgressIndicator());
       },
     );
   }
