@@ -1,22 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_map_animations/flutter_map_animations.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:street_art_witnesses/pages/home/map/controllers_layer.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
 
-class MapView extends StatelessWidget {
+class MapView extends StatefulWidget {
   const MapView({
     super.key,
-    required this.mapController,
     required this.markers,
   });
 
-  final MapController mapController;
   final List<Marker> markers;
+
+  @override
+  State<MapView> createState() => _MapViewState();
+}
+
+class _MapViewState extends State<MapView> with TickerProviderStateMixin {
+  late final animatedController = AnimatedMapController(
+    vsync: this,
+    duration: const Duration(milliseconds: 350),
+    curve: Curves.easeInOut,
+  );
 
   @override
   Widget build(BuildContext context) {
     return FlutterMap(
-      mapController: mapController,
+      mapController: animatedController.mapController,
       options: MapOptions(
         initialZoom: 12,
         // keepAlive: true,
@@ -27,8 +38,9 @@ class MapView extends StatelessWidget {
         TileLayer(
           urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
         ),
-        MarkerLayer(markers: markers),
+        MarkerLayer(markers: widget.markers),
         RichAttributionWidget(
+          alignment: AttributionAlignment.bottomLeft,
           attributions: [
             TextSourceAttribution(
               'OpenStreetMap contributors',
@@ -39,6 +51,7 @@ class MapView extends StatelessWidget {
             ),
           ],
         ),
+        ControllersLayer(controller: animatedController),
       ],
     );
   }

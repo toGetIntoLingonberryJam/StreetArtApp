@@ -8,6 +8,7 @@ class AppTextFormField extends StatefulWidget {
     required this.controller,
     required this.hintText,
     required this.validator,
+    this.prefixIcon,
     this.withToggleEye = false,
   });
 
@@ -16,6 +17,7 @@ class AppTextFormField extends StatefulWidget {
     required this.controller,
     required this.hintText,
     required this.validator,
+    this.prefixIcon,
     this.withToggleEye = true,
   });
 
@@ -23,6 +25,7 @@ class AppTextFormField extends StatefulWidget {
   final String hintText;
   final ValidateFunction validator;
   final bool withToggleEye;
+  final Widget? prefixIcon;
 
   @override
   State<AppTextFormField> createState() => _AppTextFormFieldState();
@@ -44,7 +47,10 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
           filled: true,
           fillColor: Theme.of(context).colorScheme.onBackground,
           contentPadding: const EdgeInsets.only(right: 16),
-          prefix: const Padding(padding: EdgeInsets.only(left: 16)),
+          prefix: widget.prefixIcon == null
+              ? const Padding(padding: EdgeInsets.only(left: 16))
+              : null,
+          prefixIcon: widget.prefixIcon,
           suffixIcon: widget.withToggleEye
               ? IconButton(
                   onPressed: () => setState(() => isVisible = !isVisible),

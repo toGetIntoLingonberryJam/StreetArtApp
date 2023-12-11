@@ -70,10 +70,7 @@ abstract class UserService {
       data: {'email': email},
     );
 
-    if (response?.statusCode == 200 && response?.data != null) {
-      return true;
-    }
-    return false;
+    return response != null;
   }
 
   static Future<void> deleteUserData() async {
