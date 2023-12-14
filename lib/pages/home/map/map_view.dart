@@ -44,8 +44,7 @@ class _MapViewState extends State<MapView> with TickerProviderStateMixin {
           attributions: [
             TextSourceAttribution(
               'OpenStreetMap contributors',
-              onTap: () => Utils.tryLaunchUrl(
-                context,
+              onTap: () => Utils.of(context).tryLaunchUrl(
                 Uri.parse('https://openstreetmap.org/copyright'),
               ),
             ),

@@ -10,8 +10,7 @@ class EmailCounterWidget extends StatelessWidget {
 
   Future<void> _sendEmail(BuildContext context) async {
     final user = context.read<UserProvider>().user;
-    await Utils.showLoading(
-      context,
+    await Utils.of(context).showLoading(
       context.read<EmailCounterProvider>().sendEmail(context, user.email!),
     );
   }
@@ -33,8 +32,7 @@ class EmailCounterWidget extends StatelessWidget {
   Text _resendText(BuildContext context) {
     return Text(
       'Отправить повторно',
-      style: TextStyles.text
-          .copyWith(color: Theme.of(context).colorScheme.surface),
+      style: TextStyles.text.copyWith(color: Theme.of(context).colorScheme.surface),
     );
   }
 

@@ -40,12 +40,9 @@ abstract class TextStyles {
     fontFamily: 'Inter',
   );
 
-  static const text =
-      TextStyle(fontSize: 16, height: 1.25, fontFamily: 'Inter');
-  static const button =
-      TextStyle(fontSize: 16, height: 1.25, fontFamily: 'Inter');
-  static const input =
-      TextStyle(fontSize: 16, height: 1.25, fontFamily: 'Inter');
+  static const text = TextStyle(fontSize: 16, height: 1.25, fontFamily: 'Inter');
+  static const button = TextStyle(fontSize: 16, height: 1.25, fontFamily: 'Inter');
+  static const input = TextStyle(fontSize: 16, height: 1.25, fontFamily: 'Inter');
 
   static const textAdditional = TextStyle(
     fontSize: 14,
@@ -53,6 +50,5 @@ abstract class TextStyles {
     fontWeight: FontWeight.w500,
     fontFamily: 'Inter',
   );
-  static const caption =
-      TextStyle(fontSize: 12, height: 1, fontFamily: 'Inter');
+  static const caption = TextStyle(fontSize: 12, height: 1, fontFamily: 'Inter');
 }

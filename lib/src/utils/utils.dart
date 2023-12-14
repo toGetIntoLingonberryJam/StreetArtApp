@@ -1,46 +1,31 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
 import 'package:street_art_witnesses/widgets/other/app_loading_indicator.dart';
+import 'package:street_art_witnesses/widgets/snackbars/default_snackbar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-abstract class Utils {
+class Utils {
+  Utils._(this.context);
+  final BuildContext context;
+
   static final messengerKey = GlobalKey<ScaffoldMessengerState>();
 
-  static void showDebugMessage(String message) {
-    if (!kDebugMode) {
-      return;
-    }
+  static void showDebugMessage(String text) => messengerKey.currentState
+    ?..clearSnackBars()
+    ..showSnackBar(SnackBar(content: Text(text)));
 
-    final snackBar = SnackBar(
-      content: Text(message, style: TextStyles.text),
-    );
+  static Utils of(BuildContext context) => Utils._(context);
 
-    messengerKey.currentState
-      ?..clearSnackBars()
-      ..showSnackBar(snackBar);
-  }
+  void _showSnackbar(SnackBar snackBar) => ScaffoldMessenger.of(context)
+    ..clearSnackBars()
+    ..showSnackBar(snackBar);
 
-  static void showMessage(BuildContext context, String message) {
-    final snackBar = SnackBar(
-      behavior: SnackBarBehavior.floating,
-      content: Text(message,
-          style: TextStyles.text.copyWith(
-            color: Theme.of(context).colorScheme.inverseSurface,
-          )),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      duration: const Duration(milliseconds: 2500),
-      backgroundColor: Theme.of(context).colorScheme.onBackground,
-    );
+  void showMessage(String message) => _showSnackbar(DefaultSnackbar(context, message: message));
 
-    ScaffoldMessenger.of(context)
-      ..clearSnackBars()
-      ..showSnackBar(snackBar);
-  }
+  void showError(String message) => _showSnackbar(ErrorSnackbar(context, message: message));
 
-  static Future<bool?> showWarning(
-    BuildContext context, {
+  Future<bool?> showWarning({
     required String title,
     String? content,
     bool barrierDismissible = true,
@@ -78,12 +63,10 @@ abstract class Utils {
         ),
       );
 
-  static Future<T> showLoading<T>(
-    BuildContext dialogContext,
-    Future<T> future,
-  ) async {
+  Future<T> showLoading<T>(Future<T> future) async {
     // Dismissing keyboard if opened
     FocusManager.instance.primaryFocus?.unfocus();
+    BuildContext dialogContext = context;
 
     showDialog(
       context: dialogContext,
@@ -102,9 +85,8 @@ abstract class Utils {
     return future;
   }
 
-  static Future<bool> tryLaunchUrl(BuildContext context, Uri url) async {
-    final response = await Utils.showWarning(
-      context,
+  Future<bool> tryLaunchUrl(Uri url) async {
+    final response = await showWarning(
       title: 'Переход по ссылке',
       content: 'Вы собираетесь перейти на сайт: $url',
       acceptText: 'Перейти',
@@ -112,10 +94,10 @@ abstract class Utils {
     );
 
     if (response != null && response == true && context.mounted) {
-      final success = await Utils.showLoading(context, launchUrl(url));
+      final success = await showLoading(launchUrl(url));
 
       if (!success) {
-        Utils.showDebugMessage('Could not launch $url');
+        showError('Could not launch $url');
         return false;
       }
     }

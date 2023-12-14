@@ -27,15 +27,13 @@ abstract class CustomLogger {
 
   static void _log(String message, LogType logType) {
     if (kDebugMode) {
-      print(
-          '\x1B[${_colorCodes[logType]}m[${logType.name.toUpperCase()}] $message\x1B[0m');
+      print('\x1B[${_colorCodes[logType]}m[${logType.name.toUpperCase()}] $message\x1B[0m');
     }
   }
 
   static void showApiCall(String url) => _log(url, LogType.apiCall);
 
-  static void showApiResult(String url, String result) =>
-      _log('$url: $result', LogType.apiResult);
+  static void showApiResult(String url, String result) => _log('$url: $result', LogType.apiResult);
 
   static void showMessage(String message) => _log(message, LogType.message);
 
@@ -59,8 +57,7 @@ abstract class CustomLogger {
       final message = _requestErrorComments[req]![e.response!.statusCode!]!;
       Utils.showDebugMessage(message);
     } on Exception catch (e) {
-      CustomLogger.showException(e,
-          className: 'CustomLogger', methodName: 'showException');
+      CustomLogger.showException(e, className: 'CustomLogger', methodName: 'showException');
     } on TypeError catch (e) {
       CustomLogger.showError(e);
     }

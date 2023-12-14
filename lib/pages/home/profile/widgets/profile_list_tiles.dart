@@ -37,8 +37,7 @@ abstract class UserTiles {
         notificationsCount: 1,
       );
 
-  static AppListTile publicationApplications(BuildContext context) =>
-      const AppListTile(
+  static AppListTile publicationApplications(BuildContext context) => const AppListTile(
         iconData: Icons.filter_list,
         text: 'Заявки на публикацию',
         notificationsCount: 100,
@@ -59,17 +58,13 @@ abstract class UserTiles {
 }
 
 void _logout(BuildContext context) async {
-  final isLogout = await Utils.showWarning(
-        context,
+  final isLogout = await Utils.of(context).showWarning(
         title: 'Выйти из аккаунта',
         content: 'Вы уверены, что хотите выйти из аккаунта?',
       ) ??
       false;
 
   if (context.mounted && isLogout) {
-    await Utils.showLoading(
-      context,
-      context.read<UserProvider>().logout(),
-    );
+    await Utils.of(context).showLoading(context.read<UserProvider>().logout());
   }
 }

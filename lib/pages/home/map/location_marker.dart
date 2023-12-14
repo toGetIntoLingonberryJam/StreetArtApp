@@ -15,7 +15,7 @@ class LocationMarker extends StatelessWidget {
 
   void _openArtwork(BuildContext context) async {
     final future = ArtworkService.getArtworkById(location.artworkId);
-    final artwork = await Utils.showLoading(context, future);
+    final artwork = await Utils.of(context).showLoading(future);
 
     if (artwork == null) {
       Utils.showDebugMessage('Не удалось получить данные о работе');

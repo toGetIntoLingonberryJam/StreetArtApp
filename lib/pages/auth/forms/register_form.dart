@@ -31,13 +31,11 @@ class _RegisterViewState extends State<RegisterView> {
   }
 
   void _register() async {
-    final user = await Utils.showLoading(
-        context,
-        UserService.register(
-          username: loginController.text.trim(),
-          email: emailController.text.trim(),
-          password: passwordController.text.trim(),
-        ));
+    final user = await Utils.of(context).showLoading(UserService.register(
+      username: loginController.text.trim(),
+      email: emailController.text.trim(),
+      password: passwordController.text.trim(),
+    ));
 
     if (mounted && user != null) {
       context.read<UserProvider>().setUser(user);

@@ -29,7 +29,7 @@ class LocationProvider extends ChangeNotifier {
       isFetching = false;
       CustomLogger.showWarning(e.toString());
       if (context.mounted) {
-        Utils.showMessage(context, e.toString());
+        Utils.of(context).showError(e.toString());
       }
       return null;
     }

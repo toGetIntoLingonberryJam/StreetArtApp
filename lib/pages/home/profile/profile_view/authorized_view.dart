@@ -44,8 +44,7 @@ class _LoginWarningTile extends StatelessWidget {
 
   Future<void> _sendEmail(BuildContext context) async {
     final user = context.read<UserProvider>().user;
-    await Utils.showLoading(
-      context,
+    await Utils.of(context).showLoading(
       context.read<EmailCounterProvider>().sendEmail(context, user.email!),
     );
 
@@ -59,7 +58,7 @@ class _LoginWarningTile extends StatelessWidget {
   void _updateUser(BuildContext context) async {
     final userFuture = UserProvider.getCurrentUser();
 
-    final updatedUser = await Utils.showLoading(context, userFuture);
+    final updatedUser = await Utils.of(context).showLoading(userFuture);
     if (context.mounted) {
       context.read<UserProvider>().setUser(updatedUser);
     }
@@ -98,8 +97,7 @@ class _LoginWarningTile extends StatelessWidget {
                         style: TextStyles.text.copyWith(
                           color: Theme.of(context).colorScheme.surface,
                           decoration: TextDecoration.underline,
-                          decorationColor:
-                              Theme.of(context).colorScheme.surface,
+                          decorationColor: Theme.of(context).colorScheme.surface,
                         ),
                       ),
                     ),

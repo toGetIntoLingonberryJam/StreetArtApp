@@ -37,9 +37,7 @@ class EmailCounterProvider with ChangeNotifier {
 
   void _initCounting() {
     subscription?.cancel();
-    subscription = Stream.periodic(const Duration(seconds: 1))
-        .take(length)
-        .listen((e) => _tick());
+    subscription = Stream.periodic(const Duration(seconds: 1)).take(length).listen((e) => _tick());
     _count = length;
   }
 
@@ -52,9 +50,9 @@ class EmailCounterProvider with ChangeNotifier {
 
       if (context.mounted) {
         if (success == true) {
-          Utils.showMessage(context, 'Письмо успешно отправлено');
+          Utils.of(context).showMessage('Письмо успешно отправлено');
         } else if (success == false) {
-          Utils.showMessage(context, 'Произошла ошибка при отправке письма');
+          Utils.of(context).showError('Произошла ошибка при отправке письма');
         }
       }
 

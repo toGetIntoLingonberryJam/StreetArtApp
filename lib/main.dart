@@ -21,10 +21,7 @@ void main() async {
 
   runApp(DevicePreview(
     enabled: !kReleaseMode,
-    builder: (_) => MyApp(
-      user: user,
-      initImageQuality: quality,
-    ),
+    builder: (_) => MyApp(user: user, initImageQuality: quality),
   ));
 }
 
@@ -47,14 +44,9 @@ class MyApp extends StatelessWidget {
 
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => UserProvider(user: user), lazy: false),
         ChangeNotifierProvider(
-          create: (_) => UserProvider(user: user),
-          lazy: false,
-        ),
-        ChangeNotifierProvider(
-          create: (_) => SettingsProvider(initImageQuality: initImageQuality),
-          lazy: false,
-        ),
+            create: (_) => SettingsProvider(initImageQuality: initImageQuality), lazy: false),
         ChangeNotifierProvider(create: (_) => EmailCounterProvider(length: 30)),
         ChangeNotifierProvider(create: (_) => LocationProvider()),
       ],

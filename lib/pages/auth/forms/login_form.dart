@@ -28,12 +28,10 @@ class _LoginViewState extends State<LoginView> {
   }
 
   void _login() async {
-    final user = await Utils.showLoading(
-        context,
-        UserService.login(
-          email: loginController.text.trim(),
-          password: passwordController.text.trim(),
-        ));
+    final user = await Utils.of(context).showLoading(UserService.login(
+      email: loginController.text.trim(),
+      password: passwordController.text.trim(),
+    ));
 
     if (mounted && user != null) {
       context.read<UserProvider>().setUser(user);

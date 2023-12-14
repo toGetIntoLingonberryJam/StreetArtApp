@@ -30,7 +30,7 @@ class ProfileInfoPage extends StatelessWidget {
               UserTiles.changePassword(context),
               const SizedBox(height: 40),
               AppButton.primary(
-                onTap: () => Utils.showMessage(context, 'Изменения сохранены'),
+                onTap: () => Utils.of(context).showMessage('Изменения сохранены'),
                 text: 'Сохранить',
               ),
             ],
