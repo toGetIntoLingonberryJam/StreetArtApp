@@ -14,8 +14,7 @@ class ControllersLayer extends StatelessWidget {
   final TextEditingController searchController = TextEditingController();
 
   void _fetchUserPosition(BuildContext context) async {
-    final position =
-        await context.read<LocationProvider>().fetchUserPosition(context);
+    final position = await context.read<LocationProvider>().fetchUserPosition(context);
     if (position != null && context.mounted) {
       MapController.of(context).move(
         LatLng(position.latitude, position.longitude),
@@ -40,7 +39,7 @@ class ControllersLayer extends StatelessWidget {
                 hintText: 'Поиск',
                 validator: null,
               ),
-              const Expanded(flex: 2, child: SizedBox()),
+              const Expanded(flex: 5, child: SizedBox()),
               FloatingActionButton(
                 backgroundColor: Theme.of(context).colorScheme.onBackground,
                 heroTag: 'zoom_in',
@@ -60,7 +59,7 @@ class ControllersLayer extends StatelessWidget {
                   color: Theme.of(context).colorScheme.inverseSurface,
                 ),
               ),
-              const Expanded(child: SizedBox()),
+              const Expanded(flex: 3, child: SizedBox()),
               Consumer<LocationProvider>(
                 builder: (context, provider, child) {
                   return FloatingActionButton(
@@ -72,17 +71,17 @@ class ControllersLayer extends StatelessWidget {
                             width: 24,
                             height: 24,
                             child: AppLoadingIndicator(
-                              color:
-                                  Theme.of(context).colorScheme.inverseSurface,
+                              color: Theme.of(context).colorScheme.inverseSurface,
                             ),
                           )
                         : Icon(
-                            Icons.location_on,
+                            Icons.near_me_outlined,
                             color: Theme.of(context).colorScheme.inverseSurface,
                           ),
                   );
                 },
               ),
+              const Expanded(flex: 1, child: SizedBox()),
             ],
           ),
         ),

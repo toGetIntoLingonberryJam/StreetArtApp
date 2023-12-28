@@ -65,6 +65,7 @@ abstract class CustomLogger {
 }
 
 enum RequestType {
+  unknown,
   login,
   register,
   verify,

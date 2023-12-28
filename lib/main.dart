@@ -45,8 +45,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => UserProvider(user: user), lazy: false),
-        ChangeNotifierProvider(
-            create: (_) => SettingsProvider(initImageQuality: initImageQuality), lazy: false),
+        ChangeNotifierProvider(create: (_) => SettingsProvider(initImageQuality: initImageQuality)),
         ChangeNotifierProvider(create: (_) => EmailCounterProvider(length: 30)),
         ChangeNotifierProvider(create: (_) => LocationProvider()),
       ],

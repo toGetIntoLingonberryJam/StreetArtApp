@@ -24,7 +24,7 @@ class ErrorSnackbar extends SnackBar {
             style: TextStyles.text.copyWith(color: Theme.of(context).colorScheme.error),
           ),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          duration: const Duration(milliseconds: 2500),
+          duration: const Duration(milliseconds: 4000),
           backgroundColor: Theme.of(context).colorScheme.onBackground,
         );
 }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 // Paddings
 const kPagePadding = EdgeInsets.all(20);
 const kDensePagePadding = EdgeInsets.symmetric(horizontal: 10, vertical: 20);
-const kContainerPadding = EdgeInsets.symmetric(vertical: 12, horizontal: 12);
+const kContainerPadding = EdgeInsets.symmetric(horizontal: 12, vertical: 10);
 
 // Radiuses
 final kFieldBorderRadius = BorderRadius.circular(10);
