@@ -16,10 +16,11 @@ class LocationMarker extends StatelessWidget {
   void _openArtwork(BuildContext context) async {
     final future = ArtworkService.getArtworkById(location.artworkId);
     final artwork = await Utils.of(context).showLoading(future);
+    if (!context.mounted) return;
 
     if (artwork == null) {
-      Utils.showDebugMessage('Не удалось получить данные о работе');
-    } else if (context.mounted) {
+      Utils.of(context).showMessage('Не удалось получить данные о работе');
+    } else {
       Navigator.of(context).push(MaterialPageRoute(
         builder: (_) => ArtworkPage(artwork: artwork),
       ));

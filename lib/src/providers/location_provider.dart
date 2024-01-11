@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:street_art_witnesses/src/services/location_service.dart';
-import 'package:street_art_witnesses/src/utils/custom_logger.dart';
+import 'package:street_art_witnesses/src/utils/logger.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
 
 class LocationProvider extends ChangeNotifier {
@@ -23,11 +23,11 @@ class LocationProvider extends ChangeNotifier {
       final position = await LocationService.getCurrentPosition();
       lastPosition = position;
       isFetching = false;
-      CustomLogger.showMessage('Position: $position');
+      Logger.message('Position: $position');
       return position;
     } catch (e) {
       isFetching = false;
-      CustomLogger.showWarning(e.toString());
+      Logger.warning(e.toString());
       if (context.mounted) {
         Utils.of(context).showError(e.toString());
       }

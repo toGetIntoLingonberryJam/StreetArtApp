@@ -3,7 +3,7 @@ import 'package:street_art_witnesses/src/data/local_store_datasource.dart';
 import 'package:street_art_witnesses/src/models/user.dart';
 import 'package:street_art_witnesses/src/data/backend_datasource.dart';
 import 'package:street_art_witnesses/src/services/local_store_service.dart';
-import 'package:street_art_witnesses/src/utils/custom_logger.dart';
+import 'package:street_art_witnesses/src/utils/logger.dart';
 
 abstract class UserService {
   static Future<User?> login({
@@ -26,7 +26,7 @@ abstract class UserService {
 
         return await getUserViaToken(token: token);
       } else {
-        CustomLogger.showWarning('No token returned');
+        Logger.warning('No token returned');
         return null;
       }
     }
@@ -75,6 +75,6 @@ abstract class UserService {
 
   static Future<void> deleteUserData() async {
     await LocalStoreDataSource.userDoc.delete();
-    CustomLogger.showWarning('[USER DATA DELETED]');
+    Logger.warning('[USER DATA DELETED]');
   }
 }

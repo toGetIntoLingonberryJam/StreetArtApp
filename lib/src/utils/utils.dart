@@ -9,12 +9,6 @@ class Utils {
   Utils._(this.context);
   final BuildContext context;
 
-  static final messengerKey = GlobalKey<ScaffoldMessengerState>();
-
-  static void showDebugMessage(String text) => messengerKey.currentState
-    ?..clearSnackBars()
-    ..showSnackBar(SnackBar(content: Text(text)));
-
   static Utils of(BuildContext context) => Utils._(context);
 
   void _showSnackbar(SnackBar snackBar) => ScaffoldMessenger.of(context)

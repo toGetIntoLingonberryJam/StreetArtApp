@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:street_art_witnesses/src/utils/custom_logger.dart';
+import 'package:street_art_witnesses/src/utils/logger.dart';
 
 abstract class YandexDiskDataSource {
   static final _dio = Dio(
@@ -11,13 +11,13 @@ abstract class YandexDiskDataSource {
     required RequestType requestType,
     required String url,
   }) async {
-    CustomLogger.showApiCall(url);
+    Logger.apiCall(url);
     try {
       final result = await request;
-      CustomLogger.showApiResult(url, result.toString());
+      Logger.apiResult(url, result.toString());
       return result;
     } on DioException catch (e) {
-      CustomLogger.showDioException(e, requestType);
+      Logger.dioError(e, requestType);
       return null;
     }
   }

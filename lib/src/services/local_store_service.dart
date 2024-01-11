@@ -1,6 +1,6 @@
 import 'package:street_art_witnesses/src/data/local_store_datasource.dart';
 import 'package:street_art_witnesses/src/providers/settings_provider.dart';
-import 'package:street_art_witnesses/src/utils/custom_logger.dart';
+import 'package:street_art_witnesses/src/utils/logger.dart';
 
 abstract class LocalStoreService {
   static Future<String?> retrieveToken() async {
@@ -8,10 +8,10 @@ abstract class LocalStoreService {
     final String? token = userJson?['token'];
 
     if (token != null) {
-      CustomLogger.showSuccess('[TOKEN RETRIEVED]: ${userJson?['token']}');
+      Logger.success('[TOKEN RETRIEVED]: ${userJson?['token']}');
       return token;
     }
-    CustomLogger.showWarning('[TOKEN RETRIEVING]: no token found.');
+    Logger.warning('[TOKEN RETRIEVING]: no token found.');
     return null;
   }
 
@@ -19,7 +19,7 @@ abstract class LocalStoreService {
     await LocalStoreDataSource.userDoc.set({
       'token': token,
     });
-    CustomLogger.showSuccess('[TOKEN SAVED]: $token');
+    Logger.success('[TOKEN SAVED]: $token');
   }
 
   static Future<ImageQuality> getImageQuality() async {
@@ -34,7 +34,7 @@ abstract class LocalStoreService {
     await LocalStoreDataSource.settingsDoc.set({
       'image_quality': quality.name,
     });
-    CustomLogger.showMessage('[IMAGE_QUALITY SET]: $quality');
+    Logger.message('[IMAGE_QUALITY SET]: $quality');
   }
 }
 

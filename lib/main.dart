@@ -12,7 +12,6 @@ import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/services/local_store_service.dart';
 import 'package:street_art_witnesses/theme.dart';
 import 'package:provider/provider.dart';
-import 'package:street_art_witnesses/src/utils/utils.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -52,7 +51,6 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         locale: DevicePreview.locale(context),
         builder: DevicePreview.appBuilder,
-        scaffoldMessengerKey: Utils.messengerKey,
         title: 'Свидетели',
         debugShowCheckedModeBanner: false,
         theme: lightTheme,

@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:street_art_witnesses/src/utils/utils.dart';
 
 enum LogType {
   apiCall,
@@ -13,7 +12,7 @@ enum LogType {
   dioException,
 }
 
-abstract class CustomLogger {
+abstract class Logger {
   static const Map<LogType, String> _colorCodes = {
     LogType.apiCall: '36',
     LogType.apiResult: '36',
@@ -31,35 +30,30 @@ abstract class CustomLogger {
     }
   }
 
-  static void showApiCall(String url) => _log(url, LogType.apiCall);
-
-  static void showApiResult(String url, String result) => _log('$url: $result', LogType.apiResult);
-
-  static void showMessage(String message) => _log(message, LogType.message);
-
-  static void showSuccess(String success) => _log(success, LogType.success);
-
-  static void showWarning(String warning) => _log(warning, LogType.warning);
-
-  static void showException(
+  static void apiCall(String url) => _log(url, LogType.apiCall);
+  static void apiResult(String url, String result) => _log('$url: $result', LogType.apiResult);
+  static void message(String message) => _log(message, LogType.message);
+  static void success(String success) => _log(success, LogType.success);
+  static void warning(String warning) => _log(warning, LogType.warning);
+  static void exception(
     Exception e, {
     required String className,
     required String methodName,
   }) =>
       _log('$className.$methodName, ${e.toString()}', LogType.exception);
 
-  static void showError(Error e) => _log(e.toString(), LogType.exception);
+  static void error(Error e) => _log(e.toString(), LogType.exception);
 
-  static void showDioException(DioException e, RequestType req) {
+  static void dioError(DioException e, RequestType req) {
     _log('RequestType.${req.name}: ${e.response?.data}', LogType.dioException);
     _log('RequestType.${req.name}: ${e.toString()}', LogType.dioException);
     try {
       final message = _requestErrorComments[req]![e.response!.statusCode!]!;
-      Utils.showDebugMessage(message);
+      _log(message, LogType.dioException);
     } on Exception catch (e) {
-      CustomLogger.showException(e, className: 'CustomLogger', methodName: 'showException');
+      Logger.exception(e, className: 'CustomLogger', methodName: 'showException');
     } on TypeError catch (e) {
-      CustomLogger.showError(e);
+      Logger.error(e);
     }
   }
 }
