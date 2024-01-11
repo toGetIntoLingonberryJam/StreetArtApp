@@ -25,17 +25,15 @@ class MapPage extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: FutureBuilder(
-            future: ArtworkService.getLocations(),
+            future: ArtworkService.getLocations(context),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 final markers = parseMarkers(snapshot.data!);
                 return MapView(markers: markers);
               }
-
               if (snapshot.hasError) {
                 return const AppErrorWidget();
               }
-
               return const AppLoadingIndicator();
             }),
       ),
