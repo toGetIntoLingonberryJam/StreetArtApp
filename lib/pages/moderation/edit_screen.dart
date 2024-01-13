@@ -92,14 +92,12 @@ class _MainInfoView extends StatefulWidget implements _ModerationEditView {
 
 class _MainInfoViewState extends State<_MainInfoView> {
   final nameController = TextEditingController();
-  final authorController = TextEditingController();
   final addressController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
     nameController.dispose();
-    authorController.dispose();
     addressController.dispose();
     super.dispose();
   }
@@ -133,12 +131,8 @@ class _MainInfoViewState extends State<_MainInfoView> {
                     const SizedBox(height: 16),
                     const Text('Автор', style: TextStyles.headline1),
                     const SizedBox(height: 8),
-                    AppTextFormField(
-                      controller: authorController,
-                      hintText: 'Введите автора',
-                      validator: Validator.get(Validate.notEmpty),
-                    ),
-                    const SizedBox(height: 16),
+                    AppButton.primary(label: 'Выбрать автора', onTap: () {}),
+                    const SizedBox(height: 40),
                     const Text('Адрес работы', style: TextStyles.headline1),
                     const SizedBox(height: 8),
                     AppTextFormField(
@@ -190,14 +184,12 @@ class _AdditionalInfoView extends StatefulWidget implements _ModerationEditView 
 class _AdditionalInfoViewState extends State<_AdditionalInfoView> {
   final _formKey = GlobalKey<FormState>();
   final yearController = TextEditingController();
-  final festivalController = TextEditingController();
   final descriptionController = TextEditingController();
   final linksController = TextEditingController();
 
   @override
   void dispose() {
     yearController.dispose();
-    festivalController.dispose();
     descriptionController.dispose();
     linksController.dispose();
     super.dispose();
@@ -228,12 +220,8 @@ class _AdditionalInfoViewState extends State<_AdditionalInfoView> {
                     const SizedBox(height: 16),
                     const Text('Фестиваль (при наличии)', style: TextStyles.headline1),
                     const SizedBox(height: 8),
-                    AppTextFormField(
-                      controller: festivalController,
-                      hintText: 'Введите название',
-                      validator: Validator.get(Validate.notEmpty),
-                    ),
-                    const SizedBox(height: 16),
+                    AppButton.primary(label: 'Выбрать фестиваль', onTap: () {}),
+                    const SizedBox(height: 40),
                     const Text('Описание работы', style: TextStyles.headline1),
                     const SizedBox(height: 8),
                     AppTextFormField(
