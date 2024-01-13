@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/constants.dart';
+import 'package:street_art_witnesses/src/blocs/settings/settings_cubit_cubit.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork_image.dart';
-import 'package:street_art_witnesses/src/providers/settings_provider.dart';
 import 'package:street_art_witnesses/src/providers/slider_provider.dart';
 import 'package:street_art_witnesses/src/services/images_service.dart';
 import 'package:street_art_witnesses/widgets/other/app_loading_indicator.dart';
@@ -42,7 +42,7 @@ class _ImageSliderState extends State<_ImageSlider> {
       widget.images.length,
       (i) => ImagesService.loadFromDisk(
         widget.images[i].imageUrl,
-        quality: context.read<SettingsProvider>().imageQuality,
+        quality: context.read<SettingsCubit>().imageQuality,
       ),
     );
     super.initState();
@@ -77,8 +77,7 @@ class _ImageSliderState extends State<_ImageSlider> {
           Consumer<SliderProvider>(
             builder: (_, slider, __) => Padding(
               padding: const EdgeInsets.only(bottom: 8),
-              child:
-                  SliderDots(count: slider.length, activeIndex: slider.index),
+              child: SliderDots(count: slider.length, activeIndex: slider.index),
             ),
           ),
       ],
@@ -105,8 +104,8 @@ class LoadingImage extends StatelessWidget {
               if (loadingProgress.expectedTotalBytes != null) {
                 return Center(
                   child: AppLoadingIndicator(
-                    value: loadingProgress.cumulativeBytesLoaded /
-                        loadingProgress.expectedTotalBytes!,
+                    value:
+                        loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!,
                   ),
                 );
               }

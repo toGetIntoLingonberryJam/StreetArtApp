@@ -2,12 +2,13 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:street_art_witnesses/pages/home/home_page.dart';
 import 'package:street_art_witnesses/pages/intro/intro_slider.dart';
+import 'package:street_art_witnesses/src/blocs/settings/settings_cubit_cubit.dart';
 import 'package:street_art_witnesses/src/models/user.dart';
 import 'package:street_art_witnesses/src/providers/email_counter_provider.dart';
 import 'package:street_art_witnesses/src/providers/location_provider.dart';
-import 'package:street_art_witnesses/src/providers/settings_provider.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/services/local_store_service.dart';
 import 'package:street_art_witnesses/theme.dart';
@@ -44,9 +45,9 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => UserProvider(user: user), lazy: false),
-        ChangeNotifierProvider(create: (_) => SettingsProvider(initImageQuality: initImageQuality)),
         ChangeNotifierProvider(create: (_) => EmailCounterProvider(length: 30)),
         ChangeNotifierProvider(create: (_) => LocationProvider()),
+        BlocProvider(create: (_) => SettingsCubit(initImageQuality: initImageQuality))
       ],
       child: MaterialApp(
         locale: DevicePreview.locale(context),

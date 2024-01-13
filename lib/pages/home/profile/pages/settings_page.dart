@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/constants.dart';
-import 'package:street_art_witnesses/src/providers/settings_provider.dart';
+import 'package:street_art_witnesses/src/blocs/settings/settings_cubit_cubit.dart';
 import 'package:street_art_witnesses/widgets/containers/app_container.dart';
 import 'package:street_art_witnesses/widgets/other/app_appbar.dart';
 
@@ -52,7 +52,7 @@ class _QualitySettings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final settings = context.watch<SettingsProvider>();
+    final settings = context.watch<SettingsCubit>();
     final quality = settings.imageQuality;
 
     return AppContainer(
