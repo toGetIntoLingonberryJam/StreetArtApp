@@ -97,68 +97,65 @@ class _MainInfoViewState extends State<_MainInfoView> {
     super.dispose();
   }
 
+  void _validate() {
+    if (_formKey.currentState?.validate() ?? false) {
+      context.read<ModerationCubit>().saveMainInfo(
+            title: nameController.text.trim(),
+            address: addressController.text.trim(),
+          );
+      widget.onTapNext();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Stack(
-          fit: StackFit.expand,
-          alignment: Alignment.bottomCenter,
+        child: Column(
           children: [
-            SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text('Фото', style: TextStyles.headline1),
-                    const SizedBox(height: 8),
-                    AppButton.primary(label: 'Выбрать фото', onTap: () {}),
-                    const SizedBox(height: 40),
-                    const Text('Название', style: TextStyles.headline1),
-                    const SizedBox(height: 8),
-                    AppTextFormField(
-                      controller: nameController,
-                      hintText: 'Введите название',
-                      validator: Validator.get(Validate.notEmpty),
-                    ),
-                    const SizedBox(height: 16),
-                    const Text('Автор', style: TextStyles.headline1),
-                    const SizedBox(height: 8),
-                    AppButton.primary(label: 'Выбрать автора', onTap: () {}),
-                    const SizedBox(height: 40),
-                    const Text('Адрес работы', style: TextStyles.headline1),
-                    const SizedBox(height: 8),
-                    AppTextFormField(
-                      controller: addressController,
-                      hintText: 'Введите адрес работы',
-                      validator: Validator.get(Validate.notEmpty),
-                    ),
-                    const SizedBox(height: 16),
-                    const Text('Местоположение', style: TextStyles.headline1),
-                    const SizedBox(height: 8),
-                    AppButton.primary(label: 'Указать на карте', onTap: () {}),
-                  ],
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text('Фото', style: TextStyles.headline1),
+                      const SizedBox(height: 8),
+                      AppButton.primary(label: 'Выбрать фото', onTap: () {}),
+                      const SizedBox(height: 40),
+                      const Text('Название', style: TextStyles.headline1),
+                      const SizedBox(height: 8),
+                      AppTextFormField(
+                        controller: nameController,
+                        hintText: 'Введите название',
+                        validator: Validator.get(Validate.notEmpty),
+                      ),
+                      const SizedBox(height: 16),
+                      const Text('Автор', style: TextStyles.headline1),
+                      const SizedBox(height: 8),
+                      AppButton.primary(label: 'Выбрать автора', onTap: () {}),
+                      const SizedBox(height: 40),
+                      const Text('Адрес работы', style: TextStyles.headline1),
+                      const SizedBox(height: 8),
+                      AppTextFormField(
+                        controller: addressController,
+                        hintText: 'Введите адрес работы',
+                        validator: Validator.get(Validate.notEmpty),
+                      ),
+                      const SizedBox(height: 16),
+                      const Text('Местоположение', style: TextStyles.headline1),
+                      const SizedBox(height: 8),
+                      AppButton.primary(label: 'Указать на карте', onTap: () {}),
+                    ],
+                  ),
                 ),
               ),
             ),
-            LayoutBuilder(
-              builder: (context, constraints) => Padding(
-                padding: EdgeInsets.fromLTRB(20, constraints.maxHeight - 60, 20, 20),
-                child: AppButton.primary(
-                  label: 'Далее',
-                  onTap: () {
-                    if (_formKey.currentState?.validate() ?? false) {
-                      context.read<ModerationCubit>().saveMainInfo(
-                            title: nameController.text.trim(),
-                            address: addressController.text.trim(),
-                          );
-                      widget.onTapNext();
-                    }
-                  },
-                ),
-              ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+              child: AppButton.primary(label: 'Далее', onTap: _validate),
             ),
           ],
         ),
@@ -192,67 +189,67 @@ class _AdditionalInfoViewState extends State<_AdditionalInfoView> {
     super.dispose();
   }
 
+  void _validate() {
+    if (_formKey.currentState?.validate() ?? false) {
+      context.read<ModerationCubit>().saveAdditionalInfo(
+            year: yearController.text.trim(),
+            description: descriptionController.text.trim(),
+          );
+      widget.onTapNext();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Stack(
-          fit: StackFit.expand,
-          alignment: Alignment.bottomCenter,
+        child: Column(
           children: [
-            SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text('Год создания работы', style: TextStyles.headline1),
-                    const SizedBox(height: 8),
-                    AppTextFormField(
-                      controller: yearController,
-                      hintText: 'Введите год',
-                      validator: Validator.get(Validate.year),
-                    ),
-                    const SizedBox(height: 16),
-                    const Text('Фестиваль (при наличии)', style: TextStyles.headline1),
-                    const SizedBox(height: 8),
-                    AppButton.primary(label: 'Выбрать фестиваль', onTap: () {}),
-                    const SizedBox(height: 40),
-                    const Text('Описание работы', style: TextStyles.headline1),
-                    const SizedBox(height: 8),
-                    AppTextFormField(
-                      controller: descriptionController,
-                      hintText: 'Введите описание',
-                      validator: Validator.get(Validate.notEmpty),
-                    ),
-                    const SizedBox(height: 16),
-                    const Text('Интересные ссылки', style: TextStyles.headline1),
-                    const SizedBox(height: 8),
-                    AppTextFormField(
-                      controller: linksController,
-                      hintText: 'Введите ссылки',
-                      validator: Validator.get(Validate.notEmpty),
-                    ),
-                  ],
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text('Год создания работы', style: TextStyles.headline1),
+                      const SizedBox(height: 8),
+                      AppTextFormField(
+                        controller: yearController,
+                        hintText: 'Введите год',
+                        validator: Validator.get(Validate.year),
+                      ),
+                      const SizedBox(height: 16),
+                      const Text('Фестиваль (при наличии)', style: TextStyles.headline1),
+                      const SizedBox(height: 8),
+                      AppButton.primary(label: 'Выбрать фестиваль', onTap: () {}),
+                      const SizedBox(height: 40),
+                      const Text('Описание работы', style: TextStyles.headline1),
+                      const SizedBox(height: 8),
+                      AppTextFormField(
+                        controller: descriptionController,
+                        hintText: 'Введите описание',
+                        validator: Validator.get(Validate.notEmpty),
+                      ),
+                      const SizedBox(height: 16),
+                      const Text('Интересные ссылки', style: TextStyles.headline1),
+                      const SizedBox(height: 8),
+                      AppTextFormField(
+                        controller: linksController,
+                        hintText: 'Введите ссылки',
+                        validator: Validator.get(Validate.notEmpty),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-            LayoutBuilder(
-              builder: (context, constraints) => Padding(
-                padding: EdgeInsets.fromLTRB(20, constraints.maxHeight - 60, 20, 20),
-                child: AppButton.primary(
-                  label: 'Перейти к проверке',
-                  onTap: () {
-                    if (_formKey.currentState?.validate() ?? false) {
-                      context.read<ModerationCubit>().saveAdditionalInfo(
-                            year: yearController.text.trim(),
-                            description: descriptionController.text.trim(),
-                          );
-                      widget.onTapNext();
-                    }
-                  },
-                ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+              child: AppButton.primary(
+                label: 'Перейти к проверке',
+                onTap: _validate,
               ),
             ),
           ],
@@ -270,38 +267,35 @@ class _PreviewView extends StatelessWidget implements _ModerationEditView {
   @override
   String get title => 'Предпросмотр';
 
+  void _send(BuildContext context) async {
+    final send = await Utils.of(context).showWarning(
+          title: 'Отправление на модерацию',
+          content: 'Пожалуйста, убедитесь в правильности заполненных данных перед отправкой',
+          acceptText: 'Отправить',
+          declineText: 'Отмена',
+        ) ??
+        false;
+
+    if (send && context.mounted) {
+      await Utils.of(context).showLoading(
+        Future.delayed(const Duration(seconds: 1)),
+      );
+      onTapNext();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Stack(
-          fit: StackFit.expand,
-          alignment: Alignment.bottomCenter,
+        child: Column(
           children: [
-            ArtworkPage(artwork: context.read<ModerationCubit>().preview),
-            LayoutBuilder(
-              builder: (context, constraints) => Padding(
-                padding: EdgeInsets.fromLTRB(20, constraints.maxHeight - 60, 20, 20),
-                child: AppButton.primary(
-                  label: 'Отправить на модерацию',
-                  onTap: () async {
-                    final send = await Utils.of(context).showWarning(
-                          title: 'Отправление на модерацию',
-                          content:
-                              'Пожалуйста, убедитесь в правильности заполненных данных перед отправкой',
-                          acceptText: 'Отправить',
-                          declineText: 'Отмена',
-                        ) ??
-                        false;
-
-                    if (send && context.mounted) {
-                      await Utils.of(context).showLoading(
-                        Future.delayed(const Duration(seconds: 1)),
-                      );
-                      onTapNext();
-                    }
-                  },
-                ),
+            Expanded(child: ArtworkPage(artwork: context.read<ModerationCubit>().preview)),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+              child: AppButton.primary(
+                label: 'Отправить на модерацию',
+                onTap: () => _send(context),
               ),
             ),
           ],
