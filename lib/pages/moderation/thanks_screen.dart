@@ -1,7 +1,10 @@
-part of 'moderation_page.dart';
+import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/constants.dart';
+import 'package:street_art_witnesses/widgets/buttons/app_custom_button.dart';
+import 'package:street_art_witnesses/widgets/skeletons/app_placeholder.dart';
 
-class _ThanksScreen extends StatelessWidget {
-  const _ThanksScreen();
+class ModerationThanksScreen extends StatelessWidget {
+  const ModerationThanksScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

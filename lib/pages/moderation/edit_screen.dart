@@ -1,13 +1,21 @@
-part of 'moderation_page.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:street_art_witnesses/constants.dart';
+import 'package:street_art_witnesses/src/blocs/moderation/moderation_cubit.dart';
+import 'package:street_art_witnesses/src/utils/utils.dart';
+import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
+import 'package:street_art_witnesses/widgets/containers/app_container.dart';
+import 'package:street_art_witnesses/widgets/other/app_appbar.dart';
+import 'package:street_art_witnesses/widgets/skeletons/app_placeholder.dart';
 
-class _EditScreen extends StatefulWidget {
-  const _EditScreen();
+class ModerationEditScreen extends StatefulWidget {
+  const ModerationEditScreen({super.key});
 
   @override
-  State<_EditScreen> createState() => _EditScreenState();
+  State<ModerationEditScreen> createState() => _ModerationEditScreenState();
 }
 
-class _EditScreenState extends State<_EditScreen> {
+class _ModerationEditScreenState extends State<ModerationEditScreen> {
   final controller = PageController();
   late String title = _screens[0].title;
 
@@ -23,7 +31,7 @@ class _EditScreenState extends State<_EditScreen> {
     super.dispose();
   }
 
-  late final _screens = <_ModerationEditScreen>[
+  late final _screens = <_ModerationEditView>[
     _MainInfoView(onTapNext: () => _moveToPage(1)),
     _AdditionalInfoView(onTapNext: () => _moveToPage(2)),
     _PreviewView(onTapNext: () => context.read<ModerationCubit>().showThanks()),
@@ -60,12 +68,12 @@ class _EditScreenState extends State<_EditScreen> {
   }
 }
 
-abstract class _ModerationEditScreen extends Widget {
+abstract class _ModerationEditView extends Widget {
   String get title;
   void save();
 }
 
-class _MainInfoView extends StatelessWidget implements _ModerationEditScreen {
+class _MainInfoView extends StatelessWidget implements _ModerationEditView {
   const _MainInfoView({required this.onTapNext});
 
   final void Function() onTapNext;
@@ -124,7 +132,7 @@ class _MainInfoView extends StatelessWidget implements _ModerationEditScreen {
   }
 }
 
-class _AdditionalInfoView extends StatelessWidget implements _ModerationEditScreen {
+class _AdditionalInfoView extends StatelessWidget implements _ModerationEditView {
   const _AdditionalInfoView({required this.onTapNext});
 
   final void Function() onTapNext;
@@ -173,7 +181,7 @@ class _AdditionalInfoView extends StatelessWidget implements _ModerationEditScre
   }
 }
 
-class _PreviewView extends StatelessWidget implements _ModerationEditScreen {
+class _PreviewView extends StatelessWidget implements _ModerationEditView {
   const _PreviewView({required this.onTapNext});
 
   final void Function() onTapNext;
