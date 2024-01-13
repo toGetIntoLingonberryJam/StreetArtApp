@@ -3,9 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/src/blocs/moderation/moderation_cubit.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
+import 'package:street_art_witnesses/src/utils/validator.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
 import 'package:street_art_witnesses/widgets/containers/app_container.dart';
 import 'package:street_art_witnesses/widgets/other/app_appbar.dart';
+import 'package:street_art_witnesses/widgets/other/app_text_form_field.dart';
 import 'package:street_art_witnesses/widgets/skeletons/app_placeholder.dart';
 
 class ModerationEditScreen extends StatefulWidget {
@@ -73,7 +75,7 @@ abstract class _ModerationEditView extends Widget {
   void save();
 }
 
-class _MainInfoView extends StatelessWidget implements _ModerationEditView {
+class _MainInfoView extends StatefulWidget implements _ModerationEditView {
   const _MainInfoView({required this.onTapNext});
 
   final void Function() onTapNext;
@@ -85,6 +87,24 @@ class _MainInfoView extends StatelessWidget implements _ModerationEditView {
   void save() {}
 
   @override
+  State<_MainInfoView> createState() => _MainInfoViewState();
+}
+
+class _MainInfoViewState extends State<_MainInfoView> {
+  final nameController = TextEditingController();
+  final authorController = TextEditingController();
+  final addressController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    authorController.dispose();
+    addressController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -92,36 +112,57 @@ class _MainInfoView extends StatelessWidget implements _ModerationEditView {
           fit: StackFit.expand,
           alignment: Alignment.bottomCenter,
           children: [
-            const SingleChildScrollView(
-              padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
-              child: Column(
-                children: [
-                  AppContainer(child: SizedBox(height: 40)),
-                  SizedBox(height: 16),
-                  AppContainer(child: SizedBox(height: 20)),
-                  SizedBox(height: 16),
-                  AppContainer(child: SizedBox(height: 140)),
-                  SizedBox(height: 16),
-                  AppContainer(child: SizedBox(height: 30)),
-                  SizedBox(height: 16),
-                  AppContainer(child: SizedBox(height: 80)),
-                  SizedBox(height: 16),
-                  AppContainer(child: SizedBox(height: 20)),
-                  SizedBox(height: 16),
-                  AppContainer(child: SizedBox(height: 140)),
-                  SizedBox(height: 16),
-                  AppContainer(child: SizedBox(height: 30)),
-                  SizedBox(height: 16),
-                  AppContainer(child: SizedBox(height: 80)),
-                ],
+            SingleChildScrollView(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text('Фото', style: TextStyles.headline1),
+                    const SizedBox(height: 8),
+                    AppButton.primary(label: 'Выбрать фото', onTap: () {}),
+                    const SizedBox(height: 40),
+                    const Text('Название', style: TextStyles.headline1),
+                    const SizedBox(height: 8),
+                    AppTextFormField(
+                      controller: nameController,
+                      hintText: 'Введите название',
+                      validator: Validator.get(Validate.notEmpty),
+                    ),
+                    const SizedBox(height: 16),
+                    const Text('Автор', style: TextStyles.headline1),
+                    const SizedBox(height: 8),
+                    AppTextFormField(
+                      controller: authorController,
+                      hintText: 'Введите автора',
+                      validator: Validator.get(Validate.notEmpty),
+                    ),
+                    const SizedBox(height: 16),
+                    const Text('Адрес работы', style: TextStyles.headline1),
+                    const SizedBox(height: 8),
+                    AppTextFormField(
+                      controller: addressController,
+                      hintText: 'Введите адрес работы',
+                      validator: Validator.get(Validate.notEmpty),
+                    ),
+                    const SizedBox(height: 16),
+                    const Text('Местоположение', style: TextStyles.headline1),
+                    const SizedBox(height: 8),
+                    AppButton.primary(label: 'Указать на карте', onTap: () {}),
+                  ],
+                ),
               ),
             ),
             LayoutBuilder(
               builder: (context, constraints) => Padding(
                 padding: EdgeInsets.fromLTRB(20, constraints.maxHeight - 60, 20, 20),
                 child: AppButton.primary(
-                  text: 'Далее',
-                  onTap: () => {save(), onTapNext()},
+                  label: 'Далее',
+                  onTap: () {
+                    widget.save();
+                    if (_formKey.currentState?.validate() ?? false) widget.onTapNext();
+                  },
                 ),
               ),
             ),
@@ -132,9 +173,8 @@ class _MainInfoView extends StatelessWidget implements _ModerationEditView {
   }
 }
 
-class _AdditionalInfoView extends StatelessWidget implements _ModerationEditView {
+class _AdditionalInfoView extends StatefulWidget implements _ModerationEditView {
   const _AdditionalInfoView({required this.onTapNext});
-
   final void Function() onTapNext;
 
   @override
@@ -144,6 +184,26 @@ class _AdditionalInfoView extends StatelessWidget implements _ModerationEditView
   void save() {}
 
   @override
+  State<_AdditionalInfoView> createState() => _AdditionalInfoViewState();
+}
+
+class _AdditionalInfoViewState extends State<_AdditionalInfoView> {
+  final _formKey = GlobalKey<FormState>();
+  final yearController = TextEditingController();
+  final festivalController = TextEditingController();
+  final descriptionController = TextEditingController();
+  final linksController = TextEditingController();
+
+  @override
+  void dispose() {
+    yearController.dispose();
+    festivalController.dispose();
+    descriptionController.dispose();
+    linksController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -151,26 +211,57 @@ class _AdditionalInfoView extends StatelessWidget implements _ModerationEditView
           fit: StackFit.expand,
           alignment: Alignment.bottomCenter,
           children: [
-            const SingleChildScrollView(
-              padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
-              child: Column(
-                children: [
-                  AppContainer(child: SizedBox(height: 40)),
-                  SizedBox(height: 16),
-                  AppContainer(child: SizedBox(height: 20)),
-                  SizedBox(height: 16),
-                  AppContainer(child: SizedBox(height: 140)),
-                  SizedBox(height: 16),
-                  AppContainer(child: SizedBox(height: 30)),
-                ],
+            SingleChildScrollView(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text('Год создания работы', style: TextStyles.headline1),
+                    const SizedBox(height: 8),
+                    AppTextFormField(
+                      controller: yearController,
+                      hintText: 'Введите год',
+                      validator: Validator.get(Validate.notEmpty),
+                    ),
+                    const SizedBox(height: 16),
+                    const Text('Фестиваль (при наличии)', style: TextStyles.headline1),
+                    const SizedBox(height: 8),
+                    AppTextFormField(
+                      controller: festivalController,
+                      hintText: 'Введите название',
+                      validator: Validator.get(Validate.notEmpty),
+                    ),
+                    const SizedBox(height: 16),
+                    const Text('Описание работы', style: TextStyles.headline1),
+                    const SizedBox(height: 8),
+                    AppTextFormField(
+                      controller: descriptionController,
+                      hintText: 'Введите описание',
+                      validator: Validator.get(Validate.notEmpty),
+                    ),
+                    const SizedBox(height: 16),
+                    const Text('Интересные ссылки', style: TextStyles.headline1),
+                    const SizedBox(height: 8),
+                    AppTextFormField(
+                      controller: linksController,
+                      hintText: 'Введите ссылки',
+                      validator: Validator.get(Validate.notEmpty),
+                    ),
+                  ],
+                ),
               ),
             ),
             LayoutBuilder(
               builder: (context, constraints) => Padding(
                 padding: EdgeInsets.fromLTRB(20, constraints.maxHeight - 60, 20, 20),
                 child: AppButton.primary(
-                  text: 'Перейти к проверке',
-                  onTap: () => {save(), onTapNext()},
+                  label: 'Перейти к проверке',
+                  onTap: () {
+                    widget.save();
+                    if (_formKey.currentState?.validate() ?? false) widget.onTapNext();
+                  },
                 ),
               ),
             ),
@@ -223,13 +314,25 @@ class _PreviewView extends StatelessWidget implements _ModerationEditView {
               builder: (context, constraints) => Padding(
                 padding: EdgeInsets.fromLTRB(20, constraints.maxHeight - 60, 20, 20),
                 child: AppButton.primary(
-                  text: 'Отправить на модерацию',
+                  label: 'Отправить на модерацию',
                   onTap: () async {
                     save();
-                    await Utils.of(context).showLoading(
-                      Future.delayed(const Duration(seconds: 1)),
-                    );
-                    onTapNext();
+
+                    final send = await Utils.of(context).showWarning(
+                          title: 'Отправление на модерацию',
+                          content:
+                              'Пожалуйста, убедитесь в правильности заполненных данных перед отправкой',
+                          acceptText: 'Отправить',
+                          declineText: 'Отмена',
+                        ) ??
+                        false;
+
+                    if (send && context.mounted) {
+                      await Utils.of(context).showLoading(
+                        Future.delayed(const Duration(seconds: 1)),
+                      );
+                      onTapNext();
+                    }
                   },
                 ),
               ),
