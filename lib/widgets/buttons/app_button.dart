@@ -6,15 +6,13 @@ class AppButton extends StatelessWidget {
     super.key,
     required this.text,
     required this.onTap,
-    this.isPrimary = true,
-  });
+  }) : isPrimary = true;
 
   const AppButton.secondary({
     super.key,
     required this.text,
     required this.onTap,
-    this.isPrimary = false,
-  });
+  }) : isPrimary = false;
 
   final String text;
   final VoidCallback? onTap;
@@ -28,9 +26,7 @@ class AppButton extends StatelessWidget {
           backgroundColor: isPrimary
               ? Theme.of(context).colorScheme.primary
               : Theme.of(context).colorScheme.onBackground,
-          foregroundColor: isPrimary
-              ? Colors.black
-              : Theme.of(context).colorScheme.inverseSurface,
+          foregroundColor: isPrimary ? Colors.black : Theme.of(context).colorScheme.inverseSurface,
           textStyle: TextStyles.button,
           shape: RoundedRectangleBorder(
             borderRadius: kButtonBorderRadius,

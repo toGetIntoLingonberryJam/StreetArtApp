@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/pages/home/profile/pages/about_page.dart';
 import 'package:street_art_witnesses/pages/home/profile/pages/change_password_page.dart';
 import 'package:street_art_witnesses/pages/home/profile/pages/settings_page.dart';
+import 'package:street_art_witnesses/pages/moderation/moderation_page.dart';
 import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
 import 'package:street_art_witnesses/widgets/containers/app_list_tile.dart';
@@ -43,7 +44,10 @@ abstract class UserTiles {
         notificationsCount: 100,
       );
 
-  static AppListTile addArtwork(BuildContext context) => const AppListTile(
+  static AppListTile addArtwork(BuildContext context) => AppListTile(
+        onTap: () => Navigator.of(context).push(MaterialPageRoute(
+          builder: (_) => const ModerationPage(),
+        )),
         iconData: Icons.add_circle_outline,
         text: 'Добавить работу',
       );
