@@ -37,7 +37,7 @@ class AboutPage extends StatelessWidget {
                     Text('Версия приложения:', style: TextStyles.headline2),
                     SizedBox(width: 10),
                     // TODO: Change VERSION name
-                    Text('0.7.0', style: TextStyles.text),
+                    Text('0.8.0', style: TextStyles.text),
                   ],
                 ),
               ),
