@@ -5,21 +5,13 @@ import 'package:street_art_witnesses/widgets/containers/app_container.dart';
 import 'package:street_art_witnesses/widgets/skeletons/app_placeholder.dart';
 
 class FestivalInfo extends StatelessWidget {
-  const FestivalInfo(this.festival, {super.key});
+  const FestivalInfo(this.festivalId, {super.key});
 
-  final String? festival;
+  final int? festivalId;
 
   @override
   Widget build(BuildContext context) {
-    if (festival == null) {
-      return const AppContainer.small(
-        child: Text(
-          'Информация о фестивале отсутствует',
-          style: TextStyles.headline2,
-          textAlign: TextAlign.center,
-        ),
-      );
-    }
+    if (festivalId == null) return const SizedBox();
 
     return AppContainer.small(
       child: Row(
@@ -27,7 +19,7 @@ class FestivalInfo extends StatelessWidget {
           AppCircleAvatar(image: AppPlaceholder.assetImage()),
           const SizedBox(width: 8),
           Expanded(
-            child: Text(festival!, style: TextStyles.headline1),
+            child: Text('Festival ID: $festivalId', style: TextStyles.headline1),
           ),
         ],
       ),

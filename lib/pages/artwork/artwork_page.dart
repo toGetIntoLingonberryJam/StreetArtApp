@@ -35,8 +35,8 @@ class ArtworkPage extends StatelessWidget {
                   children: [
                     ArtworkInfo(artwork: artwork),
                     const SizedBox(height: 8),
-                    FestivalInfo(artwork.festival),
-                    const SizedBox(height: 8),
+                    FestivalInfo(artwork.festivalId),
+                    if (artwork.festivalId != null) const SizedBox(height: 8),
                     AddressInfo(artwork: artwork),
                     const SizedBox(height: 8),
                     DescriptionInfo(artwork.description),
