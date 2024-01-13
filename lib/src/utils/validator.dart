@@ -1,4 +1,4 @@
-enum Validate { notEmpty, email, password, login }
+enum Validate { notEmpty, email, password, login, year }
 
 typedef ValidateFunction = String? Function(String?)?;
 
@@ -13,6 +13,8 @@ abstract class Validator {
         return _validatePassword;
       case Validate.notEmpty:
         return _validateNotEmpty;
+      case Validate.year:
+        return _validateYear;
     }
   }
 
@@ -40,6 +42,23 @@ abstract class Validator {
   static String? _validateNotEmpty(String? field) {
     if (field == null || field.isEmpty) {
       return 'Это поле не может быть пустым';
+    }
+    return null;
+  }
+
+  static String? _validateYear(String? string) {
+    if (string == null || string.isEmpty) {
+      return 'Введите год';
+    }
+    final year = int.tryParse(string);
+    if (year == null) {
+      return 'Введите число';
+    }
+    if (year < 1900) {
+      return 'Введите год после 1900';
+    }
+    if (year > DateTime.now().year) {
+      return 'Этот год еще не наступил';
     }
     return null;
   }

@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:street_art_witnesses/constants.dart';
+import 'package:street_art_witnesses/pages/artwork/artwork_page.dart';
 import 'package:street_art_witnesses/src/blocs/moderation/moderation_cubit.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
 import 'package:street_art_witnesses/src/utils/validator.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
-import 'package:street_art_witnesses/widgets/containers/app_container.dart';
 import 'package:street_art_witnesses/widgets/other/app_appbar.dart';
 import 'package:street_art_witnesses/widgets/other/app_text_form_field.dart';
-import 'package:street_art_witnesses/widgets/skeletons/app_placeholder.dart';
 
 class ModerationEditScreen extends StatefulWidget {
   const ModerationEditScreen({super.key});
@@ -72,7 +71,6 @@ class _ModerationEditScreenState extends State<ModerationEditScreen> {
 
 abstract class _ModerationEditView extends Widget {
   String get title;
-  void save();
 }
 
 class _MainInfoView extends StatefulWidget implements _ModerationEditView {
@@ -82,9 +80,6 @@ class _MainInfoView extends StatefulWidget implements _ModerationEditView {
 
   @override
   String get title => 'Основная информация';
-
-  @override
-  void save() {}
 
   @override
   State<_MainInfoView> createState() => _MainInfoViewState();
@@ -154,8 +149,13 @@ class _MainInfoViewState extends State<_MainInfoView> {
                 child: AppButton.primary(
                   label: 'Далее',
                   onTap: () {
-                    widget.save();
-                    if (_formKey.currentState?.validate() ?? false) widget.onTapNext();
+                    if (_formKey.currentState?.validate() ?? false) {
+                      context.read<ModerationCubit>().saveMainInfo(
+                            title: nameController.text.trim(),
+                            address: addressController.text.trim(),
+                          );
+                      widget.onTapNext();
+                    }
                   },
                 ),
               ),
@@ -173,9 +173,6 @@ class _AdditionalInfoView extends StatefulWidget implements _ModerationEditView 
 
   @override
   String get title => 'Дополнительно';
-
-  @override
-  void save() {}
 
   @override
   State<_AdditionalInfoView> createState() => _AdditionalInfoViewState();
@@ -215,7 +212,7 @@ class _AdditionalInfoViewState extends State<_AdditionalInfoView> {
                     AppTextFormField(
                       controller: yearController,
                       hintText: 'Введите год',
-                      validator: Validator.get(Validate.notEmpty),
+                      validator: Validator.get(Validate.year),
                     ),
                     const SizedBox(height: 16),
                     const Text('Фестиваль (при наличии)', style: TextStyles.headline1),
@@ -247,8 +244,13 @@ class _AdditionalInfoViewState extends State<_AdditionalInfoView> {
                 child: AppButton.primary(
                   label: 'Перейти к проверке',
                   onTap: () {
-                    widget.save();
-                    if (_formKey.currentState?.validate() ?? false) widget.onTapNext();
+                    if (_formKey.currentState?.validate() ?? false) {
+                      context.read<ModerationCubit>().saveAdditionalInfo(
+                            year: yearController.text.trim(),
+                            description: descriptionController.text.trim(),
+                          );
+                      widget.onTapNext();
+                    }
                   },
                 ),
               ),
@@ -269,9 +271,6 @@ class _PreviewView extends StatelessWidget implements _ModerationEditView {
   String get title => 'Предпросмотр';
 
   @override
-  void save() {}
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -279,33 +278,13 @@ class _PreviewView extends StatelessWidget implements _ModerationEditView {
           fit: StackFit.expand,
           alignment: Alignment.bottomCenter,
           children: [
-            SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-              child: Column(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(kContainerRadius),
-                    child: const AppPlaceholder(height: 400),
-                  ),
-                  const SizedBox(height: 16),
-                  const AppContainer(child: SizedBox(height: 40)),
-                  const SizedBox(height: 16),
-                  const AppContainer(child: SizedBox(height: 20)),
-                  const SizedBox(height: 16),
-                  const AppContainer(child: SizedBox(height: 140)),
-                  const SizedBox(height: 16),
-                  const AppContainer(child: SizedBox(height: 30)),
-                ],
-              ),
-            ),
+            ArtworkPage(artwork: context.read<ModerationCubit>().preview),
             LayoutBuilder(
               builder: (context, constraints) => Padding(
                 padding: EdgeInsets.fromLTRB(20, constraints.maxHeight - 60, 20, 20),
                 child: AppButton.primary(
                   label: 'Отправить на модерацию',
                   onTap: () async {
-                    save();
-
                     final send = await Utils.of(context).showWarning(
                           title: 'Отправление на модерацию',
                           content:

@@ -96,7 +96,7 @@ class _ArtworkImageSliderState extends State<_ArtworkImageSlider> {
   Widget build(BuildContext context) {
     if (widget.images == null) {
       return const Padding(
-        padding: EdgeInsets.only(bottom: 8),
+        padding: EdgeInsets.fromLTRB(10, 0, 10, 8),
         child: AppContainer.small(
           child: Text(
             'Фотографии отсутствуют',
