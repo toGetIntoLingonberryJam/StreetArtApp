@@ -4,6 +4,7 @@ import 'package:street_art_witnesses/pages/moderation/edit_screen.dart';
 import 'package:street_art_witnesses/pages/moderation/thanks_screen.dart';
 import 'package:street_art_witnesses/pages/moderation/warning_screen.dart';
 import 'package:street_art_witnesses/src/blocs/moderation/moderation_cubit.dart';
+import 'package:street_art_witnesses/src/blocs/settings/settings_cubit.dart';
 import 'package:street_art_witnesses/widgets/other/app_error.dart';
 
 class ModerationPage extends StatelessWidget {
@@ -11,8 +12,10 @@ class ModerationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final showWarning = context.read<SettingsCubit>().isShowing(ShowPages.moderationWarning);
+
     return BlocProvider(
-      create: (_) => ModerationCubit(),
+      create: (_) => ModerationCubit(state: showWarning ? ModerationWarning() : ModerationEdit()),
       child: BlocConsumer<ModerationCubit, ModerationState>(
         listener: (context, state) {},
         buildWhen: (prev, curr) => prev.runtimeType != curr.runtimeType,
