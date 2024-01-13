@@ -13,7 +13,6 @@ import 'package:street_art_witnesses/widgets/skeletons/app_placeholder.dart';
 part 'warning_screen.dart';
 part 'edit_screen.dart';
 part 'thanks_screen.dart';
-part 'preview_screen.dart';
 
 class ModerationPage extends StatelessWidget {
   const ModerationPage({super.key});

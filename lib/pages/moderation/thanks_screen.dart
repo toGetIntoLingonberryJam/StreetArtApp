@@ -12,7 +12,10 @@ class _ThanksScreen extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: 60),
-              const AppPlaceholder(height: 320),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(kContainerRadius),
+                child: const AppPlaceholder(height: 320),
+              ),
               const Expanded(child: SizedBox()),
               const Text('Спасибо!', style: TextStyles.title1, textAlign: TextAlign.center),
               const SizedBox(height: 16),
