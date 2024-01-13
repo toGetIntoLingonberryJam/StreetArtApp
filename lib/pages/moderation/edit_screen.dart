@@ -25,8 +25,7 @@ class _EditScreenState extends State<_EditScreen> {
 
   late final _screens = <_ModerationEditScreen>[
     _MainInfoView(onTapNext: () => _moveToPage(1)),
-    _MainInfoView(onTapNext: () => _moveToPage(2)),
-    _AdditionalInfoView(onTapNext: () => _moveToPage(3)),
+    _AdditionalInfoView(onTapNext: () => _moveToPage(2)),
     _PreviewView(onTapNext: () => context.read<ModerationCubit>().showThanks()),
   ];
 
@@ -37,7 +36,7 @@ class _EditScreenState extends State<_EditScreen> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
               child: AppAppbar(
                 title: title,
                 leading: GestureDetector(
@@ -86,7 +85,7 @@ class _MainInfoView extends StatelessWidget implements _ModerationEditScreen {
           alignment: Alignment.bottomCenter,
           children: [
             const SingleChildScrollView(
-              padding: kPagePadding,
+              padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
               child: Column(
                 children: [
                   AppContainer(child: SizedBox(height: 40)),
@@ -145,7 +144,7 @@ class _AdditionalInfoView extends StatelessWidget implements _ModerationEditScre
           alignment: Alignment.bottomCenter,
           children: [
             const SingleChildScrollView(
-              padding: kPagePadding,
+              padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
               child: Column(
                 children: [
                   AppContainer(child: SizedBox(height: 40)),
@@ -193,19 +192,22 @@ class _PreviewView extends StatelessWidget implements _ModerationEditScreen {
           fit: StackFit.expand,
           alignment: Alignment.bottomCenter,
           children: [
-            const SingleChildScrollView(
-              padding: kPagePadding,
+            SingleChildScrollView(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
               child: Column(
                 children: [
-                  AppPlaceholder(height: 400),
-                  SizedBox(height: 16),
-                  AppContainer(child: SizedBox(height: 40)),
-                  SizedBox(height: 16),
-                  AppContainer(child: SizedBox(height: 20)),
-                  SizedBox(height: 16),
-                  AppContainer(child: SizedBox(height: 140)),
-                  SizedBox(height: 16),
-                  AppContainer(child: SizedBox(height: 30)),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(kContainerRadius),
+                    child: const AppPlaceholder(height: 400),
+                  ),
+                  const SizedBox(height: 16),
+                  const AppContainer(child: SizedBox(height: 40)),
+                  const SizedBox(height: 16),
+                  const AppContainer(child: SizedBox(height: 20)),
+                  const SizedBox(height: 16),
+                  const AppContainer(child: SizedBox(height: 140)),
+                  const SizedBox(height: 16),
+                  const AppContainer(child: SizedBox(height: 30)),
                 ],
               ),
             ),
@@ -214,7 +216,13 @@ class _PreviewView extends StatelessWidget implements _ModerationEditScreen {
                 padding: EdgeInsets.fromLTRB(20, constraints.maxHeight - 60, 20, 20),
                 child: AppButton.primary(
                   text: 'Отправить на модерацию',
-                  onTap: () => {save(), onTapNext()},
+                  onTap: () async {
+                    save();
+                    await Utils.of(context).showLoading(
+                      Future.delayed(const Duration(seconds: 1)),
+                    );
+                    onTapNext();
+                  },
                 ),
               ),
             ),

@@ -7,6 +7,4 @@ final class ModerationWarning extends ModerationState {}
 
 final class ModerationEdit extends ModerationState {}
 
-final class ModerationPreview extends ModerationState {}
-
 final class ModerationThanks extends ModerationState {}

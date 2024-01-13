@@ -23,7 +23,10 @@ class _ThanksScreen extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               AppCustomButton.filled(
-                child: const Text('На главный экран', style: TextStyles.button),
+                child: Text(
+                  'На главный экран',
+                  style: TextStyles.button.copyWith(color: Colors.black),
+                ),
                 onTap: () => Navigator.pop(context),
               ),
               const Expanded(child: SizedBox()),

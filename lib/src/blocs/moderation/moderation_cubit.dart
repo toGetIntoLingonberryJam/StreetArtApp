@@ -7,6 +7,5 @@ class ModerationCubit extends Cubit<ModerationState> {
   ModerationCubit() : super(ModerationWarning());
 
   void showEdit() => emit(ModerationEdit());
-  void showPreview() => emit(ModerationPreview());
   void showThanks() => emit(ModerationThanks());
 }

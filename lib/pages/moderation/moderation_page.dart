@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/src/blocs/moderation/moderation_cubit.dart';
+import 'package:street_art_witnesses/src/utils/utils.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_custom_button.dart';
 import 'package:street_art_witnesses/widgets/containers/app_container.dart';
@@ -37,7 +38,6 @@ class _ModerationScreen extends StatelessWidget {
       builder: (context, state) {
         if (state is ModerationWarning) return const _WarningScreen();
         if (state is ModerationEdit) return const _EditScreen();
-        // if (state is ModerationPreview) return const _PreviewScreen();
         if (state is ModerationThanks) return const _ThanksScreen();
 
         return const AppErrorScreen();
