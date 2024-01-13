@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/constants.dart';
-import 'package:street_art_witnesses/src/blocs/settings/settings_cubit_cubit.dart';
+import 'package:street_art_witnesses/src/blocs/settings/settings_cubit.dart';
 import 'package:street_art_witnesses/widgets/containers/app_container.dart';
 import 'package:street_art_witnesses/widgets/other/app_appbar.dart';
 

@@ -1,4 +1,4 @@
-part of 'settings_cubit_cubit.dart';
+part of 'settings_cubit.dart';
 
 @immutable
 sealed class SettingsState {}

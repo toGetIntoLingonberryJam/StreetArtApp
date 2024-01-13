@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:street_art_witnesses/pages/home/home_page.dart';
 import 'package:street_art_witnesses/pages/intro/intro_slider.dart';
-import 'package:street_art_witnesses/src/blocs/settings/settings_cubit_cubit.dart';
+import 'package:street_art_witnesses/src/blocs/settings/settings_cubit.dart';
 import 'package:street_art_witnesses/src/models/user.dart';
 import 'package:street_art_witnesses/src/providers/email_counter_provider.dart';
 import 'package:street_art_witnesses/src/providers/location_provider.dart';
