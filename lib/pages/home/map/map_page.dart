@@ -5,7 +5,7 @@ import 'package:street_art_witnesses/pages/home/map/location_marker.dart';
 import 'package:street_art_witnesses/pages/home/map/map_view.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork_location.dart';
 import 'package:street_art_witnesses/src/services/artwork_service.dart';
-import 'package:street_art_witnesses/widgets/other/app_error_widget.dart';
+import 'package:street_art_witnesses/widgets/other/app_error.dart';
 import 'package:street_art_witnesses/widgets/other/app_loading_indicator.dart';
 
 class MapPage extends StatelessWidget {
