@@ -14,9 +14,11 @@ class AddressInfo extends StatelessWidget {
   const AddressInfo({
     super.key,
     required this.artwork,
+    required this.preview,
   });
 
   final Artwork artwork;
+  final bool preview;
 
   void _buildRoute(BuildContext context) async {
     final userPosition = await Utils.of(context).showLoading(LocationService.getCurrentPosition());
@@ -25,6 +27,10 @@ class AddressInfo extends StatelessWidget {
 
     context.read<MapCubit>().addTask(MapRouteTask(start, artwork.id));
     Navigator.of(context).pop();
+  }
+
+  void _showPreviewWarning(BuildContext context) {
+    Utils.of(context).showMessage('Эта функция недоступна в режиме предпросмотра');
   }
 
   @override
@@ -46,7 +52,7 @@ class AddressInfo extends StatelessWidget {
             ),
           ),
           AppCustomButton.filled(
-            onTap: () => _buildRoute(context),
+            onTap: preview ? () => _showPreviewWarning(context) : () => _buildRoute(context),
             child: const Row(
               mainAxisSize: MainAxisSize.min,
               children: [

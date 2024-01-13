@@ -12,11 +12,15 @@ import 'package:street_art_witnesses/src/utils/utils.dart';
 import 'package:street_art_witnesses/widgets/containers/app_container.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_icon_button.dart';
 import 'package:street_art_witnesses/widgets/other/image_slider.dart';
+import 'package:street_art_witnesses/widgets/skeletons/app_placeholder.dart';
 
 class ArtworkPage extends StatelessWidget {
-  const ArtworkPage({super.key, required this.artwork});
+  const ArtworkPage({super.key, required this.artwork}) : preview = false;
+
+  const ArtworkPage.preview({super.key, required this.artwork}) : preview = true;
 
   final Artwork artwork;
+  final bool preview;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +32,7 @@ class ArtworkPage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _ArtworkImageSlider(images: artwork.images),
+              preview ? const _MockImageSlider() : _ArtworkImageSlider(images: artwork.images),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Column(
@@ -37,7 +41,7 @@ class ArtworkPage extends StatelessWidget {
                     const SizedBox(height: 8),
                     FestivalInfo(artwork.festivalId),
                     if (artwork.festivalId != null) const SizedBox(height: 8),
-                    AddressInfo(artwork: artwork),
+                    AddressInfo(artwork: artwork, preview: preview),
                     const SizedBox(height: 8),
                     DescriptionInfo(artwork.description),
                     const SizedBox(height: 8),
@@ -77,6 +81,21 @@ class ArtworkPage extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _MockImageSlider extends StatelessWidget {
+  const _MockImageSlider();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(kContainerRadius),
+        child: const AppPlaceholder(height: 320),
       ),
     );
   }

@@ -123,7 +123,7 @@ class _MainInfoViewState extends State<_MainInfoView> {
                     children: [
                       const Text('Фото', style: TextStyles.headline1),
                       const SizedBox(height: 8),
-                      AppButton.primary(label: 'Выбрать фото', onTap: () {}),
+                      const AppButton.primary(label: 'Выбрать фото', onTap: null),
                       const SizedBox(height: 40),
                       const Text('Название', style: TextStyles.headline1),
                       const SizedBox(height: 8),
@@ -135,7 +135,7 @@ class _MainInfoViewState extends State<_MainInfoView> {
                       const SizedBox(height: 16),
                       const Text('Автор', style: TextStyles.headline1),
                       const SizedBox(height: 8),
-                      AppButton.primary(label: 'Выбрать автора', onTap: () {}),
+                      const AppButton.primary(label: 'Выбрать автора', onTap: null),
                       const SizedBox(height: 40),
                       const Text('Адрес работы', style: TextStyles.headline1),
                       const SizedBox(height: 8),
@@ -147,7 +147,7 @@ class _MainInfoViewState extends State<_MainInfoView> {
                       const SizedBox(height: 16),
                       const Text('Местоположение', style: TextStyles.headline1),
                       const SizedBox(height: 8),
-                      AppButton.primary(label: 'Указать на карте', onTap: () {}),
+                      const AppButton.primary(label: 'Указать на карте', onTap: null),
                     ],
                   ),
                 ),
@@ -223,7 +223,7 @@ class _AdditionalInfoViewState extends State<_AdditionalInfoView> {
                       const SizedBox(height: 16),
                       const Text('Фестиваль (при наличии)', style: TextStyles.headline1),
                       const SizedBox(height: 8),
-                      AppButton.primary(label: 'Выбрать фестиваль', onTap: () {}),
+                      const AppButton.primary(label: 'Выбрать фестиваль', onTap: null),
                       const SizedBox(height: 40),
                       const Text('Описание работы', style: TextStyles.headline1),
                       const SizedBox(height: 8),
@@ -290,7 +290,9 @@ class _PreviewView extends StatelessWidget implements _ModerationEditView {
       body: SafeArea(
         child: Column(
           children: [
-            Expanded(child: ArtworkPage(artwork: context.read<ModerationCubit>().preview)),
+            Expanded(
+              child: ArtworkPage.preview(artwork: context.read<ModerationCubit>().preview),
+            ),
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
               child: AppButton.primary(
