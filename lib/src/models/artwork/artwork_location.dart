@@ -1,3 +1,5 @@
+import 'package:latlong2/latlong.dart';
+
 class ArtworkLocation {
   ArtworkLocation({
     required this.artworkId,
@@ -13,6 +15,8 @@ class ArtworkLocation {
         longitude = json['longitude'],
         address = json['address'],
         previewUrl = json['thumbnail_image'];
+
+  LatLng get latlng => LatLng(latitude, longitude);
 
   final int artworkId;
   final double latitude;

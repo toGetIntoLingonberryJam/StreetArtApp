@@ -7,7 +7,7 @@ import 'package:street_art_witnesses/src/utils/logger.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
 
 abstract class ArtworkService {
-  static Future<List<Author>> gatAuthors() async {
+  static Future<List<Author>> getAuthors() async {
     await Future.delayed(const Duration(seconds: 2));
     return mockAuthors;
   }
@@ -31,7 +31,7 @@ abstract class ArtworkService {
     }
   }
 
-  static Future<List<ArtworkLocation>?> getLocations(BuildContext context) async {
+  static Future<List<ArtworkLocation>> getLocations(BuildContext context) async {
     final response = await BackendDataSource.get(
       '/v1/artworks/locations',
       requestType: RequestType.getArtworkLocations,

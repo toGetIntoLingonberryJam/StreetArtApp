@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:street_art_witnesses/pages/home/home_page.dart';
 import 'package:street_art_witnesses/pages/intro/intro_slider.dart';
+import 'package:street_art_witnesses/src/blocs/map/map_cubit.dart';
 import 'package:street_art_witnesses/src/blocs/settings/settings_cubit.dart';
 import 'package:street_art_witnesses/src/models/user.dart';
 import 'package:street_art_witnesses/src/providers/email_counter_provider.dart';
@@ -47,7 +48,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => UserProvider(user: user), lazy: false),
         ChangeNotifierProvider(create: (_) => EmailCounterProvider(length: 30)),
         ChangeNotifierProvider(create: (_) => LocationProvider()),
-        BlocProvider(create: (_) => SettingsCubit(initImageQuality: initImageQuality))
+        BlocProvider(create: (_) => SettingsCubit(initImageQuality: initImageQuality)),
+        BlocProvider(create: (_) => MapCubit()),
       ],
       child: MaterialApp(
         locale: DevicePreview.locale(context),
