@@ -32,7 +32,7 @@ class ModerationWarningScreen extends StatelessWidget {
               ),
               const Expanded(child: SizedBox()),
               AppButton.primary(
-                text: 'Я ознакомился',
+                label: 'Я ознакомился',
                 onTap: () => context.read<ModerationCubit>().showEdit(),
               ),
             ],

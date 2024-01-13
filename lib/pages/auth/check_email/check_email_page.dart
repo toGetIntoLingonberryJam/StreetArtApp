@@ -20,8 +20,7 @@ class CheckEmailPage extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text('Ссылка отправлена на почту',
-                          style: TextStyles.title1,
-                          textAlign: TextAlign.center),
+                          style: TextStyles.title1, textAlign: TextAlign.center),
                       SizedBox(height: 24),
                       Text(
                         'Перейдите по ссылке из письма для подтверждения аккаунта',
@@ -41,7 +40,7 @@ class CheckEmailPage extends StatelessWidget {
               Column(
                 children: [
                   AppButton.primary(
-                    text: 'Перейти на главную',
+                    label: 'Перейти на главную',
                     onTap: () => Navigator.of(context).pop(),
                   ),
                   const SizedBox(height: 12),

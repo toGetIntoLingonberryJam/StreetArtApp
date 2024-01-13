@@ -52,12 +52,12 @@ class IntroAuthPage extends StatelessWidget {
               const Expanded(flex: 2, child: SizedBox()),
               AppButton.primary(
                 onTap: () => _navigateToAuth(context),
-                text: 'Войти в профиль',
+                label: 'Войти в профиль',
               ),
               const SizedBox(height: 12),
               AppButton.secondary(
                 onTap: () => _navigateToHome(context),
-                text: 'Позже',
+                label: 'Позже',
               ),
               const Expanded(flex: 2, child: SizedBox()),
             ],

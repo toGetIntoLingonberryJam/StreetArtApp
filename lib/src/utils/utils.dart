@@ -47,11 +47,11 @@ class Utils {
           actions: [
             AppButton.primary(
               onTap: () => Navigator.pop(context, true),
-              text: acceptText,
+              label: acceptText,
             ),
             AppButton.secondary(
               onTap: () => Navigator.pop(context, false),
-              text: declineText,
+              label: declineText,
             ),
           ],
         ),

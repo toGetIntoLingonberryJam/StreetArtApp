@@ -60,14 +60,14 @@ class _CollectionPageState extends State<CollectionPage> {
       children: [
         Expanded(
           child: page == _Page.artworks
-              ? AppButton.primary(onTap: _switchToArtworks, text: 'Работы')
-              : AppButton.secondary(onTap: _switchToArtworks, text: 'Работы'),
+              ? AppButton.primary(onTap: _switchToArtworks, label: 'Работы')
+              : AppButton.secondary(onTap: _switchToArtworks, label: 'Работы'),
         ),
         const SizedBox(width: 16),
         Expanded(
           child: page == _Page.authors
-              ? AppButton.primary(onTap: _switchToAuthors, text: 'Авторы')
-              : AppButton.secondary(onTap: _switchToAuthors, text: 'Авторы'),
+              ? AppButton.primary(onTap: _switchToAuthors, label: 'Авторы')
+              : AppButton.secondary(onTap: _switchToAuthors, label: 'Авторы'),
         ),
       ],
     );

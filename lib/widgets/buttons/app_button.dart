@@ -4,17 +4,22 @@ import 'package:street_art_witnesses/constants.dart';
 class AppButton extends StatelessWidget {
   const AppButton.primary({
     super.key,
-    required this.text,
     required this.onTap,
-  }) : isPrimary = true;
+    this.label,
+    this.child,
+  })  : isPrimary = true,
+        assert((child != null && label == null) || (child == null && label != null));
 
   const AppButton.secondary({
     super.key,
-    required this.text,
     required this.onTap,
-  }) : isPrimary = false;
+    this.label,
+    this.child,
+  })  : isPrimary = false,
+        assert((child != null && label == null) || (child == null && label != null));
 
-  final String text;
+  final String? label;
+  final Widget? child;
   final VoidCallback? onTap;
   final bool isPrimary;
 
@@ -32,7 +37,7 @@ class AppButton extends StatelessWidget {
             borderRadius: kButtonBorderRadius,
           )),
       onPressed: onTap,
-      child: Text(text, style: TextStyles.button),
+      child: child ?? Text(label!, style: TextStyles.button),
     );
   }
 }

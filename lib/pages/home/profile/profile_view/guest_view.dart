@@ -60,7 +60,7 @@ class _LoginContainer extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 16),
-          AppButton.primary(onTap: login, text: 'Войти'),
+          AppButton.primary(onTap: login, label: 'Войти'),
         ],
       ),
     );

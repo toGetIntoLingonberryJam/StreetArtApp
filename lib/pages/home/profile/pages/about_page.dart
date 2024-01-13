@@ -27,9 +27,9 @@ class AboutPage extends StatelessWidget {
                 style: TextStyles.text,
               )),
               const SizedBox(height: 4),
-              AppButton.primary(onTap: () {}, text: 'Обратная связь'),
-              AppButton.primary(onTap: () {}, text: 'Связаться с нами'),
-              AppButton.secondary(onTap: () => exit(0), text: 'Откинуться'),
+              AppButton.primary(onTap: () {}, label: 'Обратная связь'),
+              AppButton.primary(onTap: () {}, label: 'Связаться с нами'),
+              AppButton.secondary(onTap: () => exit(0), label: 'Откинуться'),
               const SizedBox(height: 40),
               const AppContainer.small(
                 child: Row(

@@ -19,7 +19,7 @@ class AppErrorScreen extends StatelessWidget {
               const AppErrorWidget(),
               const Expanded(child: SizedBox()),
               AppButton.primary(
-                text: 'Назад',
+                label: 'Назад',
                 onTap: () => Navigator.pop(context),
               ),
             ],

@@ -85,7 +85,7 @@ class _RegisterViewState extends State<RegisterView> {
             },
           ),
           const SizedBox(height: 60),
-          AppButton.primary(onTap: _tryRegister, text: 'Зарегистрироваться'),
+          AppButton.primary(onTap: _tryRegister, label: 'Зарегистрироваться'),
         ],
       ),
     );

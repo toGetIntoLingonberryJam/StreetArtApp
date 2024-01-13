@@ -113,7 +113,7 @@ class _LoginWarningTile extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 10),
                   child: AppButton.primary(
                     onTap: () => _updateUser(context),
-                    text: 'Обновить',
+                    label: 'Обновить',
                   ),
                 );
               }

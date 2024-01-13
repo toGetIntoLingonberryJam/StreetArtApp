@@ -64,7 +64,7 @@ class _LoginViewState extends State<LoginView> {
             validator: Validator.get(Validate.password),
           ),
           const SizedBox(height: 60),
-          AppButton.primary(onTap: _tryLogin, text: 'Войти в профиль'),
+          AppButton.primary(onTap: _tryLogin, label: 'Войти в профиль'),
           const SizedBox(height: 20),
           _forgotPasswordButton(),
         ],

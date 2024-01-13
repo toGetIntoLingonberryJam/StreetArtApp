@@ -43,24 +43,19 @@ class _AuthPageState extends State<AuthPage> {
                 children: [
                   Expanded(
                     child: authForm == _Form.login
-                        ? AppButton.primary(onTap: _switchToLogin, text: 'Вход')
-                        : AppButton.secondary(
-                            onTap: _switchToLogin, text: 'Вход'),
+                        ? AppButton.primary(onTap: _switchToLogin, label: 'Вход')
+                        : AppButton.secondary(onTap: _switchToLogin, label: 'Вход'),
                   ),
                   const SizedBox(width: 20),
                   Expanded(
                     child: authForm == _Form.register
-                        ? AppButton.primary(
-                            onTap: _switchToRegister, text: 'Регистрация')
-                        : AppButton.secondary(
-                            onTap: _switchToRegister, text: 'Регистрация'),
+                        ? AppButton.primary(onTap: _switchToRegister, label: 'Регистрация')
+                        : AppButton.secondary(onTap: _switchToRegister, label: 'Регистрация'),
                   ),
                 ],
               ),
               const SizedBox(height: 48),
-              authForm == _Form.login
-                  ? const LoginView()
-                  : const RegisterView(),
+              authForm == _Form.login ? const LoginView() : const RegisterView(),
             ],
           ),
         ),

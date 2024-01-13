@@ -62,7 +62,7 @@ class __ChangePasswordFormState extends State<_ChangePasswordForm> {
         const SizedBox(height: 40),
         AppButton.primary(
           onTap: () => Utils.of(context).showMessage('Изменения сохранены'),
-          text: 'Сохранить',
+          label: 'Сохранить',
         ),
       ],
     ));
