@@ -44,10 +44,10 @@ abstract class UserTiles {
         notificationsCount: 100,
       );
 
-  static AppListTile addArtwork(BuildContext context) => AppListTile(
-        onTap: () => Navigator.of(context).push(MaterialPageRoute(
-          builder: (_) => const ModerationPage(),
-        )),
+  static AppListTile addArtwork(BuildContext context) => const AppListTile(
+        // onTap: () => Navigator.of(context).push(MaterialPageRoute(
+        //   builder: (_) => const ModerationPage(),
+        // )),
         iconData: Icons.add_circle_outline,
         text: 'Добавить работу',
       );
