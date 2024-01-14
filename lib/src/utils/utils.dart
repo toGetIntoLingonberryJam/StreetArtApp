@@ -87,7 +87,7 @@ class Utils {
   Future<bool> tryLaunchUrl(Uri url) async {
     final response = await showWarning(
       title: 'Переход по ссылке',
-      content: 'Вы собираетесь перейти на сайт: $url',
+      content: 'Вы собираетесь перейти по ссылке:\n$url',
       acceptText: 'Перейти',
       declineText: 'Отмена',
     );
