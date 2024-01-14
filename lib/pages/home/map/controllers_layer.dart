@@ -7,10 +7,16 @@ import 'package:street_art_witnesses/src/providers/location_provider.dart';
 import 'package:street_art_witnesses/widgets/other/app_loading_indicator.dart';
 import 'package:street_art_witnesses/widgets/other/app_text_form_field.dart';
 
-class ControllersLayer extends StatelessWidget {
-  ControllersLayer({super.key, required this.controller});
+class ControllersLayer extends StatefulWidget {
+  const ControllersLayer({super.key, required this.controller});
 
   final AnimatedMapController controller;
+
+  @override
+  State<ControllersLayer> createState() => _ControllersLayerState();
+}
+
+class _ControllersLayerState extends State<ControllersLayer> {
   final TextEditingController searchController = TextEditingController();
 
   void _fetchUserPosition(BuildContext context) async {
@@ -21,6 +27,12 @@ class ControllersLayer extends StatelessWidget {
         12,
       );
     }
+  }
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
   }
 
   @override
@@ -43,7 +55,7 @@ class ControllersLayer extends StatelessWidget {
               FloatingActionButton(
                 backgroundColor: Theme.of(context).colorScheme.onBackground,
                 heroTag: 'zoom_in',
-                onPressed: () => controller.animatedZoomIn(),
+                onPressed: () => widget.controller.animatedZoomIn(),
                 child: Icon(
                   Icons.add,
                   color: Theme.of(context).colorScheme.inverseSurface,
@@ -53,7 +65,7 @@ class ControllersLayer extends StatelessWidget {
               FloatingActionButton(
                 backgroundColor: Theme.of(context).colorScheme.onBackground,
                 heroTag: 'zoom_out',
-                onPressed: () => controller.animatedZoomOut(),
+                onPressed: () => widget.controller.animatedZoomOut(),
                 child: Icon(
                   Icons.remove,
                   color: Theme.of(context).colorScheme.inverseSurface,

@@ -18,7 +18,7 @@ class AboutPage extends StatelessWidget {
           padding: kPagePadding,
           child: Column(
             children: [
-              const AppAppbar(title: 'О Нас'),
+              const AppAppbar(title: 'О нас'),
               const SizedBox(height: 20),
               Image.asset('assets/jam_logo.png', width: 128, height: 128),
               const SizedBox(height: 40),

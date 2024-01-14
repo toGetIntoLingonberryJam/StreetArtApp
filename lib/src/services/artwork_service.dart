@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork_location.dart';
 import 'package:street_art_witnesses/src/models/author/author.dart';
 import 'package:street_art_witnesses/src/data/backend_datasource.dart';
 import 'package:street_art_witnesses/src/utils/logger.dart';
-import 'package:street_art_witnesses/src/utils/utils.dart';
 
 abstract class ArtworkService {
   static Future<List<Author>> getAuthors() async {
@@ -31,15 +29,14 @@ abstract class ArtworkService {
     }
   }
 
-  static Future<List<ArtworkLocation>> getLocations(BuildContext context) async {
+  static Future<List<ArtworkLocation>?> getLocations() async {
     final response = await BackendDataSource.get(
       '/v1/artworks/locations',
       requestType: RequestType.getArtworkLocations,
     );
 
     if (response == null) {
-      if (context.mounted) Utils.of(context).showError('Не удалось загрузить работы');
-      return [];
+      return null;
     } else {
       final List<ArtworkLocation> locations = [];
       final List<dynamic> dataList = response.data;
@@ -47,7 +44,6 @@ abstract class ArtworkService {
       for (final locationData in dataList) {
         locations.add(ArtworkLocation.fromJson(locationData));
       }
-
       return locations;
     }
   }

@@ -9,9 +9,12 @@ abstract class MapTask {
   void complete(BuildContext context);
 }
 
-final class MapTestTask extends MapTask {
+final class MapMessageTask extends MapTask {
+  final String message;
+  MapMessageTask(this.message);
+
   @override
-  void complete(BuildContext context) => Utils.of(context).showMessage('Test MapTask');
+  void complete(BuildContext context) => Utils.of(context).showMessage(message);
 }
 
 final class MapRouteTask extends MapTask {

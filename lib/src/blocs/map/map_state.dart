@@ -14,3 +14,8 @@ final class MapNavigator extends MapState {
   final List<LatLng> route;
   MapNavigator(this.route);
 }
+
+final class MapError extends MapState {
+  final String error;
+  MapError(this.error);
+}
