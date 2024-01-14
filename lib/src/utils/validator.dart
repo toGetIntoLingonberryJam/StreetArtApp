@@ -1,4 +1,4 @@
-enum Validate { notEmpty, email, password, login, year }
+enum Validate { notEmpty, email, password, login, year, link }
 
 typedef ValidateFunction = String? Function(String?)?;
 
@@ -15,6 +15,8 @@ abstract class Validator {
         return _validateNotEmpty;
       case Validate.year:
         return _validateYear;
+      case Validate.link:
+        return _validateLink;
     }
   }
 
@@ -46,10 +48,20 @@ abstract class Validator {
     return null;
   }
 
-  static String? _validateYear(String? string) {
-    if (string == null || string.isEmpty) {
-      return 'Введите год';
+  static String? _validateLink(String? string) {
+    if (string == null || string.isEmpty) return null;
+    final isValid = Uri.tryParse(string)?.isAbsolute;
+    if (isValid != true) {
+      return 'Укажите правильную ссылку';
     }
+    return null;
+  }
+
+  static String? _validateYear(String? string) {
+    if (string == null || string.isEmpty) return null;
+    // if (string == null || string.isEmpty) {
+    //   return 'Введите год';
+    // }
     final year = int.tryParse(string);
     if (year == null) {
       return 'Введите число';

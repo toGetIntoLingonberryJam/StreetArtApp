@@ -1,13 +1,7 @@
 class ArtworkImage {
-  const ArtworkImage({
-    required this.imageUrl,
-    required this.id,
-  });
+  const ArtworkImage({required this.imageUrl});
 
-  ArtworkImage.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        imageUrl = json['image_url'];
+  ArtworkImage.fromJson(Map<String, dynamic> json) : imageUrl = json['image_url'];
 
   final String imageUrl;
-  final int id;
 }

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/pages/artwork/artwork_page.dart';
 import 'package:street_art_witnesses/src/blocs/moderation/moderation_cubit.dart';
+import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
 import 'package:street_art_witnesses/src/utils/validator.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
+import 'package:street_art_witnesses/widgets/map/location_picker.dart';
 import 'package:street_art_witnesses/widgets/other/app_appbar.dart';
 import 'package:street_art_witnesses/widgets/other/app_text_form_field.dart';
 
@@ -35,7 +38,11 @@ class _ModerationEditScreenState extends State<ModerationEditScreen> {
   late final _screens = <_ModerationEditView>[
     _MainInfoView(onTapNext: () => _moveToPage(1)),
     _AdditionalInfoView(onTapNext: () => _moveToPage(2)),
-    _PreviewView(onTapNext: () => context.read<ModerationCubit>().showThanks()),
+    _PreviewView(
+      onTapNext: () => context.read<ModerationCubit>().sendToModeration(
+            token: context.read<UserProvider>().user.token!,
+          ),
+    ),
   ];
 
   @override
@@ -88,23 +95,42 @@ class _MainInfoView extends StatefulWidget implements _ModerationEditView {
 class _MainInfoViewState extends State<_MainInfoView> {
   final nameController = TextEditingController();
   final addressController = TextEditingController();
+  final locationController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  LatLng? location;
 
   @override
   void dispose() {
     nameController.dispose();
     addressController.dispose();
+    locationController.dispose();
     super.dispose();
   }
 
-  void _validate() {
+  void _save() async {
     if (_formKey.currentState?.validate() ?? false) {
-      context.read<ModerationCubit>().saveMainInfo(
-            title: nameController.text.trim(),
-            address: addressController.text.trim(),
-          );
-      widget.onTapNext();
+      if (context.mounted) {
+        context.read<ModerationCubit>().saveMainInfo(
+              title: nameController.text.trim(),
+              address: addressController.text.trim(),
+              location: location!,
+            );
+        widget.onTapNext();
+      }
     }
+  }
+
+  void _showLocationPicker() async {
+    final LatLng? loc = await Navigator.of(context).push(MaterialPageRoute(
+      builder: (_) => const LocationPicker(),
+    ));
+    if (loc != null) {
+      location = loc;
+      locationController.text =
+          '${loc.latitude.toStringAsFixed(4)}, ${loc.longitude.toStringAsFixed(4)}';
+    }
+    _formKey.currentState?.validate();
   }
 
   @override
@@ -147,7 +173,15 @@ class _MainInfoViewState extends State<_MainInfoView> {
                       const SizedBox(height: 16),
                       const Text('Местоположение', style: TextStyles.headline1),
                       const SizedBox(height: 8),
-                      const AppButton.primary(label: 'Указать на карте', onTap: null),
+                      GestureDetector(
+                        onTap: _showLocationPicker,
+                        child: AppTextFormField(
+                          enabled: false,
+                          controller: locationController,
+                          hintText: 'Укажите координаты работы',
+                          validator: Validator.get(Validate.notEmpty),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -155,7 +189,7 @@ class _MainInfoViewState extends State<_MainInfoView> {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-              child: AppButton.primary(label: 'Далее', onTap: _validate),
+              child: AppButton.primary(label: 'Далее', onTap: _save),
             ),
           ],
         ),
@@ -176,7 +210,7 @@ class _AdditionalInfoView extends StatefulWidget implements _ModerationEditView 
 }
 
 class _AdditionalInfoViewState extends State<_AdditionalInfoView> {
-  final _formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
   final yearController = TextEditingController();
   final descriptionController = TextEditingController();
   final linksController = TextEditingController();
@@ -189,11 +223,31 @@ class _AdditionalInfoViewState extends State<_AdditionalInfoView> {
     super.dispose();
   }
 
-  void _validate() {
-    if (_formKey.currentState?.validate() ?? false) {
+  bool allSet() {
+    return yearController.text.isNotEmpty &&
+        descriptionController.text.isNotEmpty &&
+        linksController.text.isNotEmpty;
+  }
+
+  void save() async {
+    if (formKey.currentState?.validate() ?? false) {
+      if (!allSet()) {
+        final proceed = await Utils.of(context).showWarning(
+          title: 'Продолжить?',
+          content: 'Вы не заполнили все дополнительные поля. Уверены, что хотите продолжить?',
+          acceptText: 'Продолжить',
+          declineText: 'Отмена',
+        );
+        if (proceed != true || !context.mounted) return;
+      }
+      final year = yearController.text.trim();
+      final desciption = descriptionController.text.trim();
+      final link = linksController.text.trim();
+
       context.read<ModerationCubit>().saveAdditionalInfo(
-            year: yearController.text.trim(),
-            description: descriptionController.text.trim(),
+            year: year.isEmpty ? null : year,
+            description: desciption.isEmpty ? null : desciption,
+            link: link.isEmpty ? null : link,
           );
       widget.onTapNext();
     }
@@ -209,7 +263,7 @@ class _AdditionalInfoViewState extends State<_AdditionalInfoView> {
               child: SingleChildScrollView(
                 padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
                 child: Form(
-                  key: _formKey,
+                  key: formKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -230,15 +284,15 @@ class _AdditionalInfoViewState extends State<_AdditionalInfoView> {
                       AppTextFormField(
                         controller: descriptionController,
                         hintText: 'Введите описание',
-                        validator: Validator.get(Validate.notEmpty),
+                        validator: null,
                       ),
                       const SizedBox(height: 16),
                       const Text('Интересные ссылки', style: TextStyles.headline1),
                       const SizedBox(height: 8),
                       AppTextFormField(
                         controller: linksController,
-                        hintText: 'Введите ссылки',
-                        validator: Validator.get(Validate.notEmpty),
+                        hintText: 'Введите ссылку',
+                        validator: Validator.get(Validate.link),
                       ),
                     ],
                   ),
@@ -249,7 +303,7 @@ class _AdditionalInfoViewState extends State<_AdditionalInfoView> {
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
               child: AppButton.primary(
                 label: 'Перейти к проверке',
-                onTap: _validate,
+                onTap: save,
               ),
             ),
           ],
@@ -267,7 +321,7 @@ class _PreviewView extends StatelessWidget implements _ModerationEditView {
   @override
   String get title => 'Предпросмотр';
 
-  void _send(BuildContext context) async {
+  void send0(BuildContext context) async {
     final send = await Utils.of(context).showWarning(
           title: 'Отправление на модерацию',
           content: 'Пожалуйста, убедитесь в правильности заполненных данных перед отправкой',
@@ -297,7 +351,7 @@ class _PreviewView extends StatelessWidget implements _ModerationEditView {
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
               child: AppButton.primary(
                 label: 'Отправить на модерацию',
-                onTap: () => _send(context),
+                onTap: () => send0(context),
               ),
             ),
           ],

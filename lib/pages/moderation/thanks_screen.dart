@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/constants.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_custom_button.dart';
+import 'package:street_art_witnesses/widgets/other/app_appbar.dart';
 import 'package:street_art_witnesses/widgets/skeletons/app_placeholder.dart';
 
 class ModerationThanksScreen extends StatelessWidget {
@@ -14,6 +15,7 @@ class ModerationThanksScreen extends StatelessWidget {
           padding: kPagePadding,
           child: Column(
             children: [
+              const AppAppbar(title: ''),
               const SizedBox(height: 60),
               ClipRRect(
                 borderRadius: BorderRadius.circular(kContainerRadius),

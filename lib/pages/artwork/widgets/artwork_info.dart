@@ -20,7 +20,7 @@ class ArtworkInfo extends StatelessWidget {
           const SizedBox(height: 4),
           Text(artwork.title, style: TextStyles.headline1),
           const SizedBox(height: 8),
-          Text('${artwork.yearCreated}', style: TextStyles.caption),
+          Text('${artwork.yearCreated ?? 'Год неизвестен'}', style: TextStyles.caption),
         ],
       ),
     );

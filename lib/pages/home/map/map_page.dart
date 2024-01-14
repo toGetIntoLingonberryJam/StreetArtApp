@@ -59,9 +59,7 @@ class _MapView extends StatelessWidget {
               initialCenter: const LatLng(56.8519, 60.6122),
             ),
             children: [
-              TileLayer(
-                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-              ),
+              TileLayer(urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'),
               BlocBuilder<MapCubit, MapState>(
                 builder: (context, state) {
                   if (state is MapNavigator) {

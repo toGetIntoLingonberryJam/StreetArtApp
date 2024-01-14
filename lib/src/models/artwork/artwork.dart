@@ -36,7 +36,7 @@ class Artwork {
             json['links'] == null ? null : (json['links'] as List).map((e) => e as String).toList(),
         images = json['images'] == null
             ? null
-            : (json['images'] as List).map((json) => ArtworkImage.fromJson(json)).toList();
+            : (json['images'] as List).map((imgJson) => ArtworkImage.fromJson(imgJson)).toList();
 
   final String title;
   final int? yearCreated;
