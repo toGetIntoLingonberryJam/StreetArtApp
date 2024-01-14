@@ -5,7 +5,7 @@ import 'package:street_art_witnesses/pages/artwork/widgets/description_info.dart
 import 'package:street_art_witnesses/pages/artwork/widgets/festival_info.dart';
 import 'package:street_art_witnesses/pages/artwork/widgets/artwork_info.dart';
 import 'package:street_art_witnesses/pages/artwork/widgets/links_info.dart';
-import 'package:street_art_witnesses/pages/artwork/widgets/state_info.dart';
+import 'package:street_art_witnesses/pages/artwork/widgets/status_info.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork_image.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
@@ -45,10 +45,10 @@ class ArtworkPage extends StatelessWidget {
                     const SizedBox(height: 8),
                     DescriptionInfo(artwork.description),
                     const SizedBox(height: 8),
-                    const StateInfo(),
+                    StatusInfo(artwork.status),
                     const SizedBox(height: 8),
-                    const LinksInfo(),
-                    const SizedBox(height: 8),
+                    LinksInfo(artwork.links),
+                    if (artwork.links != null) const SizedBox(height: 8),
                     const AppContainer.small(
                       child: Text(
                         'Добавлено: юзернейм',

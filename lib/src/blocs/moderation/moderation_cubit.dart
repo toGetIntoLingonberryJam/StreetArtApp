@@ -37,7 +37,7 @@ class ModerationCubit extends Cubit<ModerationState> {
         sourceDescription: '',
         artistId: null,
         festivalId: null,
-        status: 'status',
+        status: ArtworkStatus.unknown,
         id: -1,
         addedByUserId: -1,
         updatedAt: '-',
@@ -48,6 +48,7 @@ class ModerationCubit extends Cubit<ModerationState> {
           longitude: 0,
           previewUrl: null,
         ),
+        links: null,
         images: null,
       );
 }

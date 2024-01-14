@@ -1,6 +1,8 @@
 import 'package:street_art_witnesses/src/models/artwork/artwork_image.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork_location.dart';
 
+enum ArtworkStatus { existing, destroyed, overpainted, unknown }
+
 class Artwork {
   const Artwork({
     required this.title,
@@ -15,6 +17,7 @@ class Artwork {
     required this.updatedAt,
     required this.location,
     required this.images,
+    required this.links,
   });
 
   Artwork.fromJson(Map<String, dynamic> json)
@@ -24,11 +27,13 @@ class Artwork {
         sourceDescription = json['source_description'],
         artistId = json['artist_id'],
         festivalId = json['festival_id'],
-        status = json['status'],
+        status = _stringToStatus(json['status']),
         id = json['id'],
         addedByUserId = json['added_by_user_id'],
         updatedAt = json['updated_at'],
         location = ArtworkLocation.fromJson(json['location']),
+        links =
+            json['links'] == null ? null : (json['links'] as List).map((e) => e as String).toList(),
         images = json['images'] == null
             ? null
             : (json['images'] as List).map((json) => ArtworkImage.fromJson(json)).toList();
@@ -41,11 +46,19 @@ class Artwork {
   final int? artistId;
   final int? festivalId;
 
-  final String status;
+  final ArtworkStatus status;
   final int id;
   final int addedByUserId;
   final String updatedAt;
 
   final ArtworkLocation location;
   final List<ArtworkImage>? images;
+  final List<String>? links;
+}
+
+ArtworkStatus _stringToStatus(String string) {
+  for (final status in ArtworkStatus.values) {
+    if (string == status.name) return status;
+  }
+  return ArtworkStatus.unknown;
 }

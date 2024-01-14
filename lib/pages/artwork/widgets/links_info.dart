@@ -4,14 +4,13 @@ import 'package:street_art_witnesses/widgets/containers/app_container.dart';
 import 'package:street_art_witnesses/widgets/other/app_link.dart';
 
 class LinksInfo extends StatelessWidget {
-  const LinksInfo({
-    super.key,
-  });
+  const LinksInfo(this.links, {super.key});
+
+  final List<String>? links;
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Make a UrlParser
-    final url = Uri.parse('https://google.com/');
+    if (links == null) return const SizedBox();
 
     return AppContainer(
       child: Column(
@@ -19,13 +18,11 @@ class LinksInfo extends StatelessWidget {
         children: [
           const Text('Интересные ссылки', style: TextStyles.headline1),
           const SizedBox(height: 8),
-          AppLink(url: url, name: 'Ссылка'),
-          const SizedBox(height: 4),
-          AppLink(url: url, name: 'Ссылка'),
-          const SizedBox(height: 4),
-          AppLink(url: url, name: 'Ссылка'),
-          const SizedBox(height: 4),
-          AppLink(url: url, name: 'Ссылка'),
+          for (int idx = 0; idx < links!.length; idx++)
+            Padding(
+              padding: EdgeInsets.only(bottom: idx == links!.length - 1 ? 0 : 4),
+              child: AppLink(url: Uri.parse(links![idx]), name: links![idx]),
+            ),
         ],
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/constants.dart';
+import 'package:street_art_witnesses/src/utils/logger.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
 import 'package:street_art_witnesses/widgets/other/app_loading_indicator.dart';
 import 'package:street_art_witnesses/widgets/snackbars/default_snackbar.dart';
@@ -78,7 +79,8 @@ class Utils {
       await future;
       if (dialogContext.mounted) Navigator.of(dialogContext).pop();
       return future;
-    } catch (e) {
+    } on Error catch (e) {
+      Logger.error(e);
       if (dialogContext.mounted) Navigator.of(dialogContext).pop();
       return null;
     }
