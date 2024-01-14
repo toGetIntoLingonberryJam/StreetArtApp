@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:street_art_witnesses/pages/home/collection/collection_page.dart';
 import 'package:street_art_witnesses/pages/home/map/map_page.dart';
 import 'package:street_art_witnesses/pages/home/profile/profile_page.dart';
+import 'package:street_art_witnesses/src/blocs/main_menu/main_menu_cubit.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,37 +13,34 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int pageIndex = 2;
-  late final PageController pageController = PageController(
-    initialPage: pageIndex,
+  late final _pageController = PageController(
+    initialPage: context.read<MainMenuCubit>().state.pageIndex,
   );
 
   @override
-  void dispose() {
-    pageController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: PageView(
-        controller: pageController,
-        physics: const NeverScrollableScrollPhysics(),
-        children: _pages,
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Theme.of(context).colorScheme.onBackground,
-        type: BottomNavigationBarType.fixed,
-        showUnselectedLabels: true,
-        selectedFontSize: 12,
-        currentIndex: pageIndex,
-        selectedItemColor: Theme.of(context).colorScheme.inverseSurface,
-        onTap: (newIndex) => setState(() {
-          pageIndex = newIndex;
-          pageController.jumpToPage(pageIndex);
-        }),
-        items: _navbarItems,
+    return BlocListener<MainMenuCubit, MainMenuState>(
+      listener: (context, state) => _pageController.jumpToPage(state.pageIndex),
+      child: Scaffold(
+        body: PageView(
+          controller: _pageController,
+          physics: const NeverScrollableScrollPhysics(),
+          children: _pages,
+        ),
+        bottomNavigationBar: BlocBuilder<MainMenuCubit, MainMenuState>(
+          builder: (context, state) {
+            return BottomNavigationBar(
+              backgroundColor: Theme.of(context).colorScheme.onBackground,
+              type: BottomNavigationBarType.fixed,
+              showUnselectedLabels: true,
+              selectedFontSize: 12,
+              currentIndex: state.pageIndex,
+              selectedItemColor: Theme.of(context).colorScheme.inverseSurface,
+              onTap: (index) => context.read<MainMenuCubit>().showPage(index),
+              items: _navbarItems,
+            );
+          },
+        ),
       ),
     );
   }
