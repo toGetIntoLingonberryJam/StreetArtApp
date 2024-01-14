@@ -51,8 +51,6 @@ class AddressInfo extends StatelessWidget {
                 const Text('Адрес:', style: TextStyles.headline2),
                 const SizedBox(height: 10),
                 Text(artwork.location.address, style: TextStyles.textAdditional),
-                const SizedBox(height: 10),
-                const Text('N метров от вас', style: TextStyles.caption),
               ],
             ),
           ),

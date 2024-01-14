@@ -17,6 +17,8 @@ class MapCubit extends Cubit<MapState> {
 
   void addTask(MapTask task) => emit(MapTaskState(task));
 
+  void setRoute(List<LatLng> route) => emit(MapNavigator(route));
+
   void loadMarkers() async {
     final locations = await ArtworkService.getLocations();
     if (locations != null) {
@@ -25,8 +27,6 @@ class MapCubit extends Cubit<MapState> {
       emit(MapError('Не удалось загрузить работы'));
     }
   }
-
-  void setRoute(List<LatLng> route) => emit(MapNavigator(route));
 
   void _setMarkers(List<Marker> markers) {
     _markers = markers;

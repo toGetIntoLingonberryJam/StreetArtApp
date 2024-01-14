@@ -44,43 +44,50 @@ class ArtworkPage extends StatelessWidget {
                     AddressInfo(artwork: artwork, preview: preview),
                     const SizedBox(height: 8),
                     DescriptionInfo(artwork.description),
-                    const SizedBox(height: 8),
+                    if (artwork.description != null) const SizedBox(height: 8),
                     StatusInfo(artwork.status),
                     const SizedBox(height: 8),
                     LinksInfo(artwork.links),
                     if (artwork.links != null) const SizedBox(height: 8),
-                    const AppContainer.small(
-                      child: Text(
-                        'Добавлено: юзернейм',
-                        style: TextStyles.headline2,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    AppContainer.small(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
-                            'Есть неточности? ',
-                            style: TextStyles.headline2,
-                            textAlign: TextAlign.center,
-                          ),
-                          Text(
-                            'Напишите',
-                            style: TextStyles.headline2.copyWith(
-                              decoration: TextDecoration.underline,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      ),
-                    ),
+                    // const AppContainer.small(
+                    //   child: Text('Добавлено: юзернейм', style: TextStyles.headline2),
+                    // // ),
+                    // const SizedBox(height: 8),
+                    const _WriteUsWidget(),
+                    const SizedBox(height: 40),
                   ],
                 ),
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _WriteUsWidget extends StatelessWidget {
+  const _WriteUsWidget();
+
+  @override
+  Widget build(BuildContext context) {
+    return AppContainer.small(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text(
+            'Есть неточности? ',
+            style: TextStyles.headline2,
+            textAlign: TextAlign.center,
+          ),
+          Text(
+            'Напишите',
+            style: TextStyles.headline2.copyWith(
+              decoration: TextDecoration.underline,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ],
       ),
     );
   }
@@ -113,7 +120,7 @@ class _ArtworkImageSlider extends StatefulWidget {
 class _ArtworkImageSliderState extends State<_ArtworkImageSlider> {
   @override
   Widget build(BuildContext context) {
-    if (widget.images == null) {
+    if (widget.images == null || widget.images!.isEmpty) {
       return const Padding(
         padding: EdgeInsets.fromLTRB(10, 0, 10, 8),
         child: AppContainer.small(

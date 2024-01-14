@@ -39,9 +39,9 @@ class Artwork {
             : (json['images'] as List).map((json) => ArtworkImage.fromJson(json)).toList();
 
   final String title;
-  final int yearCreated;
-  final String description;
-  final String sourceDescription;
+  final int? yearCreated;
+  final String? description;
+  final String? sourceDescription;
 
   final int? artistId;
   final int? festivalId;
