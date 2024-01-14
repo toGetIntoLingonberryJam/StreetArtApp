@@ -26,7 +26,7 @@ class ModeratorView extends StatelessWidget {
           const SizedBox(height: 8),
           UserTiles.publications(context),
           const SizedBox(height: 8),
-          UserTiles.publicationApplications(context),
+          UserTiles.applications(context),
           const SizedBox(height: 8),
           UserTiles.settings(context),
           const SizedBox(height: 8),

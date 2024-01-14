@@ -20,6 +20,15 @@ class Artwork {
     required this.links,
   });
 
+  static Artwork fromTicket(Map<String, dynamic> data) {
+    final artworkData = data['artwork_data'];
+    artworkData['id'] = data['artwork_id'];
+    artworkData['added_by_user_id'] = data['user_id'];
+    artworkData['updated_at'] = data['updated_at'];
+    artworkData['location']['artwork_id'] = data['artwork_id'] ?? -1;
+    return Artwork.fromJson(artworkData);
+  }
+
   Artwork.fromJson(Map<String, dynamic> json)
       : title = json['title'],
         yearCreated = json['year_created'],
@@ -28,7 +37,7 @@ class Artwork {
         artistId = json['artist_id'],
         festivalId = json['festival_id'],
         status = _stringToStatus(json['status']),
-        id = json['id'],
+        id = json['id'] ?? -1,
         addedByUserId = json['added_by_user_id'],
         updatedAt = json['updated_at'],
         location = ArtworkLocation.fromJson(json['location']),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:street_art_witnesses/pages/applications/applications_page.dart';
 import 'package:street_art_witnesses/pages/home/profile/pages/about_page.dart';
 import 'package:street_art_witnesses/pages/home/profile/pages/change_password_page.dart';
 import 'package:street_art_witnesses/pages/home/profile/pages/settings_page.dart';
@@ -38,16 +39,19 @@ abstract class UserTiles {
         notificationsCount: 1,
       );
 
-  static AppListTile publicationApplications(BuildContext context) => const AppListTile(
+  static AppListTile applications(BuildContext context) => AppListTile(
+        onTap: () => Navigator.of(context).push(MaterialPageRoute(
+          builder: (_) => const ApplicationsPage(),
+        )),
         iconData: Icons.filter_list,
         text: 'Заявки на публикацию',
         notificationsCount: 100,
       );
 
-  static AppListTile addArtwork(BuildContext context) => const AppListTile(
-        // onTap: () => Navigator.of(context).push(MaterialPageRoute(
-        //   builder: (_) => const ModerationPage(),
-        // )),
+  static AppListTile addArtwork(BuildContext context) => AppListTile(
+        onTap: () => Navigator.of(context).push(MaterialPageRoute(
+          builder: (_) => const ModerationPage(),
+        )),
         iconData: Icons.add_circle_outline,
         text: 'Добавить работу',
       );

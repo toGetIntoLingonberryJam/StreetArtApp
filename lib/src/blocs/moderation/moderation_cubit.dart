@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
@@ -5,8 +7,8 @@ import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/src/data/backend_datasource.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork_location.dart';
-import 'package:street_art_witnesses/src/utils/error_handler.dart';
 import 'package:street_art_witnesses/src/utils/logger.dart';
+import 'package:street_art_witnesses/src/utils/utils.dart';
 
 part 'moderation_state.dart';
 
@@ -25,18 +27,22 @@ class ModerationCubit extends Cubit<ModerationState> {
   final _data = ModerationData();
 
   void showEdit() => emit(ModerationEdit());
-  void sendToModeration({required String token}) async {
-    final result = await ErrorHandler.handleApiRequest<Response>(
-      BackendDataSource.post('/v1/tickets/artwork',
-          requestType: RequestType.unknown,
-          data: {'artwork_ticket_schema': _getTicketData(preview)},
-          options: Options(
-            headers: {'Authorization': 'Bearer $token'},
-            // contentType: 'multipart/form-data',
-          )),
-      onDioError: (e) => emit(ModerationError()),
+  void sendToModeration(BuildContext context, {required String token}) async {
+    final formData = FormData.fromMap({
+      'artwork_ticket_schema': jsonEncode(_getTicketData(preview)),
+    });
+
+    final future = BackendDataSource.post(
+      '/v1/tickets/artwork',
+      requestType: RequestType.unknown,
+      data: formData,
+      options: Options(
+        headers: {'Authorization': 'Bearer $token'},
+        contentType: Headers.multipartFormDataContentType,
+      ),
     );
-    if (result != null) emit(ModerationThanks());
+    final result = await Utils.of(context).showLoading(future);
+    emit(result == null ? ModerationError() : ModerationThanks());
   }
 
   void saveMainInfo({required String title, required String address, required LatLng location}) {

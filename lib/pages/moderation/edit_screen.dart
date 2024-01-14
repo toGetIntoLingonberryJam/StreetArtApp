@@ -40,6 +40,7 @@ class _ModerationEditScreenState extends State<ModerationEditScreen> {
     _AdditionalInfoView(onTapNext: () => _moveToPage(2)),
     _PreviewView(
       onTapNext: () => context.read<ModerationCubit>().sendToModeration(
+            context,
             token: context.read<UserProvider>().user.token!,
           ),
     ),
@@ -330,12 +331,7 @@ class _PreviewView extends StatelessWidget implements _ModerationEditView {
         ) ??
         false;
 
-    if (send && context.mounted) {
-      await Utils.of(context).showLoading(
-        Future.delayed(const Duration(seconds: 1)),
-      );
-      onTapNext();
-    }
+    if (send && context.mounted) onTapNext();
   }
 
   @override

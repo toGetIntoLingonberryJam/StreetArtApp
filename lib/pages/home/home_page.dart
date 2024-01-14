@@ -4,6 +4,7 @@ import 'package:street_art_witnesses/pages/home/collection/collection_page.dart'
 import 'package:street_art_witnesses/pages/home/map/map_page.dart';
 import 'package:street_art_witnesses/pages/home/profile/profile_page.dart';
 import 'package:street_art_witnesses/src/blocs/main_menu/main_menu_cubit.dart';
+import 'package:street_art_witnesses/src/blocs/map/map_cubit.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -36,7 +37,10 @@ class _HomePageState extends State<HomePage> {
               selectedFontSize: 12,
               currentIndex: state.pageIndex,
               selectedItemColor: Theme.of(context).colorScheme.inverseSurface,
-              onTap: (index) => context.read<MainMenuCubit>().showPage(index),
+              onTap: (index) {
+                context.read<MapCubit>().loadMarkers();
+                context.read<MainMenuCubit>().showPage(index);
+              },
               items: _navbarItems,
             );
           },

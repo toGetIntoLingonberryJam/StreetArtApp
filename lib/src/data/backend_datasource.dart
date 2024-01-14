@@ -43,7 +43,7 @@ abstract class BackendDataSource {
 
   static Future<Response?> post(
     String url, {
-    Map<String, dynamic>? data,
+    dynamic data,
     Map<String, dynamic>? queryParameters,
     Options? options,
     required RequestType requestType,
