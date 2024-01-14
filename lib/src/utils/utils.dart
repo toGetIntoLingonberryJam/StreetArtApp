@@ -57,7 +57,7 @@ class Utils {
         ),
       );
 
-  Future<T> showLoading<T>(Future<T> future) async {
+  Future<T?> showLoading<T>(Future<T> future) async {
     // Dismissing keyboard if opened
     FocusManager.instance.primaryFocus?.unfocus();
     BuildContext dialogContext = context;
@@ -74,9 +74,14 @@ class Utils {
       },
     );
 
-    await future;
-    if (dialogContext.mounted) Navigator.of(dialogContext).pop();
-    return future;
+    try {
+      await future;
+      if (dialogContext.mounted) Navigator.of(dialogContext).pop();
+      return future;
+    } catch (e) {
+      if (dialogContext.mounted) Navigator.of(dialogContext).pop();
+      return null;
+    }
   }
 
   Future<bool> tryLaunchUrl(Uri url) async {
@@ -88,7 +93,7 @@ class Utils {
     );
 
     if (response != null && response == true && context.mounted) {
-      final success = await showLoading(launchUrl(url));
+      final success = await showLoading(launchUrl(url)) ?? false;
 
       if (!success) {
         showError('Could not launch $url');

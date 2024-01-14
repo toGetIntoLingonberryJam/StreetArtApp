@@ -59,7 +59,7 @@ class _LoginWarningTile extends StatelessWidget {
     final userFuture = UserProvider.getCurrentUser();
 
     final updatedUser = await Utils.of(context).showLoading(userFuture);
-    if (context.mounted) {
+    if (context.mounted && updatedUser != null) {
       context.read<UserProvider>().setUser(updatedUser);
     }
   }

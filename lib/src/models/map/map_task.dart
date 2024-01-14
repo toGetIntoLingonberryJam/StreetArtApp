@@ -25,6 +25,6 @@ final class MapRouteTask extends MapTask {
     // const start = LatLng(56.8509, 60.639);
 
     final route = await Utils.of(context).showLoading(RoutesService.getRoute(start, artworkId));
-    if (context.mounted) context.read<MapCubit>().setRoute(route);
+    if (context.mounted && route != null) context.read<MapCubit>().setRoute(route);
   }
 }

@@ -22,6 +22,11 @@ class AddressInfo extends StatelessWidget {
 
   void _buildRoute(BuildContext context) async {
     final userPosition = await Utils.of(context).showLoading(LocationService.getCurrentPosition());
+    if (!context.mounted) return;
+    if (userPosition == null) {
+      return Utils.of(context).showError('Не удалось получить вашу геолокацию');
+    }
+
     final start = LatLng(userPosition.latitude, userPosition.longitude);
     if (!context.mounted) return;
 
