@@ -41,7 +41,8 @@ class ApplicationsPage extends StatelessWidget {
                     future: future,
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.done) {
-                        final List json = snapshot.data!.data;
+                        final List? json = snapshot.data?.data;
+                        if (json == null) return const SizedBox();
                         final data = json
                             .where((e) => e['ticket_type'] == 'create' && e['status'] == 'pending')
                             .toList();
