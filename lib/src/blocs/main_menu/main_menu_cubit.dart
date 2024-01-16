@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'main_menu_state.dart';
 
 class MainMenuCubit extends Cubit<MainMenuState> {
-  MainMenuCubit() : super(const MainMenuProfile());
+  MainMenuCubit() : super(const MainMenuMap());
 
   void showMap() => emit(const MainMenuMap());
   void showCollection() => emit(const MainMenuCollection());
