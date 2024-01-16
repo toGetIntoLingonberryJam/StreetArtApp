@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_animations/flutter_map_animations.dart';
+import 'package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_tile_provider.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/pages/home/map/controllers_layer.dart';
 import 'package:street_art_witnesses/src/blocs/map/map_cubit.dart';
@@ -59,7 +60,10 @@ class _MapView extends StatelessWidget {
               initialCenter: const LatLng(56.8519, 60.6122),
             ),
             children: [
-              TileLayer(urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'),
+              TileLayer(
+                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                tileProvider: CancellableNetworkTileProvider(),
+              ),
               BlocBuilder<MapCubit, MapState>(
                 builder: (context, state) {
                   if (state is MapNavigator) {
