@@ -21,7 +21,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<MainMenuCubit, MainMenuState>(
-      listener: (context, state) => _pageController.jumpToPage(state.pageIndex),
+      listener: (context, state) {
+        _pageController.jumpToPage(state.pageIndex);
+        if (state is MainMenuMap) context.read<MapCubit>().loadMarkers();
+      },
       child: Scaffold(
         body: PageView(
           controller: _pageController,
@@ -38,7 +41,6 @@ class _HomePageState extends State<HomePage> {
               currentIndex: state.pageIndex,
               selectedItemColor: Theme.of(context).colorScheme.inverseSurface,
               onTap: (index) {
-                context.read<MapCubit>().loadMarkers();
                 context.read<MainMenuCubit>().showPage(index);
               },
               items: _navbarItems,
