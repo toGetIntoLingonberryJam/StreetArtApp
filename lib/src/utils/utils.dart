@@ -97,7 +97,7 @@ class Utils {
       final success = await showLoading(launchUrl(url)) ?? false;
 
       if (!success) {
-        showError('Could not launch $url');
+        showError('Не удалось открыть ссылку $url');
         return false;
       }
     }

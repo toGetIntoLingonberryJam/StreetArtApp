@@ -29,14 +29,12 @@ class AboutPage extends StatelessWidget {
               const _VersionWidget(),
               const SizedBox(height: 12),
               AppButton.primary(
-                onTap: () => Utils.of(context).tryLaunchUrl(
-                  Uri.parse('https://forms.gle/s64bkob2reo6d3th8'),
-                ),
+                onTap: () => Utils.of(context).tryLaunchUrl(reportLink),
                 label: 'Обратная связь',
               ),
               const SizedBox(height: 8),
               AppButton.primary(
-                onTap: () => Utils.of(context).tryLaunchUrl(Uri.parse('https://t.me/sfchv1')),
+                onTap: () => Utils.of(context).tryLaunchUrl(contactLink),
                 label: 'Связаться с нами',
               ),
             ],

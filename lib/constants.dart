@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+final reportLink = Uri.parse('https://forms.gle/s64bkob2reo6d3th8');
+final contactLink = Uri.parse('https://t.me/sfchv1');
+
 // Paddings
 const kPagePadding = EdgeInsets.all(20);
 const kDensePagePadding = EdgeInsets.symmetric(horizontal: 10, vertical: 20);

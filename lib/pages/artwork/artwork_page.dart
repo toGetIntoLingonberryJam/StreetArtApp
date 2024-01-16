@@ -11,6 +11,7 @@ import 'package:street_art_witnesses/src/models/artwork/artwork_image.dart';
 import 'package:street_art_witnesses/src/utils/utils.dart';
 import 'package:street_art_witnesses/widgets/containers/app_container.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_icon_button.dart';
+import 'package:street_art_witnesses/widgets/other/app_link.dart';
 import 'package:street_art_witnesses/widgets/other/image_slider.dart';
 import 'package:street_art_witnesses/widgets/skeletons/app_placeholder.dart';
 
@@ -76,16 +77,18 @@ class _WriteUsWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text(
-            'Есть неточности? ',
+            'Есть неточности?',
             style: TextStyles.headline2,
             textAlign: TextAlign.center,
           ),
-          Text(
-            'Напишите',
-            style: TextStyles.headline2.copyWith(
-              decoration: TextDecoration.underline,
+          const SizedBox(width: 4),
+          GestureDetector(
+            onTap: () => Utils.of(context).tryLaunchUrl(reportLink),
+            child: Text(
+              'Напишите',
+              style: TextStyles.headline2.copyWith(decoration: TextDecoration.underline),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
           ),
         ],
       ),
