@@ -1,8 +1,7 @@
-import 'package:device_preview/device_preview.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:street_art_witnesses/modules/home/home_page.dart';
 import 'package:street_art_witnesses/modules/intro/intro_slider.dart';
 import 'package:street_art_witnesses/src/blocs/main_menu/main_menu_cubit.dart';
@@ -21,10 +20,13 @@ void main() async {
   final user = await UserProvider.getCurrentUser();
   final quality = await LocalStoreService.getImageQuality();
 
-  runApp(DevicePreview(
-    enabled: !kReleaseMode,
-    builder: (_) => MyApp(user: user, initImageQuality: quality),
-  ));
+  runApp(
+    MyApp(user: user, initImageQuality: quality),
+    // DevicePreview(
+    //   enabled: !kReleaseMode,
+    // builder: (_) => MyApp(user: user, initImageQuality: quality),
+    // ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -53,9 +55,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => MapCubit()..loadMarkers()),
         BlocProvider(create: (_) => MainMenuCubit()),
       ],
-      child: MaterialApp(
-        locale: DevicePreview.locale(context),
-        builder: DevicePreview.appBuilder,
+      child: GetMaterialApp(
+        // locale: DevicePreview.locale(context),
+        // builder: DevicePreview.appBuilder,
         title: 'Свидетели',
         debugShowCheckedModeBanner: false,
         theme: lightTheme,
