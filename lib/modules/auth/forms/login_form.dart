@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
-import 'package:street_art_witnesses/src/providers/user_provider.dart';
+import 'package:street_art_witnesses/modules/user/controller.dart';
 import 'package:street_art_witnesses/src/services/user_service.dart';
 import 'package:street_art_witnesses/core/utils/validator.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
@@ -34,8 +34,8 @@ class _LoginViewState extends State<LoginView> {
     ));
 
     if (mounted && user != null) {
-      context.read<UserProvider>().setUser(user);
-      Navigator.of(context).pop();
+      Get.find<UserController>().setUser(user);
+      Get.back();
     }
   }
 

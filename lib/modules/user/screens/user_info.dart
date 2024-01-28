@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
-import 'package:street_art_witnesses/modules/home/profile/widgets/profile_list_tiles.dart';
-import 'package:street_art_witnesses/src/providers/user_provider.dart';
+import 'package:street_art_witnesses/modules/user/controller.dart';
+import 'package:street_art_witnesses/modules/user/widgets/profile_list_tiles.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
+import 'package:street_art_witnesses/src/models/user.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
 import 'package:street_art_witnesses/widgets/containers/app_circle_avatar.dart';
 import 'package:street_art_witnesses/widgets/containers/app_container.dart';
 import 'package:street_art_witnesses/widgets/other/app_appbar.dart';
 import 'package:street_art_witnesses/widgets/skeletons/app_placeholder.dart';
 
-class ProfileInfoPage extends StatelessWidget {
-  const ProfileInfoPage({super.key});
+class UserInfoScreen extends StatelessWidget {
+  const UserInfoScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,22 +21,24 @@ class ProfileInfoPage extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: kPagePadding,
-          child: Column(
-            children: [
-              const AppAppbar(title: 'Профиль'),
-              const SizedBox(height: 20),
-              AppCircleAvatar(radius: 50, image: AppPlaceholder.assetImage()),
-              const SizedBox(height: 20),
-              const _UserInfo(),
-              const SizedBox(height: 40),
-              UserTiles.changePassword(context),
-              const SizedBox(height: 40),
-              AppButton.primary(
-                onTap: () => Utils.of(context).showMessage('Изменения сохранены'),
-                label: 'Сохранить',
-              ),
-            ],
-          ),
+          child: GetBuilder<UserController>(builder: (ctrl) {
+            return Column(
+              children: [
+                const AppAppbar(title: 'Профиль'),
+                const SizedBox(height: 20),
+                AppCircleAvatar(radius: 50, image: AppPlaceholder.assetImage()),
+                const SizedBox(height: 20),
+                _UserInfo(ctrl.user.value),
+                const SizedBox(height: 40),
+                UserTiles.changePassword(context),
+                const SizedBox(height: 40),
+                AppButton.primary(
+                  onTap: () => Utils.of(context).showMessage('Изменения сохранены'),
+                  label: 'Сохранить',
+                ),
+              ],
+            );
+          }),
         ),
       ),
     );
@@ -43,12 +46,12 @@ class ProfileInfoPage extends StatelessWidget {
 }
 
 class _UserInfo extends StatelessWidget {
-  const _UserInfo();
+  const _UserInfo(this.user);
+
+  final User user;
 
   @override
   Widget build(BuildContext context) {
-    final user = context.watch<UserProvider>().user;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

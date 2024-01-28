@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
-import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/widgets/other/app_loading_indicator.dart';
 import 'package:street_art_witnesses/widgets/skeletons/app_placeholder.dart';
 
@@ -14,23 +12,23 @@ class ArtworksView extends StatelessWidget {
 
   final List<Artwork>? artworks;
 
-  Future<void> _refresh(BuildContext context) async {
-    return await context.read<UserProvider>().syncUserData();
-  }
-
   @override
   Widget build(BuildContext context) {
     if (artworks == null) {
       return const Center(child: AppLoadingIndicator());
     }
+    if (artworks!.isEmpty) {
+      return const Center(
+          child: Text(
+        'У вас нет сохраненных работ',
+        style: TextStyles.headline2,
+      ));
+    }
 
-    return RefreshIndicator(
-      onRefresh: () => _refresh(context),
-      child: ListView.separated(
-        itemCount: artworks!.length,
-        itemBuilder: (_, index) => ArtworkCard(artwork: artworks![index]),
-        separatorBuilder: (_, __) => const SizedBox(height: 8),
-      ),
+    return ListView.separated(
+      itemCount: artworks!.length,
+      itemBuilder: (_, index) => ArtworkCard(artwork: artworks![index]),
+      separatorBuilder: (_, __) => const SizedBox(height: 8),
     );
   }
 }

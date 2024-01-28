@@ -1,31 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/modules/auth/check_email/check_email_page.dart';
+import 'package:street_art_witnesses/modules/user/controller.dart';
 import 'package:street_art_witnesses/src/providers/email_counter_provider.dart';
-import 'package:street_art_witnesses/src/providers/user_provider.dart';
-import 'package:street_art_witnesses/modules/home/profile/widgets/profile_tile.dart';
+import 'package:street_art_witnesses/modules/user/widgets/profile_tile.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
-import 'package:street_art_witnesses/modules/home/profile/widgets/profile_list_tiles.dart';
+import 'package:street_art_witnesses/modules/user/widgets/profile_list_tiles.dart';
 
 class AuthorizedView extends StatelessWidget {
   const AuthorizedView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final user = context.read<UserProvider>().user;
-
     return SingleChildScrollView(
       padding: kPagePadding,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          ProfileTile(
-            username: user.username,
-            email: user.email!,
-          ),
+          GetBuilder<UserController>(
+              builder: (c) => ProfileTile(
+                    username: c.user.value.username,
+                    email: c.user.value.email!,
+                  )),
           const SizedBox(height: 24),
           const _LoginWarningTile(),
           const SizedBox(height: 24),
@@ -40,30 +40,18 @@ class AuthorizedView extends StatelessWidget {
   }
 }
 
-class _LoginWarningTile extends StatelessWidget {
+class _LoginWarningTile extends GetView<UserController> {
   const _LoginWarningTile();
 
   Future<void> _sendEmail(BuildContext context) async {
-    final user = context.read<UserProvider>().user;
     await Utils.of(context).showLoading(
-      context.read<EmailCounterProvider>().sendEmail(context, user.email!),
+      context.read<EmailCounterProvider>().sendEmail(context, controller.user.value.email!),
     );
-
-    if (context.mounted) {
-      Navigator.of(context).push(MaterialPageRoute(
-        builder: (_) => const CheckEmailPage(),
-      ));
-    }
+    Get.to(() => const CheckEmailPage());
   }
 
-  void _updateUser(BuildContext context) async {
-    final userFuture = UserProvider.getCurrentUser();
-
-    final updatedUser = await Utils.of(context).showLoading(userFuture);
-    if (context.mounted && updatedUser != null) {
-      context.read<UserProvider>().setUser(updatedUser);
-    }
-  }
+  void _updateUser(BuildContext context) async =>
+      await Utils.of(context).showLoading(controller.updateUser());
 
   @override
   Widget build(BuildContext context) {

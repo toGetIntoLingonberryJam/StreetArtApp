@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/modules/home/collection/artworks_view.dart';
 import 'package:street_art_witnesses/modules/home/collection/authors_view.dart';
-import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
 import 'package:street_art_witnesses/widgets/other/app_appbar.dart';
 
@@ -25,8 +23,6 @@ class _CollectionPageState extends State<CollectionPage> {
 
   @override
   Widget build(BuildContext context) {
-    final user = context.watch<UserProvider>();
-
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -45,8 +41,8 @@ class _CollectionPageState extends State<CollectionPage> {
               const SizedBox(height: 20),
               Expanded(
                 child: page == _Page.authors
-                    ? AuthorsView(authors: user.likedAuthors)
-                    : ArtworksView(artworks: user.likedArtworks),
+                    ? const AuthorsView(authors: [])
+                    : const ArtworksView(artworks: []),
               ),
             ],
           ),

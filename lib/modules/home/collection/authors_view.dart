@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/src/models/author/author.dart';
-import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/widgets/other/app_loading_indicator.dart';
 import 'package:street_art_witnesses/widgets/skeletons/app_placeholder.dart';
 
@@ -13,10 +11,6 @@ class AuthorsView extends StatelessWidget {
   });
 
   final List<Author>? authors;
-
-  Future<void> _refresh(BuildContext context) async {
-    return await context.read<UserProvider>().syncUserData();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +25,10 @@ class AuthorsView extends StatelessWidget {
       ));
     }
 
-    return RefreshIndicator(
-      onRefresh: () => _refresh(context),
-      child: ListView.separated(
-        itemCount: authors!.length,
-        itemBuilder: (_, index) => AuthorCard(author: authors![index]),
-        separatorBuilder: (_, __) => const SizedBox(height: 8),
-      ),
+    return ListView.separated(
+      itemCount: authors!.length,
+      itemBuilder: (_, index) => AuthorCard(author: authors![index]),
+      separatorBuilder: (_, __) => const SizedBox(height: 8),
     );
   }
 }

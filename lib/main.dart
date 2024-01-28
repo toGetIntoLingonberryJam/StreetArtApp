@@ -1,27 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get/get.dart';
+
 import 'package:street_art_witnesses/modules/home/home_page.dart';
 import 'package:street_art_witnesses/modules/intro/intro_slider.dart';
+import 'package:street_art_witnesses/modules/user/controller.dart';
 import 'package:street_art_witnesses/src/blocs/main_menu/main_menu_cubit.dart';
 import 'package:street_art_witnesses/src/blocs/map/map_cubit.dart';
 import 'package:street_art_witnesses/src/blocs/settings/settings_cubit.dart';
 import 'package:street_art_witnesses/src/models/user.dart';
 import 'package:street_art_witnesses/src/providers/email_counter_provider.dart';
 import 'package:street_art_witnesses/src/providers/location_provider.dart';
-import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/services/local_store_service.dart';
 import 'package:street_art_witnesses/core/values/theme.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final user = await UserProvider.getCurrentUser();
+
   final quality = await LocalStoreService.getImageQuality();
 
+  await Get.putAsync(() async {
+    final user = await UserController.getCurrentUser();
+    return UserController(user: user);
+  }, permanent: true);
+
   runApp(
-    MyApp(user: user, initImageQuality: quality),
+    MyApp(initImageQuality: quality),
     // DevicePreview(
     //   enabled: !kReleaseMode,
     // builder: (_) => MyApp(user: user, initImageQuality: quality),
@@ -30,13 +36,8 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({
-    super.key,
-    required this.user,
-    required this.initImageQuality,
-  });
+  const MyApp({super.key, required this.initImageQuality});
 
-  final User user;
   final ImageQuality initImageQuality;
 
   @override
@@ -46,9 +47,10 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
     ]);
 
+    final User user = Get.find<UserController>().user.value;
+
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => UserProvider(user: user), lazy: false),
         ChangeNotifierProvider(create: (_) => EmailCounterProvider(length: 30)),
         ChangeNotifierProvider(create: (_) => LocationProvider()),
         BlocProvider(create: (_) => SettingsCubit(initImageQuality: initImageQuality)),

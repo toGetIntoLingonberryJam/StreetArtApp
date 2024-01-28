@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 import 'package:street_art_witnesses/modules/applications/applications_page.dart';
-import 'package:street_art_witnesses/modules/home/profile/pages/about_page.dart';
-import 'package:street_art_witnesses/modules/home/profile/pages/change_password_page.dart';
-import 'package:street_art_witnesses/modules/home/profile/pages/settings_page.dart';
+import 'package:street_art_witnesses/modules/user/controller.dart';
+import 'package:street_art_witnesses/modules/user/screens/about.dart';
+import 'package:street_art_witnesses/modules/user/screens/change_password.dart';
+import 'package:street_art_witnesses/modules/user/screens/settings.dart';
 import 'package:street_art_witnesses/modules/moderation/moderation_page.dart';
-import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/widgets/containers/app_list_tile.dart';
 
 abstract class UserTiles {
   static AppListTile settings(BuildContext context) => AppListTile(
         onTap: () => Navigator.of(context).push(MaterialPageRoute(
-          builder: (_) => const SettingsPage(),
+          builder: (_) => const SettingsScreen(),
         )),
         iconData: Icons.settings_outlined,
         text: 'Настройки',
@@ -73,6 +73,6 @@ void _logout(BuildContext context) async {
       false;
 
   if (context.mounted && isLogout) {
-    await Utils.of(context).showLoading(context.read<UserProvider>().logout());
+    await Utils.of(context).showLoading(Get.find<UserController>().logout());
   }
 }

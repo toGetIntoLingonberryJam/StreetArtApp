@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:street_art_witnesses/modules/home/collection/collection_page.dart';
 import 'package:street_art_witnesses/modules/home/map/map_page.dart';
-import 'package:street_art_witnesses/modules/home/profile/profile_page.dart';
+import 'package:street_art_witnesses/modules/user/screen.dart';
 import 'package:street_art_witnesses/src/blocs/main_menu/main_menu_cubit.dart';
 import 'package:street_art_witnesses/src/blocs/map/map_cubit.dart';
 
@@ -79,5 +79,5 @@ const _pages = [
   MapPage(),
   // ToursPage(),
   CollectionPage(),
-  ProfilePage(),
+  UserScreen(),
 ];

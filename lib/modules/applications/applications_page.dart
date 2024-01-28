@@ -1,13 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/modules/artwork/artwork_page.dart';
+import 'package:street_art_witnesses/modules/user/controller.dart';
 import 'package:street_art_witnesses/src/blocs/settings/settings_cubit.dart';
 import 'package:street_art_witnesses/src/data/backend_datasource.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
-import 'package:street_art_witnesses/src/providers/user_provider.dart';
 import 'package:street_art_witnesses/src/services/images_service.dart';
 import 'package:street_art_witnesses/core/utils/logger.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
@@ -19,13 +19,12 @@ import 'package:street_art_witnesses/widgets/other/app_loading_indicator.dart';
 import 'package:street_art_witnesses/widgets/other/image_slider.dart';
 import 'package:street_art_witnesses/widgets/skeletons/app_placeholder.dart';
 
-class ApplicationsPage extends StatelessWidget {
+class ApplicationsPage extends GetView<UserController> {
   const ApplicationsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final user = context.read<UserProvider>().user;
-    if (!user.isModerator) return const AppErrorScreen();
+    if (!controller.user.value.isModerator) return const AppErrorScreen();
 
     final future = BackendDataSource.get('/v1/tickets', requestType: RequestType.unknown);
 
@@ -124,14 +123,14 @@ class _ApplicationCard extends StatelessWidget {
   }
 }
 
-class _ApplicationPage extends StatelessWidget {
+class _ApplicationPage extends GetView<UserController> {
   const _ApplicationPage(this.artwork, this.ticketId);
 
   final Artwork artwork;
   final int ticketId;
 
   void _approve(BuildContext context) async {
-    final token = context.read<UserProvider>().user.token!;
+    final token = controller.user.value.token!;
     final future = BackendDataSource.patch(
       '/v1/tickets/approve/$ticketId',
       options: Options(headers: {'Authorization': 'Bearer $token'}),
@@ -146,7 +145,7 @@ class _ApplicationPage extends StatelessWidget {
   }
 
   void _reject(BuildContext context) async {
-    final token = context.read<UserProvider>().user.token!;
+    final token = controller.user.value.token!;
     final future = BackendDataSource.patch(
       '/v1/tickets/reject/$ticketId',
       options: Options(headers: {'Authorization': 'Bearer $token'}),
