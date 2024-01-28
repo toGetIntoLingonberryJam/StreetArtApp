@@ -15,7 +15,7 @@ class VerifiedView extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          GetBuilder<UserController>(
+          GetX<UserController>(
             builder: (c) => ProfileTile(
               username: c.user.value.username,
               email: c.user.value.email!,

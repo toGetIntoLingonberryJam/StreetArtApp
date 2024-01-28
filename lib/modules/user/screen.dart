@@ -9,7 +9,7 @@ class UserScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: GetBuilder<UserController>(
+        child: GetX<UserController>(
           builder: (controller) => controller.view,
         ),
       ),

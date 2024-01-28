@@ -21,7 +21,7 @@ class UserInfoScreen extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: kPagePadding,
-          child: GetBuilder<UserController>(builder: (ctrl) {
+          child: GetX<UserController>(builder: (ctrl) {
             return Column(
               children: [
                 const AppAppbar(title: 'Профиль'),

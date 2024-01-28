@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/modules/user/controller.dart';
 import 'package:street_art_witnesses/modules/user/widgets/role_tile.dart';
@@ -16,7 +16,7 @@ class ArtistView extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          GetBuilder<UserController>(
+          GetX<UserController>(
               builder: (c) => ProfileTile(
                     username: c.user.value.username,
                     email: c.user.value.email!,
