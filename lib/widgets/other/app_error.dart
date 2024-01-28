@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:street_art_witnesses/constants.dart';
+import 'package:street_art_witnesses/core/values/constants.dart';
+import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
 import 'package:street_art_witnesses/widgets/other/app_appbar.dart';
 

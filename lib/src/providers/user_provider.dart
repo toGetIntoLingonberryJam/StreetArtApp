@@ -6,7 +6,7 @@ import 'package:street_art_witnesses/src/providers/email_counter_provider.dart';
 import 'package:street_art_witnesses/src/services/artwork_service.dart';
 import 'package:street_art_witnesses/src/services/local_store_service.dart';
 import 'package:street_art_witnesses/src/services/user_service.dart';
-import 'package:street_art_witnesses/src/utils/logger.dart';
+import 'package:street_art_witnesses/core/utils/logger.dart';
 
 class UserProvider with ChangeNotifier {
   UserProvider({required User user}) {

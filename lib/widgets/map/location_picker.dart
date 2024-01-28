@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_animations/flutter_map_animations.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:street_art_witnesses/constants.dart';
-import 'package:street_art_witnesses/pages/home/map/controllers_layer.dart';
-import 'package:street_art_witnesses/src/utils/utils.dart';
+import 'package:street_art_witnesses/core/values/constants.dart';
+import 'package:street_art_witnesses/modules/home/map/controllers_layer.dart';
+import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
 import 'package:street_art_witnesses/widgets/other/app_appbar.dart';
 

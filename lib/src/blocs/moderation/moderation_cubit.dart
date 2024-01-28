@@ -7,8 +7,8 @@ import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/src/data/backend_datasource.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork_location.dart';
-import 'package:street_art_witnesses/src/utils/logger.dart';
-import 'package:street_art_witnesses/src/utils/utils.dart';
+import 'package:street_art_witnesses/core/utils/logger.dart';
+import 'package:street_art_witnesses/core/utils/utils.dart';
 
 part 'moderation_state.dart';
 

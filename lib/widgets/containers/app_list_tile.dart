@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:street_art_witnesses/constants.dart';
-import 'package:street_art_witnesses/src/utils/utils.dart';
+import 'package:street_art_witnesses/core/utils/utils.dart';
+import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/widgets/containers/app_container.dart';
 
 class AppListTile extends StatelessWidget {

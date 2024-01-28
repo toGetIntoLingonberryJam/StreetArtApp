@@ -3,7 +3,7 @@ import 'package:street_art_witnesses/src/data/local_store_datasource.dart';
 import 'package:street_art_witnesses/src/models/user.dart';
 import 'package:street_art_witnesses/src/data/backend_datasource.dart';
 import 'package:street_art_witnesses/src/services/local_store_service.dart';
-import 'package:street_art_witnesses/src/utils/logger.dart';
+import 'package:street_art_witnesses/core/utils/logger.dart';
 
 abstract class UserService {
   static Future<User?> login({

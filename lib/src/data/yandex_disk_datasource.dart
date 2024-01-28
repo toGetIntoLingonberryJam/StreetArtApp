@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:street_art_witnesses/src/utils/logger.dart';
+import 'package:street_art_witnesses/core/utils/logger.dart';
 
 abstract class YandexDiskDataSource {
   static final _dio = Dio(

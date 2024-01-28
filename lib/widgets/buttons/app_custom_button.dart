@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:street_art_witnesses/constants.dart';
+import 'package:street_art_witnesses/core/values/constants.dart';
 
 class AppCustomButton extends StatelessWidget {
   const AppCustomButton.filled({
@@ -29,15 +29,12 @@ class AppCustomButton extends StatelessWidget {
       borderRadius: kButtonBorderRadius,
       onTap: onTap,
       child: Ink(
-        padding: isFilled
-            ? kContainerPadding
-            : const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+        padding:
+            isFilled ? kContainerPadding : const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
         decoration: BoxDecoration(
           borderRadius: kButtonBorderRadius,
           color: isFilled ? colorScheme.primary : colorScheme.onBackground,
-          border: isFilled
-              ? null
-              : Border.all(color: colorScheme.primary, width: 2),
+          border: isFilled ? null : Border.all(color: colorScheme.primary, width: 2),
         ),
         child: child ?? const SizedBox(),
       ),

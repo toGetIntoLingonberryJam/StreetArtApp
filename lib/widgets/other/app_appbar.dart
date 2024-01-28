@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:street_art_witnesses/constants.dart';
+import 'package:street_art_witnesses/core/values/text_styles.dart';
 
 class AppAppbar extends StatelessWidget {
   const AppAppbar({

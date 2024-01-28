@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:street_art_witnesses/constants.dart';
-import 'package:street_art_witnesses/src/utils/utils.dart';
+import 'package:street_art_witnesses/core/utils/utils.dart';
+import 'package:street_art_witnesses/core/values/text_styles.dart';
 
 class AppLink extends StatelessWidget {
   const AppLink({
@@ -20,10 +20,7 @@ class AppLink extends StatelessWidget {
         children: [
           const Icon(Icons.link),
           const SizedBox(width: 8),
-          Text(name,
-              style: TextStyles.text.copyWith(
-                decoration: TextDecoration.underline,
-              )),
+          Text(name, style: TextStyles.text.copyWith(decoration: TextDecoration.underline)),
         ],
       ),
     );

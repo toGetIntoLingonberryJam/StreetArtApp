@@ -3,7 +3,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/src/blocs/map/map_cubit.dart';
 import 'package:street_art_witnesses/src/services/routes_service.dart';
-import 'package:street_art_witnesses/src/utils/utils.dart';
+import 'package:street_art_witnesses/core/utils/utils.dart';
 
 abstract class MapTask {
   void complete(BuildContext context);

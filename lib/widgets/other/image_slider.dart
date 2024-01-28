@@ -2,7 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:street_art_witnesses/constants.dart';
+import 'package:street_art_witnesses/core/values/constants.dart';
+import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/src/blocs/settings/settings_cubit.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork_image.dart';
 import 'package:street_art_witnesses/src/providers/slider_provider.dart';

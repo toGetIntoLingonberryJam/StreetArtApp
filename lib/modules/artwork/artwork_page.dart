@@ -1,0 +1,166 @@
+import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/core/values/constants.dart';
+import 'package:street_art_witnesses/core/values/text_styles.dart';
+import 'package:street_art_witnesses/modules/artwork/widgets/address_info.dart';
+import 'package:street_art_witnesses/modules/artwork/widgets/description_info.dart';
+import 'package:street_art_witnesses/modules/artwork/widgets/festival_info.dart';
+import 'package:street_art_witnesses/modules/artwork/widgets/artwork_info.dart';
+import 'package:street_art_witnesses/modules/artwork/widgets/links_info.dart';
+import 'package:street_art_witnesses/modules/artwork/widgets/status_info.dart';
+import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
+import 'package:street_art_witnesses/src/models/artwork/artwork_image.dart';
+import 'package:street_art_witnesses/core/utils/utils.dart';
+import 'package:street_art_witnesses/widgets/containers/app_container.dart';
+import 'package:street_art_witnesses/widgets/buttons/app_icon_button.dart';
+import 'package:street_art_witnesses/widgets/other/image_slider.dart';
+import 'package:street_art_witnesses/widgets/skeletons/app_placeholder.dart';
+
+class ArtworkPage extends StatelessWidget {
+  const ArtworkPage({super.key, required this.artwork}) : preview = false;
+
+  const ArtworkPage.preview({super.key, required this.artwork}) : preview = true;
+
+  final Artwork artwork;
+  final bool preview;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              preview ? const _MockImageSlider() : _ArtworkImageSlider(images: artwork.images),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Column(
+                  children: [
+                    ArtworkInfo(artwork: artwork),
+                    const SizedBox(height: 8),
+                    FestivalInfo(artwork.festivalId),
+                    if (artwork.festivalId != null) const SizedBox(height: 8),
+                    AddressInfo(artwork: artwork, preview: preview),
+                    const SizedBox(height: 8),
+                    DescriptionInfo(artwork.description),
+                    if (artwork.description != null) const SizedBox(height: 8),
+                    StatusInfo(artwork.status),
+                    const SizedBox(height: 8),
+                    LinksInfo(artwork.links),
+                    if (artwork.links != null) const SizedBox(height: 8),
+                    // const AppContainer.small(
+                    //   child: Text('Добавлено: юзернейм', style: TextStyles.headline2),
+                    // // ),
+                    // const SizedBox(height: 8),
+                    const _WriteUsWidget(),
+                    const SizedBox(height: 40),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _WriteUsWidget extends StatelessWidget {
+  const _WriteUsWidget();
+
+  @override
+  Widget build(BuildContext context) {
+    return AppContainer.small(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text(
+            'Есть неточности?',
+            style: TextStyles.headline2,
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(width: 4),
+          GestureDetector(
+            onTap: () => Utils.of(context).tryLaunchUrl(reportLink),
+            child: Text(
+              'Напишите',
+              style: TextStyles.headline2.copyWith(decoration: TextDecoration.underline),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _MockImageSlider extends StatelessWidget {
+  const _MockImageSlider();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(kContainerRadius),
+        child: const AppPlaceholder(height: 320),
+      ),
+    );
+  }
+}
+
+class _ArtworkImageSlider extends StatefulWidget {
+  const _ArtworkImageSlider({required this.images});
+
+  final List<ArtworkImage>? images;
+
+  @override
+  State<_ArtworkImageSlider> createState() => _ArtworkImageSliderState();
+}
+
+class _ArtworkImageSliderState extends State<_ArtworkImageSlider> {
+  @override
+  Widget build(BuildContext context) {
+    if (widget.images == null || widget.images!.isEmpty) {
+      return const Padding(
+        padding: EdgeInsets.fromLTRB(10, 0, 10, 8),
+        child: AppContainer.small(
+          child: Text(
+            'Фотографии отсутствуют',
+            style: TextStyles.headline1,
+            textAlign: TextAlign.center,
+          ),
+        ),
+      );
+    }
+    final images = widget.images!;
+
+    return Stack(
+      children: [
+        ImageSlider(images: images),
+        Padding(
+            padding: const EdgeInsets.all(20),
+            child: Row(
+              children: [
+                AppIconButton(
+                  onTap: () => Navigator.of(context).pop(),
+                  iconData: Icons.arrow_back,
+                ),
+                const Expanded(child: SizedBox()),
+                AppIconButton(
+                  onTap: () => Utils.of(context).showMessage('Изменить работу'),
+                  iconData: Icons.edit_outlined,
+                ),
+                const SizedBox(width: 10),
+                AppIconButton(
+                  onTap: () => Utils.of(context).showMessage('Добавить в избранное'),
+                  iconData: Icons.favorite_border,
+                ),
+              ],
+            )),
+      ],
+    );
+  }
+}
