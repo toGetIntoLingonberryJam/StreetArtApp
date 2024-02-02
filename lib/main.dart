@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-
 import 'package:street_art_witnesses/modules/home/home_page.dart';
 import 'package:street_art_witnesses/modules/intro/intro_slider.dart';
 import 'package:street_art_witnesses/modules/user/controller.dart';
@@ -12,6 +11,7 @@ import 'package:street_art_witnesses/src/blocs/settings/settings_cubit.dart';
 import 'package:street_art_witnesses/src/models/user.dart';
 import 'package:street_art_witnesses/src/providers/email_counter_provider.dart';
 import 'package:street_art_witnesses/src/providers/location_provider.dart';
+import 'package:street_art_witnesses/src/repository/user.dart';
 import 'package:street_art_witnesses/src/services/local_store_service.dart';
 import 'package:street_art_witnesses/core/values/theme.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +22,7 @@ void main() async {
   final quality = await LocalStoreService.getImageQuality();
 
   await Get.putAsync(() async {
-    final user = await UserController.getCurrentUser();
+    final user = await UserRepository.getCurrentUser();
     return UserController(user: user);
   }, permanent: true);
 

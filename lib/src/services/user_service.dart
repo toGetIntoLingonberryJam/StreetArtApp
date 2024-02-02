@@ -1,12 +1,22 @@
 import 'package:dio/dio.dart';
+import 'package:get/get.dart';
 import 'package:street_art_witnesses/src/data/local_store_datasource.dart';
 import 'package:street_art_witnesses/src/models/user.dart';
 import 'package:street_art_witnesses/src/data/backend_datasource.dart';
 import 'package:street_art_witnesses/src/services/local_store_service.dart';
 import 'package:street_art_witnesses/core/utils/logger.dart';
 
-abstract class UserService {
-  static Future<User?> login({
+class UserService extends GetxService {
+  UserService({required User user}) : _user = user;
+
+  User _user;
+  User get user => _user;
+
+  Future<void> updateUser() async {
+    if (user.token != null) _user = await authenticate(token: user.token!);
+  }
+
+  Future<void> login({
     required String email,
     required String password,
   }) async {
@@ -17,22 +27,18 @@ abstract class UserService {
       requestType: RequestType.login,
     );
 
-    if (response == null) {
-      return null;
-    } else {
-      final String? token = response.data['access_token'];
-      if (token != null) {
-        await LocalStoreService.saveToken(token);
+    if (response == null) return Logger.warning('Login failed');
 
-        return await getUserViaToken(token: token);
-      } else {
-        Logger.warning('No token returned');
-        return null;
-      }
+    final String? token = response.data['access_token'];
+    if (token != null) {
+      await LocalStoreService.saveToken(token);
+      _user = await authenticate(token: token);
+    } else {
+      Logger.warning('No token returned');
     }
   }
 
-  static Future<User?> register({
+  Future<void> register({
     required String username,
     required String email,
     required String password,
@@ -44,12 +50,13 @@ abstract class UserService {
     );
 
     if (response == null) {
-      return null;
+      Logger.warning('Registration failed');
+    } else {
+      login(email: email, password: password);
     }
-    return await login(email: email, password: password);
   }
 
-  static Future<User> getUserViaToken({required String token}) async {
+  Future<User> authenticate({required String token}) async {
     final response = await BackendDataSource.get(
       '/v1/users/me',
       options: Options(headers: {'Authorization': 'Bearer $token'}),
@@ -60,10 +67,11 @@ abstract class UserService {
       final json = response!.data as Map<String, dynamic>;
       return User.fromJson(json, token: token);
     }
+    Logger.warning('Get User via token failed');
     return User.guest();
   }
 
-  static Future<bool> verify({required String email}) async {
+  Future<bool> verify({required String email}) async {
     final response = await BackendDataSource.post(
       '/v1/users/request-verify-token',
       requestType: RequestType.verify,
@@ -73,8 +81,10 @@ abstract class UserService {
     return response != null;
   }
 
-  static Future<void> deleteUserData() async {
+  Future<void> logout() async {}
+
+  Future<void> deleteUserLocalData() async {
     await LocalStoreDataSource.userDoc.delete();
-    Logger.warning('[USER DATA DELETED]');
+    Logger.warning('Deleted user local data');
   }
 }

@@ -8,7 +8,7 @@ import 'package:street_art_witnesses/modules/user/views/guest.dart';
 import 'package:street_art_witnesses/modules/user/views/moderator.dart';
 import 'package:street_art_witnesses/modules/user/views/verified.dart';
 import 'package:street_art_witnesses/src/providers/email_counter_provider.dart';
-import 'package:street_art_witnesses/src/services/local_store_service.dart';
+import 'package:street_art_witnesses/src/repository/user.dart';
 import 'package:street_art_witnesses/src/services/user_service.dart';
 
 class UserController extends GetxController {
@@ -25,20 +25,8 @@ class UserController extends GetxController {
     return const GuestView();
   }
 
-  static Future<User> getCurrentUser() async {
-    // Retrieve token from localstore, if exists
-    final token = await LocalStoreService.retrieveToken();
-
-    if (token != null) {
-      final user = await UserService.getUserViaToken(token: token);
-      return user;
-    }
-
-    return User.guest();
-  }
-
   Future<void> updateUser() async {
-    final user = await getCurrentUser();
+    final user = await UserRepository.getCurrentUser();
     setUser(user);
   }
 
@@ -50,7 +38,7 @@ class UserController extends GetxController {
   // TODO: Clear all user data: favourites, search history, tours, everyhting that depends on user
   Future<void> logout() async {
     Logger.message('[USER LOGGED OUT]');
-    await UserService.deleteUserData();
+    await UserService.deleteUserLocalData();
     EmailCounterProvider.reset();
     setUser(User.guest());
   }
