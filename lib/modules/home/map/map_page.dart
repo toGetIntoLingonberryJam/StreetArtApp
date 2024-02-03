@@ -4,9 +4,9 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_animations/flutter_map_animations.dart';
 import 'package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_tile_provider.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:street_art_witnesses/data/blocs/map/map_cubit.dart';
+import 'package:street_art_witnesses/data/models/map/map_task.dart';
 import 'package:street_art_witnesses/modules/home/map/controllers_layer.dart';
-import 'package:street_art_witnesses/src/blocs/map/map_cubit.dart';
-import 'package:street_art_witnesses/src/models/map/map_task.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
 

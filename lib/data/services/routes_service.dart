@@ -1,5 +1,5 @@
 import 'package:latlong2/latlong.dart';
-import 'package:street_art_witnesses/src/data/backend_api.dart';
+import 'package:street_art_witnesses/data/api/backend_api.dart';
 
 abstract class RoutesService {
   static Future<List<LatLng>> getRoute(LatLng start, int artworkId) async {

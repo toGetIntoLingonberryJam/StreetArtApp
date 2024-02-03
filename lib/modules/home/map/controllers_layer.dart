@@ -3,8 +3,8 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_animations/flutter_map_animations.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
-import 'package:street_art_witnesses/src/blocs/map/map_cubit.dart';
-import 'package:street_art_witnesses/src/providers/location_provider.dart';
+import 'package:street_art_witnesses/data/blocs/map/map_cubit.dart';
+import 'package:street_art_witnesses/data/providers/location_provider.dart';
 import 'package:street_art_witnesses/widgets/other/app_loading_indicator.dart';
 import 'package:street_art_witnesses/widgets/other/app_text_form_field.dart';
 

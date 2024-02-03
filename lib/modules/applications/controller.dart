@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:street_art_witnesses/src/data/backend_api.dart';
-import 'package:street_art_witnesses/src/models/ticket.dart';
-import 'package:street_art_witnesses/src/services/auth_service.dart';
+import 'package:street_art_witnesses/data/api/backend_api.dart';
+import 'package:street_art_witnesses/data/models/ticket.dart';
+import 'package:street_art_witnesses/data/services/auth_service.dart';
 import 'package:street_art_witnesses/widgets/other/app_error.dart';
 
 class ApplicationsController extends GetxController {

@@ -1,12 +1,12 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:street_art_witnesses/src/models/user.dart';
+import 'package:street_art_witnesses/data/models/user.dart';
+import 'package:street_art_witnesses/data/services/auth_service.dart';
 import 'package:street_art_witnesses/modules/user/views/artist.dart';
 import 'package:street_art_witnesses/modules/user/views/authorized.dart';
 import 'package:street_art_witnesses/modules/user/views/guest.dart';
 import 'package:street_art_witnesses/modules/user/views/moderator.dart';
 import 'package:street_art_witnesses/modules/user/views/verified.dart';
-import 'package:street_art_witnesses/src/services/auth_service.dart';
 
 class ProfileController extends GetxController {
   final _userService = Get.find<AuthService>();

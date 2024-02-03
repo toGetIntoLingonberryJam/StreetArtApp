@@ -4,10 +4,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:street_art_witnesses/src/data/backend_api.dart';
-import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
-import 'package:street_art_witnesses/src/models/artwork/artwork_location.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
+import 'package:street_art_witnesses/data/api/backend_api.dart';
+import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
+import 'package:street_art_witnesses/data/models/artwork/artwork_location.dart';
 
 part 'moderation_state.dart';
 

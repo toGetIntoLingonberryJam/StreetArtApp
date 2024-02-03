@@ -1,7 +1,7 @@
-import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
-import 'package:street_art_witnesses/src/models/artwork/artwork_location.dart';
-import 'package:street_art_witnesses/src/models/author/author.dart';
-import 'package:street_art_witnesses/src/data/backend_api.dart';
+import 'package:street_art_witnesses/data/api/backend_api.dart';
+import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
+import 'package:street_art_witnesses/data/models/artwork/artwork_location.dart';
+import 'package:street_art_witnesses/data/models/author/author.dart';
 
 abstract class ArtworkService {
   static Future<List<Author>> getAuthors() async {

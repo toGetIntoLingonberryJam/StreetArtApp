@@ -1,5 +1,5 @@
-import 'package:street_art_witnesses/src/services/settings_service.dart';
-import 'package:street_art_witnesses/src/data/local_store_datasource.dart';
+import 'package:street_art_witnesses/data/api/local_store_datasource.dart';
+import 'package:street_art_witnesses/data/services/settings_service.dart';
 import 'package:street_art_witnesses/core/utils/logger.dart';
 
 abstract class LocalStoreService {

@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:street_art_witnesses/src/services/local_store_service.dart';
+import 'package:street_art_witnesses/data/services/local_store_service.dart';
 
 enum ImageQuality { preview, bad, good, best }
 

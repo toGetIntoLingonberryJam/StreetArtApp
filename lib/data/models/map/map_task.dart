@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
-import 'package:street_art_witnesses/src/blocs/map/map_cubit.dart';
-import 'package:street_art_witnesses/src/services/routes_service.dart';
+import 'package:street_art_witnesses/data/blocs/map/map_cubit.dart';
+import 'package:street_art_witnesses/data/services/routes_service.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 
 abstract class MapTask {

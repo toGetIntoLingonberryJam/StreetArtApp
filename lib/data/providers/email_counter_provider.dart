@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:street_art_witnesses/src/services/auth_service.dart';
+import 'package:street_art_witnesses/data/services/auth_service.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 
 class EmailCounterProvider with ChangeNotifier {

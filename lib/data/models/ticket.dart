@@ -1,4 +1,4 @@
-import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
+import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
 
 class ArtworkTicket {
   ArtworkTicket._(this.id, this.artwork);
