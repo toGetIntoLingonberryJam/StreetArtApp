@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/modules/auth/views/login_form.dart';
 import 'package:street_art_witnesses/modules/auth/views/register_form.dart';
-import 'package:street_art_witnesses/src/services/user_service.dart';
+import 'package:street_art_witnesses/modules/home/home_page.dart';
+import 'package:street_art_witnesses/src/services/auth_service.dart';
 
 enum AuthForm { login, register }
 
 class AuthController extends GetxController {
   AuthForm form = AuthForm.login;
-  final userService = Get.find<UserService>();
+  final userService = Get.find<AuthService>();
 
   final usernameCtrl = TextEditingController();
   final emailCtrl = TextEditingController();
@@ -47,7 +48,7 @@ class AuthController extends GetxController {
         email: emailCtrl.text.trim(),
         password: passwordCtrl.text.trim(),
       ));
-      Get.back();
+      Get.offAll(() => const HomePage());
     }
   }
 
@@ -58,7 +59,7 @@ class AuthController extends GetxController {
         password: passwordCtrl.text.trim(),
         username: usernameCtrl.text.trim(),
       ));
-      Get.back();
+      Get.offAll(() => const HomePage());
     }
   }
 }
