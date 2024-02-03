@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:street_art_witnesses/modules/applications/applications_page.dart';
+import 'package:street_art_witnesses/modules/applications/screen.dart';
 import 'package:street_art_witnesses/modules/user/screens/about.dart';
 import 'package:street_art_witnesses/modules/user/screens/change_password.dart';
 import 'package:street_art_witnesses/modules/user/screens/settings.dart';
@@ -40,9 +40,7 @@ abstract class UserTiles {
       );
 
   static AppListTile applications(BuildContext context) => AppListTile(
-        onTap: () => Navigator.of(context).push(MaterialPageRoute(
-          builder: (_) => const ApplicationsPage(),
-        )),
+        onTap: () => Get.to(() => const ApplicationsScreen()),
         iconData: Icons.filter_list,
         text: 'Заявки на публикацию',
         notificationsCount: 100,

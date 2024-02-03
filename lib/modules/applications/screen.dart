@@ -3,31 +3,29 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
+import 'package:street_art_witnesses/modules/applications/controller.dart';
 import 'package:street_art_witnesses/modules/artwork/artwork_page.dart';
 import 'package:street_art_witnesses/modules/user/controller.dart';
 import 'package:street_art_witnesses/src/blocs/settings/settings_cubit.dart';
 import 'package:street_art_witnesses/src/data/backend_api.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
+import 'package:street_art_witnesses/src/models/ticket.dart';
 import 'package:street_art_witnesses/src/services/images_service.dart';
 import 'package:street_art_witnesses/core/utils/logger.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
 import 'package:street_art_witnesses/widgets/containers/app_container.dart';
 import 'package:street_art_witnesses/widgets/other/app_appbar.dart';
-import 'package:street_art_witnesses/widgets/other/app_error.dart';
 import 'package:street_art_witnesses/widgets/other/app_loading_indicator.dart';
 import 'package:street_art_witnesses/widgets/other/image_slider.dart';
 import 'package:street_art_witnesses/widgets/skeletons/app_placeholder.dart';
 
-class ApplicationsPage extends GetView<ProfileController> {
-  const ApplicationsPage({super.key});
+class ApplicationsScreen extends StatelessWidget {
+  const ApplicationsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    if (!controller.user.isModerator) return const AppErrorScreen();
-
-    final future = BackendApi.get('/v1/tickets', requestType: RequestType.unknown);
-
+    final controller = Get.put(ApplicationsController());
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -36,35 +34,20 @@ class ApplicationsPage extends GetView<ProfileController> {
             children: [
               const AppAppbar(title: 'Заявки'),
               const SizedBox(height: 20),
-              Expanded(
-                child: FutureBuilder(
-                    future: future,
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.done) {
-                        final List? json = snapshot.data?.data;
-                        if (json == null) return const SizedBox();
-                        final data = json
-                            .where((e) => e['ticket_type'] == 'create' && e['status'] == 'pending')
-                            .toList();
-                        for (final item in data) {
-                          Logger.warning(item.toString());
-                        }
-
-                        return SingleChildScrollView(
-                          child: Column(
-                            children: data.map((e) {
-                              final artwork = Artwork.fromTicket(e);
-                              return Padding(
-                                padding: const EdgeInsets.only(bottom: 16),
-                                child: _ApplicationCard(artwork, e['id']),
-                              );
-                            }).toList(),
+              GetBuilder<ApplicationsController>(builder: (context) {
+                return Expanded(
+                  child: controller.isLoading
+                      ? const Center(child: AppLoadingIndicator())
+                      : RefreshIndicator(
+                          onRefresh: controller.loadTickets,
+                          child: ListView.separated(
+                            itemCount: controller.tickets.length,
+                            itemBuilder: (_, idx) => _ApplicationCard(controller.tickets[idx]),
+                            separatorBuilder: (_, __) => const SizedBox(height: 16),
                           ),
-                        );
-                      }
-                      return const Center(child: AppLoadingIndicator());
-                    }),
-              ),
+                        ),
+                );
+              }),
             ],
           ),
         ),
@@ -74,41 +57,40 @@ class ApplicationsPage extends GetView<ProfileController> {
 }
 
 class _ApplicationCard extends StatelessWidget {
-  const _ApplicationCard(this.artwork, this.ticketId);
+  const _ApplicationCard(this.ticket);
 
-  final Artwork artwork;
-  final int ticketId;
+  final ArtworkTicket ticket;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(kContainerRadius),
       onTap: () => Navigator.of(context).push(MaterialPageRoute(
-        builder: (_) => _ApplicationPage(artwork, ticketId),
+        builder: (_) => _ApplicationPage(ticket),
       )),
       child: AppContainer(
         child: Row(
           children: [
-            _CardImage(artwork: artwork),
+            _CardImage(artwork: ticket.artwork),
             const SizedBox(width: 16),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Заявка $ticketId',
+                    'Заявка ${ticket.id}',
                     style: TextStyles.headline2,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    'User Id: ${artwork.addedByUserId}',
+                    'User Id: ${ticket.artwork.addedByUserId}',
                     style: TextStyles.textAdditional,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    artwork.updatedAt,
+                    ticket.artwork.updatedAt,
                     style: TextStyles.caption,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -124,15 +106,14 @@ class _ApplicationCard extends StatelessWidget {
 }
 
 class _ApplicationPage extends GetView<ProfileController> {
-  const _ApplicationPage(this.artwork, this.ticketId);
+  const _ApplicationPage(this.ticket);
 
-  final Artwork artwork;
-  final int ticketId;
+  final ArtworkTicket ticket;
 
   void _approve(BuildContext context) async {
     final token = controller.user.token!;
     final future = BackendApi.patch(
-      '/v1/tickets/approve/$ticketId',
+      '/v1/tickets/approve/${ticket.id}',
       options: Options(headers: {'Authorization': 'Bearer $token'}),
       requestType: RequestType.unknown,
     );
@@ -147,7 +128,7 @@ class _ApplicationPage extends GetView<ProfileController> {
   void _reject(BuildContext context) async {
     final token = controller.user.token!;
     final future = BackendApi.patch(
-      '/v1/tickets/reject/$ticketId',
+      '/v1/tickets/reject/${ticket.id}',
       options: Options(headers: {'Authorization': 'Bearer $token'}),
       requestType: RequestType.unknown,
     );
@@ -167,9 +148,9 @@ class _ApplicationPage extends GetView<ProfileController> {
           padding: kPagePadding,
           child: Column(
             children: [
-              AppAppbar(title: 'Заявка $ticketId'),
+              AppAppbar(title: 'Заявка ${ticket.id}'),
               const SizedBox(height: 10),
-              Expanded(child: ArtworkPage(artwork: artwork)),
+              Expanded(child: ArtworkPage(artwork: ticket.artwork)),
               Padding(
                 padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                 child: Row(
