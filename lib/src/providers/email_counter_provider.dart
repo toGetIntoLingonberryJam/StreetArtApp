@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:street_art_witnesses/src/services/user_service.dart';
+import 'package:street_art_witnesses/src/services/auth_service.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 
 class EmailCounterProvider with ChangeNotifier {
@@ -47,7 +47,7 @@ class EmailCounterProvider with ChangeNotifier {
       _initCounting();
       firstOpened = false;
       showUpdateButton = true;
-      final success = await Get.find<UserService>().verify(email: email);
+      final success = await Get.find<AuthService>().verify(email: email);
 
       if (context.mounted) {
         if (success == true) {

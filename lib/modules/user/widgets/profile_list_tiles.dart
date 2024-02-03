@@ -6,7 +6,7 @@ import 'package:street_art_witnesses/modules/user/screens/change_password.dart';
 import 'package:street_art_witnesses/modules/user/screens/settings.dart';
 import 'package:street_art_witnesses/modules/moderation/moderation_page.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
-import 'package:street_art_witnesses/src/services/user_service.dart';
+import 'package:street_art_witnesses/src/services/auth_service.dart';
 import 'package:street_art_witnesses/widgets/containers/app_list_tile.dart';
 
 abstract class UserTiles {
@@ -73,6 +73,6 @@ void _logout(BuildContext context) async {
       false;
 
   if (context.mounted && isLogout) {
-    await Utils.of(context).showLoading(Get.find<UserService>().logout());
+    await Utils.of(context).showLoading(Get.find<AuthService>().logout());
   }
 }

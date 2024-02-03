@@ -6,10 +6,10 @@ import 'package:street_art_witnesses/modules/user/views/authorized.dart';
 import 'package:street_art_witnesses/modules/user/views/guest.dart';
 import 'package:street_art_witnesses/modules/user/views/moderator.dart';
 import 'package:street_art_witnesses/modules/user/views/verified.dart';
-import 'package:street_art_witnesses/src/services/user_service.dart';
+import 'package:street_art_witnesses/src/services/auth_service.dart';
 
 class ProfileController extends GetxController {
-  final _userService = Get.find<UserService>();
+  final _userService = Get.find<AuthService>();
 
   @override
   void onInit() {

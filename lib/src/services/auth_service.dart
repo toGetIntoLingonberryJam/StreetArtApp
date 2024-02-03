@@ -7,11 +7,15 @@ import 'package:street_art_witnesses/src/providers/email_counter_provider.dart';
 import 'package:street_art_witnesses/src/services/local_store_service.dart';
 import 'package:street_art_witnesses/core/utils/logger.dart';
 
-class UserService extends GetxService {
-  UserService({required User user}) : _user = user.obs;
-
-  final Rx<User> _user;
+class AuthService extends GetxService {
+  late final Rx<User> _user;
   Rx<User> get user => _user;
+
+  Future<void> init() async {
+    final token = await LocalStoreService.retrieveToken();
+    final initUser = token == null ? User.guest() : await authenticate(token: token);
+    _user = initUser.obs;
+  }
 
   Future<void> updateUser() async {
     if (_user.value.token != null) _user.value = await authenticate(token: _user.value.token!);
@@ -58,7 +62,7 @@ class UserService extends GetxService {
     }
   }
 
-  static Future<User> authenticate({required String token}) async {
+  Future<User> authenticate({required String token}) async {
     final response = await BackendDataSource.get(
       '/v1/users/me',
       options: Options(headers: {'Authorization': 'Bearer $token'}),
