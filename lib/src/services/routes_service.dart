@@ -1,10 +1,10 @@
 import 'package:latlong2/latlong.dart';
-import 'package:street_art_witnesses/src/data/backend_datasource.dart';
+import 'package:street_art_witnesses/src/data/backend_api.dart';
 import 'package:street_art_witnesses/core/utils/logger.dart';
 
 abstract class RoutesService {
   static Future<List<LatLng>> getRoute(LatLng start, int artworkId) async {
-    final response = await BackendDataSource.get(
+    final response = await BackendApi.get(
       '/v1/geo/route',
       queryParameters: {
         'user_coords': '${start.latitude},${start.longitude}',

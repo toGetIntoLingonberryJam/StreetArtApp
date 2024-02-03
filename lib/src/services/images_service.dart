@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/src/blocs/settings/settings_cubit.dart';
-import 'package:street_art_witnesses/src/data/yandex_disk_datasource.dart';
+import 'package:street_art_witnesses/src/data/ya_disk_api.dart';
 import 'package:street_art_witnesses/core/utils/logger.dart';
 
 // enum ImageQuality { xxxs, xxs, xs, s, m, l, xl, xxl, xxxl, c }
@@ -18,7 +18,7 @@ abstract class ImagesService {
       return null;
     }
 
-    final response = await YandexDiskDataSource.get(
+    final response = await YaDiskApi.get(
       '/v1/disk/public/resources/',
       queryParameters: {
         'public_key': url,

@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:street_art_witnesses/core/utils/logger.dart';
 
-abstract class BackendDataSource {
+abstract class BackendApi {
   static final _dio = Dio(
     BaseOptions(baseUrl: 'https://streetartwitnesses.fvds.ru'),
   );

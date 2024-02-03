@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:street_art_witnesses/core/utils/logger.dart';
 
-abstract class YandexDiskDataSource {
+abstract class YaDiskApi {
   static final _dio = Dio(
     BaseOptions(baseUrl: 'https://cloud-api.yandex.net'),
   );

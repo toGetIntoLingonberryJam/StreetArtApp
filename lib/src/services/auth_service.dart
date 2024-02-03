@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:street_art_witnesses/src/data/local_store_datasource.dart';
 import 'package:street_art_witnesses/src/models/user.dart';
-import 'package:street_art_witnesses/src/data/backend_datasource.dart';
+import 'package:street_art_witnesses/src/data/backend_api.dart';
 import 'package:street_art_witnesses/src/providers/email_counter_provider.dart';
 import 'package:street_art_witnesses/src/services/local_store_service.dart';
 import 'package:street_art_witnesses/core/utils/logger.dart';
@@ -26,7 +26,7 @@ class AuthService extends GetxService {
     required String email,
     required String password,
   }) async {
-    final response = await BackendDataSource.post(
+    final response = await BackendApi.post(
       '/v1/auth/login',
       data: {'username': email, 'password': password},
       options: Options(contentType: Headers.formUrlEncodedContentType),
@@ -49,7 +49,7 @@ class AuthService extends GetxService {
     required String email,
     required String password,
   }) async {
-    final response = await BackendDataSource.post(
+    final response = await BackendApi.post(
       '/v1/auth/register',
       data: {'username': username, 'email': email, 'password': password},
       requestType: RequestType.register,
@@ -63,7 +63,7 @@ class AuthService extends GetxService {
   }
 
   Future<User> authenticate({required String token}) async {
-    final response = await BackendDataSource.get(
+    final response = await BackendApi.get(
       '/v1/users/me',
       options: Options(headers: {'Authorization': 'Bearer $token'}),
       requestType: RequestType.getUserViaToken,
@@ -80,7 +80,7 @@ class AuthService extends GetxService {
   }
 
   Future<bool> verify({required String email}) async {
-    final response = await BackendDataSource.post(
+    final response = await BackendApi.post(
       '/v1/users/request-verify-token',
       requestType: RequestType.verify,
       data: {'email': email},

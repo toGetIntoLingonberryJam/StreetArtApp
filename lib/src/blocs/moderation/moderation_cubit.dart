@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:street_art_witnesses/src/data/backend_datasource.dart';
+import 'package:street_art_witnesses/src/data/backend_api.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork_location.dart';
 import 'package:street_art_witnesses/core/utils/logger.dart';
@@ -32,7 +32,7 @@ class ModerationCubit extends Cubit<ModerationState> {
       'artwork_ticket_schema': jsonEncode(_getTicketData(preview)),
     });
 
-    final future = BackendDataSource.post(
+    final future = BackendApi.post(
       '/v1/tickets/artwork',
       requestType: RequestType.unknown,
       data: formData,

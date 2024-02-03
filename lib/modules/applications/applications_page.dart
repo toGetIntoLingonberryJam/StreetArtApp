@@ -6,7 +6,7 @@ import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/modules/artwork/artwork_page.dart';
 import 'package:street_art_witnesses/modules/user/controller.dart';
 import 'package:street_art_witnesses/src/blocs/settings/settings_cubit.dart';
-import 'package:street_art_witnesses/src/data/backend_datasource.dart';
+import 'package:street_art_witnesses/src/data/backend_api.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/src/services/images_service.dart';
 import 'package:street_art_witnesses/core/utils/logger.dart';
@@ -26,7 +26,7 @@ class ApplicationsPage extends GetView<ProfileController> {
   Widget build(BuildContext context) {
     if (!controller.user.isModerator) return const AppErrorScreen();
 
-    final future = BackendDataSource.get('/v1/tickets', requestType: RequestType.unknown);
+    final future = BackendApi.get('/v1/tickets', requestType: RequestType.unknown);
 
     return Scaffold(
       body: SafeArea(
@@ -131,7 +131,7 @@ class _ApplicationPage extends GetView<ProfileController> {
 
   void _approve(BuildContext context) async {
     final token = controller.user.token!;
-    final future = BackendDataSource.patch(
+    final future = BackendApi.patch(
       '/v1/tickets/approve/$ticketId',
       options: Options(headers: {'Authorization': 'Bearer $token'}),
       requestType: RequestType.unknown,
@@ -146,7 +146,7 @@ class _ApplicationPage extends GetView<ProfileController> {
 
   void _reject(BuildContext context) async {
     final token = controller.user.token!;
-    final future = BackendDataSource.patch(
+    final future = BackendApi.patch(
       '/v1/tickets/reject/$ticketId',
       options: Options(headers: {'Authorization': 'Bearer $token'}),
       requestType: RequestType.unknown,
