@@ -6,7 +6,7 @@ import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/modules/applications/controller.dart';
 import 'package:street_art_witnesses/modules/artwork/artwork_page.dart';
 import 'package:street_art_witnesses/modules/user/controller.dart';
-import 'package:street_art_witnesses/src/blocs/settings/settings_cubit.dart';
+import 'package:street_art_witnesses/src/services/settings_service.dart';
 import 'package:street_art_witnesses/src/data/backend_api.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/src/models/ticket.dart';

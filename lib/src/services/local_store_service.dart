@@ -1,4 +1,4 @@
-import 'package:street_art_witnesses/src/blocs/settings/settings_cubit.dart';
+import 'package:street_art_witnesses/src/services/settings_service.dart';
 import 'package:street_art_witnesses/src/data/local_store_datasource.dart';
 import 'package:street_art_witnesses/core/utils/logger.dart';
 

@@ -1,10 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
-import 'package:street_art_witnesses/src/blocs/settings/settings_cubit.dart';
+import 'package:street_art_witnesses/src/services/settings_service.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork_image.dart';
 import 'package:street_art_witnesses/src/providers/slider_provider.dart';
 import 'package:street_art_witnesses/src/services/images_service.dart';
@@ -43,7 +44,7 @@ class _ImageSliderState extends State<_ImageSlider> {
       widget.images.length,
       (i) => ImagesService.loadFromDisk(
         widget.images[i].imageUrl,
-        quality: context.read<SettingsCubit>().imageQuality,
+        quality: Get.find<SettingsService>().imageQuality,
       ),
     );
     super.initState();

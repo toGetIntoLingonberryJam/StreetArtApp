@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
-import 'package:street_art_witnesses/src/blocs/settings/settings_cubit.dart';
+import 'package:street_art_witnesses/modules/user/modules/settings/controller.dart';
+import 'package:street_art_witnesses/src/services/settings_service.dart';
 import 'package:street_art_witnesses/widgets/containers/app_container.dart';
 import 'package:street_art_witnesses/widgets/other/app_appbar.dart';
 
@@ -11,6 +12,7 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(SettingsController());
     return const Scaffold(
       body: SafeArea(
         child: Padding(
@@ -53,32 +55,34 @@ class _QualitySettings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final settings = context.watch<SettingsCubit>();
-    final quality = settings.imageQuality;
-
     return AppContainer(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text('Качество изображений', style: TextStyles.headline1),
-          const SizedBox(height: 8),
-          _Option(
-            onTap: () => settings.setImageQuality(ImageQuality.bad),
-            title: 'Плохое',
-            isChecked: quality == ImageQuality.bad,
-          ),
-          const SizedBox(height: 4),
-          _Option(
-            onTap: () => settings.setImageQuality(ImageQuality.good),
-            title: 'Хорошее',
-            isChecked: quality == ImageQuality.good,
-          ),
-          const SizedBox(height: 4),
-          _Option(
-              onTap: () => settings.setImageQuality(ImageQuality.best),
-              title: 'Лучшее',
-              isChecked: quality == ImageQuality.best),
-        ],
+      child: GetBuilder<SettingsController>(
+        builder: (controller) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text('Качество изображений', style: TextStyles.headline1),
+              const SizedBox(height: 8),
+              _Option(
+                onTap: () => controller.setImageQuality(ImageQuality.bad),
+                title: 'Плохое',
+                isChecked: controller.imageQuality == ImageQuality.bad,
+              ),
+              const SizedBox(height: 4),
+              _Option(
+                onTap: () => controller.setImageQuality(ImageQuality.good),
+                title: 'Хорошее',
+                isChecked: controller.imageQuality == ImageQuality.good,
+              ),
+              const SizedBox(height: 4),
+              _Option(
+                onTap: () => controller.setImageQuality(ImageQuality.best),
+                title: 'Лучшее',
+                isChecked: controller.imageQuality == ImageQuality.best,
+              ),
+            ],
+          );
+        },
       ),
     );
   }

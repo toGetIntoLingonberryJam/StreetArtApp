@@ -7,7 +7,7 @@ import 'package:street_art_witnesses/modules/intro/intro_slider.dart';
 import 'package:street_art_witnesses/modules/user/controller.dart';
 import 'package:street_art_witnesses/src/blocs/main_menu/main_menu_cubit.dart';
 import 'package:street_art_witnesses/src/blocs/map/map_cubit.dart';
-import 'package:street_art_witnesses/src/blocs/settings/settings_cubit.dart';
+import 'package:street_art_witnesses/src/services/settings_service.dart';
 import 'package:street_art_witnesses/src/models/user.dart';
 import 'package:street_art_witnesses/src/providers/email_counter_provider.dart';
 import 'package:street_art_witnesses/src/providers/location_provider.dart';
@@ -28,6 +28,7 @@ void main() async {
     },
     permanent: true,
   );
+  Get.put(SettingsService(initImageQuality: quality));
   Get.put(ProfileController(), permanent: true);
 
   runApp(
@@ -57,7 +58,6 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => EmailCounterProvider(length: 30)),
         ChangeNotifierProvider(create: (_) => LocationProvider()),
-        BlocProvider(create: (_) => SettingsCubit(initImageQuality: initImageQuality)),
         BlocProvider(create: (_) => MapCubit()..loadMarkers()),
         BlocProvider(create: (_) => MainMenuCubit()),
       ],
