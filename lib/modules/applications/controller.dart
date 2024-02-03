@@ -16,12 +16,6 @@ class ApplicationsController extends GetxController {
   bool isLoading = true;
 
   @override
-  void onClose() {
-    Logger.message('close');
-    super.onClose();
-  }
-
-  @override
   void onInit() {
     ever(_authService.user, (user) {
       if (!user.isModerator) Get.off(() => const AppErrorScreen());
