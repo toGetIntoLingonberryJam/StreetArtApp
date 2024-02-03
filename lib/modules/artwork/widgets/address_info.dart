@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
@@ -31,7 +32,7 @@ class AddressInfo extends StatelessWidget {
     if (!context.mounted) return;
 
     context.read<MapCubit>().addTask(MapRouteTask(start, artwork.id));
-    Navigator.of(context).pop();
+    Get.back();
   }
 
   void _showPreviewWarning(BuildContext context) {

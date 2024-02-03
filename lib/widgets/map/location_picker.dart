@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_animations/flutter_map_animations.dart';
+import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/modules/home/map/controllers_layer.dart';
@@ -68,9 +69,7 @@ class _LocationPickerState extends State<LocationPicker> with TickerProviderStat
                         child: Padding(
                           padding: kPagePadding,
                           child: AppButton.primary(
-                              onTap: () {
-                                Navigator.of(context).pop(controller.mapController.camera.center);
-                              },
+                              onTap: () => Get.back(result: controller.mapController.camera.center),
                               label: 'Выбрать'),
                         ),
                       ),

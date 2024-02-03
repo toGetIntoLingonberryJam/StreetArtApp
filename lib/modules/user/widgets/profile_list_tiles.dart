@@ -11,17 +11,13 @@ import 'package:street_art_witnesses/widgets/containers/app_list_tile.dart';
 
 abstract class UserTiles {
   static AppListTile settings(BuildContext context) => AppListTile(
-        onTap: () => Navigator.of(context).push(MaterialPageRoute(
-          builder: (_) => const SettingsScreen(),
-        )),
+        onTap: () => Get.to(() => const SettingsScreen()),
         iconData: Icons.settings_outlined,
         text: 'Настройки',
       );
 
   static AppListTile about(BuildContext context) => AppListTile(
-        onTap: () => Navigator.of(context).push(MaterialPageRoute(
-          builder: (_) => const AboutPage(),
-        )),
+        onTap: () => Get.to(() => const AboutPage()),
         iconData: Icons.info_outline,
         text: 'О нас',
       );
@@ -47,17 +43,13 @@ abstract class UserTiles {
       );
 
   static AppListTile addArtwork(BuildContext context) => AppListTile(
-        onTap: () => Navigator.of(context).push(MaterialPageRoute(
-          builder: (_) => const ModerationPage(),
-        )),
+        onTap: () => Get.to(() => const ModerationPage()),
         iconData: Icons.add_circle_outline,
         text: 'Добавить работу',
       );
 
   static AppListTile changePassword(BuildContext context) => AppListTile(
-        onTap: () => Navigator.of(context).push(MaterialPageRoute(
-          builder: (_) => const ChangePasswordPage(),
-        )),
+        onTap: () => Get.to(() => const ChangePasswordPage()),
         iconData: Icons.lock_person_outlined,
         text: 'Изменить пароль',
       );

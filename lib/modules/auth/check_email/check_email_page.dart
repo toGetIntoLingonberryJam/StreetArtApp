@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/modules/auth/check_email/email_counter.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
@@ -39,10 +40,7 @@ class CheckEmailPage extends StatelessWidget {
               ),
               Column(
                 children: [
-                  AppButton.primary(
-                    label: 'Перейти на главную',
-                    onTap: () => Navigator.of(context).pop(),
-                  ),
+                  AppButton.primary(label: 'Перейти на главную', onTap: Get.back),
                   const SizedBox(height: 12),
                   const EmailCounterWidget(),
                 ],

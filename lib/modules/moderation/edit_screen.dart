@@ -124,9 +124,7 @@ class _MainInfoViewState extends State<_MainInfoView> {
   }
 
   void _showLocationPicker() async {
-    final LatLng? loc = await Navigator.of(context).push(MaterialPageRoute(
-      builder: (_) => const LocationPicker(),
-    ));
+    final LatLng? loc = await Get.to(() => const LocationPicker());
     if (loc != null) {
       location = loc;
       locationController.text =

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/modules/artwork/widgets/address_info.dart';
@@ -144,10 +145,7 @@ class _ArtworkImageSliderState extends State<_ArtworkImageSlider> {
             padding: const EdgeInsets.all(20),
             child: Row(
               children: [
-                AppIconButton(
-                  onTap: () => Navigator.of(context).pop(),
-                  iconData: Icons.arrow_back,
-                ),
+                AppIconButton(onTap: Get.back, iconData: Icons.arrow_back),
                 const Expanded(child: SizedBox()),
                 AppIconButton(
                   onTap: () => Utils.of(context).showMessage('Изменить работу'),

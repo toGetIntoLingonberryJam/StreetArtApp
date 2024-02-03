@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 
 class AppAppbar extends StatelessWidget {
@@ -38,13 +39,8 @@ class AppAppbar extends StatelessWidget {
     );
   }
 
-  Widget? _backButton(BuildContext context) {
-    if (Navigator.of(context).canPop()) {
-      return GestureDetector(
-        onTap: () => Navigator.of(context).pop(),
+  Widget? _backButton(BuildContext context) => GestureDetector(
+        onTap: Get.back,
         child: const Icon(Icons.arrow_back),
       );
-    }
-    return null;
-  }
 }

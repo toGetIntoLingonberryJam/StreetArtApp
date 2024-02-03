@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/modules/home/home_page.dart';
 import 'package:street_art_witnesses/modules/intro/intro_auth_page.dart';
@@ -76,9 +77,7 @@ class _IntroSliderState extends State<IntroSlider> {
       child: Row(children: [
         const Expanded(child: SizedBox()),
         GestureDetector(
-          onTap: () => Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (_) => const HomePage(),
-          )),
+          onTap: () => Get.to(() => const HomePage()),
           child: const Text('Пропустить', style: TextStyles.textAdditional),
         ),
       ]),

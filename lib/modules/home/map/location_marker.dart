@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:street_art_witnesses/modules/artwork/artwork_page.dart';
 import 'package:street_art_witnesses/src/blocs/settings/settings_cubit.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork_location.dart';
@@ -33,9 +34,7 @@ class _LocationMarkerState extends State<LocationMarker> {
     if (artwork == null) {
       Utils.of(context).showMessage('Не удалось получить данные о работе');
     } else {
-      Navigator.of(context).push(MaterialPageRoute(
-        builder: (_) => ArtworkPage(artwork: artwork),
-      ));
+      Get.to(() => ArtworkPage(artwork: artwork));
     }
   }
 

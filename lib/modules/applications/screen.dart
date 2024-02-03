@@ -65,9 +65,7 @@ class _ApplicationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(kContainerRadius),
-      onTap: () => Navigator.of(context).push(MaterialPageRoute(
-        builder: (_) => _ApplicationPage(ticket),
-      )),
+      onTap: () => Get.to(() => _ApplicationPage(ticket)),
       child: AppContainer(
         child: Row(
           children: [
@@ -121,7 +119,8 @@ class _ApplicationPage extends GetView<ProfileController> {
     if (result == null && context.mounted) {
       Utils.of(context).showError('Не удалось выполнить запрос');
     } else if (context.mounted) {
-      Navigator.of(context).pop();
+      Utils.of(context).showMessage('Работа одобрена');
+      Get.back();
     }
   }
 
@@ -136,7 +135,8 @@ class _ApplicationPage extends GetView<ProfileController> {
     if (result == null && context.mounted) {
       Utils.of(context).showError('Не удалось выполнить запрос');
     } else if (context.mounted) {
-      Navigator.of(context).pop();
+      Utils.of(context).showError('Работа отклонена');
+      Get.back();
     }
   }
 
