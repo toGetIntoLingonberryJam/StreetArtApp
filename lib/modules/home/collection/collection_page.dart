@@ -31,6 +31,7 @@ class _CollectionPageState extends State<CollectionPage> {
             children: [
               AppAppbar(
                 title: 'Ваша Коллекция',
+                autoImplyLeading: false,
                 action: GestureDetector(
                   onTap: () {},
                   child: const Icon(Icons.search),
