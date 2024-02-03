@@ -1,45 +1,31 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:street_art_witnesses/core/utils/logger.dart';
 import 'package:street_art_witnesses/src/models/user.dart';
 import 'package:street_art_witnesses/modules/user/views/artist.dart';
 import 'package:street_art_witnesses/modules/user/views/authorized.dart';
 import 'package:street_art_witnesses/modules/user/views/guest.dart';
 import 'package:street_art_witnesses/modules/user/views/moderator.dart';
 import 'package:street_art_witnesses/modules/user/views/verified.dart';
-import 'package:street_art_witnesses/src/providers/email_counter_provider.dart';
-import 'package:street_art_witnesses/src/repository/user.dart';
 import 'package:street_art_witnesses/src/services/user_service.dart';
 
-class UserController extends GetxController {
-  UserController({required User user}) : _user = user.obs;
+class ProfileController extends GetxController {
+  final _userService = Get.find<UserService>();
 
-  final Rx<User> _user;
-  Rx<User> get user => _user;
+  @override
+  void onInit() {
+    ever(_userService.user, (callback) => update());
+    super.onInit();
+  }
+
+  User get user => _userService.user.value;
+
+  Future<void> updateUser() => _userService.updateUser();
 
   Widget get view {
-    if (user.value.isModerator) return const ModeratorView();
-    if (user.value.isArtist) return const ArtistView();
-    if (user.value.isVerified) return const VerifiedView();
-    if (user.value.isAuthorized) return const AuthorizedView();
+    if (user.isModerator) return const ModeratorView();
+    if (user.isArtist) return const ArtistView();
+    if (user.isVerified) return const VerifiedView();
+    if (user.isAuthorized) return const AuthorizedView();
     return const GuestView();
-  }
-
-  Future<void> updateUser() async {
-    final user = await UserRepository.getCurrentUser();
-    setUser(user);
-  }
-
-  void setUser(User user) {
-    Logger.message('[NEW USER] ${user.username}');
-    _user.value = user;
-  }
-
-  // TODO: Clear all user data: favourites, search history, tours, everyhting that depends on user
-  Future<void> logout() async {
-    Logger.message('[USER LOGGED OUT]');
-    await UserService.deleteUserLocalData();
-    EmailCounterProvider.reset();
-    setUser(User.guest());
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/modules/auth/auth_page.dart';
 import 'package:street_art_witnesses/modules/home/home_page.dart';
@@ -9,20 +10,6 @@ class IntroAuthPage extends StatelessWidget {
   const IntroAuthPage({super.key, required this.content});
 
   final String content;
-
-  void _navigateToHome(BuildContext context) {
-    Navigator.of(context).pushReplacement(MaterialPageRoute(
-      builder: (_) => const HomePage(),
-    ));
-  }
-
-  void _navigateToAuth(BuildContext context) {
-    _navigateToHome(context);
-
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (_) => const AuthPage(),
-    ));
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,12 +38,12 @@ class IntroAuthPage extends StatelessWidget {
               ),
               const Expanded(flex: 2, child: SizedBox()),
               AppButton.primary(
-                onTap: () => _navigateToAuth(context),
+                onTap: () => Get.to(() => AuthPage()),
                 label: 'Войти в профиль',
               ),
               const SizedBox(height: 12),
               AppButton.secondary(
-                onTap: () => _navigateToHome(context),
+                onTap: () => Get.to(() => const HomePage()),
                 label: 'Позже',
               ),
               const Expanded(flex: 2, child: SizedBox()),

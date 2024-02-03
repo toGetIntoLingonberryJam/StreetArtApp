@@ -6,7 +6,7 @@ import 'package:street_art_witnesses/modules/user/widgets/role_tile.dart';
 import 'package:street_art_witnesses/modules/user/widgets/profile_tile.dart';
 import 'package:street_art_witnesses/modules/user/widgets/profile_list_tiles.dart';
 
-class ModeratorView extends StatelessWidget {
+class ModeratorView extends GetView<ProfileController> {
   const ModeratorView({super.key});
 
   @override
@@ -16,11 +16,9 @@ class ModeratorView extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          GetX<UserController>(
-            builder: (c) => ProfileTile(
-              username: c.user.value.username,
-              email: c.user.value.email!,
-            ),
+          ProfileTile(
+            username: controller.user.username,
+            email: controller.user.email!,
           ),
           const SizedBox(height: 24),
           const RoleTile(role: 'Аккаунт модератора'),

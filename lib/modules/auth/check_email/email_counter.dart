@@ -13,7 +13,7 @@ class EmailCounterWidget extends StatelessWidget {
     await Utils.of(context).showLoading(
       context.read<EmailCounterProvider>().sendEmail(
             context,
-            Get.find<UserController>().user.value.email!,
+            Get.find<ProfileController>().user.email!,
           ),
     );
   }

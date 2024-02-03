@@ -6,7 +6,7 @@ import 'package:street_art_witnesses/modules/user/widgets/role_tile.dart';
 import 'package:street_art_witnesses/modules/user/widgets/profile_tile.dart';
 import 'package:street_art_witnesses/modules/user/widgets/profile_list_tiles.dart';
 
-class ArtistView extends StatelessWidget {
+class ArtistView extends GetView<ProfileController> {
   const ArtistView({super.key});
 
   @override
@@ -16,11 +16,10 @@ class ArtistView extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          GetX<UserController>(
-              builder: (c) => ProfileTile(
-                    username: c.user.value.username,
-                    email: c.user.value.email!,
-                  )),
+          ProfileTile(
+            username: controller.user.username,
+            email: controller.user.email!,
+          ),
           const SizedBox(height: 24),
           const RoleTile(role: 'Аккаунт художника'),
           const SizedBox(height: 24),

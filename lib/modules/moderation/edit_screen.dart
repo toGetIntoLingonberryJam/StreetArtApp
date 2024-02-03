@@ -42,7 +42,7 @@ class _ModerationEditScreenState extends State<ModerationEditScreen> {
     _PreviewView(
       onTapNext: () => context.read<ModerationCubit>().sendToModeration(
             context,
-            token: Get.find<UserController>().user.value.token!,
+            token: Get.find<ProfileController>().user.token!,
           ),
     ),
   ];

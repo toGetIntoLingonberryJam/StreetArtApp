@@ -3,17 +3,19 @@ import 'package:get/get.dart';
 import 'package:street_art_witnesses/src/data/local_store_datasource.dart';
 import 'package:street_art_witnesses/src/models/user.dart';
 import 'package:street_art_witnesses/src/data/backend_datasource.dart';
+import 'package:street_art_witnesses/src/providers/email_counter_provider.dart';
 import 'package:street_art_witnesses/src/services/local_store_service.dart';
 import 'package:street_art_witnesses/core/utils/logger.dart';
 
 class UserService extends GetxService {
-  UserService({required User user}) : _user = user;
+  UserService({required User user}) : _user = user.obs;
 
-  User _user;
-  User get user => _user;
+  final Rx<User> _user;
+  Rx<User> get user => _user;
 
   Future<void> updateUser() async {
-    if (user.token != null) _user = await authenticate(token: user.token!);
+    if (_user.value.token != null) _user.value = await authenticate(token: _user.value.token!);
+    Logger.message('User updated');
   }
 
   Future<void> login({
@@ -32,7 +34,7 @@ class UserService extends GetxService {
     final String? token = response.data['access_token'];
     if (token != null) {
       await LocalStoreService.saveToken(token);
-      _user = await authenticate(token: token);
+      _user.value = await authenticate(token: token);
     } else {
       Logger.warning('No token returned');
     }
@@ -65,7 +67,9 @@ class UserService extends GetxService {
 
     if (response?.statusCode == 200 && response?.data != null) {
       final json = response!.data as Map<String, dynamic>;
-      return User.fromJson(json, token: token);
+      final user = User.fromJson(json, token: token);
+      Logger.success('User auth successfull');
+      return user;
     }
     Logger.warning('Get User via token failed');
     return User.guest();
@@ -81,7 +85,13 @@ class UserService extends GetxService {
     return response != null;
   }
 
-  Future<void> logout() async {}
+  // TODO: Clear all user data: favourites, search history, tours, everyhting that depends on user
+  Future<void> logout() async {
+    await deleteUserLocalData();
+    EmailCounterProvider.reset();
+    _user.value = User.guest();
+    Logger.message('[USER LOGGED OUT]');
+  }
 
   Future<void> deleteUserLocalData() async {
     await LocalStoreDataSource.userDoc.delete();

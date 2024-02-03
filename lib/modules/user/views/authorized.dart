@@ -11,7 +11,7 @@ import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
 import 'package:street_art_witnesses/modules/user/widgets/profile_list_tiles.dart';
 
-class AuthorizedView extends StatelessWidget {
+class AuthorizedView extends GetView<ProfileController> {
   const AuthorizedView({super.key});
 
   @override
@@ -21,11 +21,10 @@ class AuthorizedView extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          GetX<UserController>(
-              builder: (c) => ProfileTile(
-                    username: c.user.value.username,
-                    email: c.user.value.email!,
-                  )),
+          ProfileTile(
+            username: controller.user.username,
+            email: controller.user.email!,
+          ),
           const SizedBox(height: 24),
           const _LoginWarningTile(),
           const SizedBox(height: 24),
@@ -40,12 +39,12 @@ class AuthorizedView extends StatelessWidget {
   }
 }
 
-class _LoginWarningTile extends GetView<UserController> {
+class _LoginWarningTile extends GetView<ProfileController> {
   const _LoginWarningTile();
 
   Future<void> _sendEmail(BuildContext context) async {
     await Utils.of(context).showLoading(
-      context.read<EmailCounterProvider>().sendEmail(context, controller.user.value.email!),
+      context.read<EmailCounterProvider>().sendEmail(context, controller.user.email!),
     );
     Get.to(() => const CheckEmailPage());
   }

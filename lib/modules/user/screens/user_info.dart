@@ -21,24 +21,26 @@ class UserInfoScreen extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: kPagePadding,
-          child: GetX<UserController>(builder: (ctrl) {
-            return Column(
-              children: [
-                const AppAppbar(title: 'Профиль'),
-                const SizedBox(height: 20),
-                AppCircleAvatar(radius: 50, image: AppPlaceholder.assetImage()),
-                const SizedBox(height: 20),
-                _UserInfo(ctrl.user.value),
-                const SizedBox(height: 40),
-                UserTiles.changePassword(context),
-                const SizedBox(height: 40),
-                AppButton.primary(
-                  onTap: () => Utils.of(context).showMessage('Изменения сохранены'),
-                  label: 'Сохранить',
-                ),
-              ],
-            );
-          }),
+          child: GetBuilder<ProfileController>(
+            builder: (ctrl) {
+              return Column(
+                children: [
+                  const AppAppbar(title: 'Профиль'),
+                  const SizedBox(height: 20),
+                  AppCircleAvatar(radius: 50, image: AppPlaceholder.assetImage()),
+                  const SizedBox(height: 20),
+                  _UserInfo(ctrl.user),
+                  const SizedBox(height: 40),
+                  UserTiles.changePassword(context),
+                  const SizedBox(height: 40),
+                  AppButton.primary(
+                    onTap: () => Utils.of(context).showMessage('Изменения сохранены'),
+                    label: 'Сохранить',
+                  ),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );

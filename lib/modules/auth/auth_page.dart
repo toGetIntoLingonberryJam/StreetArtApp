@@ -1,25 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
-import 'package:street_art_witnesses/modules/auth/forms/login_form.dart';
-import 'package:street_art_witnesses/modules/auth/forms/register_form.dart';
+import 'package:street_art_witnesses/modules/auth/controller.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
 import 'package:street_art_witnesses/widgets/other/app_logo.dart';
 
-enum _Form { login, register }
+class AuthPage extends StatelessWidget {
+  AuthPage({super.key});
 
-class AuthPage extends StatefulWidget {
-  const AuthPage({super.key});
-
-  @override
-  State<AuthPage> createState() => _AuthPageState();
-}
-
-class _AuthPageState extends State<AuthPage> {
-  _Form authForm = _Form.login;
-
-  void _switchToLogin() => setState(() => authForm = _Form.login);
-
-  void _switchToRegister() => setState(() => authForm = _Form.register);
+  final controller = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -42,20 +31,32 @@ class _AuthPageState extends State<AuthPage> {
               Row(
                 children: [
                   Expanded(
-                    child: authForm == _Form.login
-                        ? AppButton.primary(onTap: _switchToLogin, label: 'Вход')
-                        : AppButton.secondary(onTap: _switchToLogin, label: 'Вход'),
+                    child: controller.form == AuthForm.login
+                        ? AppButton.primary(
+                            onTap: () => controller.switchForm(AuthForm.login),
+                            label: 'Вход',
+                          )
+                        : AppButton.secondary(
+                            onTap: () => controller.switchForm(AuthForm.login),
+                            label: 'Вход',
+                          ),
                   ),
                   const SizedBox(width: 20),
                   Expanded(
-                    child: authForm == _Form.register
-                        ? AppButton.primary(onTap: _switchToRegister, label: 'Регистрация')
-                        : AppButton.secondary(onTap: _switchToRegister, label: 'Регистрация'),
+                    child: controller.form == AuthForm.register
+                        ? AppButton.primary(
+                            onTap: () => controller.switchForm(AuthForm.register),
+                            label: 'Регистрация',
+                          )
+                        : AppButton.secondary(
+                            onTap: () => controller.switchForm(AuthForm.register),
+                            label: 'Регистрация',
+                          ),
                   ),
                 ],
               ),
               const SizedBox(height: 48),
-              authForm == _Form.login ? const LoginView() : const RegisterView(),
+              controller.view,
             ],
           ),
         ),

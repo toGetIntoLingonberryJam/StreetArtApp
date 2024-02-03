@@ -19,12 +19,12 @@ import 'package:street_art_witnesses/widgets/other/app_loading_indicator.dart';
 import 'package:street_art_witnesses/widgets/other/image_slider.dart';
 import 'package:street_art_witnesses/widgets/skeletons/app_placeholder.dart';
 
-class ApplicationsPage extends GetView<UserController> {
+class ApplicationsPage extends GetView<ProfileController> {
   const ApplicationsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    if (!controller.user.value.isModerator) return const AppErrorScreen();
+    if (!controller.user.isModerator) return const AppErrorScreen();
 
     final future = BackendDataSource.get('/v1/tickets', requestType: RequestType.unknown);
 
@@ -123,14 +123,14 @@ class _ApplicationCard extends StatelessWidget {
   }
 }
 
-class _ApplicationPage extends GetView<UserController> {
+class _ApplicationPage extends GetView<ProfileController> {
   const _ApplicationPage(this.artwork, this.ticketId);
 
   final Artwork artwork;
   final int ticketId;
 
   void _approve(BuildContext context) async {
-    final token = controller.user.value.token!;
+    final token = controller.user.token!;
     final future = BackendDataSource.patch(
       '/v1/tickets/approve/$ticketId',
       options: Options(headers: {'Authorization': 'Bearer $token'}),
@@ -145,7 +145,7 @@ class _ApplicationPage extends GetView<UserController> {
   }
 
   void _reject(BuildContext context) async {
-    final token = controller.user.value.token!;
+    final token = controller.user.token!;
     final future = BackendDataSource.patch(
       '/v1/tickets/reject/$ticketId',
       options: Options(headers: {'Authorization': 'Bearer $token'}),

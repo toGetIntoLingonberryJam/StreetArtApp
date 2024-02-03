@@ -11,7 +11,6 @@ import 'package:street_art_witnesses/src/blocs/settings/settings_cubit.dart';
 import 'package:street_art_witnesses/src/models/user.dart';
 import 'package:street_art_witnesses/src/providers/email_counter_provider.dart';
 import 'package:street_art_witnesses/src/providers/location_provider.dart';
-import 'package:street_art_witnesses/src/repository/user.dart';
 import 'package:street_art_witnesses/src/services/local_store_service.dart';
 import 'package:street_art_witnesses/core/values/theme.dart';
 import 'package:provider/provider.dart';
@@ -20,11 +19,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final quality = await LocalStoreService.getImageQuality();
-
-  await Get.putAsync(() async {
-    final user = await UserRepository.getCurrentUser();
-    return UserController(user: user);
-  }, permanent: true);
+  Get.put(ProfileController(), permanent: true);
 
   runApp(
     MyApp(initImageQuality: quality),
@@ -47,7 +42,7 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
     ]);
 
-    final User user = Get.find<UserController>().user.value;
+    final User user = Get.find<ProfileController>().user;
 
     return MultiProvider(
       providers: [
