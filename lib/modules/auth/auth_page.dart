@@ -21,44 +21,46 @@ class AuthPage extends StatelessWidget {
       body: Center(
         child: SingleChildScrollView(
           padding: kPagePadding,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const Padding(
-                padding: EdgeInsets.only(top: 20, bottom: 45),
-                child: AppLogo(),
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: controller.form == AuthForm.login
-                        ? AppButton.primary(
-                            onTap: () => controller.switchForm(AuthForm.login),
-                            label: 'Вход',
-                          )
-                        : AppButton.secondary(
-                            onTap: () => controller.switchForm(AuthForm.login),
-                            label: 'Вход',
-                          ),
-                  ),
-                  const SizedBox(width: 20),
-                  Expanded(
-                    child: controller.form == AuthForm.register
-                        ? AppButton.primary(
-                            onTap: () => controller.switchForm(AuthForm.register),
-                            label: 'Регистрация',
-                          )
-                        : AppButton.secondary(
-                            onTap: () => controller.switchForm(AuthForm.register),
-                            label: 'Регистрация',
-                          ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 48),
-              controller.view,
-            ],
-          ),
+          child: GetBuilder<AuthController>(builder: (_) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(top: 20, bottom: 45),
+                  child: AppLogo(),
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: controller.form == AuthForm.login
+                          ? AppButton.primary(
+                              onTap: () => controller.switchForm(AuthForm.login),
+                              label: 'Вход',
+                            )
+                          : AppButton.secondary(
+                              onTap: () => controller.switchForm(AuthForm.login),
+                              label: 'Вход',
+                            ),
+                    ),
+                    const SizedBox(width: 20),
+                    Expanded(
+                      child: controller.form == AuthForm.register
+                          ? AppButton.primary(
+                              onTap: () => controller.switchForm(AuthForm.register),
+                              label: 'Регистрация',
+                            )
+                          : AppButton.secondary(
+                              onTap: () => controller.switchForm(AuthForm.register),
+                              label: 'Регистрация',
+                            ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 48),
+                controller.view,
+              ],
+            );
+          }),
         ),
       ),
     );

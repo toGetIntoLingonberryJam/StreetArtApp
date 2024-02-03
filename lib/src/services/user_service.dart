@@ -54,11 +54,11 @@ class UserService extends GetxService {
     if (response == null) {
       Logger.warning('Registration failed');
     } else {
-      login(email: email, password: password);
+      return await login(email: email, password: password);
     }
   }
 
-  Future<User> authenticate({required String token}) async {
+  static Future<User> authenticate({required String token}) async {
     final response = await BackendDataSource.get(
       '/v1/users/me',
       options: Options(headers: {'Authorization': 'Bearer $token'}),

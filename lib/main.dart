@@ -14,11 +14,15 @@ import 'package:street_art_witnesses/src/providers/location_provider.dart';
 import 'package:street_art_witnesses/src/services/local_store_service.dart';
 import 'package:street_art_witnesses/core/values/theme.dart';
 import 'package:provider/provider.dart';
+import 'package:street_art_witnesses/src/services/user_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   final quality = await LocalStoreService.getImageQuality();
+  final token = await LocalStoreService.retrieveToken();
+  final user = token == null ? User.guest() : await UserService.authenticate(token: token);
+
+  Get.lazyPut(() => UserService(user: user), fenix: true);
   Get.put(ProfileController(), permanent: true);
 
   runApp(
