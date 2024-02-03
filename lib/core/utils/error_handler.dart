@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:street_art_witnesses/core/utils/logger.dart';
 
 abstract class ErrorHandler {
-  static void _logDioError(DioException e) => Logger.dioError(e, RequestType.unknown);
+  static void _logDioError(DioException e) => Logger.dioError(e, where: 'ErrorHandler');
 
   static Future<T?> handleApiRequest<T>(
     Future<Response?> request, {

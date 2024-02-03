@@ -8,7 +8,6 @@ abstract class YaDiskApi {
 
   static Future<Response?> _makeApiRequest(
     Future<Response> request, {
-    required RequestType requestType,
     required String url,
   }) async {
     Logger.apiCall(url);
@@ -17,7 +16,7 @@ abstract class YaDiskApi {
       Logger.apiResult(url, result.toString());
       return result;
     } on DioException catch (e) {
-      Logger.dioError(e, requestType);
+      Logger.dioError(e, where: 'YaDiskApi');
       return null;
     }
   }
@@ -27,7 +26,6 @@ abstract class YaDiskApi {
     Map<String, dynamic>? data,
     Map<String, dynamic>? queryParameters,
     Options? options,
-    required RequestType requestType,
   }) async {
     return await _makeApiRequest(
       _dio.get(
@@ -36,7 +34,6 @@ abstract class YaDiskApi {
         options: options,
         queryParameters: queryParameters,
       ),
-      requestType: requestType,
       url: url,
     );
   }

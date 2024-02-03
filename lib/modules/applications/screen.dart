@@ -11,7 +11,6 @@ import 'package:street_art_witnesses/src/data/backend_api.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/src/models/ticket.dart';
 import 'package:street_art_witnesses/src/services/images_service.dart';
-import 'package:street_art_witnesses/core/utils/logger.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
 import 'package:street_art_witnesses/widgets/containers/app_container.dart';
@@ -113,7 +112,6 @@ class _ApplicationPage extends GetView<ProfileController> {
     final future = BackendApi.patch(
       '/v1/tickets/approve/${ticket.id}',
       options: Options(headers: {'Authorization': 'Bearer $token'}),
-      requestType: RequestType.unknown,
     );
     final result = await Utils.of(context).showLoading(future);
     if (result == null && context.mounted) {
@@ -129,7 +127,6 @@ class _ApplicationPage extends GetView<ProfileController> {
     final future = BackendApi.patch(
       '/v1/tickets/reject/${ticket.id}',
       options: Options(headers: {'Authorization': 'Bearer $token'}),
-      requestType: RequestType.unknown,
     );
     final result = await Utils.of(context).showLoading(future);
     if (result == null && context.mounted) {

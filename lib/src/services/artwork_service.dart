@@ -2,7 +2,6 @@ import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork_location.dart';
 import 'package:street_art_witnesses/src/models/author/author.dart';
 import 'package:street_art_witnesses/src/data/backend_api.dart';
-import 'package:street_art_witnesses/core/utils/logger.dart';
 
 abstract class ArtworkService {
   static Future<List<Author>> getAuthors() async {
@@ -16,10 +15,7 @@ abstract class ArtworkService {
   }
 
   static Future<Artwork?> getArtworkById(int id) async {
-    final response = await BackendApi.get(
-      '/v1/artworks/$id',
-      requestType: RequestType.getArtworkById,
-    );
+    final response = await BackendApi.get('/v1/artworks/$id');
 
     if (response == null) {
       return null;
@@ -30,10 +26,7 @@ abstract class ArtworkService {
   }
 
   static Future<List<ArtworkLocation>?> getLocations() async {
-    final response = await BackendApi.get(
-      '/v1/artworks/locations',
-      requestType: RequestType.getArtworkLocations,
-    );
+    final response = await BackendApi.get('/v1/artworks/locations');
 
     if (response == null) {
       return null;

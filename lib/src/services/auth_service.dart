@@ -30,7 +30,6 @@ class AuthService extends GetxService {
       '/v1/auth/login',
       data: {'username': email, 'password': password},
       options: Options(contentType: Headers.formUrlEncodedContentType),
-      requestType: RequestType.login,
     );
 
     if (response == null) {
@@ -57,7 +56,6 @@ class AuthService extends GetxService {
     final response = await BackendApi.post(
       '/v1/auth/register',
       data: {'username': username, 'email': email, 'password': password},
-      requestType: RequestType.register,
     );
 
     if (response == null) {
@@ -72,7 +70,6 @@ class AuthService extends GetxService {
     final response = await BackendApi.get(
       '/v1/users/me',
       options: Options(headers: {'Authorization': 'Bearer $token'}),
-      requestType: RequestType.getUserViaToken,
     );
 
     if (response?.statusCode == 200 && response?.data != null) {
@@ -88,7 +85,6 @@ class AuthService extends GetxService {
   Future<bool> verify({required String email}) async {
     final response = await BackendApi.post(
       '/v1/users/request-verify-token',
-      requestType: RequestType.verify,
       data: {'email': email},
     );
 

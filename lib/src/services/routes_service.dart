@@ -1,6 +1,5 @@
 import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/src/data/backend_api.dart';
-import 'package:street_art_witnesses/core/utils/logger.dart';
 
 abstract class RoutesService {
   static Future<List<LatLng>> getRoute(LatLng start, int artworkId) async {
@@ -10,7 +9,6 @@ abstract class RoutesService {
         'user_coords': '${start.latitude},${start.longitude}',
         'artwork_ids': artworkId,
       },
-      requestType: RequestType.unknown,
     );
 
     if (response == null) {

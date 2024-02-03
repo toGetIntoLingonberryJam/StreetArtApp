@@ -7,7 +7,6 @@ import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/src/data/backend_api.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/src/models/artwork/artwork_location.dart';
-import 'package:street_art_witnesses/core/utils/logger.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 
 part 'moderation_state.dart';
@@ -34,7 +33,6 @@ class ModerationCubit extends Cubit<ModerationState> {
 
     final future = BackendApi.post(
       '/v1/tickets/artwork',
-      requestType: RequestType.unknown,
       data: formData,
       options: Options(
         headers: {'Authorization': 'Bearer $token'},

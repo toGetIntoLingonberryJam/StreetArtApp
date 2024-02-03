@@ -8,7 +8,6 @@ abstract class BackendApi {
 
   static Future<Response?> _makeApiRequest(
     Future<Response> request, {
-    required RequestType requestType,
     required String url,
   }) async {
     Logger.apiCall(url);
@@ -17,7 +16,7 @@ abstract class BackendApi {
       Logger.apiResult(url, result.toString());
       return result;
     } on DioException catch (e) {
-      Logger.dioError(e, requestType);
+      Logger.dioError(e, where: 'BackendApi._makeApiRequest');
       return null;
     }
   }
@@ -27,7 +26,6 @@ abstract class BackendApi {
     Map<String, dynamic>? data,
     Map<String, dynamic>? queryParameters,
     Options? options,
-    required RequestType requestType,
   }) async {
     return await _makeApiRequest(
       _dio.get(
@@ -36,7 +34,6 @@ abstract class BackendApi {
         options: options,
         queryParameters: queryParameters,
       ),
-      requestType: requestType,
       url: url,
     );
   }
@@ -46,7 +43,6 @@ abstract class BackendApi {
     dynamic data,
     Map<String, dynamic>? queryParameters,
     Options? options,
-    required RequestType requestType,
   }) async {
     return await _makeApiRequest(
       _dio.post(
@@ -55,7 +51,6 @@ abstract class BackendApi {
         options: options,
         queryParameters: queryParameters,
       ),
-      requestType: requestType,
       url: url,
     );
   }
@@ -65,7 +60,6 @@ abstract class BackendApi {
     Map<String, dynamic>? data,
     Map<String, dynamic>? queryParameters,
     Options? options,
-    required RequestType requestType,
   }) async {
     return await _makeApiRequest(
       _dio.patch(
@@ -74,7 +68,6 @@ abstract class BackendApi {
         options: options,
         queryParameters: queryParameters,
       ),
-      requestType: requestType,
       url: url,
     );
   }
@@ -84,7 +77,6 @@ abstract class BackendApi {
     Map<String, dynamic>? data,
     Map<String, dynamic>? queryParameters,
     Options? options,
-    required RequestType requestType,
   }) async {
     return await _makeApiRequest(
       _dio.delete(
@@ -93,7 +85,6 @@ abstract class BackendApi {
         options: options,
         queryParameters: queryParameters,
       ),
-      requestType: requestType,
       url: url,
     );
   }

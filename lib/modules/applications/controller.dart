@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:street_art_witnesses/core/utils/logger.dart';
 import 'package:street_art_witnesses/src/data/backend_api.dart';
 import 'package:street_art_witnesses/src/models/ticket.dart';
 import 'package:street_art_witnesses/src/services/auth_service.dart';
@@ -26,7 +25,7 @@ class ApplicationsController extends GetxController {
   Future<void> loadTickets() async {
     isLoading = true;
     update();
-    final response = await BackendApi.get('/v1/tickets', requestType: RequestType.unknown);
+    final response = await BackendApi.get('/v1/tickets');
     if (response == null || response.data == null) {
       isLoading = false;
       // TODO: Error snackbar

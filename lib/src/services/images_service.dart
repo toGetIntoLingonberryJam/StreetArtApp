@@ -25,7 +25,6 @@ abstract class ImagesService {
         'preview_size': _mapQualityToSize[quality],
         'fields': 'preview',
       },
-      requestType: RequestType.loadImageFromDisk,
     );
     if (response == null) {
       return null;
@@ -34,7 +33,7 @@ abstract class ImagesService {
         final Map<String, dynamic> data = response.data!;
         return NetworkImage(data['preview']);
       } on Exception catch (e) {
-        Logger.exception(e, className: 'ImagesService', methodName: 'loadFromDisk');
+        Logger.exception(e, where: 'ImagesService.loadFromDisk');
         return null;
       }
     }
