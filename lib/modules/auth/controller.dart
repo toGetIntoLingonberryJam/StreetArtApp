@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/core/utils/logger.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/modules/auth/views/login_form.dart';
 import 'package:street_art_witnesses/modules/auth/views/register_form.dart';
@@ -44,22 +45,23 @@ class AuthController extends GetxController {
 
   void tryLogin(BuildContext context) async {
     if (loginFormKey.currentState?.validate() ?? false) {
-      await Utils.of(context).showLoading(userService.login(
+      final success = await Utils.of(context).showLoading(userService.login(
         email: emailCtrl.text.trim(),
         password: passwordCtrl.text.trim(),
       ));
-      Get.offAll(() => const HomePage());
+      Logger.message(success.toString());
+      if (success ?? false) Get.offAll(() => const HomePage());
     }
   }
 
   void tryRegister(BuildContext context) async {
     if (registerFormKey.currentState?.validate() ?? false) {
-      await Utils.of(context).showLoading(userService.register(
+      final success = await Utils.of(context).showLoading(userService.register(
         email: emailCtrl.text.trim(),
         password: passwordCtrl.text.trim(),
         username: usernameCtrl.text.trim(),
       ));
-      Get.offAll(() => const HomePage());
+      if (success ?? false) Get.offAll(() => const HomePage());
     }
   }
 }

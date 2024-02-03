@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
-import 'package:street_art_witnesses/modules/auth/auth_page.dart';
+import 'package:street_art_witnesses/modules/auth/screen.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
 import 'package:street_art_witnesses/modules/user/widgets/profile_list_tiles.dart';
 
@@ -16,7 +16,7 @@ class GuestView extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          _LoginContainer(login: () => Get.to(() => AuthPage())),
+          _LoginContainer(login: () => Get.to(() => AuthScreen())),
           const SizedBox(height: 24),
           UserTiles.settings(context),
           const SizedBox(height: 8),

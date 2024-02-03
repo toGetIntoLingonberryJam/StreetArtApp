@@ -5,8 +5,8 @@ import 'package:street_art_witnesses/modules/auth/controller.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
 import 'package:street_art_witnesses/widgets/other/app_logo.dart';
 
-class AuthPage extends StatelessWidget {
-  AuthPage({super.key});
+class AuthScreen extends StatelessWidget {
+  AuthScreen({super.key});
 
   final controller = Get.put(AuthController());
 

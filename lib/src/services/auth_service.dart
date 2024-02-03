@@ -22,7 +22,7 @@ class AuthService extends GetxService {
     Logger.message('User updated');
   }
 
-  Future<void> login({
+  Future<bool> login({
     required String email,
     required String password,
   }) async {
@@ -33,18 +33,23 @@ class AuthService extends GetxService {
       requestType: RequestType.login,
     );
 
-    if (response == null) return Logger.warning('Login failed');
+    if (response == null) {
+      Logger.warning('Login failed');
+      return false;
+    }
 
     final String? token = response.data['access_token'];
     if (token != null) {
       await LocalStoreService.saveToken(token);
       _user.value = await authenticate(token: token);
+      return true;
     } else {
       Logger.warning('No token returned');
+      return false;
     }
   }
 
-  Future<void> register({
+  Future<bool> register({
     required String username,
     required String email,
     required String password,
@@ -57,6 +62,7 @@ class AuthService extends GetxService {
 
     if (response == null) {
       Logger.warning('Registration failed');
+      return false;
     } else {
       return await login(email: email, password: password);
     }

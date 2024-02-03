@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
-import 'package:street_art_witnesses/modules/auth/auth_page.dart';
+import 'package:street_art_witnesses/modules/auth/screen.dart';
 import 'package:street_art_witnesses/modules/home/home_page.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
 import 'package:street_art_witnesses/widgets/other/app_logo.dart';
@@ -38,7 +38,7 @@ class IntroAuthPage extends StatelessWidget {
               ),
               const Expanded(flex: 2, child: SizedBox()),
               AppButton.primary(
-                onTap: () => Get.to(() => AuthPage()),
+                onTap: () => Get.to(() => AuthScreen()),
                 label: 'Войти в профиль',
               ),
               const SizedBox(height: 12),
