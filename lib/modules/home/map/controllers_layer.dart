@@ -5,8 +5,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/data/blocs/map/map_cubit.dart';
 import 'package:street_art_witnesses/data/providers/location_provider.dart';
-import 'package:street_art_witnesses/widgets/other/app_loading_indicator.dart';
-import 'package:street_art_witnesses/widgets/other/app_text_form_field.dart';
+import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class ControllersLayer extends StatefulWidget {
   const ControllersLayer({

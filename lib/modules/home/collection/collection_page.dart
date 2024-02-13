@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/modules/home/collection/artworks_view.dart';
 import 'package:street_art_witnesses/modules/home/collection/authors_view.dart';
-import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
-import 'package:street_art_witnesses/widgets/other/app_appbar.dart';
+import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 enum _Page { artworks, authors }
 

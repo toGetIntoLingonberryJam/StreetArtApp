@@ -6,11 +6,7 @@ import 'package:street_art_witnesses/data/models/user.dart';
 import 'package:street_art_witnesses/modules/user/controller.dart';
 import 'package:street_art_witnesses/modules/user/widgets/profile_list_tiles.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
-import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
-import 'package:street_art_witnesses/widgets/containers/app_circle_avatar.dart';
-import 'package:street_art_witnesses/widgets/containers/app_container.dart';
-import 'package:street_art_witnesses/widgets/other/app_appbar.dart';
-import 'package:street_art_witnesses/widgets/skeletons/app_placeholder.dart';
+import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class UserInfoScreen extends StatelessWidget {
   const UserInfoScreen({super.key});

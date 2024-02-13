@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
-import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
-import 'package:street_art_witnesses/widgets/other/app_loading_indicator.dart';
-import 'package:street_art_witnesses/widgets/snackbars/default_snackbar.dart';
+import 'package:street_art_witnesses/widgets/app_widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Utils {

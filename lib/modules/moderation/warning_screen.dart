@@ -5,9 +5,7 @@ import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/blocs/moderation/moderation_cubit.dart';
 import 'package:street_art_witnesses/data/services/settings_service.dart';
-import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
-import 'package:street_art_witnesses/widgets/buttons/app_checkbox.dart';
-import 'package:street_art_witnesses/widgets/other/app_appbar.dart';
+import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class ModerationWarningScreen extends StatelessWidget {
   const ModerationWarningScreen({super.key});

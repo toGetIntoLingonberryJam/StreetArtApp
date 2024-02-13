@@ -4,14 +4,11 @@ import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/blocs/moderation/moderation_cubit.dart';
+import 'package:street_art_witnesses/data/services/auth_service.dart';
 import 'package:street_art_witnesses/modules/artwork/artwork_page.dart';
-import 'package:street_art_witnesses/modules/user/controller.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/core/utils/validator.dart';
-import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
-import 'package:street_art_witnesses/widgets/map/location_picker.dart';
-import 'package:street_art_witnesses/widgets/other/app_appbar.dart';
-import 'package:street_art_witnesses/widgets/other/app_text_form_field.dart';
+import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class ModerationEditScreen extends StatefulWidget {
   const ModerationEditScreen({super.key});
@@ -42,7 +39,7 @@ class _ModerationEditScreenState extends State<ModerationEditScreen> {
     _PreviewView(
       onTapNext: () => context.read<ModerationCubit>().sendToModeration(
             context,
-            token: Get.find<ProfileController>().user.token!,
+            token: Get.find<AuthService>().user.value.token!,
           ),
     ),
   ];

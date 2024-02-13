@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
-import 'package:street_art_witnesses/widgets/buttons/app_custom_button.dart';
-import 'package:street_art_witnesses/widgets/other/app_appbar.dart';
-import 'package:street_art_witnesses/widgets/skeletons/app_placeholder.dart';
+import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class ModerationThanksScreen extends StatelessWidget {
   const ModerationThanksScreen({super.key});

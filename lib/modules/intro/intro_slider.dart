@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/modules/home/home_page.dart';
 import 'package:street_art_witnesses/modules/intro/intro_auth_page.dart';
-import 'package:street_art_witnesses/widgets/other/slider_dots.dart';
 import 'package:street_art_witnesses/modules/intro/intro_page.dart';
+import 'package:street_art_witnesses/widgets/other/slider_dots.dart';
 
 class IntroSlider extends StatefulWidget {
   const IntroSlider({super.key});

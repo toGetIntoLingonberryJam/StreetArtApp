@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
     ]);
 
-    final User user = Get.find<ProfileController>().user;
+    final User user = Get.find<AuthService>().user.value;
 
     return MultiProvider(
       providers: [

@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/modules/user/controller.dart';
-import 'package:street_art_witnesses/modules/user/widgets/profile_tile.dart';
-import 'package:street_art_witnesses/modules/user/widgets/profile_list_tiles.dart';
+import 'package:street_art_witnesses/modules/user/widgets/widgets.dart';
 
 class VerifiedView extends GetView<ProfileController> {
   const VerifiedView({super.key});

@@ -11,10 +11,7 @@ import 'package:street_art_witnesses/modules/artwork/widgets/artwork_info.dart';
 import 'package:street_art_witnesses/modules/artwork/widgets/links_info.dart';
 import 'package:street_art_witnesses/modules/artwork/widgets/status_info.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
-import 'package:street_art_witnesses/widgets/containers/app_container.dart';
-import 'package:street_art_witnesses/widgets/buttons/app_icon_button.dart';
-import 'package:street_art_witnesses/widgets/other/image_slider.dart';
-import 'package:street_art_witnesses/widgets/skeletons/app_placeholder.dart';
+import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class ArtworkPage extends StatelessWidget {
   const ArtworkPage({super.key, required this.artwork}) : preview = false;

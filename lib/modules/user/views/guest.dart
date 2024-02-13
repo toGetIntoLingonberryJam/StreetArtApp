@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/modules/auth/screen.dart';
-import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
-import 'package:street_art_witnesses/modules/user/widgets/profile_list_tiles.dart';
+import 'package:street_art_witnesses/modules/user/widgets/widgets.dart';
+import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class GuestView extends StatelessWidget {
   const GuestView({super.key});

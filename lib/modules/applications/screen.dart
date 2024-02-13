@@ -12,12 +12,7 @@ import 'package:street_art_witnesses/modules/artwork/artwork_page.dart';
 import 'package:street_art_witnesses/modules/user/controller.dart';
 import 'package:street_art_witnesses/data/services/images_service.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
-import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
-import 'package:street_art_witnesses/widgets/containers/app_container.dart';
-import 'package:street_art_witnesses/widgets/other/app_appbar.dart';
-import 'package:street_art_witnesses/widgets/other/app_loading_indicator.dart';
-import 'package:street_art_witnesses/widgets/other/image_slider.dart';
-import 'package:street_art_witnesses/widgets/skeletons/app_placeholder.dart';
+import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class ApplicationsScreen extends StatelessWidget {
   const ApplicationsScreen({super.key});

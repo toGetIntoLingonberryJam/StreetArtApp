@@ -13,12 +13,12 @@ class AuthService extends GetxService {
 
   Future<void> init() async {
     final token = await LocalStoreService.retrieveToken();
-    final initUser = token == null ? User.guest() : await authenticate(token: token);
+    final initUser = token == null ? User.guest() : await _authenticate(token: token);
     _user = initUser.obs;
   }
 
   Future<void> updateUser() async {
-    if (_user.value.token != null) _user.value = await authenticate(token: _user.value.token!);
+    if (_user.value.token != null) _user.value = await _authenticate(token: _user.value.token!);
     Logger.message('User updated');
   }
 
@@ -40,7 +40,7 @@ class AuthService extends GetxService {
     final String? token = response.data['access_token'];
     if (token != null) {
       await LocalStoreService.saveToken(token);
-      _user.value = await authenticate(token: token);
+      _user.value = await _authenticate(token: token);
       return true;
     } else {
       Logger.warning('No token returned');
@@ -66,7 +66,7 @@ class AuthService extends GetxService {
     }
   }
 
-  Future<User> authenticate({required String token}) async {
+  Future<User> _authenticate({required String token}) async {
     final response = await BackendApi.get(
       '/v1/users/me',
       options: Options(headers: {'Authorization': 'Bearer $token'}),

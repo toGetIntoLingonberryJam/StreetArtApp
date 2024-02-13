@@ -8,8 +8,7 @@ import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/data/models/map/map_task.dart';
 import 'package:street_art_witnesses/data/services/location_service.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
-import 'package:street_art_witnesses/widgets/containers/app_container.dart';
-import 'package:street_art_witnesses/widgets/buttons/app_custom_button.dart';
+import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class AddressInfo extends StatelessWidget {
   const AddressInfo({

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
-import 'package:street_art_witnesses/widgets/containers/app_container.dart';
-import 'package:street_art_witnesses/widgets/other/app_link.dart';
+import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class LinksInfo extends StatelessWidget {
   const LinksInfo(this.links, {super.key});

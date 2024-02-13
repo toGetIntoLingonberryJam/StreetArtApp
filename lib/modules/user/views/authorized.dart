@@ -6,10 +6,9 @@ import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/providers/email_counter_provider.dart';
 import 'package:street_art_witnesses/modules/auth/check_email/check_email_page.dart';
 import 'package:street_art_witnesses/modules/user/controller.dart';
-import 'package:street_art_witnesses/modules/user/widgets/profile_tile.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
+import 'package:street_art_witnesses/modules/user/widgets/widgets.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
-import 'package:street_art_witnesses/modules/user/widgets/profile_list_tiles.dart';
 
 class AuthorizedView extends GetView<ProfileController> {
   const AuthorizedView({super.key});
