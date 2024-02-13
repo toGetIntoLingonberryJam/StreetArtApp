@@ -10,7 +10,7 @@ import 'package:street_art_witnesses/data/services/settings_service.dart';
 import 'package:street_art_witnesses/modules/applications/controller.dart';
 import 'package:street_art_witnesses/modules/artwork/artwork_page.dart';
 import 'package:street_art_witnesses/modules/user/controller.dart';
-import 'package:street_art_witnesses/src/services/images_service.dart';
+import 'package:street_art_witnesses/data/services/images_service.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
 import 'package:street_art_witnesses/widgets/containers/app_container.dart';
