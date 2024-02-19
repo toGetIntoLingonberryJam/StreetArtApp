@@ -5,7 +5,7 @@ import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/data/services/auth_service.dart';
 import 'package:street_art_witnesses/modules/auth/views/login_form.dart';
 import 'package:street_art_witnesses/modules/auth/views/register_form.dart';
-import 'package:street_art_witnesses/modules/home/home_page.dart';
+import 'package:street_art_witnesses/modules/home/screen.dart';
 
 enum AuthForm { login, register }
 
@@ -50,7 +50,7 @@ class AuthController extends GetxController {
         password: passwordCtrl.text.trim(),
       ));
       Logger.message(success.toString());
-      if (success ?? false) Get.offAll(() => const HomePage());
+      if (success ?? false) Get.offAll(() => const HomeScreen());
     }
   }
 
@@ -61,7 +61,7 @@ class AuthController extends GetxController {
         password: passwordCtrl.text.trim(),
         username: usernameCtrl.text.trim(),
       ));
-      if (success ?? false) Get.offAll(() => const HomePage());
+      if (success ?? false) Get.offAll(() => const HomeScreen());
     }
   }
 }

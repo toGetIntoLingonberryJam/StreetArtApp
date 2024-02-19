@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:street_art_witnesses/data/blocs/main_menu/main_menu_cubit.dart';
 import 'package:street_art_witnesses/data/blocs/map/map_cubit.dart';
 import 'package:street_art_witnesses/data/models/user.dart';
 import 'package:street_art_witnesses/data/providers/email_counter_provider.dart';
@@ -10,7 +9,7 @@ import 'package:street_art_witnesses/data/providers/location_provider.dart';
 import 'package:street_art_witnesses/data/services/auth_service.dart';
 import 'package:street_art_witnesses/data/services/local_store_service.dart';
 import 'package:street_art_witnesses/data/services/settings_service.dart';
-import 'package:street_art_witnesses/modules/home/home_page.dart';
+import 'package:street_art_witnesses/modules/home/screen.dart';
 import 'package:street_art_witnesses/modules/intro/intro_slider.dart';
 import 'package:street_art_witnesses/modules/user/controller.dart';
 import 'package:street_art_witnesses/core/values/theme.dart';
@@ -59,16 +58,13 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => EmailCounterProvider(length: 30)),
         ChangeNotifierProvider(create: (_) => LocationProvider()),
         BlocProvider(create: (_) => MapCubit()..loadMarkers()),
-        BlocProvider(create: (_) => MainMenuCubit()),
       ],
       child: GetMaterialApp(
-        // locale: DevicePreview.locale(context),
-        // builder: DevicePreview.appBuilder,
         title: 'Свидетели',
         debugShowCheckedModeBanner: false,
         theme: lightTheme,
         darkTheme: darkTheme,
-        home: user.isAuthorized ? const HomePage() : const IntroSlider(),
+        home: user.isAuthorized ? const HomeScreen() : const IntroSlider(),
       ),
     );
   }

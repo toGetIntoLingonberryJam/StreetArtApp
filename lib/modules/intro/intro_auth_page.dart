@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/modules/auth/screen.dart';
-import 'package:street_art_witnesses/modules/home/home_page.dart';
+import 'package:street_art_witnesses/modules/home/screen.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class IntroAuthPage extends StatelessWidget {
@@ -42,7 +42,7 @@ class IntroAuthPage extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               AppButton.secondary(
-                onTap: () => Get.to(() => const HomePage()),
+                onTap: () => Get.to(() => const HomeScreen()),
                 label: 'Позже',
               ),
               const Expanded(flex: 2, child: SizedBox()),
