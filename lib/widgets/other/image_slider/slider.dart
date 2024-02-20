@@ -2,40 +2,25 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork_image.dart';
-import 'package:street_art_witnesses/data/providers/slider_provider.dart';
 import 'package:street_art_witnesses/data/services/settings_service.dart';
 import 'package:street_art_witnesses/data/services/images_service.dart';
 import 'package:street_art_witnesses/widgets/other/app_loading_indicator.dart';
+import 'package:street_art_witnesses/widgets/other/image_slider/controller.dart';
 import 'package:street_art_witnesses/widgets/other/slider_dots.dart';
 
-class ImageSlider extends StatelessWidget {
+class ImageSlider extends StatefulWidget {
   const ImageSlider({super.key, required this.images});
 
   final List<ArtworkImage> images;
 
   @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => SliderProvider(length: images.length),
-      child: _ImageSlider(images: images),
-    );
-  }
+  State<ImageSlider> createState() => _ImageSliderState();
 }
 
-class _ImageSlider extends StatefulWidget {
-  const _ImageSlider({required this.images});
-
-  final List<ArtworkImage> images;
-
-  @override
-  State<_ImageSlider> createState() => _ImageSliderState();
-}
-
-class _ImageSliderState extends State<_ImageSlider> {
+class _ImageSliderState extends State<ImageSlider> {
   late List<Future<ImageProvider?>> imageLoaders;
 
   @override
@@ -52,7 +37,7 @@ class _ImageSliderState extends State<_ImageSlider> {
 
   @override
   Widget build(BuildContext context) {
-    final sliderProvider = context.read<SliderProvider>();
+    final controller = Get.put(SliderController(length: widget.images.length));
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -61,7 +46,7 @@ class _ImageSliderState extends State<_ImageSlider> {
           height: 400,
           child: PageView(
             physics: const ClampingScrollPhysics(),
-            onPageChanged: (value) => sliderProvider.updateIndex(value),
+            onPageChanged: (value) => controller.updateIndex(value),
             children: imageLoaders
                 .map(
                   (imageLoader) => Padding(
@@ -76,8 +61,8 @@ class _ImageSliderState extends State<_ImageSlider> {
           ),
         ),
         if (widget.images.length > 1)
-          Consumer<SliderProvider>(
-            builder: (_, slider, __) => Padding(
+          GetBuilder<SliderController>(
+            builder: (slider) => Padding(
               padding: const EdgeInsets.only(bottom: 8),
               child: SliderDots(count: slider.length, activeIndex: slider.index),
             ),
