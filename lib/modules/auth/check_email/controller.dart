@@ -5,19 +5,19 @@ import 'package:get/get.dart';
 import 'package:street_art_witnesses/data/services/auth_service.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 
-class EmailCounterProvider with ChangeNotifier {
-  EmailCounterProvider({required this.length});
+class EmailCounterController extends GetxController {
+  EmailCounterController({required this.durationInSeconds});
 
   // When opening first time, send mail automatically and show update button
-  static bool firstOpened = true;
-  static bool showUpdateButton = false;
+  bool firstOpened = true;
+  bool showUpdateButton = false;
 
-  static void reset() {
+  void reset() {
     firstOpened = true;
     showUpdateButton = false;
   }
 
-  final int length;
+  final int durationInSeconds;
   StreamSubscription? subscription;
 
   bool get canSend => _count == 0;
@@ -33,13 +33,14 @@ class EmailCounterProvider with ChangeNotifier {
 
   void _tick() {
     _count -= 1;
-    notifyListeners();
+    update();
   }
 
   void _initCounting() {
     subscription?.cancel();
-    subscription = Stream.periodic(const Duration(seconds: 1)).take(length).listen((e) => _tick());
-    _count = length;
+    subscription =
+        Stream.periodic(const Duration(seconds: 1)).take(durationInSeconds).listen((e) => _tick());
+    _count = durationInSeconds;
   }
 
   Future<void> sendEmail(BuildContext context, String email) async {
@@ -56,8 +57,7 @@ class EmailCounterProvider with ChangeNotifier {
           Utils.of(context).showError('Произошла ошибка при отправке письма');
         }
       }
-
-      notifyListeners();
+      update();
     }
   }
 }

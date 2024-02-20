@@ -1,34 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
-import 'package:street_art_witnesses/data/providers/email_counter_provider.dart';
+import 'package:street_art_witnesses/modules/auth/check_email/controller.dart';
 import 'package:street_art_witnesses/modules/user/controller.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 
-class EmailCounterWidget extends StatelessWidget {
+class EmailCounterWidget extends GetView<EmailCounterController> {
   const EmailCounterWidget({super.key});
 
   Future<void> _sendEmail(BuildContext context) async {
     await Utils.of(context).showLoading(
-      context.read<EmailCounterProvider>().sendEmail(
-            context,
-            Get.find<ProfileController>().user.email!,
-          ),
+      controller.sendEmail(context, Get.find<ProfileController>().user.email!),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final counter = context.watch<EmailCounterProvider>();
-
-    return Wrap(
-      alignment: WrapAlignment.center,
-      spacing: 10,
-      children: [
-        counter.canSend ? _resendButton(context) : _resendText(context),
-        Text('Через ${counter.count} сек', style: TextStyles.text)
-      ],
+    return GetBuilder<EmailCounterController>(
+      builder: (counter) => Wrap(
+        alignment: WrapAlignment.center,
+        spacing: 10,
+        children: [
+          counter.canSend ? _resendButton(context) : _resendText(context),
+          Text('Через ${counter.count} сек', style: TextStyles.text)
+        ],
+      ),
     );
   }
 

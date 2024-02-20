@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
-import 'package:street_art_witnesses/data/providers/email_counter_provider.dart';
 import 'package:street_art_witnesses/modules/auth/check_email/check_email_page.dart';
+import 'package:street_art_witnesses/modules/auth/check_email/controller.dart';
 import 'package:street_art_witnesses/modules/user/controller.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/modules/user/widgets/widgets.dart';
@@ -43,7 +42,7 @@ class _LoginWarningTile extends GetView<ProfileController> {
 
   Future<void> _sendEmail(BuildContext context) async {
     await Utils.of(context).showLoading(
-      context.read<EmailCounterProvider>().sendEmail(context, controller.user.email!),
+      Get.find<EmailCounterController>().sendEmail(context, controller.user.email!),
     );
     Get.to(() => const CheckEmailPage());
   }
@@ -93,9 +92,9 @@ class _LoginWarningTile extends GetView<ProfileController> {
               ),
             ],
           ),
-          Consumer<EmailCounterProvider>(
-            builder: (context, _, __) {
-              if (EmailCounterProvider.showUpdateButton) {
+          GetBuilder<EmailCounterController>(
+            builder: (counter) {
+              if (counter.showUpdateButton) {
                 return Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: AppButton.primary(
