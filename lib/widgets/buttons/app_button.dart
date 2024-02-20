@@ -3,13 +3,23 @@ import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 
 class AppButton extends StatelessWidget {
+  const AppButton({
+    super.key,
+    required this.onTap,
+    required this.isPrimary,
+    this.label,
+    this.child,
+  }) : assert((child != null && label == null) || (child == null && label != null),
+            'You must provide either label or child widget');
+
   const AppButton.primary({
     super.key,
     required this.onTap,
     this.label,
     this.child,
   })  : isPrimary = true,
-        assert((child != null && label == null) || (child == null && label != null));
+        assert((child != null && label == null) || (child == null && label != null),
+            'You must provide either label or child widget');
 
   const AppButton.secondary({
     super.key,
@@ -17,7 +27,8 @@ class AppButton extends StatelessWidget {
     this.label,
     this.child,
   })  : isPrimary = false,
-        assert((child != null && label == null) || (child == null && label != null));
+        assert((child != null && label == null) || (child == null && label != null),
+            'You must provide either label or child widget');
 
   final String? label;
   final Widget? child;

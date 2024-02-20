@@ -7,6 +7,7 @@ import 'package:street_art_witnesses/data/services/auth_service.dart';
 import 'package:street_art_witnesses/data/services/local_store_service.dart';
 import 'package:street_art_witnesses/data/services/settings_service.dart';
 import 'package:street_art_witnesses/modules/auth/check_email/controller.dart';
+import 'package:street_art_witnesses/modules/home/modules/collection/controller.dart';
 import 'package:street_art_witnesses/modules/home/modules/map/controller.dart';
 import 'package:street_art_witnesses/modules/home/screen.dart';
 import 'package:street_art_witnesses/modules/intro/intro_slider.dart';
@@ -23,9 +24,10 @@ void main() async {
     return service;
   }, permanent: true);
   Get.put(SettingsService(initImageQuality: quality));
-  Get.put(ProfileController(), permanent: true);
   Get.put(GetMapController(artworksProvider: NetworkArtworksProvider()), permanent: true);
-  Get.put(EmailCounterController(durationInSeconds: 30));
+  Get.put(ProfileController(), permanent: true);
+  Get.put(CollectionController(), permanent: true);
+  Get.put(EmailCounterController(durationInSeconds: 30), permanent: true);
 
   runApp(
     MyApp(initImageQuality: quality),
