@@ -11,13 +11,12 @@ abstract class ErrorHandler {
     void Function(DioException e) onDioError = _logDioError,
     T Function(Response? r)? onResult,
   }) async {
-    // assert(T is Response || onResult != null);
+    assert(T == Response || onResult != null);
 
     try {
       final result = await request;
       return onResult != null ? onResult(result) : result as T?;
     } on DioException catch (e) {
-      Logger.warning(e.toString());
       onDioError(e);
       return null;
     }
