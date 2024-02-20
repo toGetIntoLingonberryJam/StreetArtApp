@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/data/providers/artworks/provider.dart';
-import 'package:street_art_witnesses/modules/artwork/artwork_page.dart';
+import 'package:street_art_witnesses/modules/artwork/screen.dart';
 import 'package:street_art_witnesses/widgets/map/location_marker.dart';
 
 class GetMapController extends GetxController with GetTickerProviderStateMixin {
@@ -56,7 +56,7 @@ class GetMapController extends GetxController with GetTickerProviderStateMixin {
     if (artwork == null) {
       Utils.showInfo('Не удалось получить данные о работе');
     } else {
-      Get.to(() => ArtworkPage(artwork: artwork));
+      Get.to(() => ArtworkScreen(artwork: artwork));
     }
   }
 }

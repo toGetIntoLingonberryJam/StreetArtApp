@@ -5,7 +5,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/blocs/moderation/moderation_cubit.dart';
 import 'package:street_art_witnesses/data/services/auth_service.dart';
-import 'package:street_art_witnesses/modules/artwork/artwork_page.dart';
+import 'package:street_art_witnesses/modules/artwork/screen.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/core/utils/validator.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
@@ -337,7 +337,7 @@ class _PreviewView extends StatelessWidget implements _ModerationEditView {
         child: Column(
           children: [
             Expanded(
-              child: ArtworkPage.preview(artwork: context.read<ModerationCubit>().preview),
+              child: ArtworkScreen.preview(artwork: context.read<ModerationCubit>().preview),
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),

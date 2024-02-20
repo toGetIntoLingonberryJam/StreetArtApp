@@ -8,7 +8,7 @@ import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/data/models/ticket.dart';
 import 'package:street_art_witnesses/data/services/settings_service.dart';
 import 'package:street_art_witnesses/modules/applications/controller.dart';
-import 'package:street_art_witnesses/modules/artwork/artwork_page.dart';
+import 'package:street_art_witnesses/modules/artwork/screen.dart';
 import 'package:street_art_witnesses/modules/user/controller.dart';
 import 'package:street_art_witnesses/data/services/images_service.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
@@ -142,7 +142,7 @@ class _ApplicationPage extends GetView<ProfileController> {
             children: [
               AppAppbar(title: 'Заявка ${ticket.id}'),
               const SizedBox(height: 10),
-              Expanded(child: ArtworkPage(artwork: ticket.artwork)),
+              Expanded(child: ArtworkScreen(artwork: ticket.artwork)),
               Padding(
                 padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                 child: Row(

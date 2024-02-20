@@ -13,10 +13,10 @@ import 'package:street_art_witnesses/modules/artwork/widgets/status_info.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
-class ArtworkPage extends StatelessWidget {
-  const ArtworkPage({super.key, required this.artwork}) : preview = false;
+class ArtworkScreen extends StatelessWidget {
+  const ArtworkScreen({super.key, required this.artwork}) : preview = false;
 
-  const ArtworkPage.preview({super.key, required this.artwork}) : preview = true;
+  const ArtworkScreen.preview({super.key, required this.artwork}) : preview = true;
 
   final Artwork artwork;
   final bool preview;
@@ -109,19 +109,15 @@ class _MockImageSlider extends StatelessWidget {
   }
 }
 
-class _ArtworkImageSlider extends StatefulWidget {
+class _ArtworkImageSlider extends StatelessWidget {
   const _ArtworkImageSlider({required this.images});
 
+  // final List<ArtworkImage>? images;
   final List<ArtworkImage>? images;
 
   @override
-  State<_ArtworkImageSlider> createState() => _ArtworkImageSliderState();
-}
-
-class _ArtworkImageSliderState extends State<_ArtworkImageSlider> {
-  @override
   Widget build(BuildContext context) {
-    if (widget.images == null || widget.images!.isEmpty) {
+    if (images == null || images!.isEmpty) {
       return const Padding(
         padding: EdgeInsets.fromLTRB(10, 0, 10, 8),
         child: AppContainer.small(
@@ -133,11 +129,10 @@ class _ArtworkImageSliderState extends State<_ArtworkImageSlider> {
         ),
       );
     }
-    final images = widget.images!;
 
     return Stack(
       children: [
-        ImageSlider(images: images),
+        ImageSlider(images: images!),
         Padding(
             padding: const EdgeInsets.all(20),
             child: Row(
