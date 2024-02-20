@@ -14,7 +14,7 @@ final class MapMessageTask extends MapTask {
   MapMessageTask(this.message);
 
   @override
-  void complete(BuildContext context) => Utils.showMessage(message);
+  void complete(BuildContext context) => Utils.showInfo(message);
 }
 
 final class MapRouteTask extends MapTask {

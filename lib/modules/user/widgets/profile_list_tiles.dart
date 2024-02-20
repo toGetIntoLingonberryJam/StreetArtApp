@@ -56,7 +56,7 @@ abstract class UserTiles {
 }
 
 void _logout(BuildContext context) async {
-  final isLogout = await Utils.showWarning(
+  final isLogout = await Utils.showDialog(
         title: 'Выйти из аккаунта',
         content: 'Вы уверены, что хотите выйти из аккаунта?',
       ) ??

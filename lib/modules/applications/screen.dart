@@ -112,7 +112,7 @@ class _ApplicationPage extends GetView<ProfileController> {
     if (result == null && context.mounted) {
       Utils.showError('Не удалось выполнить запрос');
     } else if (context.mounted) {
-      Utils.showMessage('Работа одобрена');
+      Utils.showInfo('Работа одобрена');
       Get.back();
     }
   }

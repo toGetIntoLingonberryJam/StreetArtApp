@@ -34,7 +34,7 @@ class AddressInfo extends StatelessWidget {
   }
 
   void _showPreviewWarning(BuildContext context) {
-    Utils.showMessage('Эта функция недоступна в режиме предпросмотра');
+    Utils.showInfo('Эта функция недоступна в режиме предпросмотра');
   }
 
   @override

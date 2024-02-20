@@ -7,8 +7,6 @@ class AppLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     Brightness theme = Theme.of(context).brightness;
 
-    return Image.asset(theme == Brightness.dark
-        ? 'assets/logo_light.png'
-        : 'assets/logo_dark.png');
+    return Image.asset(theme == Brightness.dark ? 'assets/logo_light.png' : 'assets/logo_dark.png');
   }
 }

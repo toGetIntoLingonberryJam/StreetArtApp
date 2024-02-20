@@ -54,7 +54,7 @@ class GetMapController extends GetxController with GetTickerProviderStateMixin {
     final artwork = await Utils.showLoading(future);
 
     if (artwork == null) {
-      Utils.showMessage('Не удалось получить данные о работе');
+      Utils.showInfo('Не удалось получить данные о работе');
     } else {
       Get.to(() => ArtworkPage(artwork: artwork));
     }

@@ -52,7 +52,7 @@ class EmailCounterController extends GetxController {
 
       if (context.mounted) {
         if (success == true) {
-          Utils.showMessage('Письмо успешно отправлено');
+          Utils.showInfo('Письмо успешно отправлено');
         } else if (success == false) {
           Utils.showError('Произошла ошибка при отправке письма');
         }

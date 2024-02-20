@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
-import 'package:street_art_witnesses/core/values/theme.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Utils {
-  static ColorScheme get themeColors =>
-      Get.isDarkMode ? darkTheme.colorScheme : lightTheme.colorScheme;
-
   static void _showSnackbar(GetSnackBar snackbar) => Get
     ..closeAllSnackbars()
     ..showSnackbar(snackbar);
 
-  static void showMessage(String message) => _showSnackbar(DefaultSnackbar(message));
-
+  static void showInfo(String message) => _showSnackbar(InfoSnackbar(message));
   static void showError(String message) => _showSnackbar(ErrorSnackbar(message));
+  static void showSuccess(String message) => _showSnackbar(SuccessSnackBar(message));
 
-  static Future<bool?> showWarning({
+  static Future<bool?> showDialog({
     required String title,
     String? content,
     bool barrierDismissible = true,
@@ -26,7 +22,7 @@ class Utils {
   }) async =>
       Get.dialog(
         AlertDialog(
-          backgroundColor: Utils.themeColors.background,
+          backgroundColor: Get.theme.colorScheme.background,
           surfaceTintColor: Colors.transparent,
           title: Text(
             title,
@@ -72,7 +68,7 @@ class Utils {
   }
 
   static Future<bool> tryLaunchUrl(Uri url) async {
-    final response = await showWarning(
+    final response = await showDialog(
       title: 'Переход по ссылке',
       content: 'Вы собираетесь перейти по ссылке:\n$url',
       acceptText: 'Перейти',

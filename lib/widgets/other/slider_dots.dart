@@ -20,8 +20,7 @@ class SliderDots extends StatelessWidget {
         spacing: gap,
         alignment: WrapAlignment.center,
         children: [
-          for (int i = 0; i < count; i++)
-            Dot(radius: 10, isActive: i == activeIndex),
+          for (int i = 0; i < count; i++) Dot(radius: 10, isActive: i == activeIndex),
         ],
       ),
     );

@@ -30,7 +30,7 @@ class UserInfoScreen extends StatelessWidget {
                   UserTiles.changePassword(context),
                   const SizedBox(height: 40),
                   AppButton.primary(
-                    onTap: () => Utils.showMessage('Изменения сохранены'),
+                    onTap: () => Utils.showInfo('Изменения сохранены'),
                     label: 'Сохранить',
                   ),
                 ],

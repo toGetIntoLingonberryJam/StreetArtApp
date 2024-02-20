@@ -145,12 +145,12 @@ class _ArtworkImageSliderState extends State<_ArtworkImageSlider> {
                 AppIconButton(onTap: Get.back, iconData: Icons.arrow_back),
                 const Expanded(child: SizedBox()),
                 AppIconButton(
-                  onTap: () => Utils.showMessage('Изменить работу'),
+                  onTap: () => Utils.showInfo('Изменить работу'),
                   iconData: Icons.edit_outlined,
                 ),
                 const SizedBox(width: 10),
                 AppIconButton(
-                  onTap: () => Utils.showMessage('Добавить в избранное'),
+                  onTap: () => Utils.showInfo('Добавить в избранное'),
                   iconData: Icons.favorite_border,
                 ),
               ],

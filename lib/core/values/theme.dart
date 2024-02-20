@@ -14,6 +14,7 @@ final lightTheme = ThemeData(
     secondary: Color.fromRGBO(135, 95, 250, 1),
     tertiary: Color.fromRGBO(252, 213, 56, 1),
     error: Color.fromRGBO(252, 56, 56, 1),
+    onError: Color.fromRGBO(252, 153, 153, 1),
   ),
   inputDecorationTheme: const InputDecorationTheme(
     fillColor: Colors.white,
@@ -36,6 +37,7 @@ final darkTheme = ThemeData(
     secondary: Color.fromRGBO(135, 95, 250, 1),
     tertiary: Color.fromRGBO(252, 213, 56, 1),
     error: Color.fromRGBO(252, 56, 56, 1),
+    onError: Color.fromRGBO(252, 153, 153, 1),
   ),
   useMaterial3: true,
 );
