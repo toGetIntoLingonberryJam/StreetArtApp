@@ -4,12 +4,12 @@ import 'package:street_art_witnesses/data/models/artwork/artwork_location.dart';
 import 'package:street_art_witnesses/data/models/author/author.dart';
 
 abstract class ArtworkService {
-  static Future<List<Author>> getAuthors() async {
+  static Future<List<Author>> getMockAuthors() async {
     await Future.delayed(const Duration(seconds: 2));
     return mockAuthors;
   }
 
-  static Future<List<Artwork>> getArtworks() async {
+  static Future<List<Artwork>> getMockArtworks() async {
     await Future.delayed(const Duration(seconds: 2));
     return mockArtworks;
   }

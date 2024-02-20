@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:street_art_witnesses/data/blocs/map/map_cubit.dart';
 import 'package:street_art_witnesses/data/models/user.dart';
 import 'package:street_art_witnesses/data/providers/location_provider.dart';
 import 'package:street_art_witnesses/data/services/auth_service.dart';
@@ -56,7 +54,6 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => LocationProvider()),
-        BlocProvider(create: (_) => MapCubit()..loadMarkers()),
       ],
       child: GetMaterialApp(
         title: 'Свидетели',

@@ -3,11 +3,10 @@ import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
-import 'package:street_art_witnesses/data/blocs/map/map_cubit.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
-import 'package:street_art_witnesses/data/models/map/map_task.dart';
 import 'package:street_art_witnesses/data/services/location_service.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
+import 'package:street_art_witnesses/modules/home/modules/map/controller.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class AddressInfo extends StatelessWidget {
@@ -30,7 +29,7 @@ class AddressInfo extends StatelessWidget {
     final start = LatLng(userPosition.latitude, userPosition.longitude);
     if (!context.mounted) return;
 
-    context.read<MapCubit>().addTask(MapRouteTask(start, artwork.id));
+    context.read<GetMapController>().navigator.setRouteToArtwork(artwork.id);
     Get.back();
   }
 

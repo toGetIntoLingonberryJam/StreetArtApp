@@ -3,7 +3,6 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
-import 'package:street_art_witnesses/data/blocs/map/map_cubit.dart';
 import 'package:street_art_witnesses/data/providers/location_provider.dart';
 import 'package:street_art_witnesses/modules/home/modules/map/controller.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
@@ -27,7 +26,7 @@ class MapControllersLayer extends GetView<GetMapController> {
         LatLng(position.latitude, position.longitude),
         12,
       );
-      context.read<MapCubit>().update();
+      // context.read<MapCubit>().update();
     }
   }
 
