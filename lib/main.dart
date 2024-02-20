@@ -9,7 +9,7 @@ import 'package:street_art_witnesses/data/services/auth_service.dart';
 import 'package:street_art_witnesses/data/services/local_store_service.dart';
 import 'package:street_art_witnesses/data/services/settings_service.dart';
 import 'package:street_art_witnesses/modules/auth/check_email/controller.dart';
-import 'package:street_art_witnesses/modules/home/map/controller.dart';
+import 'package:street_art_witnesses/modules/home/modules/map/controller.dart';
 import 'package:street_art_witnesses/modules/home/screen.dart';
 import 'package:street_art_witnesses/modules/intro/intro_slider.dart';
 import 'package:street_art_witnesses/modules/user/controller.dart';

@@ -6,8 +6,8 @@ import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/data/blocs/map/map_cubit.dart';
 import 'package:street_art_witnesses/data/models/map/map_task.dart';
-import 'package:street_art_witnesses/modules/home/map/controller.dart';
-import 'package:street_art_witnesses/modules/home/map/controllers_layer.dart';
+import 'package:street_art_witnesses/modules/home/modules/map/controller.dart';
+import 'package:street_art_witnesses/modules/home/modules/map/controllers_layer.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
-import 'package:street_art_witnesses/modules/user/screens/user_info.dart';
+import 'package:street_art_witnesses/modules/user/modules/user_info.dart';
 import 'package:street_art_witnesses/widgets/skeletons/app_placeholder.dart';
 
 class ProfileTile extends StatelessWidget {

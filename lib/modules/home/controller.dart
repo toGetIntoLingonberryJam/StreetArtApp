@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:street_art_witnesses/modules/home/collection/collection_page.dart';
-import 'package:street_art_witnesses/modules/home/map/screen.dart';
+import 'package:street_art_witnesses/modules/home/modules/collection/collection_page.dart';
+import 'package:street_art_witnesses/modules/home/modules/map/screen.dart';
 import 'package:street_art_witnesses/modules/user/screen.dart';
 
 class HomeController extends GetxController {

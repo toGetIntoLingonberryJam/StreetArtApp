@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/services/settings_service.dart';
-import 'package:street_art_witnesses/modules/user/screens/settings/controller.dart';
+import 'package:street_art_witnesses/modules/user/modules/settings/controller.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class SettingsScreen extends StatelessWidget {

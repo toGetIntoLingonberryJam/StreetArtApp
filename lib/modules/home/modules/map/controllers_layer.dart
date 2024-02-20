@@ -5,7 +5,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/data/blocs/map/map_cubit.dart';
 import 'package:street_art_witnesses/data/providers/location_provider.dart';
-import 'package:street_art_witnesses/modules/home/map/controller.dart';
+import 'package:street_art_witnesses/modules/home/modules/map/controller.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class MapControllersLayer extends GetView<GetMapController> {
