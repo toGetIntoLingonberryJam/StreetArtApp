@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:street_art_witnesses/modules/home/modules/collection/views/artworks_view.dart';
-import 'package:street_art_witnesses/modules/home/modules/collection/views/authors_view.dart';
+import 'package:street_art_witnesses/modules/home/modules/collection/views/artworks.dart';
+import 'package:street_art_witnesses/modules/home/modules/collection/views/authors.dart';
 
 enum Collection { artworks, authors }
 
