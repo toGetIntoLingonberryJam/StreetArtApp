@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:provider/provider.dart';
-import 'package:street_art_witnesses/data/providers/location_provider.dart';
 import 'package:street_art_witnesses/modules/home/modules/map/controller.dart';
+import 'package:street_art_witnesses/modules/home/modules/map/layers/controllers/controller.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class MapControllersLayer extends GetView<GetMapController> {
@@ -20,18 +18,17 @@ class MapControllersLayer extends GetView<GetMapController> {
   final bool geopostion;
 
   void _fetchUserPosition(BuildContext context) async {
-    final position = await context.read<LocationProvider>().fetchUserPosition(context);
+    final position = await Get.find<UserLocationController>().fetchUserPosition(context);
     if (position != null && context.mounted) {
-      MapController.of(context).move(
-        LatLng(position.latitude, position.longitude),
-        12,
-      );
+      controller.mapController.mapController
+          .move(LatLng(position.latitude, position.longitude), 12);
       // context.read<MapCubit>().update();
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    Get.put(UserLocationController());
     return Align(
       alignment: Alignment.bottomRight,
       child: SafeArea(
@@ -71,13 +68,13 @@ class MapControllersLayer extends GetView<GetMapController> {
                 ),
               const Expanded(flex: 3, child: SizedBox()),
               if (geopostion)
-                Consumer<LocationProvider>(
-                  builder: (context, provider, child) {
+                GetBuilder<UserLocationController>(
+                  builder: (userLoc) {
                     return FloatingActionButton(
                       backgroundColor: Theme.of(context).colorScheme.onBackground,
                       heroTag: 'fetch_location',
                       onPressed: () => _fetchUserPosition(context),
-                      child: provider.isFetching
+                      child: userLoc.isFetching
                           ? SizedBox(
                               width: 24,
                               height: 24,

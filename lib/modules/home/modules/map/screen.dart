@@ -4,8 +4,8 @@ import 'package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_ti
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/modules/home/modules/map/controller.dart';
-import 'package:street_art_witnesses/modules/home/modules/map/controllers_layer.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
+import 'package:street_art_witnesses/modules/home/modules/map/layers/controllers/layer.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
 
 class MapScreen extends StatelessWidget {
