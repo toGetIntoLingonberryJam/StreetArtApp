@@ -16,7 +16,7 @@ abstract class YaDiskApi {
       Logger.apiResult(url, result.toString());
       return result;
     } on DioException catch (e) {
-      Logger.dioError(e, where: 'YaDiskApi');
+      Logger.dioException(e, where: 'YaDiskApi');
       return null;
     }
   }

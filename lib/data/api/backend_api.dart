@@ -16,7 +16,7 @@ abstract class BackendApi {
       Logger.apiResult(url, result.toString());
       return result;
     } on DioException catch (e) {
-      Logger.dioError(e, where: 'BackendApi._makeApiRequest');
+      Logger.dioException(e, where: 'BackendApi._makeApiRequest');
       return null;
     }
   }

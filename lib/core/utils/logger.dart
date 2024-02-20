@@ -24,7 +24,7 @@ abstract class Logger {
     LogType.dioException: '31',
   };
 
-  static void _log(String message, LogType logType) {
+  static void _log(Object? message, LogType logType) {
     if (kDebugMode) {
       print('\x1B[${_colorCodes[logType]}m[${logType.name.toUpperCase()}] $message\x1B[0m');
     }
@@ -33,13 +33,13 @@ abstract class Logger {
   static void apiCall(String url) => _log(url, LogType.apiCall);
   static void apiResult(String url, Object? result) => _log('$url: $result', LogType.apiResult);
 
-  static void message(Object? message) => _log(message.toString(), LogType.message);
-  static void success(String success) => _log(success, LogType.success);
-  static void warning(String warning) => _log(warning, LogType.warning);
+  static void message(Object? message) => _log(message, LogType.message);
+  static void success(Object? success) => _log(success, LogType.success);
+  static void warning(Object? warning) => _log(warning, LogType.warning);
 
   static void error(Object? e) => _log(e.toString(), LogType.exception);
   static void exception(Exception e, {required String where}) =>
       _log('[$where], ${e.toString()}', LogType.exception);
-  static void dioError(DioException e, {required String where}) =>
+  static void dioException(DioException e, {required String where}) =>
       _log('[$where] ${e.toString()} ${e.response?.data}', LogType.dioException);
 }
