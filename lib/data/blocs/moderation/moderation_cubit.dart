@@ -39,7 +39,7 @@ class ModerationCubit extends Cubit<ModerationState> {
         contentType: Headers.multipartFormDataContentType,
       ),
     );
-    final result = await Utils.of(context).showLoading(future);
+    final result = await Utils.showLoading(future);
     emit(result == null ? ModerationError() : ModerationThanks());
   }
 

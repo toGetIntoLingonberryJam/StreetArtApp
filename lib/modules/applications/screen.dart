@@ -108,11 +108,11 @@ class _ApplicationPage extends GetView<ProfileController> {
       '/v1/tickets/approve/${ticket.id}',
       options: Options(headers: {'Authorization': 'Bearer $token'}),
     );
-    final result = await Utils.of(context).showLoading(future);
+    final result = await Utils.showLoading(future);
     if (result == null && context.mounted) {
-      Utils.of(context).showError('Не удалось выполнить запрос');
+      Utils.showError('Не удалось выполнить запрос');
     } else if (context.mounted) {
-      Utils.of(context).showMessage('Работа одобрена');
+      Utils.showMessage('Работа одобрена');
       Get.back();
     }
   }
@@ -123,11 +123,11 @@ class _ApplicationPage extends GetView<ProfileController> {
       '/v1/tickets/reject/${ticket.id}',
       options: Options(headers: {'Authorization': 'Bearer $token'}),
     );
-    final result = await Utils.of(context).showLoading(future);
+    final result = await Utils.showLoading(future);
     if (result == null && context.mounted) {
-      Utils.of(context).showError('Не удалось выполнить запрос');
+      Utils.showError('Не удалось выполнить запрос');
     } else if (context.mounted) {
-      Utils.of(context).showError('Работа отклонена');
+      Utils.showError('Работа отклонена');
       Get.back();
     }
   }

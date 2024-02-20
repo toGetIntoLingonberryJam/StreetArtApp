@@ -30,7 +30,7 @@ class UserLocationController extends GetxController {
       isFetching = false;
       Logger.warning(e.toString());
       if (context.mounted) {
-        Utils.of(context).showError(e.toString());
+        Utils.showError(e.toString());
       }
       return null;
     }

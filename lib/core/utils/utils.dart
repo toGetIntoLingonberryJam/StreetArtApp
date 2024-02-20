@@ -1,34 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
+import 'package:street_art_witnesses/core/values/theme.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Utils {
-  Utils._(this.context);
-  final BuildContext context;
+  static ColorScheme get themeColors =>
+      Get.isDarkMode ? darkTheme.colorScheme : lightTheme.colorScheme;
 
-  static Utils of(BuildContext context) => Utils._(context);
+  static void _showSnackbar(GetSnackBar snackbar) => Get
+    ..closeAllSnackbars()
+    ..showSnackbar(snackbar);
 
-  void _showSnackbar(SnackBar snackBar) => ScaffoldMessenger.of(context)
-    ..clearSnackBars()
-    ..showSnackBar(snackBar);
+  static void showMessage(String message) => _showSnackbar(DefaultSnackbar(message));
 
-  void showMessage(String message) => _showSnackbar(DefaultSnackbar(context, message: message));
+  static void showError(String message) => _showSnackbar(ErrorSnackbar(message));
 
-  void showError(String message) => _showSnackbar(ErrorSnackbar(context, message: message));
-
-  Future<bool?> showWarning({
+  static Future<bool?> showWarning({
     required String title,
     String? content,
     bool barrierDismissible = true,
     String acceptText = 'Да',
     String declineText = 'Нет',
   }) async =>
-      showDialog(
-        context: context,
-        barrierDismissible: barrierDismissible,
-        builder: (_) => AlertDialog(
-          backgroundColor: Theme.of(context).colorScheme.background,
+      Get.dialog(
+        AlertDialog(
+          backgroundColor: Utils.themeColors.background,
           surfaceTintColor: Colors.transparent,
           title: Text(
             title,
@@ -44,46 +42,36 @@ class Utils {
                 ),
           actions: [
             AppButton.primary(
-              onTap: () => Navigator.pop(context, true),
+              onTap: () => Get.back(result: true),
               label: acceptText,
             ),
             AppButton.secondary(
-              onTap: () => Navigator.pop(context, false),
+              onTap: () => Get.back(result: false),
               label: declineText,
             ),
           ],
         ),
+        barrierDismissible: barrierDismissible,
       );
 
-  Future<T?> showLoading<T>(Future<T> future) async {
+  static Future<T?> showLoading<T>(Future<T> future) async {
     // Dismissing keyboard if opened
     FocusManager.instance.primaryFocus?.unfocus();
-    BuildContext dialogContext = context;
 
-    showDialog(
-      context: dialogContext,
-      barrierDismissible: false,
-      builder: (context) {
-        dialogContext = context;
-        return const PopScope(
-          canPop: false,
-          child: Center(child: AppLoadingIndicator()),
-        );
+    final result = await Get.showOverlay(
+      asyncFunction: () async {
+        try {
+          return await future;
+        } catch (e) {
+          return null;
+        }
       },
+      loadingWidget: const Center(child: AppLoadingIndicator()),
     );
-
-    try {
-      await future;
-      if (dialogContext.mounted) Navigator.of(dialogContext).pop();
-      return future;
-    } catch (e) {
-      // Logger.error(e);
-      if (dialogContext.mounted) Navigator.of(dialogContext).pop();
-      return null;
-    }
+    return result;
   }
 
-  Future<bool> tryLaunchUrl(Uri url) async {
+  static Future<bool> tryLaunchUrl(Uri url) async {
     final response = await showWarning(
       title: 'Переход по ссылке',
       content: 'Вы собираетесь перейти по ссылке:\n$url',
@@ -91,7 +79,7 @@ class Utils {
       declineText: 'Отмена',
     );
 
-    if (response != null && response == true && context.mounted) {
+    if (response == true) {
       final success = await showLoading(launchUrl(url)) ?? false;
 
       if (!success) {

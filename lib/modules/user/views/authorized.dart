@@ -41,14 +41,13 @@ class _LoginWarningTile extends GetView<ProfileController> {
   const _LoginWarningTile();
 
   Future<void> _sendEmail(BuildContext context) async {
-    await Utils.of(context).showLoading(
+    await Utils.showLoading(
       Get.find<EmailCounterController>().sendEmail(context, controller.user.email!),
     );
     Get.to(() => const CheckEmailScreen());
   }
 
-  void _updateUser(BuildContext context) async =>
-      await Utils.of(context).showLoading(controller.updateUser());
+  void _updateUser(BuildContext context) async => await Utils.showLoading(controller.updateUser());
 
   @override
   Widget build(BuildContext context) {

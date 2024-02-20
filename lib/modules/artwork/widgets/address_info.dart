@@ -20,10 +20,10 @@ class AddressInfo extends StatelessWidget {
   final bool preview;
 
   void _buildRoute(BuildContext context) async {
-    final userPosition = await Utils.of(context).showLoading(LocationService.getCurrentPosition());
+    final userPosition = await Utils.showLoading(LocationService.getCurrentPosition());
     if (!context.mounted) return;
     if (userPosition == null) {
-      return Utils.of(context).showError('Не удалось получить вашу геолокацию');
+      return Utils.showError('Не удалось получить вашу геолокацию');
     }
 
     final start = LatLng(userPosition.latitude, userPosition.longitude);
@@ -34,7 +34,7 @@ class AddressInfo extends StatelessWidget {
   }
 
   void _showPreviewWarning(BuildContext context) {
-    Utils.of(context).showMessage('Эта функция недоступна в режиме предпросмотра');
+    Utils.showMessage('Эта функция недоступна в режиме предпросмотра');
   }
 
   @override

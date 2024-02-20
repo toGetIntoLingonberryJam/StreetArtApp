@@ -1,30 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 
-class DefaultSnackbar extends SnackBar {
-  DefaultSnackbar(BuildContext context, {required String message, super.key})
+class DefaultSnackbar extends GetSnackBar {
+  DefaultSnackbar(String message, {super.key})
       : super(
-          behavior: SnackBarBehavior.floating,
-          content: Text(
+          messageText: Text(
             message,
-            style: TextStyles.text.copyWith(color: Theme.of(context).colorScheme.inverseSurface),
+            style: TextStyles.text.copyWith(color: Utils.themeColors.inverseSurface),
           ),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          borderRadius: 10,
           duration: const Duration(milliseconds: 2500),
-          backgroundColor: Theme.of(context).colorScheme.onBackground,
+          backgroundColor: Utils.themeColors.onBackground,
         );
 }
 
-class ErrorSnackbar extends SnackBar {
-  ErrorSnackbar(BuildContext context, {required String message, super.key})
+class ErrorSnackbar extends GetSnackBar {
+  ErrorSnackbar(String message, {super.key})
       : super(
-          behavior: SnackBarBehavior.floating,
-          content: Text(
+          snackStyle: SnackStyle.FLOATING,
+          margin: const EdgeInsets.all(20),
+          messageText: Text(
             message,
-            style: TextStyles.text.copyWith(color: Theme.of(context).colorScheme.error),
+            style: TextStyles.text.copyWith(color: Utils.themeColors.inverseSurface),
           ),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          borderRadius: 10,
           duration: const Duration(milliseconds: 4000),
-          backgroundColor: Theme.of(context).colorScheme.onBackground,
+          backgroundColor: Utils.themeColors.onBackground,
+          borderColor: Colors.white,
         );
 }

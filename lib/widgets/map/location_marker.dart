@@ -1,51 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork_location.dart';
-import 'package:street_art_witnesses/data/services/artwork_service.dart';
 import 'package:street_art_witnesses/data/services/settings_service.dart';
-import 'package:street_art_witnesses/modules/artwork/artwork_page.dart';
 import 'package:street_art_witnesses/data/services/images_service.dart';
-import 'package:street_art_witnesses/core/utils/utils.dart';
+import 'package:street_art_witnesses/modules/home/modules/map/controller.dart';
 import 'package:street_art_witnesses/widgets/containers/app_circle_avatar.dart';
 import 'package:street_art_witnesses/widgets/other/app_loading_indicator.dart';
 
-class LocationMarker extends StatefulWidget {
+class LocationMarker extends StatelessWidget {
   const LocationMarker({super.key, required this.location});
 
   final ArtworkLocation location;
 
   @override
-  State<LocationMarker> createState() => _LocationMarkerState();
-}
-
-class _LocationMarkerState extends State<LocationMarker> {
-  ImageProvider? imageProvider;
-
-  late final previewFuture = ImagesService.loadFromDisk(
-    widget.location.previewUrl,
-    quality: ImageQuality.preview,
-  );
-
-  void _openArtwork(BuildContext context) async {
-    final future = ArtworkService.getArtworkById(widget.location.artworkId);
-    final artwork = await Utils.of(context).showLoading(future);
-    if (!context.mounted) return;
-
-    if (artwork == null) {
-      Utils.of(context).showMessage('Не удалось получить данные о работе');
-    } else {
-      Get.to(() => ArtworkPage(artwork: artwork));
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _openArtwork(context),
-      child: widget.location.previewUrl == null
+      onTap: () => Get.find<GetMapController>().openArtwork(location.artworkId),
+      child: location.previewUrl == null
           ? const AppMarkerAvatar(child: Icon(Icons.color_lens_outlined))
           : FutureBuilder(
-              future: previewFuture,
+              future: ImagesService.loadFromDisk(
+                location.previewUrl,
+                quality: ImageQuality.preview,
+              ),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   return AppMarkerAvatar(image: snapshot.data);

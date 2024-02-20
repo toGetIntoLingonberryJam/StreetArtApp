@@ -23,7 +23,7 @@ class AppListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(12),
-      onTap: onTap ?? () => Utils.of(context).showMessage(text),
+      onTap: onTap ?? () => Utils.showMessage(text),
       child: AppContainer(
         borderRadius: 12,
         child: Row(

@@ -3,10 +3,15 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_animations/flutter_map_animations.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:street_art_witnesses/data/services/artwork_service.dart';
+import 'package:street_art_witnesses/core/utils/utils.dart';
+import 'package:street_art_witnesses/data/providers/artworks/provider.dart';
+import 'package:street_art_witnesses/modules/artwork/artwork_page.dart';
 import 'package:street_art_witnesses/widgets/map/location_marker.dart';
 
 class GetMapController extends GetxController with GetTickerProviderStateMixin {
+  GetMapController({required this.artworksProvider});
+
+  final ArtworksProvider artworksProvider;
   late final mapController = AnimatedMapController(
     vsync: this,
     duration: const Duration(milliseconds: 350),
@@ -33,7 +38,7 @@ class GetMapController extends GetxController with GetTickerProviderStateMixin {
   }
 
   void fetchLocations() async {
-    final locations = await ArtworkService.getLocations() ?? [];
+    final locations = await artworksProvider.getArtworkLocations() ?? [];
     markers = locations
         .where((element) => element.latitude >= -90 && element.latitude <= 90)
         .map((location) => Marker(
@@ -42,6 +47,17 @@ class GetMapController extends GetxController with GetTickerProviderStateMixin {
             ))
         .toList();
     update();
+  }
+
+  void openArtwork(int id) async {
+    final future = artworksProvider.getArtworkById(id);
+    final artwork = await Utils.showLoading(future);
+
+    if (artwork == null) {
+      Utils.showMessage('Не удалось получить данные о работе');
+    } else {
+      Get.to(() => ArtworkPage(artwork: artwork));
+    }
   }
 }
 

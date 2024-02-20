@@ -4,7 +4,6 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork_location.dart';
 import 'package:street_art_witnesses/data/models/map/map_task.dart';
-import 'package:street_art_witnesses/data/services/artwork_service.dart';
 import 'package:street_art_witnesses/data/services/location_service.dart';
 import 'package:street_art_witnesses/widgets/map/location_marker.dart';
 
@@ -35,12 +34,12 @@ class MapCubit extends Cubit<MapState> {
   }
 
   void loadMarkers() async {
-    final locations = await ArtworkService.getLocations();
-    if (locations != null) {
-      _setMarkers(_parseMarkers(locations));
-    } else {
-      emit(MapError('Не удалось загрузить работы'));
-    }
+    // final locations = await ArtworkService.getLocations();
+    // if (locations != null) {
+    //   _setMarkers(_parseMarkers(locations));
+    // } else {
+    //   emit(MapError('Не удалось загрузить работы'));
+    // }
   }
 
   void _setMarkers(List<Marker> markers) {

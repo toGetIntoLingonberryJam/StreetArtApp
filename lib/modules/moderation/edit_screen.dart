@@ -229,7 +229,7 @@ class _AdditionalInfoViewState extends State<_AdditionalInfoView> {
   void save() async {
     if (formKey.currentState?.validate() ?? false) {
       if (!allSet()) {
-        final proceed = await Utils.of(context).showWarning(
+        final proceed = await Utils.showWarning(
           title: 'Продолжить?',
           content: 'Вы не заполнили все дополнительные поля. Уверены, что хотите продолжить?',
           acceptText: 'Продолжить',
@@ -319,7 +319,7 @@ class _PreviewView extends StatelessWidget implements _ModerationEditView {
   String get title => 'Предпросмотр';
 
   void send0(BuildContext context) async {
-    final send = await Utils.of(context).showWarning(
+    final send = await Utils.showWarning(
           title: 'Отправление на модерацию',
           content: 'Пожалуйста, убедитесь в правильности заполненных данных перед отправкой',
           acceptText: 'Отправить',

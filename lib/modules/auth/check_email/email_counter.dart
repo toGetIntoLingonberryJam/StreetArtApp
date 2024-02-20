@@ -9,7 +9,7 @@ class EmailCounterWidget extends GetView<EmailCounterController> {
   const EmailCounterWidget({super.key});
 
   Future<void> _sendEmail(BuildContext context) async {
-    await Utils.of(context).showLoading(
+    await Utils.showLoading(
       controller.sendEmail(context, Get.find<ProfileController>().user.email!),
     );
   }

@@ -14,7 +14,7 @@ final class MapMessageTask extends MapTask {
   MapMessageTask(this.message);
 
   @override
-  void complete(BuildContext context) => Utils.of(context).showMessage(message);
+  void complete(BuildContext context) => Utils.showMessage(message);
 }
 
 final class MapRouteTask extends MapTask {
@@ -27,7 +27,7 @@ final class MapRouteTask extends MapTask {
   void complete(BuildContext context) async {
     // const start = LatLng(56.8509, 60.639);
 
-    final route = await Utils.of(context).showLoading(RoutesService.getRoute(start, artworkId));
+    final route = await Utils.showLoading(RoutesService.getRoute(start, artworkId));
     if (context.mounted && route != null) context.read<MapCubit>().setRoute(route);
   }
 }

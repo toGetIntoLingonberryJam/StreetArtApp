@@ -56,13 +56,13 @@ abstract class UserTiles {
 }
 
 void _logout(BuildContext context) async {
-  final isLogout = await Utils.of(context).showWarning(
+  final isLogout = await Utils.showWarning(
         title: 'Выйти из аккаунта',
         content: 'Вы уверены, что хотите выйти из аккаунта?',
       ) ??
       false;
 
   if (context.mounted && isLogout) {
-    await Utils.of(context).showLoading(Get.find<AuthService>().logout());
+    await Utils.showLoading(Get.find<AuthService>().logout());
   }
 }

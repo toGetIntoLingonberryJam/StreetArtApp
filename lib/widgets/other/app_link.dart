@@ -15,7 +15,7 @@ class AppLink extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Utils.of(context).tryLaunchUrl(url),
+      onTap: () => Utils.tryLaunchUrl(url),
       child: Row(
         children: [
           const Icon(Icons.link),

@@ -45,7 +45,7 @@ class AuthController extends GetxController {
 
   void tryLogin(BuildContext context) async {
     if (loginFormKey.currentState?.validate() ?? false) {
-      final success = await Utils.of(context).showLoading(userService.login(
+      final success = await Utils.showLoading(userService.login(
         email: emailCtrl.text.trim(),
         password: passwordCtrl.text.trim(),
       ));
@@ -56,7 +56,7 @@ class AuthController extends GetxController {
 
   void tryRegister(BuildContext context) async {
     if (registerFormKey.currentState?.validate() ?? false) {
-      final success = await Utils.of(context).showLoading(userService.register(
+      final success = await Utils.showLoading(userService.register(
         email: emailCtrl.text.trim(),
         password: passwordCtrl.text.trim(),
         username: usernameCtrl.text.trim(),

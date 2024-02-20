@@ -81,7 +81,7 @@ class _WriteUsWidget extends StatelessWidget {
           ),
           const SizedBox(width: 4),
           GestureDetector(
-            onTap: () => Utils.of(context).tryLaunchUrl(reportLink),
+            onTap: () => Utils.tryLaunchUrl(reportLink),
             child: Text(
               'Напишите',
               style: TextStyles.headline2.copyWith(decoration: TextDecoration.underline),
@@ -145,12 +145,12 @@ class _ArtworkImageSliderState extends State<_ArtworkImageSlider> {
                 AppIconButton(onTap: Get.back, iconData: Icons.arrow_back),
                 const Expanded(child: SizedBox()),
                 AppIconButton(
-                  onTap: () => Utils.of(context).showMessage('Изменить работу'),
+                  onTap: () => Utils.showMessage('Изменить работу'),
                   iconData: Icons.edit_outlined,
                 ),
                 const SizedBox(width: 10),
                 AppIconButton(
-                  onTap: () => Utils.of(context).showMessage('Добавить в избранное'),
+                  onTap: () => Utils.showMessage('Добавить в избранное'),
                   iconData: Icons.favorite_border,
                 ),
               ],

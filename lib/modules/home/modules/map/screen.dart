@@ -42,7 +42,7 @@ class MapScreen extends StatelessWidget {
                   attributions: [
                     TextSourceAttribution(
                       'OpenStreetMap contributors',
-                      onTap: () => Utils.of(context).tryLaunchUrl(
+                      onTap: () => Utils.tryLaunchUrl(
                         Uri.parse('https://openstreetmap.org/copyright'),
                       ),
                     ),
