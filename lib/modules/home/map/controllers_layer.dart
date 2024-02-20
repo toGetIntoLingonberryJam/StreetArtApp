@@ -1,32 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:flutter_map_animations/flutter_map_animations.dart';
+import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 import 'package:street_art_witnesses/data/blocs/map/map_cubit.dart';
 import 'package:street_art_witnesses/data/providers/location_provider.dart';
+import 'package:street_art_witnesses/modules/home/map/controller.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
-class ControllersLayer extends StatefulWidget {
-  const ControllersLayer({
+class MapControllersLayer extends GetView<GetMapController> {
+  const MapControllersLayer({
     super.key,
-    required this.controller,
     this.search = true,
     this.zoom = true,
     this.geopostion = true,
   });
 
-  final AnimatedMapController controller;
   final bool search;
   final bool zoom;
   final bool geopostion;
-
-  @override
-  State<ControllersLayer> createState() => _ControllersLayerState();
-}
-
-class _ControllersLayerState extends State<ControllersLayer> {
-  final TextEditingController searchController = TextEditingController();
 
   void _fetchUserPosition(BuildContext context) async {
     final position = await context.read<LocationProvider>().fetchUserPosition(context);
@@ -40,12 +32,6 @@ class _ControllersLayerState extends State<ControllersLayer> {
   }
 
   @override
-  void dispose() {
-    searchController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.bottomRight,
@@ -55,37 +41,37 @@ class _ControllersLayerState extends State<ControllersLayer> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              if (widget.search)
+              if (search)
                 AppTextFormField(
-                  controller: searchController,
+                  controller: controller.searchController,
                   prefixIcon: const Icon(Icons.search, size: 16),
                   hintText: 'Поиск',
                   validator: null,
                 ),
               const Expanded(flex: 5, child: SizedBox()),
-              if (widget.zoom)
+              if (zoom)
                 FloatingActionButton(
                   backgroundColor: Theme.of(context).colorScheme.onBackground,
                   heroTag: 'zoom_in',
-                  onPressed: () => widget.controller.animatedZoomIn(),
+                  onPressed: () => controller.mapController.animatedZoomIn(),
                   child: Icon(
                     Icons.add,
                     color: Theme.of(context).colorScheme.inverseSurface,
                   ),
                 ),
               const SizedBox(height: 10),
-              if (widget.zoom)
+              if (zoom)
                 FloatingActionButton(
                   backgroundColor: Theme.of(context).colorScheme.onBackground,
                   heroTag: 'zoom_out',
-                  onPressed: () => widget.controller.animatedZoomOut(),
+                  onPressed: () => controller.mapController.animatedZoomOut(),
                   child: Icon(
                     Icons.remove,
                     color: Theme.of(context).colorScheme.inverseSurface,
                   ),
                 ),
               const Expanded(flex: 3, child: SizedBox()),
-              if (widget.geopostion)
+              if (geopostion)
                 Consumer<LocationProvider>(
                   builder: (context, provider, child) {
                     return FloatingActionButton(

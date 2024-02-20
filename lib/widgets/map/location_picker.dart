@@ -1,32 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:flutter_map_animations/flutter_map_animations.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
+import 'package:street_art_witnesses/modules/home/map/controller.dart';
 import 'package:street_art_witnesses/modules/home/map/controllers_layer.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
 import 'package:street_art_witnesses/widgets/other/app_appbar.dart';
 
-class LocationPicker extends StatefulWidget {
+class LocationPicker extends StatelessWidget {
   const LocationPicker({super.key});
 
   @override
-  State<LocationPicker> createState() => _LocationPickerState();
-}
-
-class _LocationPickerState extends State<LocationPicker> with TickerProviderStateMixin {
-  late final controller = AnimatedMapController(vsync: this);
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final c = Get.put(GetMapController(), tag: 'location_picker');
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -39,7 +27,7 @@ class _LocationPickerState extends State<LocationPicker> with TickerProviderStat
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(kContainerRadius),
                   child: FlutterMap(
-                    mapController: controller.mapController,
+                    mapController: c.mapController.mapController,
                     options: MapOptions(
                       initialZoom: 12,
                       backgroundColor: Theme.of(context).colorScheme.background,
@@ -62,15 +50,14 @@ class _LocationPickerState extends State<LocationPicker> with TickerProviderStat
                           ),
                         ],
                       ),
-                      ControllersLayer(controller: controller, geopostion: false, search: false),
+                      const MapControllersLayer(geopostion: false, search: false),
                       const _PickerMarker(),
                       Align(
                         alignment: Alignment.bottomCenter,
                         child: Padding(
                           padding: kPagePadding,
                           child: AppButton.primary(
-                              onTap: () => Get.back(result: controller.mapController.camera.center),
-                              label: 'Выбрать'),
+                              onTap: () => Get.back(result: c.mapCenter), label: 'Выбрать'),
                         ),
                       ),
                     ],

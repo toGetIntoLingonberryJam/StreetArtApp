@@ -1,50 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:flutter_map_animations/flutter_map_animations.dart';
 import 'package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_tile_provider.dart';
+import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/data/blocs/map/map_cubit.dart';
 import 'package:street_art_witnesses/data/models/map/map_task.dart';
+import 'package:street_art_witnesses/modules/home/map/controller.dart';
 import 'package:street_art_witnesses/modules/home/map/controllers_layer.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
 
-class MapPage extends StatefulWidget {
-  const MapPage({super.key});
-
-  @override
-  State<MapPage> createState() => _MapPageState();
-}
-
-class _MapPageState extends State<MapPage> with TickerProviderStateMixin {
-  late final controller = AnimatedMapController(
-    vsync: this,
-    duration: const Duration(milliseconds: 350),
-    curve: Curves.easeInOut,
-  );
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocListener<MapCubit, MapState>(
-      listener: (context, state) {
-        if (state is MapTaskState) state.task.complete(context);
-      },
-      child: _MapView(controller),
-    );
-  }
-}
-
-class _MapView extends StatelessWidget {
-  const _MapView(this.controller);
-
-  final AnimatedMapController controller;
+class MapScreen extends GetView<GetMapController> {
+  const MapScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +20,7 @@ class _MapView extends StatelessWidget {
       children: [
         Expanded(
           child: FlutterMap(
-            mapController: controller.mapController,
+            mapController: controller.mapController.mapController,
             options: MapOptions(
               keepAlive: true,
               initialZoom: 12,
@@ -64,22 +32,12 @@ class _MapView extends StatelessWidget {
                 urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                 tileProvider: CancellableNetworkTileProvider(),
               ),
-              BlocBuilder<MapCubit, MapState>(
-                builder: (context, state) {
-                  if (state is MapNavigator) {
-                    return PolylineLayer(
-                      polylines: [
-                        Polyline(
-                          strokeWidth: 5,
-                          color: Colors.red,
-                          points: state.route,
-                        ),
-                      ],
-                    );
-                  }
-                  return const SizedBox();
-                },
-              ),
+              if (controller.isNavigator)
+                PolylineLayer(
+                  polylines: [
+                    Polyline(strokeWidth: 5, color: Colors.red, points: controller.points),
+                  ],
+                ),
               BlocBuilder<MapCubit, MapState>(
                 builder: (context, state) {
                   return MarkerLayer(markers: context.read<MapCubit>().markers);
@@ -96,7 +54,7 @@ class _MapView extends StatelessWidget {
                   ),
                 ],
               ),
-              ControllersLayer(controller: controller),
+              const MapControllersLayer(),
             ],
           ),
         ),
