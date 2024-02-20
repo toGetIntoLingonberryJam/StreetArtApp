@@ -10,7 +10,7 @@ class HomeController extends GetxController {
   late final pageController = PageController(
     initialPage: _pageIndex,
   );
-  final pages = [const MapScreen(), const CollectionPage(), const UserScreen()];
+  final pages = [const MapScreen(), const CollectionPage(), const ProfileScreen()];
 
   @override
   void dispose() {

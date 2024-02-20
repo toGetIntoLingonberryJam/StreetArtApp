@@ -4,8 +4,8 @@ import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/modules/auth/check_email/email_counter.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
 
-class CheckEmailPage extends StatelessWidget {
-  const CheckEmailPage({super.key});
+class CheckEmailScreen extends StatelessWidget {
+  const CheckEmailScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
