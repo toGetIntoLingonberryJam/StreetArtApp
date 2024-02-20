@@ -6,6 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class Utils {
   static void _showSnackbar(GetSnackBar snackbar) => Get
+    ..closeCurrentSnackbar()
     ..closeAllSnackbars()
     ..showSnackbar(snackbar);
 
