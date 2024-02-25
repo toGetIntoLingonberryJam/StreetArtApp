@@ -5,7 +5,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork_location.dart';
 import 'package:street_art_witnesses/data/models/map/map_task.dart';
 import 'package:street_art_witnesses/data/services/location_service.dart';
-import 'package:street_art_witnesses/widgets/map/location_marker.dart';
+import 'package:street_art_witnesses/widgets/map/location_marker/marker.dart';
 
 part 'map_state.dart';
 

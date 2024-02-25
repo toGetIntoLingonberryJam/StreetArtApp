@@ -6,7 +6,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/data/providers/artworks/provider.dart';
 import 'package:street_art_witnesses/modules/artwork/screen.dart';
-import 'package:street_art_witnesses/widgets/map/location_marker.dart';
+import 'package:street_art_witnesses/widgets/map/location_marker/marker.dart';
 
 class GetMapController extends GetxController with GetTickerProviderStateMixin {
   GetMapController({required this.artworksProvider});
@@ -43,7 +43,10 @@ class GetMapController extends GetxController with GetTickerProviderStateMixin {
         .where((element) => element.latitude >= -90 && element.latitude <= 90)
         .map((location) => Marker(
               point: LatLng(location.latitude, location.longitude),
-              child: LocationMarker(location: location),
+              child: LocationMarker(
+                location: location,
+                key: ObjectKey(location),
+              ),
             ))
         .toList();
     update();
