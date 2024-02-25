@@ -11,11 +11,15 @@ const _mapQualityToSize = {
   ImageQuality.best: 'XXXL',
 };
 
+final Map<String, ImageProvider> _mapUrlToImage = {};
+int loads = 0;
+
 abstract class ImagesService {
-  static Future<ImageProvider?> loadFromDisk(String? url, {required ImageQuality quality}) async {
-    if (url == null) {
-      Logger.warning('loadFromDisk: No URL provided.');
-      return null;
+  static Future<ImageProvider?> loadFromDisk(String url, {required ImageQuality quality}) async {
+    loads += 1;
+    Logger.message('LoadFromDisk: $url, count: $loads');
+    if (_mapUrlToImage.containsKey(url)) {
+      return _mapUrlToImage[url];
     }
 
     final response = await YaDiskApi.get(
@@ -31,7 +35,8 @@ abstract class ImagesService {
     } else {
       try {
         final Map<String, dynamic> data = response.data!;
-        return NetworkImage(data['preview']);
+        _mapUrlToImage[url] = NetworkImage(data['preview']);
+        return _mapUrlToImage[url];
       } on Exception catch (e) {
         Logger.exception(e, where: 'ImagesService.loadFromDisk');
         return null;
