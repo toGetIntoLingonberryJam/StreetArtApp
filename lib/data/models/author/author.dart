@@ -1,5 +1,5 @@
-class Author {
-  const Author({
+class Artist {
+  const Artist({
     required this.name,
     required this.thumbnailUrl,
   });

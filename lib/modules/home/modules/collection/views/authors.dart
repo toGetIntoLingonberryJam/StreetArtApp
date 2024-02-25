@@ -6,17 +6,17 @@ import 'package:street_art_witnesses/widgets/app_widgets.dart';
 class AuthorsView extends StatelessWidget {
   const AuthorsView({
     super.key,
-    required this.authors,
+    required this.artists,
   });
 
-  final List<Author>? authors;
+  final List<Artist>? artists;
 
   @override
   Widget build(BuildContext context) {
-    if (authors == null) {
+    if (artists == null) {
       return const Center(child: AppLoadingIndicator());
     }
-    if (authors!.isEmpty) {
+    if (artists!.isEmpty) {
       return const Center(
           child: Text(
         'У вас нет сохраненных авторов',
@@ -25,8 +25,8 @@ class AuthorsView extends StatelessWidget {
     }
 
     return ListView.separated(
-      itemCount: authors!.length,
-      itemBuilder: (_, index) => AuthorCard(author: authors![index]),
+      itemCount: artists!.length,
+      itemBuilder: (_, index) => AuthorCard(author: artists![index]),
       separatorBuilder: (_, __) => const SizedBox(height: 8),
     );
   }
@@ -38,7 +38,7 @@ class AuthorCard extends StatelessWidget {
     required this.author,
   });
 
-  final Author author;
+  final Artist author;
 
   @override
   Widget build(BuildContext context) {

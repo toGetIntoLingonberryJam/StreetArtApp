@@ -14,7 +14,7 @@ class CollectionController extends GetxController {
       case Collection.artworks:
         return const ArtworksView(artworks: []);
       case Collection.authors:
-        return const AuthorsView(authors: []);
+        return const AuthorsView(artists: []);
     }
   }
 
