@@ -9,7 +9,7 @@ import 'package:street_art_witnesses/data/api/backend_api.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork_location.dart';
 import 'package:street_art_witnesses/data/services/auth_service.dart';
-import 'package:street_art_witnesses/modules/moderation/thanks_screen.dart';
+import 'package:street_art_witnesses/modules/moderation/screens/thanks.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class ModerationData {

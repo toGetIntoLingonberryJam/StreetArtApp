@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/services/settings_service.dart';
-import 'package:street_art_witnesses/modules/moderation/edit_screen.dart';
+import 'package:street_art_witnesses/modules/moderation/screens/edit.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class ModerationWarningScreen extends StatelessWidget {
