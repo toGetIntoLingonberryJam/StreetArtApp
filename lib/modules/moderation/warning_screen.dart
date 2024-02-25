@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
-import 'package:street_art_witnesses/data/blocs/moderation/moderation_cubit.dart';
 import 'package:street_art_witnesses/data/services/settings_service.dart';
+import 'package:street_art_witnesses/modules/moderation/edit_screen.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class ModerationWarningScreen extends StatelessWidget {
@@ -62,7 +61,7 @@ class _ConfirmWidgetState extends State<_ConfirmWidget> {
             if (dontShowAgain) {
               Get.find<SettingsService>().dontShowAgain(ShowPages.moderationWarning);
             }
-            context.read<ModerationCubit>().showEdit();
+            Get.off(() => const ModerationEditScreen());
           },
         ),
         const SizedBox(height: 12),

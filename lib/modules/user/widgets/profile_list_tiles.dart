@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:street_art_witnesses/data/services/auth_service.dart';
 import 'package:street_art_witnesses/modules/applications/screen.dart';
+import 'package:street_art_witnesses/modules/moderation/warning_screen.dart';
 import 'package:street_art_witnesses/modules/user/modules/about.dart';
 import 'package:street_art_witnesses/modules/user/modules/change_password.dart';
 import 'package:street_art_witnesses/modules/user/modules/settings/screen.dart';
-import 'package:street_art_witnesses/modules/moderation/moderation_page.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/widgets/containers/app_list_tile.dart';
 
@@ -43,7 +43,7 @@ abstract class UserTiles {
       );
 
   static AppListTile addArtwork(BuildContext context) => AppListTile(
-        onTap: () => Get.to(() => const ModerationPage()),
+        onTap: () => Get.to(() => const ModerationWarningScreen()),
         iconData: Icons.add_circle_outline,
         text: 'Добавить работу',
       );

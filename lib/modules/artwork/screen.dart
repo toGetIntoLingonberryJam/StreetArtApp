@@ -31,7 +31,7 @@ class ArtworkScreen extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              preview ? const _MockImageSlider() : _ArtworkImageSlider(images: artwork.images),
+              _ArtworkImageSlider(images: artwork.images),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Column(
@@ -89,21 +89,6 @@ class _WriteUsWidget extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _MockImageSlider extends StatelessWidget {
-  const _MockImageSlider();
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(kContainerRadius),
-        child: const AppPlaceholder(height: 320),
       ),
     );
   }

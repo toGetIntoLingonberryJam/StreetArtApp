@@ -1,15 +1,16 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart' hide FormData;
 import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/data/api/backend_api.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork_location.dart';
-
-part 'moderation_state.dart';
+import 'package:street_art_witnesses/data/services/auth_service.dart';
+import 'package:street_art_witnesses/modules/moderation/thanks_screen.dart';
+import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class ModerationData {
   String? title;
@@ -20,13 +21,18 @@ class ModerationData {
   String? link;
 }
 
-class ModerationCubit extends Cubit<ModerationState> {
-  ModerationCubit({required ModerationState state}) : super(state);
-
+class ModerationController extends GetxController {
   final _data = ModerationData();
+  final pageController = PageController();
 
-  void showEdit() => emit(ModerationEdit());
-  void sendToModeration(BuildContext context, {required String token}) async {
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
+
+  void sendToModeration() async {
+    final token = Get.find<AuthService>().user.value.token!;
     final formData = FormData.fromMap({
       'artwork_ticket_schema': jsonEncode(_getTicketData(preview)),
     });
@@ -40,7 +46,7 @@ class ModerationCubit extends Cubit<ModerationState> {
       ),
     );
     final result = await Utils.showLoading(future);
-    emit(result == null ? ModerationError() : ModerationThanks());
+    Get.off(() => result == null ? const AppErrorScreen() : const ModerationThanksScreen());
   }
 
   void saveMainInfo({required String title, required String address, required LatLng location}) {

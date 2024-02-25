@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
-import 'package:street_art_witnesses/data/blocs/moderation/moderation_cubit.dart';
-import 'package:street_art_witnesses/data/services/auth_service.dart';
 import 'package:street_art_witnesses/modules/artwork/screen.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/core/utils/validator.dart';
+import 'package:street_art_witnesses/modules/moderation/controller.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class ModerationEditScreen extends StatefulWidget {
@@ -18,30 +16,19 @@ class ModerationEditScreen extends StatefulWidget {
 }
 
 class _ModerationEditScreenState extends State<ModerationEditScreen> {
-  final controller = PageController();
   late String title = _screens[0].title;
+  final c = Get.put(ModerationController());
 
-  void _moveToPage(int idx) => controller.animateToPage(
+  void _moveToPage(int idx) => c.pageController.animateToPage(
         idx,
         duration: const Duration(milliseconds: 600),
         curve: Curves.easeInOut,
       );
 
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
   late final _screens = <_ModerationEditView>[
     _MainInfoView(onTapNext: () => _moveToPage(1)),
     _AdditionalInfoView(onTapNext: () => _moveToPage(2)),
-    _PreviewView(
-      onTapNext: () => context.read<ModerationCubit>().sendToModeration(
-            context,
-            token: Get.find<AuthService>().user.value.token!,
-          ),
-    ),
+    _PreviewView(onTapNext: () => c.sendToModeration()),
   ];
 
   @override
@@ -62,7 +49,7 @@ class _ModerationEditScreenState extends State<ModerationEditScreen> {
             ),
             Expanded(
               child: PageView.builder(
-                controller: controller,
+                controller: c.pageController,
                 physics: const NeverScrollableScrollPhysics(),
                 onPageChanged: (idx) => setState(() => title = _screens[idx].title),
                 itemBuilder: (context, idx) => _screens[idx],
@@ -110,11 +97,11 @@ class _MainInfoViewState extends State<_MainInfoView> {
   void _save() async {
     if (_formKey.currentState?.validate() ?? false) {
       if (context.mounted) {
-        context.read<ModerationCubit>().saveMainInfo(
-              title: nameController.text.trim(),
-              address: addressController.text.trim(),
-              location: location!,
-            );
+        Get.find<ModerationController>().saveMainInfo(
+          title: nameController.text.trim(),
+          address: addressController.text.trim(),
+          location: location!,
+        );
         widget.onTapNext();
       }
     }
@@ -241,11 +228,11 @@ class _AdditionalInfoViewState extends State<_AdditionalInfoView> {
       final desciption = descriptionController.text.trim();
       final link = linksController.text.trim();
 
-      context.read<ModerationCubit>().saveAdditionalInfo(
-            year: year.isEmpty ? null : year,
-            description: desciption.isEmpty ? null : desciption,
-            link: link.isEmpty ? null : link,
-          );
+      Get.find<ModerationController>().saveAdditionalInfo(
+        year: year.isEmpty ? null : year,
+        description: desciption.isEmpty ? null : desciption,
+        link: link.isEmpty ? null : link,
+      );
       widget.onTapNext();
     }
   }
@@ -332,12 +319,13 @@ class _PreviewView extends StatelessWidget implements _ModerationEditView {
 
   @override
   Widget build(BuildContext context) {
+    final c = Get.find<ModerationController>();
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
             Expanded(
-              child: ArtworkScreen.preview(artwork: context.read<ModerationCubit>().preview),
+              child: ArtworkScreen.preview(artwork: c.preview),
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
