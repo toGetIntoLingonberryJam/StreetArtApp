@@ -14,7 +14,7 @@ class ArtworkInfo extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _AuthorInfo(artwork.artistId),
+          _ArtistInfo(artwork.artistId),
           const SizedBox(height: 4),
           Text(artwork.title, style: TextStyles.headline1),
           const SizedBox(height: 8),
@@ -25,8 +25,8 @@ class ArtworkInfo extends StatelessWidget {
   }
 }
 
-class _AuthorInfo extends StatelessWidget {
-  const _AuthorInfo(this.artistId);
+class _ArtistInfo extends StatelessWidget {
+  const _ArtistInfo(this.artistId);
 
   final int? artistId;
 

@@ -1,6 +1,6 @@
 import 'package:street_art_witnesses/data/models/image.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork_location.dart';
-import 'package:street_art_witnesses/data/models/author/author.dart';
+import 'package:street_art_witnesses/data/models/artist/artist.dart';
 
 enum ArtworkStatus { existing, destroyed, overpainted, unknown }
 

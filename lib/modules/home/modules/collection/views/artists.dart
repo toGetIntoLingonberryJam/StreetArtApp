@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
-import 'package:street_art_witnesses/data/models/author/author.dart';
+import 'package:street_art_witnesses/data/models/artist/artist.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
-class AuthorsView extends StatelessWidget {
-  const AuthorsView({
+class ArtistsView extends StatelessWidget {
+  const ArtistsView({
     super.key,
     required this.artists,
   });
@@ -26,14 +26,14 @@ class AuthorsView extends StatelessWidget {
 
     return ListView.separated(
       itemCount: artists!.length,
-      itemBuilder: (_, index) => AuthorCard(author: artists![index]),
+      itemBuilder: (_, index) => ArtistCard(author: artists![index]),
       separatorBuilder: (_, __) => const SizedBox(height: 8),
     );
   }
 }
 
-class AuthorCard extends StatelessWidget {
-  const AuthorCard({
+class ArtistCard extends StatelessWidget {
+  const ArtistCard({
     super.key,
     required this.author,
   });

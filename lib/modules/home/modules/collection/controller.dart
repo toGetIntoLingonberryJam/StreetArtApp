@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/modules/home/modules/collection/views/artworks.dart';
-import 'package:street_art_witnesses/modules/home/modules/collection/views/authors.dart';
+import 'package:street_art_witnesses/modules/home/modules/collection/views/artists.dart';
 
-enum Collection { artworks, authors }
+enum Collection { artworks, artists }
 
 class CollectionController extends GetxController {
   Collection _coll = Collection.artworks;
@@ -13,8 +13,8 @@ class CollectionController extends GetxController {
     switch (_coll) {
       case Collection.artworks:
         return const ArtworksView(artworks: []);
-      case Collection.authors:
-        return const AuthorsView(artists: []);
+      case Collection.artists:
+        return const ArtistsView(artists: []);
     }
   }
 

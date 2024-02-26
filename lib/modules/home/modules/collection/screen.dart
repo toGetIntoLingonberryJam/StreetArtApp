@@ -36,9 +36,9 @@ class CollectionScreen extends StatelessWidget {
                     const SizedBox(width: 16),
                     Expanded(
                         child: AppButton(
-                      onTap: () => controller.switchPage(Collection.authors),
+                      onTap: () => controller.switchPage(Collection.artists),
                       label: 'Работы',
-                      isPrimary: controller.coll == Collection.authors,
+                      isPrimary: controller.coll == Collection.artists,
                     )),
                   ],
                 ),
