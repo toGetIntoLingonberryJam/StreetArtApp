@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
-import 'package:street_art_witnesses/data/models/image.dart';
-import 'package:street_art_witnesses/modules/artwork/widgets/address_info.dart';
-import 'package:street_art_witnesses/modules/artwork/widgets/description_info.dart';
-import 'package:street_art_witnesses/modules/artwork/widgets/festival_info.dart';
-import 'package:street_art_witnesses/modules/artwork/widgets/artwork_info.dart';
-import 'package:street_art_witnesses/modules/artwork/widgets/links_info.dart';
-import 'package:street_art_witnesses/modules/artwork/widgets/status_info.dart';
+import 'package:street_art_witnesses/modules/art/artwork/widgets/address_info.dart';
+import 'package:street_art_witnesses/modules/art/artwork/widgets/description_info.dart';
+import 'package:street_art_witnesses/modules/art/artwork/widgets/festival_info.dart';
+import 'package:street_art_witnesses/modules/art/artwork/widgets/artwork_info.dart';
+import 'package:street_art_witnesses/modules/art/artwork/widgets/links_info.dart';
+import 'package:street_art_witnesses/modules/art/artwork/widgets/status_info.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
+import 'package:street_art_witnesses/widgets/other/image_slider/app_image_slider.dart';
 
 class ArtworkScreen extends StatelessWidget {
   const ArtworkScreen({super.key, required this.artwork}) : preview = false;
@@ -31,7 +30,7 @@ class ArtworkScreen extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _ArtworkImageSlider(images: artwork.images),
+              AppImageSlider(images: artwork.images),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Column(
@@ -89,52 +88,6 @@ class _WriteUsWidget extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class _ArtworkImageSlider extends StatelessWidget {
-  const _ArtworkImageSlider({required this.images});
-
-  // final List<ArtworkImage>? images;
-  final List<ImageSchema>? images;
-
-  @override
-  Widget build(BuildContext context) {
-    if (images == null || images!.isEmpty) {
-      return const Padding(
-        padding: EdgeInsets.fromLTRB(10, 0, 10, 8),
-        child: AppContainer.small(
-          child: Text(
-            'Фотографии отсутствуют',
-            style: TextStyles.headline1,
-            textAlign: TextAlign.center,
-          ),
-        ),
-      );
-    }
-
-    return Stack(
-      children: [
-        ImageSlider(images: images!),
-        Padding(
-            padding: const EdgeInsets.all(20),
-            child: Row(
-              children: [
-                AppIconButton(onTap: Get.back, iconData: Icons.arrow_back),
-                const Expanded(child: SizedBox()),
-                AppIconButton(
-                  onTap: () => Utils.showInfo('Изменить работу'),
-                  iconData: Icons.edit_outlined,
-                ),
-                const SizedBox(width: 10),
-                AppIconButton(
-                  onTap: () => Utils.showInfo('Добавить в избранное'),
-                  iconData: Icons.favorite_border,
-                ),
-              ],
-            )),
-      ],
     );
   }
 }
