@@ -42,8 +42,9 @@ class ArtworkScreen extends StatelessWidget {
                     if (artwork.festivalId != null) const SizedBox(height: 8),
                     AddressInfo(artwork: artwork, preview: preview),
                     const SizedBox(height: 8),
-                    DescriptionInfo(artwork.description),
-                    if (artwork.description != null) const SizedBox(height: 8),
+                    ArtworkDescriptionWidget(artwork.description),
+                    if (artwork.description != null && artwork.description!.isNotEmpty)
+                      const SizedBox(height: 8),
                     StatusInfo(artwork.status),
                     const SizedBox(height: 8),
                     LinksInfo(artwork.links),

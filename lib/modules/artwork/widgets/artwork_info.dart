@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
+import 'package:street_art_witnesses/data/models/artist.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
@@ -14,7 +15,7 @@ class ArtworkInfo extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _ArtistInfo(artwork.artistId),
+          _ArtistInfo(artwork.artist),
           const SizedBox(height: 4),
           Text(artwork.title, style: TextStyles.headline1),
           const SizedBox(height: 8),
@@ -26,13 +27,13 @@ class ArtworkInfo extends StatelessWidget {
 }
 
 class _ArtistInfo extends StatelessWidget {
-  const _ArtistInfo(this.artistId);
+  const _ArtistInfo(this.artist);
 
-  final int? artistId;
+  final Artist? artist;
 
   @override
   Widget build(BuildContext context) {
-    if (artistId == null) {
+    if (artist == null) {
       return const Text(
         'Автор неизвестен',
         style: TextStyles.headline2,
@@ -42,13 +43,12 @@ class _ArtistInfo extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        AppCircleAvatar(image: AppPlaceholder.assetImage()),
+        artist!.image == null
+            ? AppCircleAvatar(image: AppPlaceholder.assetImage())
+            : AppCircleAvatar(image: NetworkImage(artist!.image!.imageUrl)),
         const SizedBox(width: 8),
         Expanded(
-          child: Text(
-            'Artist Id: $artistId',
-            style: TextStyles.headline2,
-          ),
+          child: Text(artist!.name, style: TextStyles.headline2),
         ),
       ],
     );
