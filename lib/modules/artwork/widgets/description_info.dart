@@ -2,23 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/widgets/containers/app_container.dart';
 
-class DescriptionInfo extends StatelessWidget {
-  const DescriptionInfo(this.description, {super.key});
+class ArtworkDescriptionWidget extends StatelessWidget {
+  const ArtworkDescriptionWidget(this.description, {super.key, this.includePadding = true});
 
   final String? description;
+  final bool includePadding;
 
   @override
   Widget build(BuildContext context) {
-    if (description == null) return const SizedBox();
-    return AppContainer(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const Text('Описание', style: TextStyles.headline1),
-          const SizedBox(height: 8),
-          Text(description!, style: TextStyles.text),
-        ],
+    if (description == null || description!.isEmpty) return const SizedBox();
+    return Padding(
+      padding: includePadding ? const EdgeInsets.only(bottom: 8) : EdgeInsets.zero,
+      child: AppContainer(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text('Описание', style: TextStyles.headline1),
+            const SizedBox(height: 8),
+            Text(description!, style: TextStyles.text),
+          ],
+        ),
       ),
     );
   }
