@@ -3,16 +3,16 @@ import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/widgets/containers/app_container.dart';
 
 class ArtworkDescriptionWidget extends StatelessWidget {
-  const ArtworkDescriptionWidget(this.description, {super.key, this.includePadding = true});
+  const ArtworkDescriptionWidget(this.description, {super.key, this.includeBottomPadding = true});
 
   final String? description;
-  final bool includePadding;
+  final bool includeBottomPadding;
 
   @override
   Widget build(BuildContext context) {
     if (description == null || description!.isEmpty) return const SizedBox();
     return Padding(
-      padding: includePadding ? const EdgeInsets.only(bottom: 8) : EdgeInsets.zero,
+      padding: includeBottomPadding ? const EdgeInsets.only(bottom: 8) : EdgeInsets.zero,
       child: AppContainer(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

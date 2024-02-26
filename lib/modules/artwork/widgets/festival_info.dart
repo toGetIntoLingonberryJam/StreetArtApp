@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
+import 'package:street_art_witnesses/data/models/festival.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
-class FestivalInfo extends StatelessWidget {
-  const FestivalInfo(this.festivalId, {super.key});
+class FestivalInfoWidget extends StatelessWidget {
+  const FestivalInfoWidget(this.festival, {super.key, this.includeBottomPadding = true});
 
-  final int? festivalId;
+  final Festival? festival;
+  final bool includeBottomPadding;
 
   @override
   Widget build(BuildContext context) {
-    if (festivalId == null) return const SizedBox();
+    if (festival == null) return const SizedBox();
 
     return AppContainer.small(
       child: Row(
         children: [
-          AppCircleAvatar(image: AppPlaceholder.assetImage()),
+          festival!.image == null
+              ? AppCircleAvatar(image: AppPlaceholder.assetImage())
+              : AppCircleAvatar(image: NetworkImage(festival!.image!.imageUrl)),
           const SizedBox(width: 8),
           Expanded(
-            child: Text('Festival ID: $festivalId', style: TextStyles.headline1),
+            child: Text(festival!.name, style: TextStyles.headline1),
           ),
         ],
       ),

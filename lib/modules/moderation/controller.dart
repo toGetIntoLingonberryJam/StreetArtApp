@@ -81,6 +81,7 @@ class ModerationController extends GetxController {
           previewUrl: null,
         ),
         artist: null,
+        festival: null,
         links: _data.link == null ? null : [_data.link!],
         images: null,
       );

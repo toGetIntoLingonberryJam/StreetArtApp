@@ -38,13 +38,11 @@ class ArtworkScreen extends StatelessWidget {
                   children: [
                     ArtworkInfo(artwork: artwork),
                     const SizedBox(height: 8),
-                    FestivalInfo(artwork.festivalId),
+                    FestivalInfoWidget(artwork.festival),
                     if (artwork.festivalId != null) const SizedBox(height: 8),
                     AddressInfo(artwork: artwork, preview: preview),
                     const SizedBox(height: 8),
                     ArtworkDescriptionWidget(artwork.description),
-                    if (artwork.description != null && artwork.description!.isNotEmpty)
-                      const SizedBox(height: 8),
                     StatusInfo(artwork.status),
                     const SizedBox(height: 8),
                     LinksInfo(artwork.links),
