@@ -6,6 +6,7 @@ import 'package:street_art_witnesses/modules/art/artwork/screen.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/core/utils/validator.dart';
 import 'package:street_art_witnesses/modules/moderation/controller.dart';
+import 'package:street_art_witnesses/modules/search/screen.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class ModerationEditScreen extends StatefulWidget {
@@ -145,7 +146,10 @@ class _MainInfoViewState extends State<_MainInfoView> {
                       const SizedBox(height: 16),
                       const Text('Автор', style: TextStyles.headline1),
                       const SizedBox(height: 8),
-                      const AppButton.primary(label: 'Выбрать автора', onTap: null),
+                      AppButton.primary(
+                        label: 'Выбрать автора',
+                        onTap: () => Get.to(() => const SearchScreen()),
+                      ),
                       const SizedBox(height: 40),
                       const Text('Адрес работы', style: TextStyles.headline1),
                       const SizedBox(height: 8),
