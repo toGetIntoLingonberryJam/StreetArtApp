@@ -26,29 +26,20 @@ class ArtistsView extends StatelessWidget {
 
     return ListView.separated(
       itemCount: artists!.length,
-      itemBuilder: (_, index) => ArtistCard(author: artists![index]),
+      itemBuilder: (_, index) => ArtistCard(artist: artists![index]),
       separatorBuilder: (_, __) => const SizedBox(height: 8),
     );
   }
 }
 
 class ArtistCard extends StatelessWidget {
-  const ArtistCard({
-    super.key,
-    required this.author,
-  });
+  const ArtistCard({super.key, required this.artist});
 
-  final Artist author;
+  final Artist artist;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.onBackground,
-        borderRadius: BorderRadius.circular(18),
-      ),
+    return AppContainer(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -61,10 +52,7 @@ class ArtistCard extends StatelessWidget {
             child: Container(
               height: 100,
               alignment: Alignment.centerLeft,
-              child: Text(
-                author.name,
-                style: TextStyles.headline1,
-              ),
+              child: Text(artist.name, style: TextStyles.headline1),
             ),
           ),
           const Padding(
