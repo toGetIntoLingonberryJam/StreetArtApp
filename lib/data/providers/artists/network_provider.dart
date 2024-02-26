@@ -5,7 +5,7 @@ import 'package:street_art_witnesses/data/providers/artists/provider.dart';
 class NetworkArtistsProvider implements ArtistsProvider {
   @override
   Future<Artist?> getArtistById(int artistId) async {
-    final response = await BackendApi.get('v1/artists/$artistId');
+    final response = await BackendApi.get('/v1/artists/$artistId');
     if (response == null) return null;
 
     return Artist.fromJson(response.data);
@@ -18,11 +18,11 @@ class NetworkArtistsProvider implements ArtistsProvider {
     String? search,
     String? orderBy,
   }) async {
-    final response = await BackendApi.get('v1/artists');
+    final response = await BackendApi.get('/v1/artists');
     if (response == null) return null;
 
     final List<Artist> artists = [];
-    for (var artistData in response.data) {
+    for (var artistData in response.data['items']) {
       artists.add(Artist.fromJson(artistData));
     }
     return artists;
