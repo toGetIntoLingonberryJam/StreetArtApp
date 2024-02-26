@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
-import 'package:street_art_witnesses/data/models/artwork/artwork_image.dart';
+import 'package:street_art_witnesses/data/models/image.dart';
 import 'package:street_art_witnesses/modules/artwork/widgets/address_info.dart';
 import 'package:street_art_witnesses/modules/artwork/widgets/description_info.dart';
 import 'package:street_art_witnesses/modules/artwork/widgets/festival_info.dart';
@@ -98,7 +98,7 @@ class _ArtworkImageSlider extends StatelessWidget {
   const _ArtworkImageSlider({required this.images});
 
   // final List<ArtworkImage>? images;
-  final List<ArtworkImage>? images;
+  final List<ImageSchema>? images;
 
   @override
   Widget build(BuildContext context) {
