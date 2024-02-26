@@ -1,5 +1,6 @@
-import 'package:street_art_witnesses/data/models/artwork/artwork_image.dart';
+import 'package:street_art_witnesses/data/models/image.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork_location.dart';
+import 'package:street_art_witnesses/data/models/author/author.dart';
 
 enum ArtworkStatus { existing, destroyed, overpainted, unknown }
 
@@ -10,6 +11,7 @@ class Artwork {
     required this.description,
     required this.sourceDescription,
     required this.artistId,
+    required this.artist,
     required this.festivalId,
     required this.status,
     required this.id,
@@ -35,6 +37,7 @@ class Artwork {
         description = json['description'],
         sourceDescription = json['source_description'],
         artistId = json['artist_id'],
+        artist = json['artist'] == null ? null : Artist.fromJson(json['artist']),
         festivalId = json['festival_id'],
         status = _stringToStatus(json['status']),
         id = json['id'] ?? -1,
@@ -45,23 +48,22 @@ class Artwork {
             json['links'] == null ? null : (json['links'] as List).map((e) => e as String).toList(),
         images = json['images'] == null
             ? null
-            : (json['images'] as List).map((imgJson) => ArtworkImage.fromJson(imgJson)).toList();
+            : (json['images'] as List).map((imgJson) => ImageSchema.fromJson(imgJson)).toList();
 
-  final String title;
+  final int id;
+  final int addedByUserId;
   final int? yearCreated;
+  final int? artistId;
+  final int? festivalId;
+  final String title;
+  final String updatedAt;
   final String? description;
   final String? sourceDescription;
 
-  final int? artistId;
-  final int? festivalId;
-
   final ArtworkStatus status;
-  final int id;
-  final int addedByUserId;
-  final String updatedAt;
-
   final ArtworkLocation location;
-  final List<ArtworkImage>? images;
+  final Artist? artist;
+  final List<ImageSchema>? images;
   final List<String>? links;
 }
 
