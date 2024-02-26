@@ -11,16 +11,16 @@ import 'package:street_art_witnesses/widgets/other/app_loading_indicator.dart';
 import 'package:street_art_witnesses/widgets/other/image_slider/controller.dart';
 import 'package:street_art_witnesses/widgets/other/slider_dots.dart';
 
-class ImageSlider extends StatefulWidget {
-  const ImageSlider({super.key, required this.images});
+class ImageSliderBase extends StatefulWidget {
+  const ImageSliderBase({super.key, required this.images});
 
   final List<ImageSchema> images;
 
   @override
-  State<ImageSlider> createState() => _ImageSliderState();
+  State<ImageSliderBase> createState() => _ImageSliderBaseState();
 }
 
-class _ImageSliderState extends State<ImageSlider> {
+class _ImageSliderBaseState extends State<ImageSliderBase> {
   late List<Future<ImageProvider?>> imageLoaders;
 
   @override
