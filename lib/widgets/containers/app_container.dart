@@ -22,7 +22,7 @@ class AppContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Ink(
+    return Container(
       width: width,
       padding: kContainerPadding,
       decoration: BoxDecoration(
