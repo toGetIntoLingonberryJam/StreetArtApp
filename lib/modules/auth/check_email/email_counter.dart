@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
+import 'package:street_art_witnesses/data/services/auth_service.dart';
 import 'package:street_art_witnesses/modules/auth/check_email/controller.dart';
-import 'package:street_art_witnesses/modules/user/controller.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 
 class EmailCounterWidget extends GetView<EmailCounterController> {
@@ -10,7 +10,7 @@ class EmailCounterWidget extends GetView<EmailCounterController> {
 
   Future<void> _sendEmail(BuildContext context) async {
     await Utils.showLoading(
-      controller.sendEmail(context, Get.find<ProfileController>().user.email!),
+      controller.sendEmail(context, Get.find<AuthService>().user.value.email!),
     );
   }
 

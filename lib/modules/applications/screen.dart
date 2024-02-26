@@ -6,10 +6,10 @@ import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/api/backend_api.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/data/models/ticket.dart';
+import 'package:street_art_witnesses/data/services/auth_service.dart';
 import 'package:street_art_witnesses/data/services/settings_service.dart';
 import 'package:street_art_witnesses/modules/applications/controller.dart';
 import 'package:street_art_witnesses/modules/artwork/screen.dart';
-import 'package:street_art_witnesses/modules/user/controller.dart';
 import 'package:street_art_witnesses/data/services/images_service.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
@@ -97,13 +97,13 @@ class _ApplicationCard extends StatelessWidget {
   }
 }
 
-class _ApplicationPage extends GetView<ProfileController> {
+class _ApplicationPage extends StatelessWidget {
   const _ApplicationPage(this.ticket);
 
   final ArtworkTicket ticket;
 
   void _approve(BuildContext context) async {
-    final token = controller.user.token!;
+    final token = Get.find<AuthService>().user.value.token!;
     final future = BackendApi.patch(
       '/v1/tickets/approve/${ticket.id}',
       options: Options(headers: {'Authorization': 'Bearer $token'}),
@@ -118,7 +118,7 @@ class _ApplicationPage extends GetView<ProfileController> {
   }
 
   void _reject(BuildContext context) async {
-    final token = controller.user.token!;
+    final token = Get.find<AuthService>().user.value.token!;
     final future = BackendApi.patch(
       '/v1/tickets/reject/${ticket.id}',
       options: Options(headers: {'Authorization': 'Bearer $token'}),
