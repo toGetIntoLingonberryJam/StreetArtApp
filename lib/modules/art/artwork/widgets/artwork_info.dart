@@ -40,17 +40,20 @@ class _ArtistInfo extends StatelessWidget {
       );
     }
 
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        artist!.image == null
-            ? AppCircleAvatar(image: AppPlaceholder.assetImage())
-            : AppCircleAvatar(image: NetworkImage(artist!.image!.imageUrl)),
-        const SizedBox(width: 8),
-        Expanded(
-          child: Text(artist!.name, style: TextStyles.headline2),
-        ),
-      ],
+    return GestureDetector(
+      // onTap: () => Get.to(() => ArtistScreen(artist: artist!)),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          artist!.image == null
+              ? AppCircleAvatar(image: AppPlaceholder.assetImage())
+              : AppCircleAvatar(image: NetworkImage(artist!.image!.imageUrl)),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(artist!.name, style: TextStyles.headline2),
+          ),
+        ],
+      ),
     );
   }
 }
