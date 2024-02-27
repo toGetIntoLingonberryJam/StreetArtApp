@@ -4,13 +4,13 @@ import 'package:street_art_witnesses/core/utils/logger.dart';
 final class LoggerDioInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    Logger.apiCall(options.baseUrl);
+    Logger.apiCall(options);
     super.onRequest(options, handler);
   }
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    Logger.apiResult(response.realUri.toString(), response.data);
+    Logger.apiResult(response);
     super.onResponse(response, handler);
   }
 

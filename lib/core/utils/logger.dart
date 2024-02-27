@@ -1,5 +1,36 @@
+import 'dart:convert';
+
+import 'package:ansicolor/ansicolor.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+class Log {
+  final LogType logType;
+  final String message;
+
+  Log({required this.logType, required this.message});
+
+  Log.apiCall(this.message) : logType = LogType.apiCall;
+  Log.apiResult(this.message) : logType = LogType.apiResult;
+  Log.message(this.message) : logType = LogType.message;
+  Log.success(this.message) : logType = LogType.success;
+  Log.warning(this.message) : logType = LogType.warning;
+  Log.error(this.message) : logType = LogType.error;
+  Log.exception(this.message) : logType = LogType.exception;
+  Log.dioException(this.message) : logType = LogType.dioException;
+
+  String get output {
+    final pen = _mapLogTypeToPen[logType];
+    return pen?.call(message) ?? message;
+  }
+
+  String get debugName => logType.name.toUpperCase();
+}
+
+// TODO: Refactor later
+Map<LogType, AnsiPen> _mapLogTypeToPen = {
+  LogType.apiCall: AnsiPen()..xterm(010),
+};
 
 enum LogType {
   apiCall,
@@ -13,33 +44,31 @@ enum LogType {
 }
 
 abstract class Logger {
-  static const Map<LogType, String> _colorCodes = {
-    LogType.apiCall: '36',
-    LogType.apiResult: '36',
-    LogType.message: '37',
-    LogType.success: '32',
-    LogType.warning: '33',
-    LogType.error: '31',
-    LogType.exception: '31',
-    LogType.dioException: '31',
-  };
+  static void _log(Log log) => debugPrint(log.output);
 
-  static void _log(Object? message, LogType logType) {
-    if (kDebugMode) {
-      print('\x1B[${_colorCodes[logType]}m[${logType.name.toUpperCase()}] $message\x1B[0m');
-    }
+  static void apiCall(RequestOptions options) =>
+      _log(Log.apiCall('[http-request] [${options.method}] ${options.uri}'));
+
+  static void apiResult(Response response) {
+    final buffer = StringBuffer();
+    final encoder = JsonEncoder.withIndent(' ' * 2);
+
+    buffer.writeln(
+        '[http-response] [${response.requestOptions.method}] ${response.requestOptions.uri}');
+    buffer.writeln('Status: ${response.statusCode}');
+    buffer.writeln('Message: ${response.statusMessage}');
+    buffer.write('Data: ${encoder.convert(response.data)}');
+
+    _log(Log.apiResult(buffer.toString()));
   }
 
-  static void apiCall(String url) => _log(url, LogType.apiCall);
-  static void apiResult(String url, Object? result) => _log('$url: $result', LogType.apiResult);
+  static void m(Object? message) => _log(Log.message('$message'));
+  static void s(Object? success) => _log(Log.success('$success'));
+  static void w(Object? warning) => _log(Log.warning('$warning'));
+  static void e(Object? error) => _log(Log.error('$error'));
 
-  static void message(Object? message) => _log(message, LogType.message);
-  static void success(Object? success) => _log(success, LogType.success);
-  static void warning(Object? warning) => _log(warning, LogType.warning);
-
-  static void error(Object? e) => _log(e.toString(), LogType.exception);
   static void exception(Exception e, {required String where}) =>
-      _log('[$where], ${e.toString()}', LogType.exception);
+      _log(Log.exception('[$where], ${e.toString()}'));
   static void dioException(DioException e, {required String where}) =>
-      _log('[$where] ${e.toString()} ${e.response?.data}', LogType.dioException);
+      _log(Log.dioException('[$where] ${e.toString()} ${e.response?.data}'));
 }

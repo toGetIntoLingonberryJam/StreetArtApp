@@ -24,11 +24,11 @@ class UserLocationController extends GetxController {
       final position = await LocationService.getCurrentPosition();
       lastPosition = position;
       isFetching = false;
-      Logger.message('Position: $position');
+      Logger.m('Position: $position');
       return position;
     } catch (e) {
       isFetching = false;
-      Logger.warning(e.toString());
+      Logger.w(e.toString());
       if (context.mounted) {
         Utils.showError(e.toString());
       }

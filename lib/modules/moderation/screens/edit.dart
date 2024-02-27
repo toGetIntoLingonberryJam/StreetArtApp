@@ -126,7 +126,7 @@ class _MainInfoViewState extends State<_MainInfoView> {
 
   void _pickArtist() async {
     final Artist? pickedArtist = await Get.to(() => const SearchScreen());
-    Logger.message(pickedArtist);
+    Logger.m(pickedArtist);
     if (pickedArtist != null) {
       artist = pickedArtist;
       artistController.text = pickedArtist.name;

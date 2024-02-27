@@ -19,7 +19,7 @@ class AuthService extends GetxService {
 
   Future<void> updateUser() async {
     if (_user.value.token != null) _user.value = await _authenticate(token: _user.value.token!);
-    Logger.message('User updated');
+    Logger.m('User updated');
   }
 
   Future<bool> login({
@@ -33,7 +33,7 @@ class AuthService extends GetxService {
     );
 
     if (response == null) {
-      Logger.warning('Login failed');
+      Logger.w('Login failed');
       return false;
     }
 
@@ -43,7 +43,7 @@ class AuthService extends GetxService {
       _user.value = await _authenticate(token: token);
       return true;
     } else {
-      Logger.warning('No token returned');
+      Logger.w('No token returned');
       return false;
     }
   }
@@ -59,7 +59,7 @@ class AuthService extends GetxService {
     );
 
     if (response == null) {
-      Logger.warning('Registration failed');
+      Logger.w('Registration failed');
       return false;
     } else {
       return await login(email: email, password: password);
@@ -75,10 +75,10 @@ class AuthService extends GetxService {
     if (response?.statusCode == 200 && response?.data != null) {
       final json = response!.data as Map<String, dynamic>;
       final user = User.fromJson(json, token: token);
-      Logger.success('User auth successfull');
+      Logger.s('User auth successfull');
       return user;
     }
-    Logger.warning('Get User via token failed');
+    Logger.w('Get User via token failed');
     return User.guest();
   }
 
@@ -96,11 +96,11 @@ class AuthService extends GetxService {
     await deleteUserLocalData();
     Get.find<EmailCounterController>().reset();
     _user.value = User.guest();
-    Logger.message('[USER LOGGED OUT]');
+    Logger.m('[USER LOGGED OUT]');
   }
 
   Future<void> deleteUserLocalData() async {
     await LocalStoreDataSource.userDoc.delete();
-    Logger.warning('Deleted user local data');
+    Logger.w('Deleted user local data');
   }
 }

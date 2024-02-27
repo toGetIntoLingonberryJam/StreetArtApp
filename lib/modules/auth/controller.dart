@@ -49,7 +49,7 @@ class AuthController extends GetxController {
         email: emailCtrl.text.trim(),
         password: passwordCtrl.text.trim(),
       ));
-      Logger.message(success.toString());
+      Logger.m(success.toString());
       if (success ?? false) Get.offAll(() => const HomeScreen());
     }
   }

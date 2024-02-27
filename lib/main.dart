@@ -1,3 +1,4 @@
+import 'package:ansicolor/ansicolor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -17,6 +18,7 @@ import 'package:street_art_witnesses/core/values/theme.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final quality = await LocalStoreService.getImageQuality();
+  ansiColorDisabled = false;
 
   await Get.putAsync(() async {
     final service = AuthService();
