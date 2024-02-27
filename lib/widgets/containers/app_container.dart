@@ -22,14 +22,16 @@ class AppContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: width,
-      padding: kContainerPadding,
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.onBackground,
-        borderRadius: BorderRadius.circular(borderRadius),
+    return Material(
+      child: Ink(
+        width: width,
+        padding: kContainerPadding,
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.onBackground,
+          borderRadius: BorderRadius.circular(borderRadius),
+        ),
+        child: child,
       ),
-      child: child,
     );
   }
 }
