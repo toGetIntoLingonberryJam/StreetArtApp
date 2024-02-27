@@ -22,7 +22,7 @@ abstract class ImagesService {
 
   static Future<ImageProvider?> loadFromDisk(String url, {required ImageQuality quality}) async {
     loads += 1;
-    Logger.message('LoadFromDisk: $url, count: $loads');
+    if (loads % 10 == 0) Logger.m('LoadFromDisk: $url, count: $loads');
     if (_mapUrlToImage[quality]!.containsKey(url)) {
       return _mapUrlToImage[quality]![url];
     }
