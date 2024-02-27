@@ -6,6 +6,23 @@ import 'package:street_art_witnesses/data/models/artist.dart';
 enum ArtworkStatus { existing, destroyed, overpainted, unknown }
 
 class Artwork {
+  final int id;
+  final int addedByUserId;
+  final int? yearCreated;
+  final int? artistId;
+  final int? festivalId;
+  final String title;
+  final String updatedAt;
+  final String? description;
+  final String? sourceDescription;
+
+  final ArtworkStatus status;
+  final ArtworkLocation location;
+  final Artist? artist;
+  final Festival? festival;
+  final List<ImageSchema>? images;
+  final List<String>? links;
+
   const Artwork({
     required this.title,
     required this.yearCreated,
@@ -52,23 +69,6 @@ class Artwork {
         images = json['images'] == null
             ? null
             : (json['images'] as List).map((imgJson) => ImageSchema.fromJson(imgJson)).toList();
-
-  final int id;
-  final int addedByUserId;
-  final int? yearCreated;
-  final int? artistId;
-  final int? festivalId;
-  final String title;
-  final String updatedAt;
-  final String? description;
-  final String? sourceDescription;
-
-  final ArtworkStatus status;
-  final ArtworkLocation location;
-  final Artist? artist;
-  final Festival? festival;
-  final List<ImageSchema>? images;
-  final List<String>? links;
 }
 
 ArtworkStatus _stringToStatus(String string) {

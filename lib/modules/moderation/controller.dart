@@ -6,6 +6,7 @@ import 'package:get/get.dart' hide FormData;
 import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/data/api/backend_api.dart';
+import 'package:street_art_witnesses/data/models/artist.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork_location.dart';
 import 'package:street_art_witnesses/data/services/auth_service.dart';
@@ -14,6 +15,7 @@ import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class ModerationData {
   String? title;
+  Artist? artist;
   String? address;
   LatLng? location;
   String? year;
@@ -46,11 +48,19 @@ class ModerationController extends GetxController {
       ),
     );
     final result = await Utils.showLoading(future);
-    Get.off(() => result == null ? const AppErrorScreen() : const ModerationThanksScreen());
+    result == null
+        ? Get.to(() => const AppErrorScreen())
+        : Get.off(() => const ModerationThanksScreen());
   }
 
-  void saveMainInfo({required String title, required String address, required LatLng location}) {
+  void saveMainInfo({
+    required String title,
+    required String address,
+    required LatLng location,
+    required Artist artist,
+  }) {
     _data.title = title;
+    _data.artist = artist;
     _data.address = address;
     _data.location = location;
   }
@@ -80,7 +90,7 @@ class ModerationController extends GetxController {
           longitude: _data.location?.longitude ?? 0,
           previewUrl: null,
         ),
-        artist: null,
+        artist: _data.artist,
         festival: null,
         links: _data.link == null ? null : [_data.link!],
         images: null,
@@ -94,7 +104,7 @@ Map<String, dynamic> _getTicketData(Artwork artwork) {
       "title": artwork.title,
       "year_created": artwork.yearCreated,
       "description": artwork.description,
-      "artist_id": null,
+      "artist_id": artwork.artist?.toString(),
       "festival_id": null,
       "status": "existing",
       "links": artwork.links,

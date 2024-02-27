@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:street_art_witnesses/core/utils/logger.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
+import 'package:street_art_witnesses/data/models/artist.dart';
 import 'package:street_art_witnesses/modules/art/artwork/screen.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/core/utils/validator.dart';
@@ -81,15 +83,18 @@ class _MainInfoView extends StatefulWidget implements _ModerationEditView {
 
 class _MainInfoViewState extends State<_MainInfoView> {
   final nameController = TextEditingController();
+  final artistController = TextEditingController();
   final addressController = TextEditingController();
   final locationController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   LatLng? location;
+  Artist? artist;
 
   @override
   void dispose() {
     nameController.dispose();
+    artistController.dispose();
     addressController.dispose();
     locationController.dispose();
     super.dispose();
@@ -100,6 +105,7 @@ class _MainInfoViewState extends State<_MainInfoView> {
       if (context.mounted) {
         Get.find<ModerationController>().saveMainInfo(
           title: nameController.text.trim(),
+          artist: artist!,
           address: addressController.text.trim(),
           location: location!,
         );
@@ -114,6 +120,16 @@ class _MainInfoViewState extends State<_MainInfoView> {
       location = loc;
       locationController.text =
           '${loc.latitude.toStringAsFixed(4)}, ${loc.longitude.toStringAsFixed(4)}';
+    }
+    _formKey.currentState?.validate();
+  }
+
+  void _pickArtist() async {
+    final Artist? pickedArtist = await Get.to(() => const SearchScreen());
+    Logger.message(pickedArtist);
+    if (pickedArtist != null) {
+      artist = pickedArtist;
+      artistController.text = pickedArtist.name;
     }
     _formKey.currentState?.validate();
   }
@@ -146,11 +162,16 @@ class _MainInfoViewState extends State<_MainInfoView> {
                       const SizedBox(height: 16),
                       const Text('Автор', style: TextStyles.headline1),
                       const SizedBox(height: 8),
-                      AppButton.primary(
-                        label: 'Выбрать автора',
-                        onTap: () => Get.to(() => const SearchScreen()),
+                      GestureDetector(
+                        onTap: _pickArtist,
+                        child: AppTextFormField(
+                          enabled: false,
+                          controller: artistController,
+                          hintText: 'Укажите автора',
+                          validator: Validator.get(Validate.notEmpty),
+                        ),
                       ),
-                      const SizedBox(height: 40),
+                      const SizedBox(height: 16),
                       const Text('Адрес работы', style: TextStyles.headline1),
                       const SizedBox(height: 8),
                       AppTextFormField(
