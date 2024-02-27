@@ -1,91 +1,46 @@
 import 'package:dio/dio.dart';
-import 'package:street_art_witnesses/core/utils/logger.dart';
+import 'package:street_art_witnesses/core/dio_interceptor.dart';
 
 abstract class BackendApi {
   static final _dio = Dio(
-    BaseOptions(baseUrl: 'https://streetartwitnesses.fvds.ru'),
-  );
+    BaseOptions(
+      baseUrl: 'https://streetartwitnesses.fvds.ru',
+      connectTimeout: const Duration(seconds: 5),
+    ),
+  )..interceptors.add(LoggerDioInterceptor());
 
-  static Future<Response?> _makeApiRequest(
-    Future<Response> request, {
-    required String url,
-  }) async {
-    Logger.apiCall(url);
-    try {
-      final result = await request;
-      Logger.apiResult(url, result.toString());
-      return result;
-    } on DioException catch (e) {
-      Logger.dioException(e, where: 'BackendApi._makeApiRequest');
-      return null;
-    }
-  }
-
-  static Future<Response?> get(
-    String url, {
-    Map<String, dynamic>? data,
-    Map<String, dynamic>? queryParameters,
+  static Future<Response?> Function(
+    String, {
+    CancelToken? cancelToken,
+    Object? data,
+    void Function(int, int)? onReceiveProgress,
     Options? options,
-  }) async {
-    return await _makeApiRequest(
-      _dio.get(
-        url,
-        data: data,
-        options: options,
-        queryParameters: queryParameters,
-      ),
-      url: url,
-    );
-  }
-
-  static Future<Response?> post(
-    String url, {
-    dynamic data,
     Map<String, dynamic>? queryParameters,
-    Options? options,
-  }) async {
-    return await _makeApiRequest(
-      _dio.post(
-        url,
-        data: data,
-        options: options,
-        queryParameters: queryParameters,
-      ),
-      url: url,
-    );
-  }
+  }) get get => _dio.get;
 
-  static Future<Response?> patch(
-    String url, {
-    Map<String, dynamic>? data,
-    Map<String, dynamic>? queryParameters,
+  static Future<Response?> Function(
+    String, {
+    CancelToken? cancelToken,
+    Object? data,
+    void Function(int, int)? onReceiveProgress,
     Options? options,
-  }) async {
-    return await _makeApiRequest(
-      _dio.patch(
-        url,
-        data: data,
-        options: options,
-        queryParameters: queryParameters,
-      ),
-      url: url,
-    );
-  }
+    Map<String, dynamic>? queryParameters,
+  }) get post => _dio.post;
 
-  static Future<Response?> delete(
-    String url, {
-    Map<String, dynamic>? data,
-    Map<String, dynamic>? queryParameters,
+  static Future<Response?> Function(
+    String, {
+    CancelToken? cancelToken,
+    Object? data,
+    void Function(int, int)? onReceiveProgress,
     Options? options,
-  }) async {
-    return await _makeApiRequest(
-      _dio.delete(
-        url,
-        data: data,
-        options: options,
-        queryParameters: queryParameters,
-      ),
-      url: url,
-    );
-  }
+    Map<String, dynamic>? queryParameters,
+  }) get patch => _dio.patch;
+
+  static Future<Response?> Function(
+    String, {
+    CancelToken? cancelToken,
+    Object? data,
+    Options? options,
+    Map<String, dynamic>? queryParameters,
+  }) get delete => _dio.delete;
 }
