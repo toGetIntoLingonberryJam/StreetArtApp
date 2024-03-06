@@ -16,7 +16,7 @@ final class LoggerDioInterceptor extends Interceptor {
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
-    Logger.dioException(err, where: err.stackTrace.toString());
+    Logger.dioException(err);
     super.onError(err, handler);
   }
 }

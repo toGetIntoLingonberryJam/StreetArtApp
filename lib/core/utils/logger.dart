@@ -12,7 +12,7 @@ class Log {
 
   Log.apiCall(this.message) : logType = LogType.apiCall;
   Log.apiResult(this.message) : logType = LogType.apiResult;
-  Log.message(this.message) : logType = LogType.message;
+  Log.message(this.message) : logType = LogType.debugMessage;
   Log.success(this.message) : logType = LogType.success;
   Log.warning(this.message) : logType = LogType.warning;
   Log.error(this.message) : logType = LogType.error;
@@ -21,7 +21,7 @@ class Log {
 
   String get output {
     final pen = _mapLogTypeToPen[logType];
-    return pen?.call(message) ?? message;
+    return message.split('\n').map((e) => pen?.call(e) ?? e).join('\n');
   }
 
   String get debugName => logType.name.toUpperCase();
@@ -29,13 +29,20 @@ class Log {
 
 // TODO: Refactor later
 Map<LogType, AnsiPen> _mapLogTypeToPen = {
-  LogType.apiCall: AnsiPen()..xterm(010),
+  LogType.apiCall: AnsiPen()..xterm(207),
+  LogType.apiResult: AnsiPen()..xterm(010),
+  LogType.debugMessage: AnsiPen()..xterm(011),
+  LogType.dioException: AnsiPen()..xterm(009),
+  LogType.error: AnsiPen()..xterm(001),
+  LogType.exception: AnsiPen()..xterm(009),
+  LogType.success: AnsiPen()..xterm(082),
+  LogType.warning: AnsiPen()..xterm(178),
 };
 
 enum LogType {
   apiCall,
   apiResult,
-  message,
+  debugMessage,
   success,
   warning,
   error,
@@ -62,13 +69,20 @@ abstract class Logger {
     _log(Log.apiResult(buffer.toString()));
   }
 
-  static void m(Object? message) => _log(Log.message('$message'));
-  static void s(Object? success) => _log(Log.success('$success'));
-  static void w(Object? warning) => _log(Log.warning('$warning'));
-  static void e(Object? error) => _log(Log.error('$error'));
+  static void d(Object? message) => _log(Log.message('[debug-message] $message'));
+  static void s(Object? success) => _log(Log.success('[success] $success'));
+  static void w(Object? warning) => _log(Log.warning('[warning] $warning'));
 
   static void exception(Exception e, {required String where}) =>
-      _log(Log.exception('[$where], ${e.toString()}'));
-  static void dioException(DioException e, {required String where}) =>
-      _log(Log.dioException('[$where] ${e.toString()} ${e.response?.data}'));
+      _log(Log.exception('[exception] $e\n[where] $where'));
+
+  static void error(Error e) {
+    final trace = e.stackTrace.toString().split('\n').take(5).join('\n');
+    _log(Log.error('[dio-exception] $e\n[stacktrace] $trace'));
+  }
+
+  static void dioException(DioException e) {
+    final trace = e.stackTrace.toString().split('\n').take(5).join('\n');
+    _log(Log.dioException('[dio-exception] $e\n[data] ${e.response?.data}\n[stacktrace] $trace'));
+  }
 }

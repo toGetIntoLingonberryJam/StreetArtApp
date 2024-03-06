@@ -121,17 +121,13 @@ class _MainInfoViewState extends State<_MainInfoView> {
       locationController.text =
           '${loc.latitude.toStringAsFixed(4)}, ${loc.longitude.toStringAsFixed(4)}';
     }
-    _formKey.currentState?.validate();
   }
 
   void _pickArtist() async {
     final Artist? pickedArtist = await Get.to(() => const SearchScreen());
-    Logger.m(pickedArtist);
-    if (pickedArtist != null) {
-      artist = pickedArtist;
-      artistController.text = pickedArtist.name;
-    }
-    _formKey.currentState?.validate();
+    Logger.d('picked artist: ${pickedArtist?.name}');
+    artist = pickedArtist;
+    artistController.text = pickedArtist?.name ?? '';
   }
 
   @override

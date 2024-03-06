@@ -24,7 +24,7 @@ class UserLocationController extends GetxController {
       final position = await LocationService.getCurrentPosition();
       lastPosition = position;
       isFetching = false;
-      Logger.m('Position: $position');
+      Logger.d('Position: $position');
       return position;
     } catch (e) {
       isFetching = false;

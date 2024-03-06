@@ -8,10 +8,10 @@ abstract class LocalStoreService {
     final String? token = userJson?['token'];
 
     if (token != null) {
-      Logger.s('[TOKEN RETRIEVED]: ${userJson?['token']}');
+      Logger.s('local token: ${userJson?['token']}');
       return token;
     }
-    Logger.w('[TOKEN RETRIEVING]: no token found.');
+    Logger.w('could not find local token');
     return null;
   }
 
@@ -19,7 +19,7 @@ abstract class LocalStoreService {
     await LocalStoreDataSource.userDoc.set({
       'token': token,
     });
-    Logger.s('[TOKEN SAVED]: $token');
+    Logger.s('token saved to local: $token');
   }
 
   static Future<ImageQuality> getImageQuality() async {
@@ -34,7 +34,7 @@ abstract class LocalStoreService {
     await LocalStoreDataSource.settingsDoc.set({
       'image_quality': quality.name,
     });
-    Logger.m('[IMAGE_QUALITY SET]: $quality');
+    Logger.d('image-quality set to $quality');
   }
 }
 
