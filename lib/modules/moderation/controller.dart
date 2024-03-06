@@ -6,7 +6,7 @@ import 'package:get/get.dart' hide FormData;
 import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/data/api/backend_api.dart';
-import 'package:street_art_witnesses/data/models/artist/artist.dart';
+import 'package:street_art_witnesses/data/models/artist/artist_card.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork_location.dart';
 import 'package:street_art_witnesses/data/services/auth_service.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:street_art_witnesses/data/models/artist/artist.dart';
+import 'package:street_art_witnesses/data/models/artist/artist_card.dart';
 import 'package:street_art_witnesses/data/providers/artists/network_provider.dart';
 
 class AppSearchController extends GetxController {

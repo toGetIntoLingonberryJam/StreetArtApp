@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:street_art_witnesses/data/models/artist/artist.dart';
+import 'package:street_art_witnesses/data/models/artist/artist_card.dart';
 import 'package:street_art_witnesses/modules/art/artist/widgets/artist_info.dart';
 import 'package:street_art_witnesses/widgets/other/image_slider/app_image_slider.dart';
 
