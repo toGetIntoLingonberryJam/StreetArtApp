@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide Response;
+import 'package:street_art_witnesses/core/utils/error_handler.dart';
 import 'package:street_art_witnesses/data/api/backend_api.dart';
 import 'package:street_art_witnesses/data/api/local_store_datasource.dart';
 import 'package:street_art_witnesses/data/models/user.dart';
@@ -7,7 +8,7 @@ import 'package:street_art_witnesses/data/services/local_store_service.dart';
 import 'package:street_art_witnesses/core/utils/logger.dart';
 import 'package:street_art_witnesses/modules/auth/check_email/controller.dart';
 
-class AuthService extends GetxService {
+class AuthService extends GetxService with ErrorHandler {
   late final Rx<User> _user;
   Rx<User> get user => _user;
 
@@ -19,33 +20,29 @@ class AuthService extends GetxService {
 
   Future<void> updateUser() async {
     if (_user.value.token != null) _user.value = await _authenticate(token: _user.value.token!);
-    Logger.m('User updated');
+    Logger.d('user updated');
   }
 
   Future<bool> login({
     required String email,
     required String password,
   }) async {
-    final response = await BackendApi.post(
-      '/v1/auth/login',
-      data: {'username': email, 'password': password},
-      options: Options(contentType: Headers.formUrlEncodedContentType),
+    final token = await handleApiRequest(
+      BackendApi.post(
+        '/v1/auth/login',
+        data: {'username': email, 'password': password},
+        options: Options(contentType: Headers.formUrlEncodedContentType),
+      ),
+      onResult: (r) => r.data['access_token'] as String,
     );
 
-    if (response == null) {
-      Logger.w('Login failed');
+    if (token == null) {
+      Logger.w('login failed: no token returned');
       return false;
     }
-
-    final String? token = response.data['access_token'];
-    if (token != null) {
-      await LocalStoreService.saveToken(token);
-      _user.value = await _authenticate(token: token);
-      return true;
-    } else {
-      Logger.w('No token returned');
-      return false;
-    }
+    await LocalStoreService.saveToken(token);
+    _user.value = await _authenticate(token: token);
+    return true;
   }
 
   Future<bool> register({
@@ -53,42 +50,34 @@ class AuthService extends GetxService {
     required String email,
     required String password,
   }) async {
-    final response = await BackendApi.post(
-      '/v1/auth/register',
-      data: {'username': username, 'email': email, 'password': password},
+    await handleApiRequest<Response>(
+      BackendApi.post(
+        '/v1/auth/register',
+        data: {'username': username, 'email': email, 'password': password},
+      ),
+      onDioError: (e) => Logger.w('register failed'),
     );
-
-    if (response == null) {
-      Logger.w('Registration failed');
-      return false;
-    } else {
-      return await login(email: email, password: password);
-    }
+    return await login(email: email, password: password);
   }
 
   Future<User> _authenticate({required String token}) async {
-    final response = await BackendApi.get(
-      '/v1/users/me',
-      options: Options(headers: {'Authorization': 'Bearer $token'}),
+    final user = await handleApiRequest(
+      BackendApi.get('/v1/users/me', options: Options(headers: {'Authorization': 'Bearer $token'})),
+      onResult: (r) => User.fromJson(r.data, token: token),
     );
-
-    if (response?.statusCode == 200 && response?.data != null) {
-      final json = response!.data as Map<String, dynamic>;
-      final user = User.fromJson(json, token: token);
-      Logger.s('User auth successfull');
-      return user;
+    if (user == null) {
+      Logger.w('user authentication failed');
+      return User.guest();
     }
-    Logger.w('Get User via token failed');
-    return User.guest();
+    Logger.s('user auth successfull');
+    return user;
   }
 
   Future<bool> verify({required String email}) async {
-    final response = await BackendApi.post(
-      '/v1/users/request-verify-token',
-      data: {'email': email},
+    final response = await handleApiRequest<Response>(
+      BackendApi.post('/v1/users/request-verify-token', data: {'email': email}),
     );
-
-    return response != null;
+    return response?.statusMessage == 'OK';
   }
 
   // TODO: Clear all user data: favourites, search history, tours, everyhting that depends on user
@@ -96,11 +85,11 @@ class AuthService extends GetxService {
     await deleteUserLocalData();
     Get.find<EmailCounterController>().reset();
     _user.value = User.guest();
-    Logger.m('[USER LOGGED OUT]');
+    Logger.d('user logged out');
   }
 
   Future<void> deleteUserLocalData() async {
     await LocalStoreDataSource.userDoc.delete();
-    Logger.w('Deleted user local data');
+    Logger.d('deleted user local data');
   }
 }

@@ -11,17 +11,13 @@ abstract class RoutesService {
       },
     );
 
-    if (response == null) {
-      return [];
-    } else {
-      final Map<String, dynamic> data = response.data!;
-      final points = data['route'];
-      List<LatLng> route = [];
-      for (final point in points) {
-        route.add(LatLng(point[0], point[1]));
-      }
-      return route;
+    final Map<String, dynamic> data = response.data!;
+    final points = data['route'];
+    List<LatLng> route = [];
+    for (final point in points) {
+      route.add(LatLng(point[0], point[1]));
     }
+    return route;
   }
 
   static Future<List<LatLng>> getMockRoute() async {

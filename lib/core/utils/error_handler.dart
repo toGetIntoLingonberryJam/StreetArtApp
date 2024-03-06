@@ -3,21 +3,28 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:street_art_witnesses/core/utils/logger.dart';
 
-abstract class ErrorHandler {
-  static void _logDioError(DioException e) => Logger.dioException(e, where: 'ErrorHandler');
+mixin ErrorHandler {
+  static void _logDioError(DioException e) => Logger.dioException(e);
 
-  static Future<T?> handleApiRequest<T>(
-    Future<Response?> request, {
-    void Function(DioException e) onDioError = _logDioError,
-    T Function(Response? r)? onResult,
+  Future<T?> handleApiRequest<T>(
+    Future<Response> request, {
+    void Function(DioException e)? onDioError,
+    T Function(Response r)? onResult,
   }) async {
-    assert(T == Response || onResult != null);
+    assert(T == Response || onResult != null,
+        'If <T> is not Response, you should provide the onResult method');
 
     try {
       final result = await request;
       return onResult != null ? onResult(result) : result as T?;
     } on DioException catch (e) {
-      onDioError(e);
+      _logDioError(e);
+      onDioError?.call(e);
+      return null;
+    } catch (e) {
+      Logger.w('handleApiRequest method error fallback');
+      if (e is Exception) Logger.exception(e, where: 'handleApiRequest');
+      if (e is Error) Logger.error(e);
       return null;
     }
   }

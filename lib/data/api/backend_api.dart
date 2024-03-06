@@ -9,7 +9,7 @@ abstract class BackendApi {
     ),
   )..interceptors.add(LoggerDioInterceptor());
 
-  static Future<Response?> Function(
+  static Future<Response> Function(
     String, {
     CancelToken? cancelToken,
     Object? data,
@@ -18,7 +18,7 @@ abstract class BackendApi {
     Map<String, dynamic>? queryParameters,
   }) get get => _dio.get;
 
-  static Future<Response?> Function(
+  static Future<Response> Function(
     String, {
     CancelToken? cancelToken,
     Object? data,
@@ -27,7 +27,7 @@ abstract class BackendApi {
     Map<String, dynamic>? queryParameters,
   }) get post => _dio.post;
 
-  static Future<Response?> Function(
+  static Future<Response> Function(
     String, {
     CancelToken? cancelToken,
     Object? data,
@@ -36,7 +36,7 @@ abstract class BackendApi {
     Map<String, dynamic>? queryParameters,
   }) get patch => _dio.patch;
 
-  static Future<Response?> Function(
+  static Future<Response> Function(
     String, {
     CancelToken? cancelToken,
     Object? data,

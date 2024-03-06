@@ -1,15 +1,14 @@
+import 'package:street_art_witnesses/core/utils/error_handler.dart';
 import 'package:street_art_witnesses/data/api/backend_api.dart';
 import 'package:street_art_witnesses/data/models/artist.dart';
 import 'package:street_art_witnesses/data/providers/artists/provider.dart';
 
-class NetworkArtistsProvider implements ArtistsProvider {
+class NetworkArtistsProvider with ErrorHandler implements ArtistsProvider {
   @override
-  Future<Artist?> getArtistById(int artistId) async {
-    final response = await BackendApi.get('/v1/artists/$artistId');
-    if (response == null) return null;
-
-    return Artist.fromJson(response.data);
-  }
+  Future<Artist?> getArtistById(int artistId) async => handleApiRequest(
+        BackendApi.get('/v1/artists/$artistId'),
+        onResult: (r) => Artist.fromJson(r.data),
+      );
 
   @override
   Future<List<Artist>?> getArtists({
@@ -17,14 +16,12 @@ class NetworkArtistsProvider implements ArtistsProvider {
     int size = 20,
     String? search,
     String? orderBy,
-  }) async {
-    final response = await BackendApi.get('/v1/artists');
-    if (response == null) return null;
-
-    final List<Artist> artists = [];
-    for (var artistData in response.data['items']) {
-      artists.add(Artist.fromJson(artistData));
-    }
-    return artists;
-  }
+  }) async =>
+      handleApiRequest(BackendApi.get('/v1/artists'), onResult: (r) {
+        final artists = <Artist>[];
+        for (var json in r.data['items']) {
+          artists.add(Artist.fromJson(json));
+        }
+        return artists;
+      });
 }
