@@ -6,7 +6,7 @@ import 'package:get/get.dart' hide FormData;
 import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/data/api/backend_api.dart';
-import 'package:street_art_witnesses/data/models/artist.dart';
+import 'package:street_art_witnesses/data/models/artist/artist.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork_location.dart';
 import 'package:street_art_witnesses/data/services/auth_service.dart';
@@ -15,7 +15,7 @@ import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class ModerationData {
   String? title;
-  Artist? artist;
+  ArtistCardModel? artist;
   String? address;
   LatLng? location;
   String? year;
@@ -57,7 +57,7 @@ class ModerationController extends GetxController {
     required String title,
     required String address,
     required LatLng location,
-    required Artist artist,
+    required ArtistCardModel artist,
   }) {
     _data.title = title;
     _data.artist = artist;

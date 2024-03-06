@@ -1,7 +1,7 @@
-import 'package:street_art_witnesses/data/models/festival.dart';
+import 'package:street_art_witnesses/data/models/festival/festival_card.dart';
 import 'package:street_art_witnesses/data/models/image.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork_location.dart';
-import 'package:street_art_witnesses/data/models/artist.dart';
+import 'package:street_art_witnesses/data/models/artist/artist_card.dart';
 
 enum ArtworkStatus { existing, destroyed, overpainted, unknown }
 
@@ -18,8 +18,8 @@ class Artwork {
 
   final ArtworkStatus status;
   final ArtworkLocation location;
-  final Artist? artist;
-  final Festival? festival;
+  final ArtistCardModel? artist;
+  final FestivalCardModel? festival;
   final List<ImageSchema>? images;
   final List<String>? links;
 
@@ -56,9 +56,9 @@ class Artwork {
         description = json['description'],
         sourceDescription = json['source_description'],
         artistId = json['artist_id'],
-        artist = json['artist'] == null ? null : Artist.fromJson(json['artist']),
+        artist = json['artist'] == null ? null : ArtistCardModel.fromJson(json['artist']),
         festivalId = json['festival_id'],
-        festival = json['festival'] == null ? null : Festival.fromJson(json['festival']),
+        festival = json['festival'] == null ? null : FestivalCardModel.fromJson(json['festival']),
         status = _stringToStatus(json['status']),
         id = json['id'] ?? -1,
         addedByUserId = json['added_by_user_id'],
