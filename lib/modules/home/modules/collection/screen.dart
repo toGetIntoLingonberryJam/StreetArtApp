@@ -37,7 +37,7 @@ class CollectionScreen extends StatelessWidget {
                     Expanded(
                         child: AppButton(
                       onTap: () => controller.switchPage(Collection.artists),
-                      label: 'Работы',
+                      label: 'Авторы',
                       isPrimary: controller.coll == Collection.artists,
                     )),
                   ],
