@@ -32,7 +32,9 @@ mixin _$Artwork {
   int? get festivalId => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get sourceDescription => throw _privateConstructorUsedError;
+  @JsonKey(name: 'artist')
   ArtistPreview? get artistPreview => throw _privateConstructorUsedError;
+  @JsonKey(name: 'festival')
   FestivalPreview? get festivalPreview => throw _privateConstructorUsedError;
   List<ImageModel>? get images => throw _privateConstructorUsedError;
   List<String>? get links => throw _privateConstructorUsedError;
@@ -59,8 +61,8 @@ abstract class $ArtworkCopyWith<$Res> {
       int? festivalId,
       String? description,
       String? sourceDescription,
-      ArtistPreview? artistPreview,
-      FestivalPreview? festivalPreview,
+      @JsonKey(name: 'artist') ArtistPreview? artistPreview,
+      @JsonKey(name: 'festival') FestivalPreview? festivalPreview,
       List<ImageModel>? images,
       List<String>? links});
 
@@ -70,7 +72,8 @@ abstract class $ArtworkCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ArtworkCopyWithImpl<$Res, $Val extends Artwork> implements $ArtworkCopyWith<$Res> {
+class _$ArtworkCopyWithImpl<$Res, $Val extends Artwork>
+    implements $ArtworkCopyWith<$Res> {
   _$ArtworkCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -196,7 +199,8 @@ class _$ArtworkCopyWithImpl<$Res, $Val extends Artwork> implements $ArtworkCopyW
 
 /// @nodoc
 abstract class _$$ArtworkImplCopyWith<$Res> implements $ArtworkCopyWith<$Res> {
-  factory _$$ArtworkImplCopyWith(_$ArtworkImpl value, $Res Function(_$ArtworkImpl) then) =
+  factory _$$ArtworkImplCopyWith(
+          _$ArtworkImpl value, $Res Function(_$ArtworkImpl) then) =
       __$$ArtworkImplCopyWithImpl<$Res>;
   @override
   @useResult
@@ -212,8 +216,8 @@ abstract class _$$ArtworkImplCopyWith<$Res> implements $ArtworkCopyWith<$Res> {
       int? festivalId,
       String? description,
       String? sourceDescription,
-      ArtistPreview? artistPreview,
-      FestivalPreview? festivalPreview,
+      @JsonKey(name: 'artist') ArtistPreview? artistPreview,
+      @JsonKey(name: 'festival') FestivalPreview? festivalPreview,
       List<ImageModel>? images,
       List<String>? links});
 
@@ -226,9 +230,11 @@ abstract class _$$ArtworkImplCopyWith<$Res> implements $ArtworkCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$ArtworkImplCopyWithImpl<$Res> extends _$ArtworkCopyWithImpl<$Res, _$ArtworkImpl>
+class __$$ArtworkImplCopyWithImpl<$Res>
+    extends _$ArtworkCopyWithImpl<$Res, _$ArtworkImpl>
     implements _$$ArtworkImplCopyWith<$Res> {
-  __$$ArtworkImplCopyWithImpl(_$ArtworkImpl _value, $Res Function(_$ArtworkImpl) _then)
+  __$$ArtworkImplCopyWithImpl(
+      _$ArtworkImpl _value, $Res Function(_$ArtworkImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -330,15 +336,16 @@ class _$ArtworkImpl extends _Artwork {
       this.festivalId,
       this.description,
       this.sourceDescription,
-      this.artistPreview,
-      this.festivalPreview,
+      @JsonKey(name: 'artist') this.artistPreview,
+      @JsonKey(name: 'festival') this.festivalPreview,
       final List<ImageModel>? images,
       final List<String>? links})
       : _images = images,
         _links = links,
         super._();
 
-  factory _$ArtworkImpl.fromJson(Map<String, dynamic> json) => _$$ArtworkImplFromJson(json);
+  factory _$ArtworkImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ArtworkImplFromJson(json);
 
   @override
   final int id;
@@ -364,8 +371,10 @@ class _$ArtworkImpl extends _Artwork {
   @override
   final String? sourceDescription;
   @override
+  @JsonKey(name: 'artist')
   final ArtistPreview? artistPreview;
   @override
+  @JsonKey(name: 'festival')
   final FestivalPreview? festivalPreview;
   final List<ImageModel>? _images;
   @override
@@ -401,13 +410,20 @@ class _$ArtworkImpl extends _Artwork {
             (identical(other.addedByUserId, addedByUserId) ||
                 other.addedByUserId == addedByUserId) &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt) &&
-            (identical(other.statusCode, statusCode) || other.statusCode == statusCode) &&
-            (identical(other.location, location) || other.location == location) &&
-            (identical(other.yearCreated, yearCreated) || other.yearCreated == yearCreated) &&
-            (identical(other.artistId, artistId) || other.artistId == artistId) &&
-            (identical(other.festivalId, festivalId) || other.festivalId == festivalId) &&
-            (identical(other.description, description) || other.description == description) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt) &&
+            (identical(other.statusCode, statusCode) ||
+                other.statusCode == statusCode) &&
+            (identical(other.location, location) ||
+                other.location == location) &&
+            (identical(other.yearCreated, yearCreated) ||
+                other.yearCreated == yearCreated) &&
+            (identical(other.artistId, artistId) ||
+                other.artistId == artistId) &&
+            (identical(other.festivalId, festivalId) ||
+                other.festivalId == festivalId) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
             (identical(other.sourceDescription, sourceDescription) ||
                 other.sourceDescription == sourceDescription) &&
             (identical(other.artistPreview, artistPreview) ||
@@ -465,8 +481,8 @@ abstract class _Artwork extends Artwork {
       final int? festivalId,
       final String? description,
       final String? sourceDescription,
-      final ArtistPreview? artistPreview,
-      final FestivalPreview? festivalPreview,
+      @JsonKey(name: 'artist') final ArtistPreview? artistPreview,
+      @JsonKey(name: 'festival') final FestivalPreview? festivalPreview,
       final List<ImageModel>? images,
       final List<String>? links}) = _$ArtworkImpl;
   const _Artwork._() : super._();
@@ -497,8 +513,10 @@ abstract class _Artwork extends Artwork {
   @override
   String? get sourceDescription;
   @override
+  @JsonKey(name: 'artist')
   ArtistPreview? get artistPreview;
   @override
+  @JsonKey(name: 'festival')
   FestivalPreview? get festivalPreview;
   @override
   List<ImageModel>? get images;
@@ -506,5 +524,6 @@ abstract class _Artwork extends Artwork {
   List<String>? get links;
   @override
   @JsonKey(ignore: true)
-  _$$ArtworkImplCopyWith<_$ArtworkImpl> get copyWith => throw _privateConstructorUsedError;
+  _$$ArtworkImplCopyWith<_$ArtworkImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

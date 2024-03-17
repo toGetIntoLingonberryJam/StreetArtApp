@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:street_art_witnesses/data/models/festival/preview/festival_preview.dart';
 import 'package:street_art_witnesses/data/models/image/image.dart';
@@ -18,7 +20,6 @@ class Artwork with _$Artwork {
     required int addedByUserId,
     required String title,
     required String updatedAt,
-    // ignore: invalid_annotation_target
     @JsonKey(name: 'status') required String statusCode,
     required ArtworkLocation location,
     int? yearCreated,
@@ -26,8 +27,8 @@ class Artwork with _$Artwork {
     int? festivalId,
     String? description,
     String? sourceDescription,
-    ArtistPreview? artistPreview,
-    FestivalPreview? festivalPreview,
+    @JsonKey(name: 'artist') ArtistPreview? artistPreview,
+    @JsonKey(name: 'festival') FestivalPreview? festivalPreview,
     List<ImageModel>? images,
     List<String>? links,
   }) = _Artwork;

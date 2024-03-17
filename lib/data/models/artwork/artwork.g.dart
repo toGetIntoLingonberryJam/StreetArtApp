@@ -20,14 +20,12 @@ _$ArtworkImpl _$$ArtworkImplFromJson(Map<String, dynamic> json) =>
       festivalId: json['festival_id'] as int?,
       description: json['description'] as String?,
       sourceDescription: json['source_description'] as String?,
-      artistPreview: json['artist_preview'] == null
+      artistPreview: json['artist'] == null
           ? null
-          : ArtistPreview.fromJson(
-              json['artist_preview'] as Map<String, dynamic>),
-      festivalPreview: json['festival_preview'] == null
+          : ArtistPreview.fromJson(json['artist'] as Map<String, dynamic>),
+      festivalPreview: json['festival'] == null
           ? null
-          : FestivalPreview.fromJson(
-              json['festival_preview'] as Map<String, dynamic>),
+          : FestivalPreview.fromJson(json['festival'] as Map<String, dynamic>),
       images: (json['images'] as List<dynamic>?)
           ?.map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -48,8 +46,8 @@ Map<String, dynamic> _$$ArtworkImplToJson(_$ArtworkImpl instance) =>
       'festival_id': instance.festivalId,
       'description': instance.description,
       'source_description': instance.sourceDescription,
-      'artist_preview': instance.artistPreview,
-      'festival_preview': instance.festivalPreview,
+      'artist': instance.artistPreview,
+      'festival': instance.festivalPreview,
       'images': instance.images,
       'links': instance.links,
     };
