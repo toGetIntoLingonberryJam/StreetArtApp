@@ -1,6 +1,6 @@
-import 'package:street_art_witnesses/data/models/artist/artist_card.dart';
+import 'package:street_art_witnesses/data/models/artist/preview/artist_preview.dart';
 
 abstract class ArtistsProvider {
-  Future<List<ArtistCardModel>?> getArtists();
-  Future<ArtistCardModel?> getArtistById(int artistId);
+  Future<List<ArtistPreview>?> getArtists();
+  Future<ArtistPreview?> getArtistById(int artistId);
 }

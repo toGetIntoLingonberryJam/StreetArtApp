@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/core/utils/logger.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
-import 'package:street_art_witnesses/data/models/artist/artist_card.dart';
+import 'package:street_art_witnesses/data/models/artist/preview/artist_preview.dart';
 import 'package:street_art_witnesses/modules/art/artwork/screen.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/core/utils/validator.dart';
@@ -89,7 +89,7 @@ class _MainInfoViewState extends State<_MainInfoView> {
   final _formKey = GlobalKey<FormState>();
 
   LatLng? location;
-  ArtistCardModel? artist;
+  ArtistPreview? artist;
 
   @override
   void dispose() {
@@ -124,7 +124,7 @@ class _MainInfoViewState extends State<_MainInfoView> {
   }
 
   void _pickArtist() async {
-    final ArtistCardModel? pickedArtist = await Get.to(() => const SearchScreen());
+    final ArtistPreview? pickedArtist = await Get.to(() => const SearchScreen());
     Logger.d('picked artist: ${pickedArtist?.name}');
     artist = pickedArtist;
     artistController.text = pickedArtist?.name ?? '';

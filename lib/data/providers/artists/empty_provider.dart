@@ -1,10 +1,10 @@
-import 'package:street_art_witnesses/data/models/artist/artist_card.dart';
+import 'package:street_art_witnesses/data/models/artist/preview/artist_preview.dart';
 import 'package:street_art_witnesses/data/providers/artists/provider.dart';
 
 class EmptyArtistsProvider extends ArtistsProvider {
   @override
-  Future<ArtistCardModel?> getArtistById(int artistId) => Future.value(null);
+  Future<ArtistPreview?> getArtistById(int artistId) => Future.value(null);
 
   @override
-  Future<List<ArtistCardModel>?> getArtists() => Future.value(null);
+  Future<List<ArtistPreview>?> getArtists() => Future.value(null);
 }

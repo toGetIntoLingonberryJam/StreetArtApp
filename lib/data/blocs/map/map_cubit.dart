@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:street_art_witnesses/data/models/artwork/artwork_location.dart';
+import 'package:street_art_witnesses/data/models/artwork/artwork_location/artwork_location.dart';
 import 'package:street_art_witnesses/data/models/map/map_task.dart';
 import 'package:street_art_witnesses/data/services/location_service.dart';
 import 'package:street_art_witnesses/widgets/map/location_marker/marker.dart';

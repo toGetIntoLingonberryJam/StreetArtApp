@@ -1,7 +1,7 @@
 import 'package:street_art_witnesses/core/utils/error_handler.dart';
 import 'package:street_art_witnesses/data/api/backend_api.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
-import 'package:street_art_witnesses/data/models/artwork/artwork_location.dart';
+import 'package:street_art_witnesses/data/models/artwork/artwork_location/artwork_location.dart';
 import 'package:street_art_witnesses/data/providers/artworks/provider.dart';
 
 class NetworkArtworksProvider with ErrorHandler implements ArtworksProvider {

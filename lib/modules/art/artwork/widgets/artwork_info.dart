@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
-import 'package:street_art_witnesses/data/models/artist/artist_card.dart';
+import 'package:street_art_witnesses/data/models/artist/preview/artist_preview.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
@@ -15,7 +15,7 @@ class ArtworkInfo extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _ArtistInfo(artwork.artist),
+          _ArtistInfo(artwork.artistPreview),
           const SizedBox(height: 4),
           Text(artwork.title, style: TextStyles.headline1),
           const SizedBox(height: 8),
@@ -29,7 +29,7 @@ class ArtworkInfo extends StatelessWidget {
 class _ArtistInfo extends StatelessWidget {
   const _ArtistInfo(this.artist);
 
-  final ArtistCardModel? artist;
+  final ArtistPreview? artist;
 
   @override
   Widget build(BuildContext context) {

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
-import 'package:street_art_witnesses/data/models/festival/festival_card.dart';
+import 'package:street_art_witnesses/data/models/festival/preview/festival_preview.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class FestivalInfoWidget extends StatelessWidget {
   const FestivalInfoWidget(this.festival, {super.key, this.includeBottomPadding = true});
 
-  final FestivalCardModel? festival;
+  final FestivalPreview? festival;
   final bool includeBottomPadding;
 
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
-import 'package:street_art_witnesses/data/models/artist/artist_card.dart';
+import 'package:street_art_witnesses/data/models/artist/preview/artist_preview.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class ArtistsView extends StatelessWidget {
@@ -9,7 +9,7 @@ class ArtistsView extends StatelessWidget {
     required this.artists,
   });
 
-  final List<ArtistCardModel>? artists;
+  final List<ArtistPreview>? artists;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class ArtistsView extends StatelessWidget {
 class ArtistCard extends StatelessWidget {
   const ArtistCard({super.key, required this.artist});
 
-  final ArtistCardModel artist;
+  final ArtistPreview artist;
 
   @override
   Widget build(BuildContext context) {

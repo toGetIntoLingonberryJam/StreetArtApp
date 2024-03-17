@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
-import 'package:street_art_witnesses/data/models/image.dart';
+import 'package:street_art_witnesses/data/models/image/image.dart';
 import 'package:street_art_witnesses/data/services/settings_service.dart';
 import 'package:street_art_witnesses/data/services/images_service.dart';
 import 'package:street_art_witnesses/widgets/other/app_loading_indicator.dart';
@@ -14,7 +14,7 @@ import 'package:street_art_witnesses/widgets/other/slider_dots.dart';
 class ImageSliderBase extends StatefulWidget {
   const ImageSliderBase({super.key, required this.images});
 
-  final List<ImageSchema> images;
+  final List<ImageModel> images;
 
   @override
   State<ImageSliderBase> createState() => _ImageSliderBaseState();
