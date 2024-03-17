@@ -11,11 +11,16 @@ class MapControllersLayer extends GetView<GetMapController> {
     this.search = true,
     this.zoom = true,
     this.geopostion = true,
+    this.mapTag,
   });
 
   final bool search;
   final bool zoom;
   final bool geopostion;
+  final String? mapTag;
+
+  @override
+  String? get tag => mapTag;
 
   void _fetchUserPosition(BuildContext context) async {
     final position = await Get.find<UserLocationController>().fetchUserPosition(context);

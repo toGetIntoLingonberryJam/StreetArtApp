@@ -3,6 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
+import 'package:street_art_witnesses/data/providers/artists/empty_provider.dart';
 import 'package:street_art_witnesses/data/providers/artworks/empty_provider.dart';
 import 'package:street_art_witnesses/modules/home/modules/map/controller.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
@@ -11,11 +12,17 @@ import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
 import 'package:street_art_witnesses/widgets/other/app_appbar.dart';
 
 class LocationPicker extends StatelessWidget {
-  const LocationPicker({super.key});
+  const LocationPicker({super.key, required this.initLocation});
+
+  final LatLng initLocation;
 
   @override
   Widget build(BuildContext context) {
-    final c = Get.put(GetMapController(artworksProvider: EmptyArtworksProvider()),
+    final c = Get.put(
+        GetMapController(
+          artworksProvider: EmptyArtworksProvider(),
+          artistsProvider: EmptyArtistsProvider(),
+        ),
         tag: 'location_picker');
     return Scaffold(
       body: SafeArea(
@@ -33,7 +40,7 @@ class LocationPicker extends StatelessWidget {
                     options: MapOptions(
                       initialZoom: 12,
                       backgroundColor: Theme.of(context).colorScheme.background,
-                      initialCenter: const LatLng(56.8519, 60.6122),
+                      initialCenter: initLocation,
                     ),
                     children: [
                       TileLayer(urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'),
@@ -52,7 +59,11 @@ class LocationPicker extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const MapControllersLayer(geopostion: false, search: false),
+                      const MapControllersLayer(
+                        geopostion: false,
+                        search: false,
+                        mapTag: 'location_picker',
+                      ),
                       const _PickerMarker(),
                       Align(
                         alignment: Alignment.bottomCenter,

@@ -115,7 +115,9 @@ class _MainInfoViewState extends State<_MainInfoView> {
   }
 
   void _showLocationPicker() async {
-    final LatLng? loc = await Get.to(() => const LocationPicker());
+    final LatLng? loc = await Get.to(() => LocationPicker(
+          initLocation: location ?? const LatLng(56.8519, 60.6122),
+        ));
     if (loc != null) {
       location = loc;
       locationController.text =
