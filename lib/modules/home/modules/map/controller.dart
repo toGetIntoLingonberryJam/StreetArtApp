@@ -3,9 +3,9 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_animations/flutter_map_animations.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/data/providers/artworks/provider.dart';
 import 'package:street_art_witnesses/modules/art/artwork/screen.dart';
+import 'package:street_art_witnesses/widgets/loaders/loader.dart';
 import 'package:street_art_witnesses/widgets/map/location_marker/marker.dart';
 
 class GetMapController extends GetxController with GetTickerProviderStateMixin {
@@ -52,15 +52,12 @@ class GetMapController extends GetxController with GetTickerProviderStateMixin {
     update();
   }
 
-  void openArtwork(int id) async {
-    final future = artworksProvider.getArtworkById(id);
-    final artwork = await Utils.showLoading(future);
-
-    if (artwork == null) {
-      Utils.showInfo('Не удалось получить данные о работе');
-    } else {
-      Get.to(() => ArtworkScreen(artwork: artwork));
-    }
+  void openArtwork(int id) {
+    Get.to(() => Loader(
+          future: artworksProvider.getArtworkById(id),
+          builder: (a) => ArtworkScreen(artwork: a),
+          loader: Loaders.artwork,
+        ));
   }
 }
 
