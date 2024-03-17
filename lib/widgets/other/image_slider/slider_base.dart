@@ -7,7 +7,6 @@ import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/image/image.dart';
 import 'package:street_art_witnesses/data/services/settings_service.dart';
 import 'package:street_art_witnesses/data/services/images_service.dart';
-import 'package:street_art_witnesses/widgets/other/app_loading_indicator.dart';
 import 'package:street_art_witnesses/widgets/other/image_slider/controller.dart';
 import 'package:street_art_witnesses/widgets/other/slider_dots.dart';
 
@@ -85,18 +84,10 @@ class LoadingImage extends StatelessWidget {
         if (snapshot.hasData) {
           return Image(
             loadingBuilder: (context, child, loadingProgress) {
-              if (loadingProgress == null) {
-                return child;
-              }
-              if (loadingProgress.expectedTotalBytes != null) {
-                return Center(
-                  child: AppLoadingIndicator(
-                    value:
-                        loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!,
-                  ),
-                );
-              }
-              return const Center(child: AppLoadingIndicator());
+              return Container(
+                color: Theme.of(context).colorScheme.onBackground,
+                child: child,
+              );
             },
             image: snapshot.data!,
             fit: BoxFit.cover,
@@ -112,8 +103,7 @@ class LoadingImage extends StatelessWidget {
             ),
           );
         }
-
-        return const SizedBox();
+        return Container(color: Theme.of(context).colorScheme.onBackground);
       },
     );
   }
