@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
+import 'artist_loader.dart';
+import 'artwork_loader.dart';
+
 abstract class Loaders {
   static const Widget defaultLoader = Scaffold(body: Center(child: AppLoadingIndicator()));
-
-  static const Widget artwork = ArtworkSkeleton();
+  static const Widget artwork = ArtworkLoader();
+  static const Widget artist = ArtistLoader();
 }
 
 class Loader<T> extends StatelessWidget {

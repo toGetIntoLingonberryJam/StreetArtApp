@@ -9,7 +9,7 @@ class Artist with _$Artist {
   const factory Artist({
     required int id,
     required String name,
-    required ImageModel image,
+    required ImageModel? image,
     String? description,
     List<String>? links,
   }) = _Artist;

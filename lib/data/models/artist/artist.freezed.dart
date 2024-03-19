@@ -22,7 +22,7 @@ Artist _$ArtistFromJson(Map<String, dynamic> json) {
 mixin _$Artist {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  ImageModel get image => throw _privateConstructorUsedError;
+  ImageModel? get image => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   List<String>? get links => throw _privateConstructorUsedError;
 
@@ -39,11 +39,11 @@ abstract class $ArtistCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
-      ImageModel image,
+      ImageModel? image,
       String? description,
       List<String>? links});
 
-  $ImageModelCopyWith<$Res> get image;
+  $ImageModelCopyWith<$Res>? get image;
 }
 
 /// @nodoc
@@ -61,7 +61,7 @@ class _$ArtistCopyWithImpl<$Res, $Val extends Artist>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? image = null,
+    Object? image = freezed,
     Object? description = freezed,
     Object? links = freezed,
   }) {
@@ -74,10 +74,10 @@ class _$ArtistCopyWithImpl<$Res, $Val extends Artist>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      image: null == image
+      image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as ImageModel,
+              as ImageModel?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -91,8 +91,12 @@ class _$ArtistCopyWithImpl<$Res, $Val extends Artist>
 
   @override
   @pragma('vm:prefer-inline')
-  $ImageModelCopyWith<$Res> get image {
-    return $ImageModelCopyWith<$Res>(_value.image, (value) {
+  $ImageModelCopyWith<$Res>? get image {
+    if (_value.image == null) {
+      return null;
+    }
+
+    return $ImageModelCopyWith<$Res>(_value.image!, (value) {
       return _then(_value.copyWith(image: value) as $Val);
     });
   }
@@ -108,12 +112,12 @@ abstract class _$$ArtistImplCopyWith<$Res> implements $ArtistCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
-      ImageModel image,
+      ImageModel? image,
       String? description,
       List<String>? links});
 
   @override
-  $ImageModelCopyWith<$Res> get image;
+  $ImageModelCopyWith<$Res>? get image;
 }
 
 /// @nodoc
@@ -129,7 +133,7 @@ class __$$ArtistImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? image = null,
+    Object? image = freezed,
     Object? description = freezed,
     Object? links = freezed,
   }) {
@@ -142,10 +146,10 @@ class __$$ArtistImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      image: null == image
+      image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as ImageModel,
+              as ImageModel?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -177,7 +181,7 @@ class _$ArtistImpl implements _Artist {
   @override
   final String name;
   @override
-  final ImageModel image;
+  final ImageModel? image;
   @override
   final String? description;
   final List<String>? _links;
@@ -231,7 +235,7 @@ abstract class _Artist implements Artist {
   const factory _Artist(
       {required final int id,
       required final String name,
-      required final ImageModel image,
+      required final ImageModel? image,
       final String? description,
       final List<String>? links}) = _$ArtistImpl;
 
@@ -242,7 +246,7 @@ abstract class _Artist implements Artist {
   @override
   String get name;
   @override
-  ImageModel get image;
+  ImageModel? get image;
   @override
   String? get description;
   @override

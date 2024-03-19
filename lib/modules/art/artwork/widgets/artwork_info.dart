@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/artist/preview/artist_preview.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
+import 'package:street_art_witnesses/modules/art/artist/screen.dart';
+import 'package:street_art_witnesses/modules/home/modules/map/controller.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
+import 'package:street_art_witnesses/widgets/loaders/loader.dart';
 
 class ArtworkInfo extends StatelessWidget {
   const ArtworkInfo({super.key, required this.artwork});
@@ -41,7 +45,11 @@ class _ArtistInfo extends StatelessWidget {
     }
 
     return GestureDetector(
-      // onTap: () => Get.to(() => ArtistScreen(artist: artist!)),
+      onTap: () => Get.to(() => Loader(
+            future: Get.find<GetMapController>().artistsProvider.getArtistById(artist!.id),
+            builder: (data) => ArtistScreen(artist: data),
+            loader: Loaders.artist,
+          )),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [

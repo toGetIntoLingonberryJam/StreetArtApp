@@ -1,13 +1,14 @@
 import 'package:street_art_witnesses/core/utils/error_handler.dart';
 import 'package:street_art_witnesses/data/api/backend_api.dart';
+import 'package:street_art_witnesses/data/models/artist/artist.dart';
 import 'package:street_art_witnesses/data/models/artist/preview/artist_preview.dart';
 import 'package:street_art_witnesses/data/providers/artists/provider.dart';
 
 class NetworkArtistsProvider with ErrorHandler implements ArtistsProvider {
   @override
-  Future<ArtistPreview?> getArtistById(int artistId) async => handleApiRequest(
+  Future<Artist?> getArtistById(int artistId) async => handleApiRequest(
         BackendApi.get('/v1/artists/$artistId'),
-        onResult: (r) => ArtistPreview.fromJson(r.data),
+        onResult: (r) => Artist.fromJson(r.data),
       );
 
   @override

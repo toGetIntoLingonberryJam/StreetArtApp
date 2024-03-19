@@ -9,7 +9,9 @@ part of 'artist.dart';
 _$ArtistImpl _$$ArtistImplFromJson(Map<String, dynamic> json) => _$ArtistImpl(
       id: json['id'] as int,
       name: json['name'] as String,
-      image: ImageModel.fromJson(json['image'] as Map<String, dynamic>),
+      image: json['image'] == null
+          ? null
+          : ImageModel.fromJson(json['image'] as Map<String, dynamic>),
       description: json['description'] as String?,
       links:
           (json['links'] as List<dynamic>?)?.map((e) => e as String).toList(),
