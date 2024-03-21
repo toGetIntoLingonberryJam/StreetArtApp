@@ -4,7 +4,7 @@ import 'package:street_art_witnesses/data/models/artwork/artwork_location/artwor
 
 abstract class ArtworksProvider {
   static Future<Artwork> getArtworkById(int id) async {
-    final response = await BackendApi.get('v1/artworks/$id');
+    final response = await BackendApi.get('/v1/artworks/$id');
     return Artwork.fromJson(response.data);
   }
 
