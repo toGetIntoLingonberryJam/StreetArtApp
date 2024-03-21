@@ -7,6 +7,7 @@ import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/image/image.dart';
 import 'package:street_art_witnesses/data/services/settings_service.dart';
 import 'package:street_art_witnesses/data/services/images_service.dart';
+import 'package:street_art_witnesses/widgets/app_widgets.dart';
 import 'package:street_art_witnesses/widgets/other/image_slider/controller.dart';
 import 'package:street_art_witnesses/widgets/other/slider_dots.dart';
 
@@ -44,6 +45,7 @@ class _ImageSliderBaseState extends State<ImageSliderBase> {
         SizedBox(
           height: 400,
           child: PageView(
+            controller: PageController(viewportFraction: 0.99),
             physics: const ClampingScrollPhysics(),
             onPageChanged: (value) => controller.updateIndex(value),
             children: imageLoaders
@@ -84,10 +86,10 @@ class LoadingImage extends StatelessWidget {
         if (snapshot.hasData) {
           return Image(
             loadingBuilder: (context, child, loadingProgress) {
-              return Container(
-                color: Theme.of(context).colorScheme.onBackground,
-                child: child,
-              );
+              if (loadingProgress == null) {
+                return child;
+              }
+              return const Skeleton();
             },
             image: snapshot.data!,
             fit: BoxFit.cover,
@@ -103,7 +105,7 @@ class LoadingImage extends StatelessWidget {
             ),
           );
         }
-        return Container(color: Theme.of(context).colorScheme.onBackground);
+        return const Skeleton();
       },
     );
   }

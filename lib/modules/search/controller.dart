@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:street_art_witnesses/data/models/artist/preview/artist_preview.dart';
-import 'package:street_art_witnesses/data/providers/artists/network_provider.dart';
+import 'package:street_art_witnesses/data/providers/artists_provider.dart';
 
 class AppSearchController extends GetxController {
   final searchController = TextEditingController();
-  final artistsProvider = NetworkArtistsProvider();
   bool isLoading = true;
   List<ArtistPreview> _artists = [];
   List<ArtistPreview> get items => filterItems().toList();
@@ -14,7 +13,7 @@ class AppSearchController extends GetxController {
       .where((a) => a.name.toLowerCase().contains(searchController.text.toLowerCase().trim()));
 
   void loadArtists() async {
-    _artists = await artistsProvider.getArtists() ?? [];
+    _artists = await ArtistsProvider.getArtists() ?? [];
     isLoading = false;
     update();
   }

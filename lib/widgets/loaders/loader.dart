@@ -19,7 +19,7 @@ class Loader<T> extends StatelessWidget {
     this.onError,
   });
 
-  final Future<T?> future;
+  final Future<T> future;
   final Widget Function(T data) builder;
   final Widget loader;
   final void Function()? onError;

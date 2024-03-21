@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:street_art_witnesses/data/models/user.dart';
-import 'package:street_art_witnesses/data/providers/artists/network_provider.dart';
-import 'package:street_art_witnesses/data/providers/artworks/network_provider.dart';
 import 'package:street_art_witnesses/data/services/auth_service.dart';
 import 'package:street_art_witnesses/data/services/local_store_service.dart';
 import 'package:street_art_witnesses/data/services/settings_service.dart';
@@ -27,12 +25,7 @@ void main() async {
     return service;
   }, permanent: true);
   Get.put(SettingsService(initImageQuality: quality));
-  Get.put(
-      GetMapController(
-        artworksProvider: NetworkArtworksProvider(),
-        artistsProvider: NetworkArtistsProvider(),
-      ),
-      permanent: true);
+  Get.put(GetMapController(), permanent: true);
   Get.put(ProfileController(), permanent: true);
   Get.put(CollectionController(), permanent: true);
   Get.put(EmailCounterController(durationInSeconds: 30), permanent: true);

@@ -28,6 +28,7 @@ dependencies:
   ansicolor: ^2.0.2
   freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
+  shimmer: ^3.0.0
 
 flutter_launcher_icons:
   image_path: 'assets/logo.png'

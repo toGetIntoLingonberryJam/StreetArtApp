@@ -3,8 +3,6 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
-import 'package:street_art_witnesses/data/providers/artists/empty_provider.dart';
-import 'package:street_art_witnesses/data/providers/artworks/empty_provider.dart';
 import 'package:street_art_witnesses/modules/home/modules/map/controller.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/modules/home/modules/map/layers/controllers/layer.dart';
@@ -18,12 +16,7 @@ class LocationPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final c = Get.put(
-        GetMapController(
-          artworksProvider: EmptyArtworksProvider(),
-          artistsProvider: EmptyArtistsProvider(),
-        ),
-        tag: 'location_picker');
+    final c = Get.put(GetMapController(), tag: 'location_picker');
     return Scaffold(
       body: SafeArea(
         child: Padding(

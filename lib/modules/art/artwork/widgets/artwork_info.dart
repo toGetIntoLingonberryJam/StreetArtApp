@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/artist/preview/artist_preview.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
+import 'package:street_art_witnesses/data/providers/artists_provider.dart';
 import 'package:street_art_witnesses/modules/art/artist/screen.dart';
-import 'package:street_art_witnesses/modules/home/modules/map/controller.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 import 'package:street_art_witnesses/widgets/loaders/loader.dart';
 
@@ -46,9 +46,10 @@ class _ArtistInfo extends StatelessWidget {
 
     return GestureDetector(
       onTap: () => Get.to(() => Loader(
-            future: Get.find<GetMapController>().artistsProvider.getArtistById(artist!.id),
+            future: ArtistsProvider.getArtistById(artist!.id),
             builder: (data) => ArtistScreen(artist: data),
             loader: Loaders.artist,
+            onError: () => Get.back(),
           )),
       child: Row(
         mainAxisSize: MainAxisSize.min,

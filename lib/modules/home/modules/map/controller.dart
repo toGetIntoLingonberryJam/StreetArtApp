@@ -3,17 +3,14 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_animations/flutter_map_animations.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:street_art_witnesses/data/providers/artists/provider.dart';
-import 'package:street_art_witnesses/data/providers/artworks/provider.dart';
+import 'package:street_art_witnesses/data/providers/artworks_provider.dart';
 import 'package:street_art_witnesses/modules/art/artwork/screen.dart';
 import 'package:street_art_witnesses/widgets/loaders/loader.dart';
 import 'package:street_art_witnesses/widgets/map/location_marker/marker.dart';
 
 class GetMapController extends GetxController with GetTickerProviderStateMixin {
-  GetMapController({required this.artworksProvider, required this.artistsProvider});
+  GetMapController();
 
-  final ArtworksProvider artworksProvider;
-  final ArtistsProvider artistsProvider;
   late final mapController = AnimatedMapController(
     vsync: this,
     duration: const Duration(milliseconds: 350),
@@ -40,27 +37,23 @@ class GetMapController extends GetxController with GetTickerProviderStateMixin {
   }
 
   void fetchLocations() async {
-    final locations = await artworksProvider.getArtworkLocations() ?? [];
+    final locations = await ArtworksProvider.getArtworkLocations() ?? [];
     markers = locations
         .where((element) => element.latitude >= -90 && element.latitude <= 90)
         .map((location) => Marker(
               point: LatLng(location.latitude, location.longitude),
-              child: LocationMarker(
-                location: location,
-                key: ObjectKey(location),
-              ),
+              child: LocationMarker(location: location, key: ObjectKey(location)),
             ))
         .toList();
     update();
   }
 
-  void openArtwork(int id) {
-    Get.to(() => Loader(
-          future: artworksProvider.getArtworkById(id),
-          builder: (a) => ArtworkScreen(artwork: a),
-          loader: Loaders.artwork,
-        ));
-  }
+  void openArtwork(int id) => Get.to(() => Loader(
+        future: ArtworksProvider.getArtworkById(id),
+        builder: (a) => ArtworkScreen(artwork: a),
+        loader: Loaders.artwork,
+        onError: () => Get.back(),
+      ));
 }
 
 class MapNavigator extends GetxController {

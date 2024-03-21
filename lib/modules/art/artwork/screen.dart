@@ -14,7 +14,6 @@ import 'package:street_art_witnesses/widgets/other/image_slider/app_image_slider
 
 class ArtworkScreen extends StatelessWidget {
   const ArtworkScreen({super.key, required this.artwork}) : preview = false;
-
   const ArtworkScreen.preview({super.key, required this.artwork}) : preview = true;
 
   final Artwork artwork;
