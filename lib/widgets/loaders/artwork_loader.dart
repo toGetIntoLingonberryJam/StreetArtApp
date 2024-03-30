@@ -8,8 +8,9 @@ class ArtworkLoader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const AppHeader(title: ''),
       body: Padding(
-        padding: kDensePagePadding,
+        padding: const EdgeInsets.all(10),
         child: ListView(
           children: const [
             Skeleton(height: 380),
