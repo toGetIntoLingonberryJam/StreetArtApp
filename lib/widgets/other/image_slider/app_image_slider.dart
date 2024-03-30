@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
+import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/image/image.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
@@ -36,13 +37,17 @@ class _NoImagesPlaceholder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.fromLTRB(10, 0, 10, 8),
-      child: AppContainer.small(
-        child: Text(
-          'Фотографии отсутствуют',
-          style: TextStyles.headline1,
-          textAlign: TextAlign.center,
+    return SizedBox(
+      height: 400,
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(kContainerRadius),
+          child: const AppContainer(
+            child: Center(
+              child: Text('Фотографии отсутствуют', style: TextStyles.headline1),
+            ),
+          ),
         ),
       ),
     );
