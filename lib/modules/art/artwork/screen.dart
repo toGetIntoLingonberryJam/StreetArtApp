@@ -21,7 +21,7 @@ class ArtworkScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppHeader(title: 'Работа'),
+      appBar: AppHeader(title: artwork.title),
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(bottom: 10),
         child: Column(

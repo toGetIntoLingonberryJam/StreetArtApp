@@ -36,6 +36,7 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
                   title,
                   style: TextStyles.headline1,
                   textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
               SizedBox(width: _height, child: action),
