@@ -14,15 +14,13 @@ class SliderDots extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Wrap(
-        runSpacing: gap,
-        spacing: gap,
-        alignment: WrapAlignment.center,
-        children: [
-          for (int i = 0; i < count; i++) Dot(radius: 10, isActive: i == activeIndex),
-        ],
-      ),
+    return Wrap(
+      runSpacing: gap,
+      spacing: gap,
+      alignment: WrapAlignment.center,
+      children: [
+        for (int i = 0; i < count; i++) Dot(radius: 8, isActive: i == activeIndex),
+      ],
     );
   }
 }

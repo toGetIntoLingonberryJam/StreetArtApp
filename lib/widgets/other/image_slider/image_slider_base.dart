@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
@@ -9,7 +10,6 @@ import 'package:street_art_witnesses/data/services/settings_service.dart';
 import 'package:street_art_witnesses/data/services/images_service.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 import 'package:street_art_witnesses/widgets/other/image_slider/controller.dart';
-import 'package:street_art_witnesses/widgets/other/slider_dots.dart';
 
 class ImageSliderBase extends StatefulWidget {
   const ImageSliderBase({super.key, required this.images});
@@ -39,12 +39,11 @@ class _ImageSliderBaseState extends State<ImageSliderBase> {
   Widget build(BuildContext context) {
     final controller = Get.put(SliderController(length: widget.images.length));
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        SizedBox(
-          height: 400,
-          child: PageView(
+    return SizedBox(
+      height: 400,
+      child: Stack(
+        children: [
+          PageView(
             controller: PageController(viewportFraction: 0.99),
             physics: const ClampingScrollPhysics(),
             onPageChanged: (value) => controller.updateIndex(value),
@@ -60,15 +59,18 @@ class _ImageSliderBaseState extends State<ImageSliderBase> {
                 )
                 .toList(),
           ),
-        ),
-        if (widget.images.length > 1)
-          GetBuilder<SliderController>(
-            builder: (slider) => Padding(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: SliderDots(count: slider.length, activeIndex: slider.index),
+          if (widget.images.length > 1)
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 18),
+                child: GetBuilder<SliderController>(
+                  builder: (slider) => SliderDots(count: slider.length, activeIndex: slider.index),
+                ),
+              ),
             ),
-          ),
-      ],
+        ],
+      ),
     );
   }
 }

@@ -10,7 +10,6 @@ import 'package:street_art_witnesses/modules/art/artwork/widgets/links_info.dart
 import 'package:street_art_witnesses/modules/art/artwork/widgets/status_info.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
-import 'package:street_art_witnesses/widgets/other/image_slider/app_image_slider.dart';
 
 class ArtworkScreen extends StatelessWidget {
   const ArtworkScreen({super.key, required this.artwork}) : preview = false;

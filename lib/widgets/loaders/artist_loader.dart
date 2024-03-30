@@ -13,7 +13,7 @@ class ArtistLoader extends StatelessWidget {
         child: ListView(
           children: const [
             Skeleton(height: 380),
-            SizedBox(height: 30),
+            SizedBox(height: 10),
             Skeleton(height: 100),
             SizedBox(height: 8),
             Skeleton(height: 50, borderRadius: kSmallContainerRadius),
