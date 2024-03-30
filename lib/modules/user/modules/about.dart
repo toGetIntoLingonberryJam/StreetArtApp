@@ -10,13 +10,12 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const AppHeader(title: 'О нас'),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: kPagePadding,
           child: Column(
             children: [
-              const AppAppbar(title: 'О нас'),
-              const SizedBox(height: 20),
               Image.asset('assets/jam_logo.png', width: 128, height: 128),
               const SizedBox(height: 40),
               const AppContainer(

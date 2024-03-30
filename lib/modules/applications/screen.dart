@@ -21,29 +21,26 @@ class ApplicationsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(ApplicationsController());
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: kPagePadding,
-          child: Column(
-            children: [
-              const AppAppbar(title: 'Заявки'),
-              const SizedBox(height: 20),
-              GetBuilder<ApplicationsController>(builder: (context) {
-                return Expanded(
-                  child: controller.isLoading
-                      ? const Center(child: AppLoadingIndicator())
-                      : RefreshIndicator(
-                          onRefresh: controller.loadTickets,
-                          child: ListView.separated(
-                            itemCount: controller.tickets.length,
-                            itemBuilder: (_, idx) => _ApplicationCard(controller.tickets[idx]),
-                            separatorBuilder: (_, __) => const SizedBox(height: 16),
-                          ),
+      appBar: const AppHeader(title: 'Заявки'),
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+        child: Column(
+          children: [
+            GetBuilder<ApplicationsController>(builder: (context) {
+              return Expanded(
+                child: controller.isLoading
+                    ? const Center(child: AppLoadingIndicator())
+                    : RefreshIndicator(
+                        onRefresh: controller.loadTickets,
+                        child: ListView.separated(
+                          itemCount: controller.tickets.length,
+                          itemBuilder: (_, idx) => _ApplicationCard(controller.tickets[idx]),
+                          separatorBuilder: (_, __) => const SizedBox(height: 16),
                         ),
-                );
-              }),
-            ],
-          ),
+                      ),
+              );
+            }),
+          ],
         ),
       ),
     );
@@ -59,7 +56,10 @@ class _ApplicationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(kContainerRadius),
-      onTap: () => Get.to(() => _ApplicationPage(ticket)),
+      onTap: () async {
+        await Get.to(() => _ApplicationPage(ticket));
+        Get.find<ApplicationsController>().loadTickets();
+      },
       child: AppContainer(
         child: Row(
           children: [
@@ -127,38 +127,37 @@ class _ApplicationPage extends StatelessWidget {
     if (result == null && context.mounted) {
       Utils.showError('Не удалось выполнить запрос');
     } else if (context.mounted) {
-      Utils.showError('Работа отклонена');
       Get.back();
+      Utils.showError('Работа отклонена');
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: kPagePadding,
-          child: Column(
-            children: [
-              AppAppbar(title: 'Заявка ${ticket.id}'),
-              const SizedBox(height: 10),
-              Expanded(child: ArtworkScreen(artwork: ticket.artwork)),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: AppButton.secondary(onTap: () => _reject(context), label: 'Отклонить'),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: AppButton.primary(onTap: () => _approve(context), label: 'Одобрить'),
-                    ),
-                  ],
-                ),
+      appBar: AppHeader(title: 'Заявка ${ticket.id}'),
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+        child: Column(
+          children: [
+            Expanded(
+              child: IgnorePointer(child: ArtworkScreen.preview(artwork: ticket.artwork)),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: AppButton.secondary(onTap: () => _reject(context), label: 'Отклонить'),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: AppButton.primary(onTap: () => _approve(context), label: 'Одобрить'),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

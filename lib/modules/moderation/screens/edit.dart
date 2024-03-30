@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/core/utils/logger.dart';
@@ -37,29 +38,18 @@ class _ModerationEditScreenState extends State<ModerationEditScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
-              child: AppAppbar(
-                title: title,
-                leading: GestureDetector(
-                  child: const Icon(Icons.arrow_back),
-                  onTap: () => Navigator.pop(context),
-                ),
-              ),
-            ),
-            Expanded(
-              child: PageView.builder(
-                controller: c.pageController,
-                physics: const NeverScrollableScrollPhysics(),
-                onPageChanged: (idx) => setState(() => title = _screens[idx].title),
-                itemBuilder: (context, idx) => _screens[idx],
-              ),
-            ),
-          ],
+      appBar: AppHeader(
+        title: title,
+        leading: GestureDetector(
+          child: const Icon(Icons.arrow_back),
+          onTap: () => Navigator.pop(context),
         ),
+      ),
+      body: PageView.builder(
+        controller: c.pageController,
+        physics: const NeverScrollableScrollPhysics(),
+        onPageChanged: (idx) => setState(() => title = _screens[idx].title),
+        itemBuilder: (context, idx) => _screens[idx],
       ),
     );
   }
@@ -348,7 +338,7 @@ class _PreviewView extends StatelessWidget implements _ModerationEditView {
         child: Column(
           children: [
             Expanded(
-              child: ArtworkScreen.preview(artwork: c.preview),
+              child: IgnorePointer(child: ArtworkScreen.preview(artwork: c.preview)),
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),

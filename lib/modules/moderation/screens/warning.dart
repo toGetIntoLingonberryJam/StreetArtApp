@@ -12,29 +12,26 @@ class ModerationWarningScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: kPagePadding,
-          child: Column(
-            children: [
-              AppAppbar(title: ''),
-              SizedBox(height: 20),
-              Expanded(child: SizedBox()),
-              Text(
-                'Добавление работы',
-                style: TextStyles.title1,
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(height: 24),
-              Text(
-                'Перед публикацией, все заявки на добавление работ проходят проверку. Это помогает поддерживать высокое качество контента в нашем приложении.\n\nКак только ваша заявка будет одобрена, ваша работа будет опубликована и станет доступна для всех пользователей.\n\nСпасибо за понимание!',
-                style: TextStyles.text,
-                textAlign: TextAlign.center,
-              ),
-              Expanded(child: SizedBox()),
-              _ConfirmWidget(),
-            ],
-          ),
+      appBar: AppHeader(title: 'Добавление работы'),
+      body: Padding(
+        padding: kPagePadding,
+        child: Column(
+          children: [
+            Spacer(),
+            Text(
+              'Добавление работы',
+              style: TextStyles.title1,
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 24),
+            Text(
+              'Перед публикацией, все заявки на добавление работ проходят проверку. Это помогает поддерживать высокое качество контента в нашем приложении.\n\nКак только ваша заявка будет одобрена, ваша работа будет опубликована и станет доступна для всех пользователей.\n\nСпасибо за понимание!',
+              style: TextStyles.text,
+              textAlign: TextAlign.center,
+            ),
+            Spacer(),
+            _ConfirmWidget(),
+          ],
         ),
       ),
     );

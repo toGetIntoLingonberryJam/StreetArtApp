@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/modules/home/modules/collection/controller.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
@@ -10,44 +9,38 @@ class CollectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: kPagePadding,
-          child: GetBuilder<CollectionController>(builder: (controller) {
-            return Column(
-              children: [
-                AppAppbar(
-                  title: 'Ваша Коллекция',
-                  autoImplyLeading: false,
-                  action: GestureDetector(
-                    onTap: () {},
-                    child: const Icon(Icons.search),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                Row(
-                  children: [
-                    Expanded(
-                        child: AppButton(
-                      onTap: () => controller.switchPage(Collection.artworks),
-                      label: 'Работы',
-                      isPrimary: controller.coll == Collection.artworks,
-                    )),
-                    const SizedBox(width: 16),
-                    Expanded(
-                        child: AppButton(
-                      onTap: () => controller.switchPage(Collection.artists),
-                      label: 'Авторы',
-                      isPrimary: controller.coll == Collection.artists,
-                    )),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                Expanded(child: controller.view),
-              ],
-            );
-          }),
-        ),
+      appBar: AppHeader(
+        title: 'Ваша Коллекция',
+        autoImplyLeading: false,
+        action: GestureDetector(onTap: () {}, child: const Icon(Icons.search)),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+        child: GetBuilder<CollectionController>(builder: (controller) {
+          return Column(
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                      child: AppButton(
+                    onTap: () => controller.switchPage(Collection.artworks),
+                    label: 'Работы',
+                    isPrimary: controller.coll == Collection.artworks,
+                  )),
+                  const SizedBox(width: 16),
+                  Expanded(
+                      child: AppButton(
+                    onTap: () => controller.switchPage(Collection.artists),
+                    label: 'Авторы',
+                    isPrimary: controller.coll == Collection.artists,
+                  )),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Expanded(child: controller.view),
+            ],
+          );
+        }),
       ),
     );
   }

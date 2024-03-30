@@ -6,8 +6,7 @@ import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/modules/home/modules/map/controller.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/modules/home/modules/map/layers/controllers/layer.dart';
-import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
-import 'package:street_art_witnesses/widgets/other/app_appbar.dart';
+import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class LocationPicker extends StatelessWidget {
   const LocationPicker({super.key, required this.initLocation});
@@ -18,13 +17,12 @@ class LocationPicker extends StatelessWidget {
   Widget build(BuildContext context) {
     final c = Get.put(GetMapController(), tag: 'location_picker');
     return Scaffold(
+      appBar: const AppHeader(title: 'Координаты работы'),
       body: SafeArea(
         child: Padding(
-          padding: kPagePadding,
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
           child: Column(
             children: [
-              const AppAppbar(title: 'Координаты работы'),
-              const SizedBox(height: 20),
               Expanded(
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(kContainerRadius),

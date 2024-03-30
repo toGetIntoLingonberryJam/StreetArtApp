@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
@@ -10,19 +9,16 @@ class ChangePasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: kPagePadding,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AppAppbar(title: 'Изменить пароль'),
-              SizedBox(height: 30),
-              Text('Пароль', style: TextStyles.headline1),
-              SizedBox(height: 10),
-              _ChangePasswordForm(),
-            ],
-          ),
+      appBar: AppHeader(title: 'Изменить пароль'),
+      body: Padding(
+        padding: EdgeInsets.fromLTRB(20, 10, 20, 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Пароль', style: TextStyles.headline1),
+            SizedBox(height: 10),
+            _ChangePasswordForm(),
+          ],
         ),
       ),
     );

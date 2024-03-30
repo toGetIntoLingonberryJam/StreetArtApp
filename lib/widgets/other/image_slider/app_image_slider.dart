@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/image/image.dart';
@@ -17,23 +16,16 @@ class AppImageSlider extends StatelessWidget {
     return Stack(
       children: [
         ImageSliderBase(images: images!),
-        Padding(
+        Align(
+          alignment: Alignment.topRight,
+          child: Padding(
             padding: const EdgeInsets.all(20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    AppIconButton(onTap: Get.back, iconData: Icons.arrow_back),
-                    const Expanded(child: SizedBox()),
-                    AppIconButton(
-                      onTap: () => Utils.showInfo('Добавить в избранное'),
-                      iconData: Icons.favorite_border,
-                    ),
-                  ],
-                ),
-              ],
-            )),
+            child: AppIconButton(
+              onTap: () => Utils.showInfo('Добавить в избранное'),
+              iconData: Icons.favorite_border,
+            ),
+          ),
+        ),
       ],
     );
   }

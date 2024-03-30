@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/user.dart';
 import 'package:street_art_witnesses/modules/user/controller.dart';
@@ -14,29 +13,26 @@ class UserInfoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: kPagePadding,
-          child: GetBuilder<ProfileController>(
-            builder: (ctrl) {
-              return Column(
-                children: [
-                  const AppAppbar(title: 'Профиль'),
-                  const SizedBox(height: 20),
-                  AppCircleAvatar(radius: 50, image: AppPlaceholder.assetImage()),
-                  const SizedBox(height: 20),
-                  _UserInfo(ctrl.user),
-                  const SizedBox(height: 40),
-                  UserTiles.changePassword(context),
-                  const SizedBox(height: 40),
-                  AppButton.primary(
-                    onTap: () => Utils.showInfo('Изменения сохранены'),
-                    label: 'Сохранить',
-                  ),
-                ],
-              );
-            },
-          ),
+      appBar: const AppHeader(title: 'Профиль'),
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+        child: GetBuilder<ProfileController>(
+          builder: (ctrl) {
+            return Column(
+              children: [
+                AppCircleAvatar(radius: 50, image: AppPlaceholder.assetImage()),
+                const SizedBox(height: 20),
+                _UserInfo(ctrl.user),
+                const SizedBox(height: 40),
+                UserTiles.changePassword(context),
+                const SizedBox(height: 40),
+                AppButton.primary(
+                  onTap: () => Utils.showInfo('Изменения сохранены'),
+                  label: 'Сохранить',
+                ),
+              ],
+            );
+          },
         ),
       ),
     );

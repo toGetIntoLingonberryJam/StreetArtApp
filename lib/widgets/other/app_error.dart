@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
-import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
-import 'package:street_art_witnesses/widgets/other/app_appbar.dart';
+import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class AppErrorScreen extends StatelessWidget {
   const AppErrorScreen({super.key});
@@ -10,21 +9,19 @@ class AppErrorScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: kPagePadding,
-          child: Column(
-            children: [
-              const AppAppbar(title: 'Ошибка'),
-              const Expanded(child: SizedBox()),
-              const AppErrorWidget(),
-              const Expanded(child: SizedBox()),
-              AppButton.primary(
-                label: 'Назад',
-                onTap: () => Navigator.pop(context),
-              ),
-            ],
-          ),
+      appBar: const AppHeader(title: 'Ошибка'),
+      body: Padding(
+        padding: kPagePadding,
+        child: Column(
+          children: [
+            const Spacer(),
+            const AppErrorWidget(),
+            const Spacer(),
+            AppButton.primary(
+              label: 'Назад',
+              onTap: () => Navigator.pop(context),
+            ),
+          ],
         ),
       ),
     );
