@@ -29,11 +29,19 @@ class CollectionScreen extends StatelessWidget {
                   )),
                   const SizedBox(width: 16),
                   Expanded(
-                      child: AppButton(
+                      child: AppTextButton(
                     onTap: () => controller.switchPage(Collection.artists),
-                    label: 'Авторы',
-                    isPrimary: controller.coll == Collection.artists,
+                    text: 'Авторы',
+                    isFilled: controller.coll == Collection.artists,
                   )),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: AppTextButton(
+                      onTap: () => controller.switchPage(Collection.festivals),
+                      text: 'Фестивали',
+                      isFilled: controller.coll == Collection.festivals,
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(height: 20),

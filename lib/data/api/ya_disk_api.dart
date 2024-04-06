@@ -4,7 +4,7 @@ abstract class YaDiskApi {
   static final _dio = Dio(
     BaseOptions(
       baseUrl: 'https://cloud-api.yandex.net',
-      connectTimeout: const Duration(seconds: 5),
+      connectTimeout: const Duration(seconds: 8),
     ),
   );
   // )..interceptors.add(LoggerDioInterceptor());

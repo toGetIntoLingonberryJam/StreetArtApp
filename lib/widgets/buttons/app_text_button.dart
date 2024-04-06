@@ -3,19 +3,11 @@ import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 
 class AppTextButton extends StatelessWidget {
-  const AppTextButton.filled({
-    super.key,
-    required this.onTap,
-    this.isFilled = true,
-    this.text,
-  });
+  const AppTextButton({super.key, required this.onTap, required this.isFilled, this.text});
 
-  const AppTextButton.outlined({
-    super.key,
-    required this.onTap,
-    this.isFilled = false,
-    this.text,
-  });
+  const AppTextButton.filled({super.key, required this.onTap, this.text}) : isFilled = true;
+
+  const AppTextButton.outlined({super.key, required this.onTap, this.text}) : isFilled = false;
 
   final String? text;
   final TextStyle? style = TextStyles.button;
@@ -41,6 +33,7 @@ class AppTextButton extends StatelessWidget {
         child: Text(
           text ?? '',
           style: isFilled ? style?.copyWith(color: Colors.black) : style,
+          textAlign: TextAlign.center,
         ),
       ),
     );

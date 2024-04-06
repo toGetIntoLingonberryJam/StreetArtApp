@@ -81,6 +81,21 @@ abstract class Logger {
     _log(Log.error('[dio-exception] $e\n[stacktrace] $trace'));
   }
 
+  static void e(Object e) {
+    if (e is DioException) {
+      final trace = e.stackTrace.toString().split('\n').take(5).join('\n');
+      _log(Log.dioException('[dio-exception] $e\n[data] ${e.response?.data}\n[stacktrace] $trace'));
+    } else if (e is Exception) {
+      _log(Log.exception('[exception] $e'));
+    } else if (e is Error) {
+      final trace = e.stackTrace.toString().split('\n').take(5).join('\n');
+      _log(Log.error('[dio-exception] $e\n[stacktrace] $trace'));
+    } else {
+      _log(Log.warning('[undefined] Logger.e() fallback warning - e is undefined'));
+      _log(Log.exception('[undefined] $e'));
+    }
+  }
+
   static void dioException(DioException e) {
     final trace = e.stackTrace.toString().split('\n').take(5).join('\n');
     _log(Log.dioException('[dio-exception] $e\n[data] ${e.response?.data}\n[stacktrace] $trace'));

@@ -5,7 +5,7 @@ abstract class BackendApi {
   static final _dio = Dio(
     BaseOptions(
       baseUrl: 'https://streetartwitnesses.fvds.ru',
-      connectTimeout: const Duration(seconds: 5),
+      connectTimeout: const Duration(seconds: 8),
     ),
   )..interceptors.add(LoggerDioInterceptor());
 
