@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/extensions.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/modules/user/modules/user_info.dart';
@@ -45,7 +46,7 @@ class ProfileTile extends StatelessWidget {
                   ),
                   Text(
                     email,
-                    style: TextStyles.text,
+                    style: TextStyles.text.copyWith(color: context.colors.secondaryContainer),
                     overflow: TextOverflow.ellipsis,
                   ),
                 ],

@@ -22,10 +22,10 @@ class CollectionScreen extends StatelessWidget {
               Row(
                 children: [
                   Expanded(
-                      child: AppButton(
+                      child: AppTextButton(
                     onTap: () => controller.switchPage(Collection.artworks),
-                    label: 'Работы',
-                    isPrimary: controller.coll == Collection.artworks,
+                    text: 'Работы',
+                    isFilled: controller.coll == Collection.artworks,
                   )),
                   const SizedBox(width: 16),
                   Expanded(

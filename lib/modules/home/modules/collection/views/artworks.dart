@@ -4,10 +4,7 @@ import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class ArtworksView extends StatelessWidget {
-  const ArtworksView({
-    super.key,
-    required this.artworks,
-  });
+  const ArtworksView({super.key, required this.artworks});
 
   final List<Artwork>? artworks;
 

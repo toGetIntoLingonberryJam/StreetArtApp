@@ -13,7 +13,7 @@ class CollectionController extends GetxController {
   Widget get view => switch (_coll) {
         Collection.artworks => const ArtworksView(artworks: []),
         Collection.artists => const ArtistsView(artists: []),
-        Collection.festivals => const FestivalsView(festivals: []),
+        Collection.festivals => const FestivalsView(festsPrevs: []),
       };
 
   void switchPage(Collection coll) {

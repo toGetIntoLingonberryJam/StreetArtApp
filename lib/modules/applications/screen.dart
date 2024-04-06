@@ -173,13 +173,13 @@ class _CardImage extends StatelessWidget {
   Widget build(BuildContext context) {
     if (artwork.images == null || artwork.images!.isEmpty) {
       return ClipRRect(
-        borderRadius: BorderRadius.circular(kSmallContainerRadius),
+        borderRadius: BorderRadius.circular(kContainerRadius),
         child: const AppPlaceholder(width: 56, height: 56),
       );
     }
 
     return ClipRRect(
-      borderRadius: BorderRadius.circular(kSmallContainerRadius),
+      borderRadius: BorderRadius.circular(kContainerRadius),
       child: SizedBox(
         width: 56,
         height: 56,
