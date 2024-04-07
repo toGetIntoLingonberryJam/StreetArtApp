@@ -8,7 +8,7 @@ import 'package:street_art_witnesses/data/services/local_store_service.dart';
 import 'package:street_art_witnesses/core/utils/logger.dart';
 import 'package:street_art_witnesses/modules/auth/check_email/controller.dart';
 
-class AuthService extends GetxService with ErrorHandler {
+class AuthService extends GetxService with ApiHandlerMixin {
   late final Rx<User> _user;
   Rx<User> get user => _user;
 
