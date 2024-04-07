@@ -19,7 +19,7 @@ class AppImageSlider extends StatelessWidget {
         Align(
           alignment: Alignment.topRight,
           child: Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.fromLTRB(0, Paddings.normal - 4, Paddings.normal, 0),
             child: SAIconButton(
               onTap: () => Utils.showInfo('Добавить в избранное'),
               iconData: Icons.favorite_border,
@@ -38,14 +38,11 @@ class _NoImagesPlaceholder extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 400,
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(kContainerRadius),
-          child: const SAContainer(
-            child: Center(
-              child: Text('Фотографии отсутствуют', style: SATextStyles.headline1),
-            ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(kContainerRadius),
+        child: const SAContainer(
+          child: Center(
+            child: Text('Фотографии отсутствуют', style: SATextStyles.headline1),
           ),
         ),
       ),

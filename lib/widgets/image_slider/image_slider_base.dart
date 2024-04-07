@@ -47,7 +47,7 @@ class _ImageSliderBaseState extends State<ImageSliderBase> {
             children: imageLoaders
                 .map(
                   (imageLoader) => Padding(
-                    padding: const EdgeInsets.all(10),
+                    padding: const EdgeInsets.symmetric(horizontal: 4),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(kContainerRadius),
                       child: LoadingImage(imageLoader: imageLoader),
@@ -60,7 +60,7 @@ class _ImageSliderBaseState extends State<ImageSliderBase> {
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
-                padding: const EdgeInsets.only(bottom: 18),
+                padding: const EdgeInsets.only(bottom: Paddings.small),
                 child: GetBuilder<SliderController>(
                   builder: (slider) =>
                       SASliderDots(count: slider.length, activeIndex: slider.index),
