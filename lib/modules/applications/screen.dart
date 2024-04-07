@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:street_art_ui_kit/street_art_ui_kit.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide Response;
+import 'package:street_art_witnesses/core/utils/error_handler.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/data/api/backend_api.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
@@ -102,10 +102,10 @@ class _ApplicationPage extends StatelessWidget {
 
   void _approve(BuildContext context) async {
     final token = Get.find<AuthService>().user.value.token!;
-    final future = BackendApi.patch(
+    final future = ApiHandler.handleApiRequest<Response>(BackendApi.patch(
       '/v1/tickets/approve/${ticket.id}',
       options: Options(headers: {'Authorization': 'Bearer $token'}),
-    );
+    ));
     final result = await Utils.showLoading(future);
     if (result == null && context.mounted) {
       Utils.showError('Не удалось выполнить запрос');
@@ -134,20 +134,18 @@ class _ApplicationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SAScaffold(
       title: 'Заявка ${ticket.id}',
-      paddings: kPagePadding,
       body: Column(
         children: [
-          Expanded(
-            child: ArtworkScreen.preview(artwork: ticket.artwork),
-          ),
+          Expanded(child: ArtworkScreen.preview(artwork: ticket.artwork)),
+          const SizedBox(height: Paddings.small),
           Padding(
-            padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+            padding: kPagePadding,
             child: Row(
               children: [
                 Expanded(
                   child: SASecondaryButton(onTap: () => _reject(context), label: 'Отклонить'),
                 ),
-                const SizedBox(width: 16),
+                const SizedBox(width: Paddings.normal),
                 Expanded(
                   child: SAPrimaryButton(onTap: () => _approve(context), label: 'Одобрить'),
                 ),
