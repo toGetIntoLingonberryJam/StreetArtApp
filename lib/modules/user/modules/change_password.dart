@@ -1,21 +1,19 @@
-import 'package:flutter/material.dart';
+import 'package:street_art_ui_kit/street_art_ui_kit.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
-import 'package:street_art_witnesses/core/values/text_styles.dart';
-import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class ChangePasswordPage extends StatelessWidget {
   const ChangePasswordPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: AppHeader(title: 'Изменить пароль'),
+    return const SAScaffold(
+      title: 'Изменить пароль',
       body: Padding(
         padding: EdgeInsets.fromLTRB(20, 10, 20, 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Пароль', style: TextStyles.headline1),
+            Text('Пароль', style: SATextStyles.headline1),
             SizedBox(height: 10),
             _ChangePasswordForm(),
           ],
@@ -43,20 +41,20 @@ class __ChangePasswordFormState extends State<_ChangePasswordForm> {
     return Form(
         child: Column(
       children: [
-        const AppContainer.small(
-          child: Text('Введите старый пароль', style: TextStyles.text),
+        const SAContainer.small(
+          child: Text('Введите старый пароль', style: SATextStyles.text),
         ),
         const SizedBox(height: 10),
-        const AppContainer.small(
-          child: Text('Введите новый пароль', style: TextStyles.text),
+        const SAContainer.small(
+          child: Text('Введите новый пароль', style: SATextStyles.text),
         ),
         const SizedBox(height: 10),
-        const AppContainer.small(
-          child: Text('Повторите новый пароль', style: TextStyles.text),
+        const SAContainer.small(
+          child: Text('Повторите новый пароль', style: SATextStyles.text),
         ),
         const SizedBox(height: 40),
-        AppButton.primary(
-          onTap: () => Utils.showInfo('Изменения сохранены'),
+        SAPrimaryButton(
+          onTap: () => Utils.showSuccess('Изменения сохранены'),
           label: 'Сохранить',
         ),
       ],

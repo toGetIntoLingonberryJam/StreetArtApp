@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:street_art_ui_kit/street_art_ui_kit.dart';
 import 'package:street_art_witnesses/data/models/artist/artist.dart';
 import 'package:street_art_witnesses/modules/art/artist/widgets/artist_info.dart';
-import 'package:street_art_witnesses/widgets/other/app_header.dart';
-import 'package:street_art_witnesses/widgets/other/image_slider/app_image_slider.dart';
+import 'package:street_art_witnesses/widgets/image_slider/app_image_slider.dart';
 
 class ArtistScreen extends StatelessWidget {
   const ArtistScreen({super.key, required this.artist});
@@ -11,8 +11,8 @@ class ArtistScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppHeader(title: artist.name),
+    return SAScaffold(
+      title: artist.name,
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(bottom: 10),
         child: Column(

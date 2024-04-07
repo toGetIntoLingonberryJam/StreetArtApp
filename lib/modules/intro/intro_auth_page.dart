@@ -1,9 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:street_art_ui_kit/street_art_ui_kit.dart';
 import 'package:get/get.dart';
-import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/modules/auth/screen.dart';
 import 'package:street_art_witnesses/modules/home/screen.dart';
-import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class IntroAuthPage extends StatelessWidget {
   const IntroAuthPage({super.key, required this.content});
@@ -21,30 +19,27 @@ class IntroAuthPage extends StatelessWidget {
               const SizedBox(height: 20),
               const Expanded(
                 flex: 4,
-                child: AppLogo(),
+                child: SALogo(),
               ),
               const SizedBox(height: 40),
               const Text(
                 'Свидетели Стрит-Арта',
-                style: TextStyles.title1,
+                style: SATextStyles.title1,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 30),
               Text(
                 content,
-                style: TextStyles.text,
+                style: SATextStyles.text,
                 textAlign: TextAlign.center,
               ),
               const Expanded(flex: 2, child: SizedBox()),
-              AppButton.primary(
+              SAPrimaryButton(
                 onTap: () => Get.to(() => AuthScreen()),
                 label: 'Войти в профиль',
               ),
               const SizedBox(height: 12),
-              AppButton.secondary(
-                onTap: () => Get.to(() => const HomeScreen()),
-                label: 'Позже',
-              ),
+              SASecondaryButton(onTap: () => Get.to(() => const HomeScreen()), label: 'Позже'),
               const Expanded(flex: 2, child: SizedBox()),
             ],
           ),

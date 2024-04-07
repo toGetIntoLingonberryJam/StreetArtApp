@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:street_art_ui_kit/street_art_ui_kit.dart';
 import 'package:get/get.dart';
 import 'package:street_art_witnesses/data/services/auth_service.dart';
 import 'package:street_art_witnesses/modules/applications/screen.dart';
@@ -7,48 +7,47 @@ import 'package:street_art_witnesses/modules/user/modules/about.dart';
 import 'package:street_art_witnesses/modules/user/modules/change_password.dart';
 import 'package:street_art_witnesses/modules/user/modules/settings/screen.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
-import 'package:street_art_witnesses/widgets/containers/app_list_tile.dart';
 
 abstract class UserTiles {
-  static AppListTile settings(BuildContext context) => AppListTile(
+  static SAListTile settings(BuildContext context) => SAListTile(
         onTap: () => Get.to(() => const SettingsScreen()),
         iconData: Icons.settings_outlined,
         text: 'Настройки',
       );
 
-  static AppListTile about(BuildContext context) => AppListTile(
+  static SAListTile about(BuildContext context) => SAListTile(
         onTap: () => Get.to(() => const AboutPage()),
         iconData: Icons.info_outline,
         text: 'О нас',
       );
 
-  static AppListTile logout(BuildContext context) => AppListTile(
+  static SAListTile logout(BuildContext context) => SAListTile(
         onTap: () => _logout(context),
         iconData: Icons.logout,
         text: 'Выйти',
         foregroundColor: Theme.of(context).colorScheme.error,
       );
 
-  static AppListTile publications(BuildContext context) => const AppListTile(
+  static SAListTile publications(BuildContext context) => const SAListTile(
         iconData: Icons.collections_outlined,
         text: 'Мои публикации',
         notificationsCount: 1,
       );
 
-  static AppListTile applications(BuildContext context) => AppListTile(
+  static SAListTile applications(BuildContext context) => SAListTile(
         onTap: () => Get.to(() => const ApplicationsScreen()),
         iconData: Icons.filter_list,
         text: 'Заявки на публикацию',
         notificationsCount: 100,
       );
 
-  static AppListTile addArtwork(BuildContext context) => AppListTile(
+  static SAListTile addArtwork(BuildContext context) => SAListTile(
         onTap: () => Get.to(() => const ModerationWarningScreen()),
         iconData: Icons.add_circle_outline,
         text: 'Добавить работу',
       );
 
-  static AppListTile changePassword(BuildContext context) => AppListTile(
+  static SAListTile changePassword(BuildContext context) => SAListTile(
         onTap: () => Get.to(() => const ChangePasswordPage()),
         iconData: Icons.lock_person_outlined,
         text: 'Изменить пароль',

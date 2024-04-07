@@ -11,6 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  street_art_ui_kit:
+    path: '../street_art_ui_kit'
   cupertino_icons: ^1.0.2
   provider: ^6.0.5
   flutter_launcher_icons: ^0.13.1

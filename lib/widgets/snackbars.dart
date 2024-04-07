@@ -1,13 +1,12 @@
-import 'package:flutter/material.dart';
+import 'package:street_art_ui_kit/street_art_ui_kit.dart';
 import 'package:get/get.dart';
-import 'package:street_art_witnesses/core/values/text_styles.dart';
 
 class InfoSnackbar extends GetSnackBar {
   InfoSnackbar(String message, {super.key})
       : super(
           messageText: Text(
             message,
-            style: TextStyles.headline2.copyWith(color: Get.theme.colorScheme.inverseSurface),
+            style: SATextStyles.headline2.copyWith(color: Get.theme.colorScheme.inverseSurface),
           ),
           icon: Icon(
             Icons.done_all,
@@ -40,7 +39,7 @@ class ErrorSnackbar extends GetSnackBar {
       : super(
           messageText: Text(
             message,
-            style: TextStyles.headline2.copyWith(color: Get.theme.colorScheme.inverseSurface),
+            style: SATextStyles.headline2.copyWith(color: Get.theme.colorScheme.inverseSurface),
           ),
           icon: Icon(
             Icons.done_all,
@@ -73,7 +72,7 @@ class SuccessSnackBar extends GetSnackBar {
       : super(
           messageText: Text(
             message,
-            style: TextStyles.headline2.copyWith(color: Get.theme.colorScheme.inverseSurface),
+            style: SATextStyles.headline2.copyWith(color: Get.theme.colorScheme.inverseSurface),
           ),
           icon: Icon(
             Icons.done_all,

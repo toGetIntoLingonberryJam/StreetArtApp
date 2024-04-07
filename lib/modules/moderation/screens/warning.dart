@@ -1,18 +1,16 @@
-import 'package:flutter/material.dart';
+import 'package:street_art_ui_kit/street_art_ui_kit.dart';
 import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
-import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/services/settings_service.dart';
 import 'package:street_art_witnesses/modules/moderation/screens/edit.dart';
-import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class ModerationWarningScreen extends StatelessWidget {
   const ModerationWarningScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: AppHeader(title: 'Добавление работы'),
+    return const SAScaffold(
+      title: 'Добавление работы',
       body: Padding(
         padding: kPagePadding,
         child: Column(
@@ -20,13 +18,13 @@ class ModerationWarningScreen extends StatelessWidget {
             Spacer(),
             Text(
               'Добавление работы',
-              style: TextStyles.title1,
+              style: SATextStyles.title1,
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 24),
             Text(
               'Перед публикацией, все заявки на добавление работ проходят проверку. Это помогает поддерживать высокое качество контента в нашем приложении.\n\nКак только ваша заявка будет одобрена, ваша работа будет опубликована и станет доступна для всех пользователей.\n\nСпасибо за понимание!',
-              style: TextStyles.text,
+              style: SATextStyles.text,
               textAlign: TextAlign.center,
             ),
             Spacer(),
@@ -52,7 +50,7 @@ class _ConfirmWidgetState extends State<_ConfirmWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        AppButton.primary(
+        SAPrimaryButton(
           label: 'Я ознакомился',
           onTap: () {
             if (dontShowAgain) {
@@ -65,9 +63,9 @@ class _ConfirmWidgetState extends State<_ConfirmWidget> {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            AppCheckBox(value: dontShowAgain, onChanged: (v) => setState(() => dontShowAgain = v)),
+            SACheckBox(value: dontShowAgain, onChanged: (v) => setState(() => dontShowAgain = v)),
             const SizedBox(width: 10),
-            const Text('Не показывать снова', style: TextStyles.button),
+            const Text('Не показывать снова', style: SATextStyles.button),
           ],
         ),
       ],

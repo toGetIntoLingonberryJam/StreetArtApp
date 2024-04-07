@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:street_art_ui_kit/street_art_ui_kit.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_tile_provider.dart';
 import 'package:get/get.dart';
@@ -6,7 +6,6 @@ import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/modules/home/modules/map/controller.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/modules/home/modules/map/layers/controllers/layer.dart';
-import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
 
 class MapScreen extends StatelessWidget {
   const MapScreen({super.key});
@@ -53,7 +52,7 @@ class MapScreen extends StatelessWidget {
             ),
           ),
           if (c.navigator.show)
-            AppButton.primary(
+            SAPrimaryButton(
               onTap: () => c.navigator.cancel(),
               label: 'Отменить следование',
             ),

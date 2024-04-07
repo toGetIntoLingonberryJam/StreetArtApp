@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:street_art_witnesses/core/values/text_styles.dart';
+import 'package:street_art_ui_kit/street_art_ui_kit.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
-import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class StatusInfo extends StatelessWidget {
   const StatusInfo(this.status, {super.key});
@@ -10,13 +8,13 @@ class StatusInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppContainer(
+    return SAContainer(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Состояние работы', style: TextStyles.headline1),
+          const Text('Состояние работы', style: SATextStyles.headline1),
           const SizedBox(height: 10),
-          Text(_statusToString(status), style: TextStyles.text),
+          Text(_statusToString(status), style: SATextStyles.text),
           // const Text(
           //   'юзернейм и юзернейм отметили, что эта работа затегана',
           //   style: TextStyles.caption,

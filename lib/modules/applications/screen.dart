@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:street_art_ui_kit/street_art_ui_kit.dart';
 import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
-import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/api/backend_api.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/data/models/tickets/artwork_ticket/artwork_ticket.dart';
@@ -12,7 +12,7 @@ import 'package:street_art_witnesses/modules/applications/controller.dart';
 import 'package:street_art_witnesses/modules/art/artwork/screen.dart';
 import 'package:street_art_witnesses/data/services/images_service.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
-import 'package:street_art_witnesses/widgets/app_widgets.dart';
+import 'package:street_art_witnesses/widgets/image_slider/image_slider_base.dart';
 
 class ApplicationsScreen extends StatelessWidget {
   const ApplicationsScreen({super.key});
@@ -20,28 +20,26 @@ class ApplicationsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ApplicationsController());
-    return Scaffold(
-      appBar: const AppHeader(title: 'Заявки'),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-        child: Column(
-          children: [
-            GetBuilder<ApplicationsController>(builder: (context) {
-              return Expanded(
-                child: controller.isLoading
-                    ? const Center(child: AppLoadingIndicator())
-                    : RefreshIndicator(
-                        onRefresh: controller.loadTickets,
-                        child: ListView.separated(
-                          itemCount: controller.tickets.length,
-                          itemBuilder: (_, idx) => _ApplicationCard(controller.tickets[idx]),
-                          separatorBuilder: (_, __) => const SizedBox(height: 16),
-                        ),
+    return SAScaffold(
+      title: 'Заявки',
+      paddings: kPagePadding,
+      body: Column(
+        children: [
+          GetBuilder<ApplicationsController>(builder: (context) {
+            return Expanded(
+              child: controller.isLoading
+                  ? const Center(child: SALoadingIndicator())
+                  : RefreshIndicator(
+                      onRefresh: controller.loadTickets,
+                      child: ListView.separated(
+                        itemCount: controller.tickets.length,
+                        itemBuilder: (_, idx) => _ApplicationCard(controller.tickets[idx]),
+                        separatorBuilder: (_, __) => const SizedBox(height: 16),
                       ),
-              );
-            }),
-          ],
-        ),
+                    ),
+            );
+          }),
+        ],
       ),
     );
   }
@@ -60,7 +58,7 @@ class _ApplicationCard extends StatelessWidget {
         await Get.to(() => _ApplicationPage(ticket));
         Get.find<ApplicationsController>().loadTickets();
       },
-      child: AppContainer(
+      child: SAContainer(
         child: Row(
           children: [
             _CardImage(artwork: ticket.artwork),
@@ -71,19 +69,19 @@ class _ApplicationCard extends StatelessWidget {
                 children: [
                   Text(
                     'Заявка ${ticket.id}',
-                    style: TextStyles.headline2,
+                    style: SATextStyles.headline2,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 4),
                   Text(
                     'User Id: ${ticket.artwork.addedByUserId}',
-                    style: TextStyles.textAdditional,
+                    style: SATextStyles.textAdditional,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 4),
                   Text(
                     ticket.artwork.updatedAt,
-                    style: TextStyles.caption,
+                    style: SATextStyles.caption,
                     overflow: TextOverflow.ellipsis,
                   ),
                 ],
@@ -112,7 +110,7 @@ class _ApplicationPage extends StatelessWidget {
     if (result == null && context.mounted) {
       Utils.showError('Не удалось выполнить запрос');
     } else if (context.mounted) {
-      Utils.showInfo('Работа одобрена');
+      Utils.showSuccess('Работа одобрена');
       Get.back();
     }
   }
@@ -134,31 +132,29 @@ class _ApplicationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppHeader(title: 'Заявка ${ticket.id}'),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-        child: Column(
-          children: [
-            Expanded(
-              child: IgnorePointer(child: ArtworkScreen.preview(artwork: ticket.artwork)),
+    return SAScaffold(
+      title: 'Заявка ${ticket.id}',
+      paddings: kPagePadding,
+      body: Column(
+        children: [
+          Expanded(
+            child: ArtworkScreen.preview(artwork: ticket.artwork),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+            child: Row(
+              children: [
+                Expanded(
+                  child: SASecondaryButton(onTap: () => _reject(context), label: 'Отклонить'),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: SAPrimaryButton(onTap: () => _approve(context), label: 'Одобрить'),
+                ),
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: AppButton.secondary(onTap: () => _reject(context), label: 'Отклонить'),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: AppButton.primary(onTap: () => _approve(context), label: 'Одобрить'),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -174,7 +170,7 @@ class _CardImage extends StatelessWidget {
     if (artwork.images == null || artwork.images!.isEmpty) {
       return ClipRRect(
         borderRadius: BorderRadius.circular(kContainerRadius),
-        child: const AppPlaceholder(width: 56, height: 56),
+        child: const SAPlaceholder(width: 56, height: 56),
       );
     }
 

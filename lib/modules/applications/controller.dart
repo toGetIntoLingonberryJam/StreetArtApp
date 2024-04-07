@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:street_art_witnesses/data/api/backend_api.dart';
 import 'package:street_art_witnesses/data/models/tickets/artwork_ticket/artwork_ticket.dart';
 import 'package:street_art_witnesses/data/services/auth_service.dart';
-import 'package:street_art_witnesses/widgets/other/app_error.dart';
+import 'package:street_art_ui_kit/street_art_ui_kit.dart';
 
 class ApplicationsController extends GetxController {
   ApplicationsController() : _authService = Get.find<AuthService>() {
@@ -17,7 +17,7 @@ class ApplicationsController extends GetxController {
   @override
   void onInit() {
     ever(_authService.user, (user) {
-      if (!user.isModerator) Get.off(() => const AppErrorScreen());
+      if (!user.isModerator) Get.off(() => const SAErrorScreen());
     });
     super.onInit();
   }

@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:street_art_ui_kit/street_art_ui_kit.dart';
 import 'package:get/get.dart';
 import 'package:street_art_witnesses/modules/home/modules/collection/views/artists.dart';
 import 'package:street_art_witnesses/modules/search/controller.dart';
-import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
@@ -11,7 +9,7 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(AppSearchController());
-    return AppScaffold(
+    return SAScaffold(
       title: 'Поиск',
       body: GetBuilder<AppSearchController>(builder: (c) {
         final items = c.items;
@@ -20,7 +18,7 @@ class SearchScreen extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
           child: Column(
             children: [
-              AppTextFormField(
+              SATextFormField(
                 hintText: '',
                 validator: null,
                 controller: c.searchController,
@@ -52,7 +50,7 @@ class _ArtistsLoader extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       itemCount: 10,
-      itemBuilder: (_, i) => const AppContainer(child: SizedBox(height: 100)),
+      itemBuilder: (_, i) => const SAContainer(child: SizedBox(height: 100)),
       separatorBuilder: (_, __) => const SizedBox(height: 20),
     );
   }

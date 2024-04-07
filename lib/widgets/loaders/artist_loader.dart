@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:street_art_witnesses/widgets/app_widgets.dart';
+import 'package:street_art_ui_kit/street_art_ui_kit.dart';
 
 class ArtistLoader extends StatelessWidget {
   const ArtistLoader({super.key});
@@ -7,14 +6,14 @@ class ArtistLoader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppHeader(title: ''),
+      appBar: const SAHeader(title: ''),
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: ListView(
           children: const [
-            Skeleton(height: 380),
+            SASkeleton(height: 380),
             SizedBox(height: 10),
-            Skeleton(height: 100),
+            SASkeleton(height: 100),
           ],
         ),
       ),

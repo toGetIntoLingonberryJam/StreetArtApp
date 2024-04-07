@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:street_art_witnesses/core/values/text_styles.dart';
+import 'package:street_art_ui_kit/street_art_ui_kit.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
-import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class ArtworksView extends StatelessWidget {
   const ArtworksView({super.key, required this.artworks});
@@ -11,13 +9,13 @@ class ArtworksView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (artworks == null) {
-      return const Center(child: AppLoadingIndicator());
+      return const Center(child: SALoadingIndicator());
     }
     if (artworks!.isEmpty) {
       return const Center(
           child: Text(
         'У вас нет сохраненных работ',
-        style: TextStyles.headline2,
+        style: SATextStyles.headline2,
       ));
     }
 
@@ -56,7 +54,7 @@ class ArtworkCard extends StatelessWidget {
                 width: 100,
                 height: 100,
                 color: Theme.of(context).colorScheme.surface,
-                child: const AppPlaceholder(),
+                child: const SAPlaceholder(),
               ),
             ),
             const SizedBox(width: 8),
@@ -69,7 +67,7 @@ class ArtworkCard extends StatelessWidget {
                       Expanded(
                           child: Text(
                         'Artist ID: ${artwork.artistId}',
-                        style: TextStyles.text,
+                        style: SATextStyles.text,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       )),
@@ -81,14 +79,14 @@ class ArtworkCard extends StatelessWidget {
                   ),
                   Text(
                     artwork.title,
-                    style: TextStyles.headline1,
+                    style: SATextStyles.headline1,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const Expanded(child: SizedBox()),
                   Text(
                     artwork.location.address,
-                    style: TextStyles.caption,
+                    style: SATextStyles.caption,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),

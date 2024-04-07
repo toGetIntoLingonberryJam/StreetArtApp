@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:street_art_ui_kit/street_art_ui_kit.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
@@ -6,7 +6,6 @@ import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/modules/home/modules/map/controller.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/modules/home/modules/map/layers/controllers/layer.dart';
-import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class LocationPicker extends StatelessWidget {
   const LocationPicker({super.key, required this.initLocation});
@@ -15,61 +14,51 @@ class LocationPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final c = Get.put(GetMapController(), tag: 'location_picker');
-    return Scaffold(
-      appBar: const AppHeader(title: 'Координаты работы'),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-          child: Column(
-            children: [
-              Expanded(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(kContainerRadius),
-                  child: FlutterMap(
-                    mapController: c.mapController.mapController,
-                    options: MapOptions(
-                      initialZoom: 12,
-                      backgroundColor: Theme.of(context).colorScheme.background,
-                      initialCenter: initLocation,
-                    ),
-                    children: [
-                      TileLayer(urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'),
-                      const MarkerLayer(
-                        markers: [],
-                        // markers: context.read<MapCubit>().markers,
-                      ),
-                      RichAttributionWidget(
-                        alignment: AttributionAlignment.bottomLeft,
-                        attributions: [
-                          TextSourceAttribution(
-                            'OpenStreetMap contributors',
-                            onTap: () => Utils.tryLaunchUrl(
-                              Uri.parse('https://openstreetmap.org/copyright'),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const MapControllersLayer(
-                        geopostion: false,
-                        search: false,
-                        mapTag: 'location_picker',
-                      ),
-                      const _PickerMarker(),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: kPagePadding,
-                          child: AppButton.primary(
-                              onTap: () => Get.back(result: c.mapCenter), label: 'Выбрать'),
-                        ),
-                      ),
-                    ],
+    final c = Get.put(GetMapController(showLocations: false), tag: 'location_picker');
+    return SAScaffold(
+      title: 'Координаты работы',
+      paddings: kPagePadding,
+      body: ClipRRect(
+        borderRadius: BorderRadius.circular(kContainerRadius),
+        child: FlutterMap(
+          mapController: c.mapController.mapController,
+          options: MapOptions(
+            initialZoom: 12,
+            backgroundColor: Theme.of(context).colorScheme.background,
+            initialCenter: initLocation,
+          ),
+          children: [
+            TileLayer(urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'),
+            const MarkerLayer(
+              markers: [],
+              // markers: context.read<MapCubit>().markers,
+            ),
+            RichAttributionWidget(
+              alignment: AttributionAlignment.bottomLeft,
+              attributions: [
+                TextSourceAttribution(
+                  'OpenStreetMap contributors',
+                  onTap: () => Utils.tryLaunchUrl(
+                    Uri.parse('https://openstreetmap.org/copyright'),
                   ),
                 ),
+              ],
+            ),
+            const MapControllersLayer(
+              geopostion: false,
+              search: false,
+              mapTag: 'location_picker',
+            ),
+            const _PickerMarker(),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: kPagePadding,
+                child:
+                    SAPrimaryButton(onTap: () => Get.back(result: c.mapCenter), label: 'Выбрать'),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

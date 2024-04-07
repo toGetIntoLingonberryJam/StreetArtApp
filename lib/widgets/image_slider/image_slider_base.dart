@@ -1,15 +1,12 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:street_art_ui_kit/street_art_ui_kit.dart';
 import 'package:get/get.dart';
-import 'package:street_art_witnesses/core/values/constants.dart';
-import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/image/image.dart';
 import 'package:street_art_witnesses/data/services/settings_service.dart';
 import 'package:street_art_witnesses/data/services/images_service.dart';
-import 'package:street_art_witnesses/widgets/app_widgets.dart';
-import 'package:street_art_witnesses/widgets/other/image_slider/controller.dart';
+
+import 'controller.dart';
 
 class ImageSliderBase extends StatefulWidget {
   const ImageSliderBase({super.key, required this.images});
@@ -65,7 +62,8 @@ class _ImageSliderBaseState extends State<ImageSliderBase> {
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 18),
                 child: GetBuilder<SliderController>(
-                  builder: (slider) => SliderDots(count: slider.length, activeIndex: slider.index),
+                  builder: (slider) =>
+                      SASliderDots(count: slider.length, activeIndex: slider.index),
                 ),
               ),
             ),
@@ -91,7 +89,7 @@ class LoadingImage extends StatelessWidget {
               if (loadingProgress == null) {
                 return child;
               }
-              return const Skeleton();
+              return const SASkeleton();
             },
             image: snapshot.data!,
             fit: BoxFit.cover,
@@ -102,12 +100,12 @@ class LoadingImage extends StatelessWidget {
           return const Center(
             child: Text(
               'Не удалось загрузить картинку',
-              style: TextStyles.headline1,
+              style: SATextStyles.headline1,
               textAlign: TextAlign.center,
             ),
           );
         }
-        return const Skeleton();
+        return const SASkeleton();
       },
     );
   }

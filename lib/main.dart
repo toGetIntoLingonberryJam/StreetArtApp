@@ -1,7 +1,7 @@
 import 'package:ansicolor/ansicolor.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:street_art_ui_kit/street_art_ui_kit.dart';
 import 'package:street_art_witnesses/data/models/user.dart';
 import 'package:street_art_witnesses/data/services/auth_service.dart';
 import 'package:street_art_witnesses/data/services/local_store_service.dart';
@@ -30,6 +30,7 @@ void main() async {
   Get.put(CollectionController(), permanent: true);
   Get.put(EmailCounterController(durationInSeconds: 30), permanent: true);
 
+  SANavigatorConfig.init(onPopScreenCalled: Get.back);
   runApp(
     MyApp(initImageQuality: quality),
     // DevicePreview(

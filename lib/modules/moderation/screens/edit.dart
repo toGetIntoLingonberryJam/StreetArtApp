@@ -1,16 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:street_art_ui_kit/street_art_ui_kit.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/core/utils/logger.dart';
-import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/artist/preview/artist_preview.dart';
 import 'package:street_art_witnesses/modules/art/artwork/screen.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/core/utils/validator.dart';
 import 'package:street_art_witnesses/modules/moderation/controller.dart';
 import 'package:street_art_witnesses/modules/search/screen.dart';
-import 'package:street_art_witnesses/widgets/app_widgets.dart';
+import 'package:street_art_witnesses/widgets/map/location_picker.dart';
 
 class ModerationEditScreen extends StatefulWidget {
   const ModerationEditScreen({super.key});
@@ -37,14 +35,8 @@ class _ModerationEditScreenState extends State<ModerationEditScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppHeader(
-        title: title,
-        leading: GestureDetector(
-          child: const Icon(Icons.arrow_back),
-          onTap: () => Navigator.pop(context),
-        ),
-      ),
+    return SAScaffold(
+      title: title,
       body: PageView.builder(
         controller: c.pageController,
         physics: const NeverScrollableScrollPhysics(),
@@ -136,23 +128,23 @@ class _MainInfoViewState extends State<_MainInfoView> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('Фото', style: TextStyles.headline1),
+                      const Text('Фото', style: SATextStyles.headline1),
                       const SizedBox(height: 8),
-                      const AppButton.primary(label: 'Выбрать фото', onTap: null),
+                      const SAPrimaryButton(label: 'Выбрать фото', onTap: null),
                       const SizedBox(height: 40),
-                      const Text('Название', style: TextStyles.headline1),
+                      const Text('Название', style: SATextStyles.headline1),
                       const SizedBox(height: 8),
-                      AppTextFormField(
+                      SATextFormField(
                         controller: nameController,
                         hintText: 'Введите название',
                         validator: Validator.get(Validate.notEmpty),
                       ),
                       const SizedBox(height: 16),
-                      const Text('Автор', style: TextStyles.headline1),
+                      const Text('Автор', style: SATextStyles.headline1),
                       const SizedBox(height: 8),
                       GestureDetector(
                         onTap: _pickArtist,
-                        child: AppTextFormField(
+                        child: SATextFormField(
                           enabled: false,
                           controller: artistController,
                           hintText: 'Укажите автора',
@@ -160,19 +152,19 @@ class _MainInfoViewState extends State<_MainInfoView> {
                         ),
                       ),
                       const SizedBox(height: 16),
-                      const Text('Адрес работы', style: TextStyles.headline1),
+                      const Text('Адрес работы', style: SATextStyles.headline1),
                       const SizedBox(height: 8),
-                      AppTextFormField(
+                      SATextFormField(
                         controller: addressController,
                         hintText: 'Введите адрес работы',
                         validator: Validator.get(Validate.notEmpty),
                       ),
                       const SizedBox(height: 16),
-                      const Text('Местоположение', style: TextStyles.headline1),
+                      const Text('Местоположение', style: SATextStyles.headline1),
                       const SizedBox(height: 8),
                       GestureDetector(
                         onTap: _showLocationPicker,
-                        child: AppTextFormField(
+                        child: SATextFormField(
                           enabled: false,
                           controller: locationController,
                           hintText: 'Укажите координаты работы',
@@ -186,7 +178,7 @@ class _MainInfoViewState extends State<_MainInfoView> {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-              child: AppButton.primary(label: 'Далее', onTap: _save),
+              child: SAPrimaryButton(label: 'Далее', onTap: _save),
             ),
           ],
         ),
@@ -264,29 +256,29 @@ class _AdditionalInfoViewState extends State<_AdditionalInfoView> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('Год создания работы', style: TextStyles.headline1),
+                      const Text('Год создания работы', style: SATextStyles.headline1),
                       const SizedBox(height: 8),
-                      AppTextFormField(
+                      SATextFormField(
                         controller: yearController,
                         hintText: 'Введите год',
                         validator: Validator.get(Validate.year),
                       ),
                       const SizedBox(height: 16),
-                      const Text('Фестиваль (при наличии)', style: TextStyles.headline1),
+                      const Text('Фестиваль (при наличии)', style: SATextStyles.headline1),
                       const SizedBox(height: 8),
-                      const AppButton.primary(label: 'Выбрать фестиваль', onTap: null),
+                      const SAPrimaryButton(label: 'Выбрать фестиваль', onTap: null),
                       const SizedBox(height: 40),
-                      const Text('Описание работы', style: TextStyles.headline1),
+                      const Text('Описание работы', style: SATextStyles.headline1),
                       const SizedBox(height: 8),
-                      AppTextFormField(
+                      SATextFormField(
                         controller: descriptionController,
                         hintText: 'Введите описание',
                         validator: null,
                       ),
                       const SizedBox(height: 16),
-                      const Text('Интересные ссылки', style: TextStyles.headline1),
+                      const Text('Интересные ссылки', style: SATextStyles.headline1),
                       const SizedBox(height: 8),
-                      AppTextFormField(
+                      SATextFormField(
                         controller: linksController,
                         hintText: 'Введите ссылку',
                         validator: Validator.get(Validate.link),
@@ -298,7 +290,7 @@ class _AdditionalInfoViewState extends State<_AdditionalInfoView> {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-              child: AppButton.primary(
+              child: SAPrimaryButton(
                 label: 'Перейти к проверке',
                 onTap: save,
               ),
@@ -338,11 +330,11 @@ class _PreviewView extends StatelessWidget implements _ModerationEditView {
         child: Column(
           children: [
             Expanded(
-              child: IgnorePointer(child: ArtworkScreen.preview(artwork: c.preview)),
+              child: ArtworkScreen.preview(artwork: c.preview),
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-              child: AppButton.primary(
+              child: SAPrimaryButton(
                 label: 'Отправить на модерацию',
                 onTap: () => send0(context),
               ),

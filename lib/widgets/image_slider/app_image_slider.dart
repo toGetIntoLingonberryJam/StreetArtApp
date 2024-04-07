@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:street_art_ui_kit/street_art_ui_kit.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
-import 'package:street_art_witnesses/core/values/constants.dart';
-import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/image/image.dart';
-import 'package:street_art_witnesses/widgets/app_widgets.dart';
+
+import 'image_slider_base.dart';
 
 class AppImageSlider extends StatelessWidget {
   const AppImageSlider({super.key, required this.images});
@@ -21,7 +20,7 @@ class AppImageSlider extends StatelessWidget {
           alignment: Alignment.topRight,
           child: Padding(
             padding: const EdgeInsets.all(20),
-            child: AppIconButton(
+            child: SAIconButton(
               onTap: () => Utils.showInfo('Добавить в избранное'),
               iconData: Icons.favorite_border,
             ),
@@ -43,9 +42,9 @@ class _NoImagesPlaceholder extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(kContainerRadius),
-          child: const AppContainer(
+          child: const SAContainer(
             child: Center(
-              child: Text('Фотографии отсутствуют', style: TextStyles.headline1),
+              child: Text('Фотографии отсутствуют', style: SATextStyles.headline1),
             ),
           ),
         ),

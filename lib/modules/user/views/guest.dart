@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:street_art_ui_kit/street_art_ui_kit.dart';
 import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
-import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/modules/auth/screen.dart';
 import 'package:street_art_witnesses/modules/user/widgets/widgets.dart';
-import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class GuestView extends StatelessWidget {
   const GuestView({super.key});
@@ -46,17 +44,17 @@ class _LoginContainer extends StatelessWidget {
         children: [
           const Text(
             'Войдите в профиль',
-            style: TextStyles.headline1,
+            style: SATextStyles.headline1,
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 8),
           const Text(
             'Чтобы пользоваться всеми функциями приложения',
-            style: TextStyles.text,
+            style: SATextStyles.text,
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 16),
-          AppButton.primary(onTap: login, label: 'Войти'),
+          SAPrimaryButton(onTap: login, label: 'Войти'),
         ],
       ),
     );

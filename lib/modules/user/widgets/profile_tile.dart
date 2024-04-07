@@ -1,10 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:street_art_ui_kit/street_art_ui_kit.dart';
 import 'package:get/get.dart';
-import 'package:street_art_witnesses/core/extensions.dart';
-import 'package:street_art_witnesses/core/values/constants.dart';
-import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/modules/user/modules/user_info.dart';
-import 'package:street_art_witnesses/widgets/skeletons/app_placeholder.dart';
 
 class ProfileTile extends StatelessWidget {
   const ProfileTile({
@@ -31,7 +27,7 @@ class ProfileTile extends StatelessWidget {
           children: [
             CircleAvatar(
               backgroundColor: Theme.of(context).colorScheme.surface,
-              foregroundImage: AppPlaceholder.assetImage(),
+              foregroundImage: SAPlaceholder.assetImage(),
               radius: 36,
             ),
             const SizedBox(width: 16),
@@ -41,12 +37,12 @@ class ProfileTile extends StatelessWidget {
                 children: [
                   Text(
                     username,
-                    style: TextStyles.headline1,
+                    style: SATextStyles.headline1,
                     overflow: TextOverflow.ellipsis,
                   ),
                   Text(
                     email,
-                    style: TextStyles.text.copyWith(color: context.colors.secondaryContainer),
+                    style: SATextStyles.text.copyWith(color: context.colors.secondaryContainer),
                     overflow: TextOverflow.ellipsis,
                   ),
                 ],
