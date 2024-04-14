@@ -9,7 +9,15 @@ import 'package:street_art_witnesses/data/models/artist/preview/artist_preview.d
 part 'artwork.freezed.dart';
 part 'artwork.g.dart';
 
-enum ArtworkStatus { existing, destroyed, overpainted, unknown }
+enum ArtworkStatus {
+  existing('существует'),
+  destroyed('уничтожено'),
+  overpainted('закрашено'),
+  unknown('неизвестно');
+
+  const ArtworkStatus(this.label);
+  final String label;
+}
 
 @freezed
 class Artwork with _$Artwork {

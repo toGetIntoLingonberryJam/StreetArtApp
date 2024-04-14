@@ -17,23 +17,23 @@ class FestivalInfoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     if (festival == null) return const SizedBox();
 
-    return AppContainer(
-      child: GestureDetector(
-        onTap: () => Get.to(() => Loader(
-              future: FestivalsProvider.getFestivalById(festival!.id),
-              builder: (fest) => FestivalScreen(festival: fest),
-              loader: Loaders.festival,
-              onError: () => Get.back(),
-            )),
+    return GestureDetector(
+      onTap: () => Get.to(() => Loader(
+            future: FestivalsProvider.getFestivalById(festival!.id),
+            builder: (fest) => FestivalScreen(festival: fest),
+            loader: Loaders.festival,
+            onError: () => Get.back(),
+          )),
+      child: AppContainer(
         child: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
             festival!.image == null
                 ? AppCircleAvatar(image: AppPlaceholder.assetImage())
                 : AppCircleAvatar(image: NetworkImage(festival!.image!.imageUrl)),
             const SizedBox(width: 8),
-            Expanded(
-              child: Text(festival!.name, style: TextStyles.headline1),
-            ),
+            Expanded(child: Text(festival!.name, style: TextStyles.headline1)),
+            const Icon(Icons.chevron_right),
           ],
         ),
       ),

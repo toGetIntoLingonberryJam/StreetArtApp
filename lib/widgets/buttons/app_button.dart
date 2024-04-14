@@ -38,12 +38,12 @@ class AppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final btnColor = isPrimary ? UIColors.primary : UIColors.backgroundCard;
+    final btnColor = isPrimary ? UIColors.accent : UIColors.backgroundCard;
 
     return Material(
       borderRadius: kButtonBorderRadius,
       child: InkWell(
-        splashColor: UIColors.primary.withAlpha(40),
+        splashColor: UIColors.accent.withAlpha(40),
         borderRadius: kButtonBorderRadius,
         onTap: onTap,
         child: Ink(

@@ -12,7 +12,7 @@ class ArtworkLoader extends StatelessWidget {
       body: ListView(
         padding: kDensePagePadding,
         children: const [
-          Skeleton(height: 380),
+          Skeleton(height: 400),
           SizedBox(height: Paddings.small),
           Skeleton(height: 96),
           SizedBox(height: Paddings.small),

@@ -26,8 +26,8 @@ class AppTextButton extends StatelessWidget {
             isFilled ? kContainerPadding : const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
         decoration: BoxDecoration(
           borderRadius: kButtonBorderRadius,
-          color: isFilled ? UIColors.primary : UIColors.backgroundCard,
-          border: isFilled ? null : Border.all(color: UIColors.primary, width: 2),
+          color: isFilled ? UIColors.accent : UIColors.backgroundCard,
+          border: isFilled ? null : Border.all(color: UIColors.accent, width: 2),
         ),
         child: Text(text ?? '', style: style, textAlign: TextAlign.center),
       ),

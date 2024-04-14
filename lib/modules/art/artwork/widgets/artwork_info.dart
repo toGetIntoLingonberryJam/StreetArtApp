@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/artist/preview/artist_preview.dart';
@@ -7,6 +9,7 @@ import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/data/providers/artists_provider.dart';
 import 'package:street_art_witnesses/modules/art/artist/screen.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
+import 'package:street_art_witnesses/widgets/containers/app_badge.dart';
 import 'package:street_art_witnesses/widgets/loaders/loader.dart';
 
 class ArtworkInfo extends StatelessWidget {
@@ -21,10 +24,20 @@ class ArtworkInfo extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _ArtistInfo(artwork.artistPreview),
-          const SizedBox(height: 4),
-          Text(artwork.title, style: TextStyles.headline1),
           const SizedBox(height: Paddings.small),
-          Text('${artwork.yearCreated ?? 'Год неизвестен'}', style: TextStyles.caption),
+          Text(artwork.title, style: TextStyles.headline1),
+          const SizedBox(height: 24),
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  'Год создания: ${artwork.yearCreated ?? 'неизвестен'}',
+                  style: TextStyles.text.copyWith(color: UIColors.textSecondary),
+                ),
+              ),
+              AppBadge(artwork.status.label),
+            ],
+          ),
         ],
       ),
     );
@@ -56,8 +69,8 @@ class _ArtistInfo extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           artist!.image == null
-              ? AppCircleAvatar(image: AppPlaceholder.assetImage())
-              : AppCircleAvatar(image: NetworkImage(artist!.image!.imageUrl)),
+              ? AppCircleAvatar(image: AppPlaceholder.assetImage(), radius: 10)
+              : AppCircleAvatar(image: NetworkImage(artist!.image!.imageUrl), radius: 10),
           const SizedBox(width: 8),
           Expanded(
             child: Text(artist!.name, style: TextStyles.headline2),

@@ -23,7 +23,7 @@ class AppCustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final btnColor = isFilled ? UIColors.primary : UIColors.backgroundCard;
+    final btnColor = isFilled ? UIColors.accent : UIColors.backgroundCard;
 
     return Material(
       child: InkWell(
@@ -37,7 +37,7 @@ class AppCustomButton extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: kButtonBorderRadius,
             color: btnColor,
-            border: isFilled ? null : Border.all(color: UIColors.primary, width: 2),
+            border: isFilled ? null : Border.all(color: UIColors.accent, width: 2),
           ),
           child: child ?? const SizedBox(),
         ),
