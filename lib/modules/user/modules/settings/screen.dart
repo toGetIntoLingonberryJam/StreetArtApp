@@ -38,7 +38,7 @@ class _ThemeSettings extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text('Тема', style: TextStyles.headline1),
-          const SizedBox(height: 8),
+          const SizedBox(height: Paddings.small),
           _Option(title: 'Системная', onTap: () {}, isChecked: true),
         ],
       ),
@@ -58,7 +58,7 @@ class _QualitySettings extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text('Качество изображений', style: TextStyles.headline1),
-              const SizedBox(height: 8),
+              const SizedBox(height: Paddings.small),
               _Option(
                 onTap: () => controller.setImageQuality(ImageQuality.bad),
                 title: 'Плохое',

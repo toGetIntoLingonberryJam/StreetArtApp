@@ -23,14 +23,14 @@ class AboutPage extends StatelessWidget {
                 'Приложение разработано командой (to) Get Into Lingonberry Jam в рамках Проектного Практикума УрФУ.\n\nВ проекте принимали участие:\nРоманов Вадим Юрьевич\nПотехин Николай Андреевич\nБиккужина Полина Дмитриевна\nЧислов Степан Игоревич\n\nИз Екб, с любовью <3',
                 style: TextStyles.text,
               )),
-              const SizedBox(height: 16),
+              const SizedBox(height: Paddings.normal),
               const _VersionWidget(),
               const SizedBox(height: 12),
               AppButton.primary(
                 onTap: () => Utils.tryLaunchUrl(reportLink),
                 label: 'Обратная связь',
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: Paddings.small),
               AppButton.primary(
                 onTap: () => Utils.tryLaunchUrl(contactLink),
                 label: 'Связаться с нами',
@@ -48,7 +48,7 @@ class _VersionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AppContainer.small(
+    return const AppContainer(
       child: Row(
         children: [
           Text('Версия приложения:', style: TextStyles.headline2),

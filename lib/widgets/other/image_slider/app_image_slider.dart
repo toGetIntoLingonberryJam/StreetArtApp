@@ -38,15 +38,12 @@ class _NoImagesPlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 400,
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(kContainerRadius),
-          child: const AppContainer(
-            child: Center(
-              child: Text('Фотографии отсутствуют', style: TextStyles.headline1),
-            ),
+      height: 380,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(kContainerRadius),
+        child: const AppContainer(
+          child: Center(
+            child: Text('Фотографии отсутствуют', style: TextStyles.headline1),
           ),
         ),
       ),

@@ -23,38 +23,25 @@ class ArtworkScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppHeader(title: artwork.title, autoImplyLeading: !preview),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.only(bottom: 10),
+        padding: kDensePagePadding,
         child: IgnorePointer(
           ignoring: preview,
           child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AppImageSlider(images: artwork.images),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Column(
-                  children: [
-                    ArtworkInfo(artwork: artwork),
-                    const SizedBox(height: 8),
-                    FestivalInfoWidget(artwork.festivalPreview),
-                    if (artwork.festivalPreview != null) const SizedBox(height: 8),
-                    AddressInfo(artwork: artwork, preview: preview),
-                    const SizedBox(height: 8),
-                    ArtworkDescriptionWidget(artwork.description),
-                    StatusInfo(artwork.status),
-                    const SizedBox(height: 8),
-                    LinksInfo(artwork.links),
-                    if (artwork.links != null) const SizedBox(height: 8),
-                    // const AppContainer.small(
-                    //   child: Text('Добавлено: юзернейм', style: TextStyles.headline2),
-                    // // ),
-                    // const SizedBox(height: 8),
-                    const _WriteUsWidget(),
-                    const SizedBox(height: 40),
-                  ],
-                ),
-              ),
+              const SizedBox(height: Paddings.small),
+              ArtworkInfo(artwork: artwork),
+              const SizedBox(height: Paddings.small),
+              FestivalInfoWidget(artwork.festivalPreview),
+              if (artwork.festivalPreview != null) const SizedBox(height: Paddings.small),
+              AddressInfo(artwork: artwork, preview: preview),
+              const SizedBox(height: Paddings.small),
+              ArtworkDescriptionWidget(artwork.description),
+              StatusInfo(artwork.status),
+              const SizedBox(height: Paddings.small),
+              LinksInfo(artwork.links),
+              if (artwork.links != null) const SizedBox(height: Paddings.small),
+              const _WriteUsWidget(),
             ],
           ),
         ),
@@ -68,7 +55,7 @@ class _WriteUsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppContainer.small(
+    return AppContainer(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

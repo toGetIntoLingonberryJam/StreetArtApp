@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class ArtistLoader extends StatelessWidget {
@@ -9,7 +10,7 @@ class ArtistLoader extends StatelessWidget {
     return Scaffold(
       appBar: const AppHeader(title: ''),
       body: Padding(
-        padding: const EdgeInsets.all(10),
+        padding: kDensePagePadding,
         child: ListView(
           children: const [
             Skeleton(height: 380),

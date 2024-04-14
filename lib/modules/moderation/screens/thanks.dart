@@ -21,13 +21,13 @@ class ModerationThanksScreen extends StatelessWidget {
             ),
             const Expanded(child: SizedBox()),
             const Text('Спасибо!', style: TextStyles.title1, textAlign: TextAlign.center),
-            const SizedBox(height: 16),
+            const SizedBox(height: Paddings.normal),
             const Text(
               'Ваша заявка на добавление работы отправлена на модерацию.',
               style: TextStyles.text,
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: Paddings.normal),
             AppTextButton.filled(
               text: 'На главный экран',
               onTap: () => Navigator.pop(context),

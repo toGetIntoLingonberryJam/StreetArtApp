@@ -36,7 +36,7 @@ class ApplicationsScreen extends StatelessWidget {
                         child: ListView.separated(
                           itemCount: controller.tickets.length,
                           itemBuilder: (_, idx) => _ApplicationCard(controller.tickets[idx]),
-                          separatorBuilder: (_, __) => const SizedBox(height: 16),
+                          separatorBuilder: (_, __) => const SizedBox(height: Paddings.normal),
                         ),
                       ),
               );

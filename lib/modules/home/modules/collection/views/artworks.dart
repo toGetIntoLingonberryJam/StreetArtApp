@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
@@ -24,7 +25,7 @@ class ArtworksView extends StatelessWidget {
     return ListView.separated(
       itemCount: artworks!.length,
       itemBuilder: (_, index) => ArtworkCard(artwork: artworks![index]),
-      separatorBuilder: (_, __) => const SizedBox(height: 8),
+      separatorBuilder: (_, __) => const SizedBox(height: Paddings.small),
     );
   }
 }

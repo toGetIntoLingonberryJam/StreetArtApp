@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/artist/preview/artist_preview.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
@@ -22,7 +23,7 @@ class ArtworkInfo extends StatelessWidget {
           _ArtistInfo(artwork.artistPreview),
           const SizedBox(height: 4),
           Text(artwork.title, style: TextStyles.headline1),
-          const SizedBox(height: 8),
+          const SizedBox(height: Paddings.small),
           Text('${artwork.yearCreated ?? 'Год неизвестен'}', style: TextStyles.caption),
         ],
       ),
@@ -47,7 +48,7 @@ class _ArtistInfo extends StatelessWidget {
     return GestureDetector(
       onTap: () => Get.to(() => Loader(
             future: ArtistsProvider.getArtistById(artist!.id),
-            builder: (data) => ArtistScreen(artist: data),
+            builder: (artist) => ArtistScreen(artist: artist),
             loader: Loaders.artist,
             onError: () => Get.back(),
           )),

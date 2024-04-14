@@ -52,11 +52,11 @@ class _UserInfo extends StatelessWidget {
       children: [
         const Text('Личные данные', style: TextStyles.headline1),
         const SizedBox(height: 10),
-        AppContainer.small(child: Text(user.username, style: TextStyles.text)),
+        AppContainer(child: Text(user.username, style: TextStyles.text)),
         if (user.email != null)
           Padding(
             padding: const EdgeInsets.only(top: 10),
-            child: AppContainer.small(
+            child: AppContainer(
               child: Text(user.email!, style: TextStyles.text),
             ),
           ),

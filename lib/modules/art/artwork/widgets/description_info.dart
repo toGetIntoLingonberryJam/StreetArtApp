@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/widgets/containers/app_container.dart';
 
@@ -19,7 +20,7 @@ class ArtworkDescriptionWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             const Text('Описание', style: TextStyles.headline1),
-            const SizedBox(height: 8),
+            const SizedBox(height: Paddings.small),
             Text(description!, style: TextStyles.text),
           ],
         ),

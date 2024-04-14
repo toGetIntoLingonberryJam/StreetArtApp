@@ -1,11 +1,14 @@
+import 'package:street_art_witnesses/core/utils/error_handler.dart';
 import 'package:street_art_witnesses/data/api/backend_api.dart';
 import 'package:street_art_witnesses/data/models/artist/artist.dart';
 import 'package:street_art_witnesses/data/models/artist/preview/artist_preview.dart';
 
 abstract class ArtistsProvider {
-  static Future<Artist> getArtistById(int artistId) async {
-    final response = await BackendApi.get('/v1/artists/$artistId');
-    return Artist.fromJson(response.data);
+  static Future<Artist?> getArtistById(int artistId) async {
+    return await ApiHandler.handleApiRequest(
+      BackendApi.get('/v1/artists/$artistId'),
+      onResult: (r) => Artist.fromJson(r.data),
+    );
   }
 
   static Future<List<ArtistPreview>?> getArtists({
@@ -14,12 +17,15 @@ abstract class ArtistsProvider {
     String? search,
     String? orderBy,
   }) async {
-    final response = await BackendApi.get('/v1/artists');
-    final artists = <ArtistPreview>[];
-
-    for (var json in response.data['items']) {
-      artists.add(ArtistPreview.fromJson(json));
-    }
-    return artists;
+    return await ApiHandler.handleApiRequest(
+      BackendApi.get('/v1/artists/locations'),
+      onResult: (r) {
+        final artists = <ArtistPreview>[];
+        for (var json in r.data) {
+          artists.add(ArtistPreview.fromJson(json));
+        }
+        return artists;
+      },
+    );
   }
 }

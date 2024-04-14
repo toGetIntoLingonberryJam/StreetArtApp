@@ -23,18 +23,21 @@ mixin _$ArtworkLocation {
   int get artworkId => throw _privateConstructorUsedError;
   double get latitude => throw _privateConstructorUsedError;
   double get longitude => throw _privateConstructorUsedError;
-  String get address => throw _privateConstructorUsedError;
+  String get address =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'thumbnail_image')
   String? get previewUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ArtworkLocationCopyWith<ArtworkLocation> get copyWith => throw _privateConstructorUsedError;
+  $ArtworkLocationCopyWith<ArtworkLocation> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $ArtworkLocationCopyWith<$Res> {
-  factory $ArtworkLocationCopyWith(ArtworkLocation value, $Res Function(ArtworkLocation) then) =
+  factory $ArtworkLocationCopyWith(
+          ArtworkLocation value, $Res Function(ArtworkLocation) then) =
       _$ArtworkLocationCopyWithImpl<$Res, ArtworkLocation>;
   @useResult
   $Res call(
@@ -90,9 +93,10 @@ class _$ArtworkLocationCopyWithImpl<$Res, $Val extends ArtworkLocation>
 }
 
 /// @nodoc
-abstract class _$$ArtworkLocationImplCopyWith<$Res> implements $ArtworkLocationCopyWith<$Res> {
-  factory _$$ArtworkLocationImplCopyWith(
-          _$ArtworkLocationImpl value, $Res Function(_$ArtworkLocationImpl) then) =
+abstract class _$$ArtworkLocationImplCopyWith<$Res>
+    implements $ArtworkLocationCopyWith<$Res> {
+  factory _$$ArtworkLocationImplCopyWith(_$ArtworkLocationImpl value,
+          $Res Function(_$ArtworkLocationImpl) then) =
       __$$ArtworkLocationImplCopyWithImpl<$Res>;
   @override
   @useResult
@@ -168,6 +172,7 @@ class _$ArtworkLocationImpl extends _ArtworkLocation {
   final double longitude;
   @override
   final String address;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'thumbnail_image')
   final String? previewUrl;
@@ -182,22 +187,28 @@ class _$ArtworkLocationImpl extends _ArtworkLocation {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ArtworkLocationImpl &&
-            (identical(other.artworkId, artworkId) || other.artworkId == artworkId) &&
-            (identical(other.latitude, latitude) || other.latitude == latitude) &&
-            (identical(other.longitude, longitude) || other.longitude == longitude) &&
+            (identical(other.artworkId, artworkId) ||
+                other.artworkId == artworkId) &&
+            (identical(other.latitude, latitude) ||
+                other.latitude == latitude) &&
+            (identical(other.longitude, longitude) ||
+                other.longitude == longitude) &&
             (identical(other.address, address) || other.address == address) &&
-            (identical(other.previewUrl, previewUrl) || other.previewUrl == previewUrl));
+            (identical(other.previewUrl, previewUrl) ||
+                other.previewUrl == previewUrl));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, artworkId, latitude, longitude, address, previewUrl);
+  int get hashCode => Object.hash(
+      runtimeType, artworkId, latitude, longitude, address, previewUrl);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ArtworkLocationImplCopyWith<_$ArtworkLocationImpl> get copyWith =>
-      __$$ArtworkLocationImplCopyWithImpl<_$ArtworkLocationImpl>(this, _$identity);
+      __$$ArtworkLocationImplCopyWithImpl<_$ArtworkLocationImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -213,10 +224,12 @@ abstract class _ArtworkLocation extends ArtworkLocation {
       required final double latitude,
       required final double longitude,
       required final String address,
-      @JsonKey(name: 'thumbnail_image') required final String? previewUrl}) = _$ArtworkLocationImpl;
+      @JsonKey(name: 'thumbnail_image')
+      required final String? previewUrl}) = _$ArtworkLocationImpl;
   const _ArtworkLocation._() : super._();
 
-  factory _ArtworkLocation.fromJson(Map<String, dynamic> json) = _$ArtworkLocationImpl.fromJson;
+  factory _ArtworkLocation.fromJson(Map<String, dynamic> json) =
+      _$ArtworkLocationImpl.fromJson;
 
   @override
   int get artworkId;
@@ -226,7 +239,7 @@ abstract class _ArtworkLocation extends ArtworkLocation {
   double get longitude;
   @override
   String get address;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: 'thumbnail_image')
   String? get previewUrl;
   @override

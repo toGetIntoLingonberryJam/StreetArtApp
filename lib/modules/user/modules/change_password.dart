@@ -44,15 +44,15 @@ class __ChangePasswordFormState extends State<_ChangePasswordForm> {
     return Form(
         child: Column(
       children: [
-        const AppContainer.small(
+        const AppContainer(
           child: Text('Введите старый пароль', style: TextStyles.text),
         ),
         const SizedBox(height: 10),
-        const AppContainer.small(
+        const AppContainer(
           child: Text('Введите новый пароль', style: TextStyles.text),
         ),
         const SizedBox(height: 10),
-        const AppContainer.small(
+        const AppContainer(
           child: Text('Повторите новый пароль', style: TextStyles.text),
         ),
         const SizedBox(height: 40),

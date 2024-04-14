@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/data/providers/artworks_provider.dart';
 import 'package:street_art_witnesses/modules/art/artwork/screen.dart';
-import 'package:street_art_witnesses/widgets/app_widgets.dart';
 import 'package:street_art_witnesses/widgets/loaders/loader.dart';
 import 'package:street_art_witnesses/widgets/map/location_marker/marker.dart';
 
@@ -51,7 +50,7 @@ class GetMapController extends GetxController with GetTickerProviderStateMixin {
 
   void openArtwork(int id) => Get.to(() => Loader(
         future: ArtworksProvider.getArtworkById(id),
-        builder: (a) => a == null ? const AppErrorScreen() : ArtworkScreen(artwork: a),
+        builder: (a) => ArtworkScreen(artwork: a),
         loader: Loaders.artwork,
         onError: () => Get.back(),
       ));

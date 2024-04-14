@@ -9,13 +9,6 @@ class AppContainer extends StatelessWidget {
     this.borderRadius = kContainerRadius,
   });
 
-  const AppContainer.small({
-    super.key,
-    required this.child,
-    this.width = double.infinity,
-    this.borderRadius = kContainerRadius,
-  });
-
   final Widget child;
   final double borderRadius;
   final double? width;

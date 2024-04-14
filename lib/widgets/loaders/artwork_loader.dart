@@ -10,7 +10,7 @@ class ArtworkLoader extends StatelessWidget {
     return Scaffold(
       appBar: const AppHeader(title: ''),
       body: Padding(
-        padding: const EdgeInsets.all(10),
+        padding: kDensePagePadding,
         child: ListView(
           children: const [
             Skeleton(height: 380),
