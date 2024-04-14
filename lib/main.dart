@@ -50,8 +50,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Свидетели',
       debugShowCheckedModeBanner: false,
-      theme: lightTheme,
-      darkTheme: darkTheme,
+      theme: darkTheme,
       home: user.isAuthorized ? const HomeScreen() : const IntroSlider(),
     );
   }
