@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/image/image.dart';
@@ -14,21 +13,7 @@ class AppImageSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     if (images == null || images!.isEmpty) return const _NoImagesPlaceholder();
 
-    return Stack(
-      children: [
-        ImageSliderBase(images: images!),
-        Align(
-          alignment: Alignment.topRight,
-          child: Padding(
-            padding: const EdgeInsets.all(Paddings.normal),
-            child: AppIconButton(
-              onTap: () => Utils.showInfo('Добавить в избранное'),
-              iconData: Icons.favorite_border,
-            ),
-          ),
-        ),
-      ],
-    );
+    return ImageSliderBase(images: images!);
   }
 }
 
@@ -39,12 +24,10 @@ class _NoImagesPlaceholder extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 380,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(kContainerRadius),
-        child: const AppContainer(
-          child: Center(
-            child: Text('Фотографии отсутствуют', style: TextStyles.headline1),
-          ),
+      child: Material(
+        color: Theme.of(context).colorScheme.onBackground,
+        child: const Center(
+          child: Text('Фотографии отсутствуют', style: TextStyles.headline1),
         ),
       ),
     );

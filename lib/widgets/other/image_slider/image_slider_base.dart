@@ -44,20 +44,11 @@ class _ImageSliderBaseState extends State<ImageSliderBase> {
       child: Stack(
         children: [
           PageView(
-            controller: PageController(viewportFraction: 0.99),
+            controller: PageController(viewportFraction: 0.99999),
             physics: const ClampingScrollPhysics(),
             onPageChanged: (value) => controller.updateIndex(value),
-            children: imageLoaders
-                .map(
-                  (imageLoader) => Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 4),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(kContainerRadius),
-                      child: LoadingImage(imageLoader: imageLoader),
-                    ),
-                  ),
-                )
-                .toList(),
+            children:
+                imageLoaders.map((imageLoader) => LoadingImage(imageLoader: imageLoader)).toList(),
           ),
           if (widget.images.length > 1)
             Align(

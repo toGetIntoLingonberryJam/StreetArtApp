@@ -16,14 +16,18 @@ class FestivalScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppHeader(title: festival.name),
       body: SingleChildScrollView(
-        padding: kDensePagePadding,
         child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             AppImageSlider(images: festival.image == null ? null : [festival.image!]),
-            const SizedBox(height: Paddings.small),
-            AppContainer(child: Text(festival.name, style: TextStyles.headline1)),
+            Padding(
+              padding: kDensePagePadding,
+              child: Column(
+                children: [
+                  const SizedBox(height: Paddings.small),
+                  AppContainer(child: Text(festival.name, style: TextStyles.headline1)),
+                ],
+              ),
+            ),
           ],
         ),
       ),

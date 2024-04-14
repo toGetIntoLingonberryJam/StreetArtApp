@@ -23,25 +23,31 @@ class ArtworkScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppHeader(title: artwork.title, autoImplyLeading: !preview),
       body: SingleChildScrollView(
-        padding: kDensePagePadding,
         child: IgnorePointer(
           ignoring: preview,
           child: Column(
             children: [
               AppImageSlider(images: artwork.images),
-              const SizedBox(height: Paddings.small),
-              ArtworkInfo(artwork: artwork),
-              const SizedBox(height: Paddings.small),
-              FestivalInfoWidget(artwork.festivalPreview),
-              if (artwork.festivalPreview != null) const SizedBox(height: Paddings.small),
-              AddressInfo(artwork: artwork, preview: preview),
-              const SizedBox(height: Paddings.small),
-              ArtworkDescriptionWidget(artwork.description),
-              StatusInfo(artwork.status),
-              const SizedBox(height: Paddings.small),
-              LinksInfo(artwork.links),
-              if (artwork.links != null) const SizedBox(height: Paddings.small),
-              const _WriteUsWidget(),
+              Padding(
+                padding: kDensePagePadding,
+                child: Column(
+                  children: [
+                    const SizedBox(height: Paddings.small),
+                    ArtworkInfo(artwork: artwork),
+                    const SizedBox(height: Paddings.small),
+                    FestivalInfoWidget(artwork.festivalPreview),
+                    if (artwork.festivalPreview != null) const SizedBox(height: Paddings.small),
+                    AddressInfo(artwork: artwork, preview: preview),
+                    const SizedBox(height: Paddings.small),
+                    ArtworkDescriptionWidget(artwork.description),
+                    StatusInfo(artwork.status),
+                    const SizedBox(height: Paddings.small),
+                    LinksInfo(artwork.links),
+                    if (artwork.links != null) const SizedBox(height: Paddings.small),
+                    const _WriteUsWidget(),
+                  ],
+                ),
+              ),
             ],
           ),
         ),

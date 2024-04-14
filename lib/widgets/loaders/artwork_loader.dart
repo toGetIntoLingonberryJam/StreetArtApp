@@ -9,21 +9,19 @@ class ArtworkLoader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppHeader(title: ''),
-      body: Padding(
+      body: ListView(
         padding: kDensePagePadding,
-        child: ListView(
-          children: const [
-            Skeleton(height: 380),
-            SizedBox(height: 10),
-            Skeleton(height: 100),
-            SizedBox(height: 8),
-            Skeleton(height: 50, borderRadius: kContainerRadius),
-            SizedBox(height: 8),
-            Skeleton(height: 70),
-            SizedBox(height: 8),
-            Skeleton(height: 300),
-          ],
-        ),
+        children: const [
+          Skeleton(height: 380),
+          SizedBox(height: Paddings.small),
+          Skeleton(height: 96),
+          SizedBox(height: Paddings.small),
+          Skeleton(height: 50, borderRadius: kContainerRadius),
+          SizedBox(height: Paddings.small),
+          Skeleton(height: 70),
+          SizedBox(height: Paddings.small),
+          Skeleton(height: 300),
+        ],
       ),
     );
   }

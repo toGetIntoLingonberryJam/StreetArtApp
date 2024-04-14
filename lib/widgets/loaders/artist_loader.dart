@@ -9,15 +9,13 @@ class ArtistLoader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppHeader(title: ''),
-      body: Padding(
+      body: ListView(
         padding: kDensePagePadding,
-        child: ListView(
-          children: const [
-            Skeleton(height: 380),
-            SizedBox(height: 10),
-            Skeleton(height: 100),
-          ],
-        ),
+        children: const [
+          Skeleton(height: 380),
+          SizedBox(height: Paddings.small),
+          Skeleton(height: 46),
+        ],
       ),
     );
   }
