@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 
 class InfoSnackbar extends GetSnackBar {
@@ -15,7 +16,7 @@ class InfoSnackbar extends GetSnackBar {
             size: 24,
           ),
           shouldIconPulse: false,
-          margin: const EdgeInsets.all(20),
+          margin: const EdgeInsets.all(Paddings.normal),
           borderRadius: 12,
           duration: const Duration(milliseconds: 2500),
           animationDuration: const Duration(milliseconds: 750),
@@ -48,7 +49,7 @@ class ErrorSnackbar extends GetSnackBar {
             size: 24,
           ),
           shouldIconPulse: false,
-          margin: const EdgeInsets.all(20),
+          margin: const EdgeInsets.all(Paddings.normal),
           borderRadius: 12,
           duration: const Duration(milliseconds: 2500),
           animationDuration: const Duration(milliseconds: 750),
@@ -81,7 +82,7 @@ class SuccessSnackBar extends GetSnackBar {
             size: 24,
           ),
           shouldIconPulse: false,
-          margin: const EdgeInsets.all(20),
+          margin: const EdgeInsets.all(Paddings.normal),
           borderRadius: 12,
           duration: const Duration(milliseconds: 2500),
           animationDuration: const Duration(milliseconds: 750),

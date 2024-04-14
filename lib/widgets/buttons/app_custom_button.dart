@@ -23,20 +23,24 @@ class AppCustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final btnColor = isFilled ? colorScheme.primary : colorScheme.onBackground;
 
-    return InkWell(
-      splashColor: colorScheme.inversePrimary.withAlpha(40),
-      borderRadius: kButtonBorderRadius,
-      onTap: onTap,
-      child: Ink(
-        padding:
-            isFilled ? kContainerPadding : const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-        decoration: BoxDecoration(
-          borderRadius: kButtonBorderRadius,
-          color: isFilled ? colorScheme.primary : colorScheme.onBackground,
-          border: isFilled ? null : Border.all(color: colorScheme.primary, width: 2),
+    return Material(
+      child: InkWell(
+        splashColor: colorScheme.inversePrimary.withAlpha(40),
+        borderRadius: kButtonBorderRadius,
+        onTap: onTap,
+        child: Ink(
+          padding: isFilled
+              ? kContainerPadding
+              : const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+          decoration: BoxDecoration(
+            borderRadius: kButtonBorderRadius,
+            color: btnColor,
+            border: isFilled ? null : Border.all(color: colorScheme.primary, width: 2),
+          ),
+          child: child ?? const SizedBox(),
         ),
-        child: child ?? const SizedBox(),
       ),
     );
   }

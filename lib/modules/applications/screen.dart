@@ -24,7 +24,7 @@ class ApplicationsScreen extends StatelessWidget {
     return Scaffold(
       appBar: const AppHeader(title: 'Заявки'),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+        padding: kPagePadding,
         child: Column(
           children: [
             GetBuilder<ApplicationsController>(builder: (context) {
@@ -138,12 +138,10 @@ class _ApplicationPage extends StatelessWidget {
     return Scaffold(
       appBar: AppHeader(title: 'Заявка ${ticket.id}'),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+        padding: kPagePadding,
         child: Column(
           children: [
-            Expanded(
-              child: IgnorePointer(child: ArtworkScreen.preview(artwork: ticket.artwork)),
-            ),
+            Expanded(child: ArtworkScreen.preview(artwork: ticket.artwork)),
             Padding(
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
               child: Row(

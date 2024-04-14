@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/user.dart';
 import 'package:street_art_witnesses/modules/user/controller.dart';
@@ -15,7 +16,7 @@ class UserInfoScreen extends StatelessWidget {
     return Scaffold(
       appBar: const AppHeader(title: 'Профиль'),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+        padding: kPagePadding,
         child: GetBuilder<ProfileController>(
           builder: (ctrl) {
             return Column(

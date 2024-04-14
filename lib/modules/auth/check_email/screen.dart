@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/modules/auth/check_email/email_counter.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
@@ -12,7 +13,7 @@ class CheckEmailScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 20, 20, 40),
+          padding: const EdgeInsets.all(Paddings.normal),
           child: Column(
             children: [
               const Expanded(

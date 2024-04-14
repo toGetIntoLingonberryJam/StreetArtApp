@@ -28,11 +28,8 @@ class ModerationThanksScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16),
-            AppCustomButton.filled(
-              child: Text(
-                'На главный экран',
-                style: TextStyles.button.copyWith(color: Colors.black),
-              ),
+            AppTextButton.filled(
+              text: 'На главный экран',
               onTap: () => Navigator.pop(context),
             ),
             const Expanded(child: SizedBox()),

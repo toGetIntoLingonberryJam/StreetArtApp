@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 
 class AppHeader extends StatelessWidget implements PreferredSizeWidget {
@@ -22,7 +23,7 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+        padding: const EdgeInsets.all(Paddings.normal),
         child: SizedBox(
           height: _height,
           child: Row(
@@ -54,5 +55,5 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   // TODO: implement preferredSize
-  Size get preferredSize => const Size.fromHeight(66);
+  Size get preferredSize => const Size.fromHeight(_height + 2 * Paddings.normal);
 }

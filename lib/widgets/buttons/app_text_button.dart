@@ -30,11 +30,7 @@ class AppTextButton extends StatelessWidget {
           color: isFilled ? colorScheme.primary : colorScheme.onBackground,
           border: isFilled ? null : Border.all(color: colorScheme.primary, width: 2),
         ),
-        child: Text(
-          text ?? '',
-          style: isFilled ? style?.copyWith(color: Colors.black) : style,
-          textAlign: TextAlign.center,
-        ),
+        child: Text(text ?? '', style: style, textAlign: TextAlign.center),
       ),
     );
   }

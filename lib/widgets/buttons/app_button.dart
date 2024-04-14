@@ -37,19 +37,22 @@ class AppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FilledButton(
-      style: FilledButton.styleFrom(
-          minimumSize: const Size.fromHeight(40),
-          backgroundColor: isPrimary
-              ? Theme.of(context).colorScheme.primary
-              : Theme.of(context).colorScheme.onBackground,
-          foregroundColor: isPrimary ? Colors.black : Theme.of(context).colorScheme.inverseSurface,
-          textStyle: TextStyles.button,
-          shape: RoundedRectangleBorder(
-            borderRadius: kButtonBorderRadius,
-          )),
-      onPressed: onTap,
-      child: child ?? Text(label!, style: TextStyles.button),
+    final colorScheme = Theme.of(context).colorScheme;
+    final btnColor = isPrimary ? colorScheme.primary : colorScheme.onBackground;
+
+    return Material(
+      borderRadius: kButtonBorderRadius,
+      child: InkWell(
+        splashColor: colorScheme.primary.withAlpha(40),
+        borderRadius: kButtonBorderRadius,
+        onTap: onTap,
+        child: Ink(
+          width: double.infinity,
+          padding: kContainerPadding,
+          decoration: BoxDecoration(borderRadius: kButtonBorderRadius, color: btnColor),
+          child: child ?? Text(label ?? '', style: TextStyles.button, textAlign: TextAlign.center),
+        ),
+      ),
     );
   }
 }

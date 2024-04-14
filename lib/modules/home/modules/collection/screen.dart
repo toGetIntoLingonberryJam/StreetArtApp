@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/modules/home/modules/collection/controller.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
@@ -15,7 +16,7 @@ class CollectionScreen extends StatelessWidget {
         action: GestureDetector(onTap: () {}, child: const Icon(Icons.search)),
       ),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+        padding: kPagePadding,
         child: GetBuilder<CollectionController>(builder: (controller) {
           return Column(
             children: [

@@ -20,7 +20,7 @@ class LocationPicker extends StatelessWidget {
       appBar: const AppHeader(title: 'Координаты работы'),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+          padding: kPagePadding,
           child: Column(
             children: [
               Expanded(

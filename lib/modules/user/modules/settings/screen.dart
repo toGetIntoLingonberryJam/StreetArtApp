@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/services/settings_service.dart';
 import 'package:street_art_witnesses/modules/user/modules/settings/controller.dart';
@@ -14,7 +15,7 @@ class SettingsScreen extends StatelessWidget {
     return const Scaffold(
       appBar: AppHeader(title: 'Настройки'),
       body: Padding(
-        padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+        padding: kPagePadding,
         child: Column(
           children: [
             _ThemeSettings(),

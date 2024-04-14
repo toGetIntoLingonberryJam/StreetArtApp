@@ -20,7 +20,7 @@ class AppImageSlider extends StatelessWidget {
         Align(
           alignment: Alignment.topRight,
           child: Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(Paddings.normal),
             child: AppIconButton(
               onTap: () => Utils.showInfo('Добавить в избранное'),
               iconData: Icons.favorite_border,

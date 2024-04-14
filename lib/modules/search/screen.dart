@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/modules/home/modules/collection/views/artists.dart';
 import 'package:street_art_witnesses/modules/search/controller.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
@@ -17,7 +18,7 @@ class SearchScreen extends StatelessWidget {
         final items = c.items;
 
         return Padding(
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+          padding: kPagePadding,
           child: Column(
             children: [
               AppTextFormField(

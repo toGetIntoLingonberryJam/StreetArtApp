@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/core/utils/logger.dart';
+import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/artist/preview/artist_preview.dart';
 import 'package:street_art_witnesses/modules/art/artwork/screen.dart';
@@ -130,7 +131,7 @@ class _MainInfoViewState extends State<_MainInfoView> {
           children: [
             Expanded(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+                padding: kPagePadding,
                 child: Form(
                   key: _formKey,
                   child: Column(
@@ -185,7 +186,7 @@ class _MainInfoViewState extends State<_MainInfoView> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+              padding: const EdgeInsets.all(Paddings.normal),
               child: AppButton.primary(label: 'Далее', onTap: _save),
             ),
           ],
@@ -258,7 +259,7 @@ class _AdditionalInfoViewState extends State<_AdditionalInfoView> {
           children: [
             Expanded(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+                padding: kPagePadding,
                 child: Form(
                   key: formKey,
                   child: Column(
@@ -297,7 +298,7 @@ class _AdditionalInfoViewState extends State<_AdditionalInfoView> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+              padding: const EdgeInsets.all(Paddings.normal),
               child: AppButton.primary(
                 label: 'Перейти к проверке',
                 onTap: save,
@@ -337,11 +338,9 @@ class _PreviewView extends StatelessWidget implements _ModerationEditView {
       body: SafeArea(
         child: Column(
           children: [
-            Expanded(
-              child: IgnorePointer(child: ArtworkScreen.preview(artwork: c.preview)),
-            ),
+            Expanded(child: ArtworkScreen.preview(artwork: c.preview)),
             Padding(
-              padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+              padding: const EdgeInsets.all(Paddings.normal),
               child: AppButton.primary(
                 label: 'Отправить на модерацию',
                 onTap: () => send0(context),

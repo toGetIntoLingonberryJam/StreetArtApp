@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
+import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
@@ -11,7 +12,7 @@ class ChangePasswordPage extends StatelessWidget {
     return const Scaffold(
       appBar: AppHeader(title: 'Изменить пароль'),
       body: Padding(
-        padding: EdgeInsets.fromLTRB(20, 10, 20, 20),
+        padding: kPagePadding,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
