@@ -45,7 +45,7 @@ class CollectionScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: Paddings.normal),
               Expanded(child: controller.view),
             ],
           );

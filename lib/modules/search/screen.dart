@@ -35,7 +35,7 @@ class SearchScreen extends StatelessWidget {
                           onTap: () => Get.back(result: items[i]),
                           child: ArtistCard(artist: items[i]),
                         ),
-                        separatorBuilder: (_, __) => const SizedBox(height: 20),
+                        separatorBuilder: (_, __) => const SizedBox(height: Paddings.normal),
                       ),
               ),
             ],
