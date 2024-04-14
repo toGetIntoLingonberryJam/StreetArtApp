@@ -30,13 +30,7 @@ void main() async {
   Get.put(CollectionController(), permanent: true);
   Get.put(EmailCounterController(durationInSeconds: 30), permanent: true);
 
-  runApp(
-    MyApp(initImageQuality: quality),
-    // DevicePreview(
-    //   enabled: !kReleaseMode,
-    // builder: (_) => MyApp(user: user, initImageQuality: quality),
-    // ),
-  );
+  runApp(MyApp(initImageQuality: quality));
 }
 
 class MyApp extends StatelessWidget {

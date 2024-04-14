@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide Response;
+import 'package:street_art_witnesses/core/utils/error_handler.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/api/backend_api.dart';
@@ -112,7 +113,7 @@ class _ApplicationPage extends StatelessWidget {
     if (result == null && context.mounted) {
       Utils.showError('Не удалось выполнить запрос');
     } else if (context.mounted) {
-      Utils.showInfo('Работа одобрена');
+      Utils.showSuccess('Работа одобрена');
       Get.back();
     }
   }

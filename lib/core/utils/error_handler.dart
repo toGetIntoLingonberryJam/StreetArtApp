@@ -12,7 +12,7 @@ abstract class ApiHandler {
     T Function(Response r)? onResult,
   }) async {
     assert(T == Response || onResult != null,
-        'If <T> is not Response, you should provide the onResult method');
+        'You should either explicitly set <Response> as T or provide an onResult method');
 
     try {
       final result = await request;
