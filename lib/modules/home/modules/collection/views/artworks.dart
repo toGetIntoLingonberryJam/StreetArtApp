@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
@@ -44,7 +45,7 @@ class ArtworkCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.onBackground,
+        color: UIColors.backgroundCard,
         borderRadius: BorderRadius.circular(18),
       ),
       child: SizedBox(
@@ -56,7 +57,7 @@ class ArtworkCard extends StatelessWidget {
               child: Container(
                 width: 100,
                 height: 100,
-                color: Theme.of(context).colorScheme.surface,
+                color: UIColors.slider,
                 child: const AppPlaceholder(),
               ),
             ),

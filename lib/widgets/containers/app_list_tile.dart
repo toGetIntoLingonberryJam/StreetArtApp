@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
+import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/widgets/containers/app_container.dart';
 
@@ -61,7 +62,7 @@ class _Badge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.error,
+        color: UIColors.error,
         borderRadius: BorderRadius.circular(100),
       ),
       child: Text(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 
 class RoleTile extends StatelessWidget {
@@ -14,7 +15,7 @@ class RoleTile extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.onBackground,
+        color: UIColors.backgroundCard,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/modules/auth/check_email/screen.dart';
@@ -54,7 +55,7 @@ class _LoginWarningTile extends GetView<ProfileController> {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.onBackground,
+        color: UIColors.backgroundCard,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
@@ -62,10 +63,7 @@ class _LoginWarningTile extends GetView<ProfileController> {
         children: [
           Row(
             children: [
-              Icon(
-                Icons.info_outline,
-                color: Theme.of(context).colorScheme.error,
-              ),
+              const Icon(Icons.info_outline, color: UIColors.error),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
@@ -80,9 +78,9 @@ class _LoginWarningTile extends GetView<ProfileController> {
                       child: Text(
                         'Отправить письмо',
                         style: TextStyles.text.copyWith(
-                          color: Theme.of(context).colorScheme.surface,
+                          color: UIColors.slider,
                           decoration: TextDecoration.underline,
-                          decorationColor: Theme.of(context).colorScheme.surface,
+                          decorationColor: UIColors.slider,
                         ),
                       ),
                     ),

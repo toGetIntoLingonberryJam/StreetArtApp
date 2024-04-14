@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/modules/home/controller.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -20,12 +21,12 @@ class HomeScreen extends StatelessWidget {
           children: c.pages,
         ),
         bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Theme.of(context).colorScheme.onBackground,
+          backgroundColor: UIColors.backgroundCard,
           type: BottomNavigationBarType.fixed,
           showUnselectedLabels: true,
           selectedFontSize: 12,
           currentIndex: c.pageIndex,
-          selectedItemColor: Theme.of(context).colorScheme.inverseSurface,
+          selectedItemColor: UIColors.textPrimary,
           onTap: (index) => c.setPage(index),
           items: _navbarItems,
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/core/values/colors.dart';
 
 class AppCircleAvatar extends StatelessWidget {
   const AppCircleAvatar({
@@ -17,7 +18,7 @@ class AppCircleAvatar extends StatelessWidget {
     return CircleAvatar(
       radius: radius,
       foregroundImage: image,
-      backgroundColor: bgColor ?? Theme.of(context).colorScheme.surface,
+      backgroundColor: bgColor ?? UIColors.slider,
     );
   }
 }
@@ -39,7 +40,7 @@ class AppMarkerAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      backgroundColor: bgColor ?? Theme.of(context).colorScheme.secondary,
+      backgroundColor: bgColor ?? UIColors.purple,
       radius: radius + 0.5,
       child: CircleAvatar(
         radius: radius,

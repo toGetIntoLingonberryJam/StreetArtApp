@@ -30,7 +30,7 @@ class AboutPage extends StatelessWidget {
                 onTap: () => Utils.tryLaunchUrl(reportLink),
                 label: 'Обратная связь',
               ),
-              const SizedBox(height: Paddings.small),
+              const SizedBox(height: Paddings.normal),
               AppButton.primary(
                 onTap: () => Utils.tryLaunchUrl(contactLink),
                 label: 'Связаться с нами',
@@ -54,7 +54,7 @@ class _VersionWidget extends StatelessWidget {
           Text('Версия приложения:', style: TextStyles.headline2),
           SizedBox(width: 10),
           // TODO: Change VERSION name
-          Text('0.11.1', style: TextStyles.text),
+          Text('0.11.2', style: TextStyles.text),
         ],
       ),
     );

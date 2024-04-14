@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/modules/auth/screen.dart';
@@ -38,7 +39,7 @@ class _LoginContainer extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 24),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.onBackground,
+        color: UIColors.backgroundCard,
         borderRadius: BorderRadius.circular(22),
       ),
       child: Column(

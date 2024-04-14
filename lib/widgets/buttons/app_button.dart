@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 
@@ -37,13 +38,12 @@ class AppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final btnColor = isPrimary ? colorScheme.primary : colorScheme.onBackground;
+    final btnColor = isPrimary ? UIColors.primary : UIColors.backgroundCard;
 
     return Material(
       borderRadius: kButtonBorderRadius,
       child: InkWell(
-        splashColor: colorScheme.primary.withAlpha(40),
+        splashColor: UIColors.primary.withAlpha(40),
         borderRadius: kButtonBorderRadius,
         onTap: onTap,
         child: Ink(

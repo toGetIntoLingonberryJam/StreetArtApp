@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/utils/validator.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
@@ -45,12 +46,12 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: widget.validator,
       controller: widget.controller,
-      cursorColor: Theme.of(context).colorScheme.secondary,
+      cursorColor: UIColors.purple,
       obscureText: widget.withToggleEye && !isVisible,
       decoration: InputDecoration(
           helperText: '',
           filled: true,
-          fillColor: Theme.of(context).colorScheme.onBackground,
+          fillColor: UIColors.backgroundCard,
           contentPadding: const EdgeInsets.only(right: 16),
           prefix:
               widget.prefixIcon == null ? const Padding(padding: EdgeInsets.only(left: 16)) : null,
@@ -68,22 +69,17 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: kFieldBorderRadius,
-            borderSide: BorderSide(
-              color: Theme.of(context).colorScheme.secondary,
-              width: 2,
-            ),
+            borderSide: const BorderSide(color: UIColors.purple, width: 2),
           ),
           errorBorder: OutlineInputBorder(
             borderRadius: kFieldBorderRadius,
-            borderSide: BorderSide(
-              color: Theme.of(context).colorScheme.error,
+            borderSide: const BorderSide(
+              color: UIColors.error,
               width: 2,
             ),
           ),
           hintText: widget.hintText,
-          hintStyle: TextStyles.input.copyWith(
-            color: Theme.of(context).colorScheme.inverseSurface,
-          )),
+          hintStyle: TextStyles.input.copyWith(color: UIColors.textPrimary)),
     );
   }
 }

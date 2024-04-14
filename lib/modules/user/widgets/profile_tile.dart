@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/extensions.dart';
+import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/modules/user/modules/user_info.dart';
@@ -24,13 +25,13 @@ class ProfileTile extends StatelessWidget {
       child: Ink(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.onBackground,
+          color: UIColors.backgroundCard,
           borderRadius: BorderRadius.circular(18),
         ),
         child: Row(
           children: [
             CircleAvatar(
-              backgroundColor: Theme.of(context).colorScheme.surface,
+              backgroundColor: UIColors.slider,
               foregroundImage: AppPlaceholder.assetImage(),
               radius: 36,
             ),

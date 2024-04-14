@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/modules/home/modules/map/controller.dart';
 import 'package:street_art_witnesses/modules/home/modules/map/layers/controllers/controller.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
@@ -52,23 +53,23 @@ class MapControllersLayer extends GetView<GetMapController> {
               const Expanded(flex: 5, child: SizedBox()),
               if (zoom)
                 FloatingActionButton(
-                  backgroundColor: Theme.of(context).colorScheme.onBackground,
+                  backgroundColor: UIColors.backgroundCard,
                   heroTag: 'zoom_in',
                   onPressed: () => controller.mapController.animatedZoomIn(),
-                  child: Icon(
+                  child: const Icon(
                     Icons.add,
-                    color: Theme.of(context).colorScheme.inverseSurface,
+                    color: UIColors.textPrimary,
                   ),
                 ),
               const SizedBox(height: 10),
               if (zoom)
                 FloatingActionButton(
-                  backgroundColor: Theme.of(context).colorScheme.onBackground,
+                  backgroundColor: UIColors.backgroundCard,
                   heroTag: 'zoom_out',
                   onPressed: () => controller.mapController.animatedZoomOut(),
-                  child: Icon(
+                  child: const Icon(
                     Icons.remove,
-                    color: Theme.of(context).colorScheme.inverseSurface,
+                    color: UIColors.textPrimary,
                   ),
                 ),
               const Expanded(flex: 3, child: SizedBox()),
@@ -76,20 +77,20 @@ class MapControllersLayer extends GetView<GetMapController> {
                 GetBuilder<UserLocationController>(
                   builder: (userLoc) {
                     return FloatingActionButton(
-                      backgroundColor: Theme.of(context).colorScheme.onBackground,
+                      backgroundColor: UIColors.backgroundCard,
                       heroTag: 'fetch_location',
                       onPressed: () => _fetchUserPosition(context),
                       child: userLoc.isFetching
-                          ? SizedBox(
+                          ? const SizedBox(
                               width: 24,
                               height: 24,
                               child: AppLoadingIndicator(
-                                color: Theme.of(context).colorScheme.inverseSurface,
+                                color: UIColors.textPrimary,
                               ),
                             )
-                          : Icon(
+                          : const Icon(
                               Icons.near_me_outlined,
-                              color: Theme.of(context).colorScheme.inverseSurface,
+                              color: UIColors.textPrimary,
                             ),
                     );
                   },

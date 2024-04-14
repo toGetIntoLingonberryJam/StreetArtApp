@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/core/values/colors.dart';
 
 class SliderDots extends StatelessWidget {
   const SliderDots({
@@ -41,9 +42,7 @@ class Dot extends StatelessWidget {
       width: radius,
       height: radius,
       decoration: BoxDecoration(
-        color: isActive
-            ? Theme.of(context).colorScheme.inverseSurface
-            : Theme.of(context).colorScheme.surface,
+        color: isActive ? UIColors.textPrimary : UIColors.slider,
         borderRadius: BorderRadius.circular((radius)),
       ),
     );

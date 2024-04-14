@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 
 class Skeleton extends StatelessWidget {
@@ -17,13 +18,13 @@ class Skeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: Theme.of(context).colorScheme.onBackground,
-      highlightColor: Theme.of(context).colorScheme.onSurface,
+      baseColor: UIColors.backgroundCard,
+      highlightColor: UIColors.slider,
       child: Container(
         width: width,
         height: height,
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.onBackground,
+          color: UIColors.backgroundCard,
           borderRadius: BorderRadius.circular(borderRadius),
         ),
       ),

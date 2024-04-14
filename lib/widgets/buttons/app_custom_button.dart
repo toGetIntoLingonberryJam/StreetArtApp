@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 
 class AppCustomButton extends StatelessWidget {
@@ -22,12 +23,11 @@ class AppCustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final btnColor = isFilled ? colorScheme.primary : colorScheme.onBackground;
+    final btnColor = isFilled ? UIColors.primary : UIColors.backgroundCard;
 
     return Material(
       child: InkWell(
-        splashColor: colorScheme.inversePrimary.withAlpha(40),
+        splashColor: UIColors.textPrimary.withAlpha(40),
         borderRadius: kButtonBorderRadius,
         onTap: onTap,
         child: Ink(
@@ -37,7 +37,7 @@ class AppCustomButton extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: kButtonBorderRadius,
             color: btnColor,
-            border: isFilled ? null : Border.all(color: colorScheme.primary, width: 2),
+            border: isFilled ? null : Border.all(color: UIColors.primary, width: 2),
           ),
           child: child ?? const SizedBox(),
         ),

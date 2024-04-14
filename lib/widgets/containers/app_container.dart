@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 
 class AppContainer extends StatelessWidget {
@@ -20,7 +21,7 @@ class AppContainer extends StatelessWidget {
         width: width,
         padding: kContainerPadding,
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.onBackground,
+          color: UIColors.backgroundCard,
           borderRadius: BorderRadius.circular(borderRadius),
         ),
         child: child,

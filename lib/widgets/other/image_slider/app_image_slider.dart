@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:street_art_witnesses/core/values/constants.dart';
+import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/image/image.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
@@ -22,11 +22,11 @@ class _NoImagesPlaceholder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return const SizedBox(
       height: 380,
       child: Material(
-        color: Theme.of(context).colorScheme.onBackground,
-        child: const Center(
+        color: UIColors.backgroundCard,
+        child: Center(
           child: Text('Фотографии отсутствуют', style: TextStyles.headline1),
         ),
       ),

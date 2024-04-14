@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/core/values/colors.dart';
 
 class AppLoadingIndicator extends StatelessWidget {
   const AppLoadingIndicator({super.key, this.value, this.color});
@@ -10,7 +11,7 @@ class AppLoadingIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircularProgressIndicator(
       value: value,
-      color: color ?? Theme.of(context).colorScheme.primary,
+      color: color ?? UIColors.primary,
       strokeWidth: 4,
       strokeCap: StrokeCap.round,
     );

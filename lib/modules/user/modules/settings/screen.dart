@@ -18,8 +18,8 @@ class SettingsScreen extends StatelessWidget {
         padding: kPagePadding,
         child: Column(
           children: [
-            _ThemeSettings(),
-            SizedBox(height: 8),
+            // _ThemeSettings(),
+            // SizedBox(height: 8),
             _QualitySettings(),
           ],
         ),
