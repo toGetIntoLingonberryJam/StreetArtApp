@@ -54,7 +54,7 @@ class _VersionWidget extends StatelessWidget {
           Text('Версия приложения:', style: TextStyles.headline2),
           SizedBox(width: 10),
           // TODO: Change VERSION name
-          Text('0.11.2', style: TextStyles.text),
+          Text('0.12.0', style: TextStyles.text),
         ],
       ),
     );
