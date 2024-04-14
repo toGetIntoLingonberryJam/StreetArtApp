@@ -187,6 +187,8 @@ class _CardImage extends StatelessWidget {
             artwork.images!.first.imageUrl,
             quality: ImageQuality.preview,
           ),
+          index: 1,
+          length: 1,
         ),
       ),
     );

@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
@@ -47,8 +46,13 @@ class _ImageSliderBaseState extends State<ImageSliderBase> {
             controller: PageController(viewportFraction: 0.99999),
             physics: const ClampingScrollPhysics(),
             onPageChanged: (value) => controller.updateIndex(value),
-            children:
-                imageLoaders.map((imageLoader) => LoadingImage(imageLoader: imageLoader)).toList(),
+            children: imageLoaders.indexed
+                .map((data) => LoadingImage(
+                      imageLoader: data.$2,
+                      index: data.$1 + 1,
+                      length: imageLoaders.length,
+                    ))
+                .toList(),
           ),
           if (widget.images.length > 1)
             Align(
@@ -67,9 +71,16 @@ class _ImageSliderBaseState extends State<ImageSliderBase> {
 }
 
 class LoadingImage extends StatelessWidget {
-  const LoadingImage({super.key, required this.imageLoader});
+  const LoadingImage({
+    super.key,
+    required this.imageLoader,
+    required this.index,
+    required this.length,
+  });
 
   final Future<ImageProvider?> imageLoader;
+  final int index;
+  final int length;
 
   @override
   Widget build(BuildContext context) {
@@ -77,15 +88,22 @@ class LoadingImage extends StatelessWidget {
       future: imageLoader,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return Image(
-            loadingBuilder: (context, child, loadingProgress) {
-              if (loadingProgress == null) {
-                return child;
-              }
-              return const Skeleton();
-            },
-            image: snapshot.data!,
-            fit: BoxFit.cover,
+          return GestureDetector(
+            onTap: () => Get.to(() => _OpenedImage(
+                  image: snapshot.data!,
+                  index: index,
+                  length: length,
+                )),
+            child: Image(
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) {
+                  return child;
+                }
+                return const Skeleton();
+              },
+              image: snapshot.data!,
+              fit: BoxFit.cover,
+            ),
           );
         }
 
@@ -100,6 +118,28 @@ class LoadingImage extends StatelessWidget {
         }
         return const Skeleton();
       },
+    );
+  }
+}
+
+class _OpenedImage extends StatelessWidget {
+  const _OpenedImage({required this.image, required this.index, required this.length});
+
+  final int index;
+  final int length;
+  final ImageProvider image;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppHeader(title: '$index из $length'),
+      body: Column(
+        children: [
+          const Spacer(),
+          Image(image: image, fit: BoxFit.contain),
+          const Spacer(flex: 2),
+        ],
+      ),
     );
   }
 }
