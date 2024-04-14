@@ -1,4 +1,6 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/core/utils/error_handler.dart';
 import 'package:street_art_witnesses/data/api/ya_disk_api.dart';
 import 'package:street_art_witnesses/data/services/settings_service.dart';
 import 'package:street_art_witnesses/core/utils/logger.dart';
@@ -27,25 +29,23 @@ abstract class ImagesService {
       return _mapUrlToImage[quality]![url];
     }
 
-    final response = await YaDiskApi.get(
-      '/v1/disk/public/resources/',
-      queryParameters: {
-        'public_key': url,
-        'preview_size': _mapQualityToSize[quality],
-        'fields': 'preview',
-      },
+    final response = await ApiHandler.handleApiRequest<Response>(
+      YaDiskApi.dio.get(
+        '/v1/disk/public/resources/',
+        queryParameters: {
+          'public_key': url,
+          'preview_size': _mapQualityToSize[quality],
+          'fields': 'preview',
+        },
+      ),
     );
-    if (response == null) {
+    try {
+      final String imageUrl = response?.data!['preview'];
+      _mapUrlToImage[quality]![url] = NetworkImage(imageUrl);
+      return _mapUrlToImage[quality]![url];
+    } on Exception catch (e) {
+      Logger.exception(e, where: 'ImagesService.loadFromDisk');
       return null;
-    } else {
-      try {
-        final String imageUrl = response.data!['preview'];
-        _mapUrlToImage[quality]![url] = NetworkImage(imageUrl);
-        return _mapUrlToImage[quality]![url];
-      } on Exception catch (e) {
-        Logger.exception(e, where: 'ImagesService.loadFromDisk');
-        return null;
-      }
     }
   }
 }
