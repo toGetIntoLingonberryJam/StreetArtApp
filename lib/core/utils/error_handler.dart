@@ -39,7 +39,7 @@ mixin ApiHandlerMixin {
     T Function(Response r)? onResult,
   }) async {
     assert(T == Response || onResult != null,
-        'You should either explicitly set <Response> as T or provide an onResult method');
+        'If <T> is not Response, you should provide the onResult method');
 
     try {
       final result = await request;

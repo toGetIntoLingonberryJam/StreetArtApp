@@ -1,5 +1,9 @@
-import 'package:street_art_ui_kit/street_art_ui_kit.dart';
+import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/festival/preview/festival_preview.dart';
+import 'package:street_art_witnesses/widgets/containers/app_container.dart';
+import 'package:street_art_witnesses/widgets/other/app_loading_indicator.dart';
+import 'package:street_art_witnesses/widgets/skeletons/app_placeholder.dart';
 
 class FestivalsView extends StatelessWidget {
   const FestivalsView({super.key, required this.festsPrevs});
@@ -9,13 +13,13 @@ class FestivalsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (festsPrevs == null) {
-      return const Center(child: SALoadingIndicator());
+      return const Center(child: AppLoadingIndicator());
     }
     if (festsPrevs!.isEmpty) {
       return const Center(
           child: Text(
         'У вас нет сохраненных фестивалей',
-        style: SATextStyles.headline2,
+        style: TextStyles.headline2,
       ));
     }
 
@@ -34,20 +38,20 @@ class FestCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SAContainer(
+    return AppContainer(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CircleAvatar(
             radius: 50,
-            backgroundImage: SAPlaceholder.assetImage(),
+            backgroundImage: AppPlaceholder.assetImage(),
           ),
           const SizedBox(width: 8),
           Expanded(
             child: Container(
               height: 100,
               alignment: Alignment.centerLeft,
-              child: Text(preview.name, style: SATextStyles.headline1),
+              child: Text(preview.name, style: TextStyles.headline1),
             ),
           ),
           const Padding(

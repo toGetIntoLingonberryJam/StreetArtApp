@@ -1,11 +1,13 @@
-import 'package:street_art_ui_kit/street_art_ui_kit.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
+import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/modules/auth/check_email/screen.dart';
 import 'package:street_art_witnesses/modules/auth/check_email/controller.dart';
 import 'package:street_art_witnesses/modules/user/controller.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/modules/user/widgets/widgets.dart';
+import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
 
 class AuthorizedView extends GetView<ProfileController> {
   const AuthorizedView({super.key});
@@ -71,13 +73,13 @@ class _LoginWarningTile extends GetView<ProfileController> {
                   children: [
                     const Text(
                       'Чтобы пользоваться всеми функциями приложения, подтвердите почту.',
-                      style: SATextStyles.text,
+                      style: TextStyles.text,
                     ),
                     GestureDetector(
                       onTap: () => _sendEmail(context),
                       child: Text(
                         'Отправить письмо',
-                        style: SATextStyles.text.copyWith(
+                        style: TextStyles.text.copyWith(
                           color: Theme.of(context).colorScheme.surface,
                           decoration: TextDecoration.underline,
                           decorationColor: Theme.of(context).colorScheme.surface,
@@ -94,7 +96,7 @@ class _LoginWarningTile extends GetView<ProfileController> {
               if (counter.showUpdateButton) {
                 return Padding(
                   padding: const EdgeInsets.only(top: 10),
-                  child: SAPrimaryButton(
+                  child: AppButton.primary(
                     onTap: () => _updateUser(context),
                     label: 'Обновить',
                   ),

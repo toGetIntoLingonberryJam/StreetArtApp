@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:street_art_witnesses/core/utils/error_handler.dart';
-import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/data/api/backend_api.dart';
 import 'package:street_art_witnesses/data/api/local_store_datasource.dart';
 import 'package:street_art_witnesses/data/models/user.dart';
@@ -35,11 +34,6 @@ class AuthService extends GetxService with ApiHandlerMixin {
         options: Options(contentType: Headers.formUrlEncodedContentType),
       ),
       onResult: (r) => r.data['access_token'] as String,
-      onDioError: (e) {
-        return e.response == null
-            ? Utils.showError('Проблемы с интернет-соединением')
-            : Utils.showError(e.response!.data);
-      },
     );
 
     if (token == null) {
@@ -83,7 +77,7 @@ class AuthService extends GetxService with ApiHandlerMixin {
     final response = await handleApiRequest<Response>(
       BackendApi.post('/v1/users/request-verify-token', data: {'email': email}),
     );
-    return response != null;
+    return response?.statusMessage == 'OK';
   }
 
   // TODO: Clear all user data: favourites, search history, tours, everyhting that depends on user

@@ -1,5 +1,6 @@
-import 'package:street_art_ui_kit/street_art_ui_kit.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/services/auth_service.dart';
 import 'package:street_art_witnesses/modules/auth/check_email/controller.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
@@ -21,7 +22,7 @@ class EmailCounterWidget extends GetView<EmailCounterController> {
         spacing: 10,
         children: [
           counter.canSend ? _resendButton(context) : _resendText(context),
-          Text('Через ${counter.count} сек', style: SATextStyles.text)
+          Text('Через ${counter.count} сек', style: TextStyles.text)
         ],
       ),
     );
@@ -30,7 +31,7 @@ class EmailCounterWidget extends GetView<EmailCounterController> {
   Text _resendText(BuildContext context) {
     return Text(
       'Отправить повторно',
-      style: SATextStyles.text.copyWith(color: Theme.of(context).colorScheme.surface),
+      style: TextStyles.text.copyWith(color: Theme.of(context).colorScheme.surface),
     );
   }
 
@@ -39,7 +40,7 @@ class EmailCounterWidget extends GetView<EmailCounterController> {
       onTap: () => _sendEmail(context),
       child: Text(
         'Отправить повторно',
-        style: SATextStyles.text.copyWith(
+        style: TextStyles.text.copyWith(
           color: Theme.of(context).colorScheme.inverseSurface,
           decoration: TextDecoration.underline,
         ),

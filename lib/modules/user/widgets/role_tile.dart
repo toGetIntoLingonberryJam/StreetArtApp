@@ -1,4 +1,5 @@
-import 'package:street_art_ui_kit/street_art_ui_kit.dart';
+import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/core/values/text_styles.dart';
 
 class RoleTile extends StatelessWidget {
   const RoleTile({
@@ -21,7 +22,7 @@ class RoleTile extends StatelessWidget {
           Expanded(
             child: Text(
               role,
-              style: SATextStyles.text.copyWith(fontWeight: FontWeight.w500),
+              style: TextStyles.text.copyWith(fontWeight: FontWeight.w500),
               overflow: TextOverflow.ellipsis,
             ),
           ),

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:street_art_ui_kit/street_art_ui_kit.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/data/services/location_service.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/modules/home/modules/map/controller.dart';
+import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class AddressInfo extends StatelessWidget {
   const AddressInfo({
@@ -37,7 +38,7 @@ class AddressInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SAContainer(
+    return AppContainer(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -45,9 +46,9 @@ class AddressInfo extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Адрес:', style: SATextStyles.headline2),
+                const Text('Адрес:', style: TextStyles.headline2),
                 const SizedBox(height: 10),
-                Text(artwork.location.address, style: SATextStyles.textAdditional),
+                Text(artwork.location.address, style: TextStyles.textAdditional),
               ],
             ),
           ),

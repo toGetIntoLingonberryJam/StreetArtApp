@@ -1,4 +1,4 @@
-import 'package:street_art_ui_kit/street_art_ui_kit.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_animations/flutter_map_animations.dart';
 import 'package:get/get.dart';
@@ -9,9 +9,7 @@ import 'package:street_art_witnesses/widgets/loaders/loader.dart';
 import 'package:street_art_witnesses/widgets/map/location_marker/marker.dart';
 
 class GetMapController extends GetxController with GetTickerProviderStateMixin {
-  GetMapController({this.showLocations = true});
-
-  final bool showLocations;
+  GetMapController();
 
   late final mapController = AnimatedMapController(
     vsync: this,
@@ -26,7 +24,7 @@ class GetMapController extends GetxController with GetTickerProviderStateMixin {
 
   @override
   void onInit() {
-    if (showLocations) fetchLocations();
+    fetchLocations();
     super.onInit();
   }
 

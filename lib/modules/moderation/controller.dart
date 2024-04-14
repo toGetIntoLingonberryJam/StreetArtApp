@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:street_art_ui_kit/street_art_ui_kit.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide FormData;
 import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
@@ -11,6 +11,7 @@ import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork_location/artwork_location.dart';
 import 'package:street_art_witnesses/data/services/auth_service.dart';
 import 'package:street_art_witnesses/modules/moderation/screens/thanks.dart';
+import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class ModerationData {
   String? title;
@@ -48,7 +49,7 @@ class ModerationController extends GetxController {
     );
     final result = await Utils.showLoading(future);
     result == null
-        ? Get.to(() => const SAErrorScreen())
+        ? Get.to(() => const AppErrorScreen())
         : Get.off(() => const ModerationThanksScreen());
   }
 

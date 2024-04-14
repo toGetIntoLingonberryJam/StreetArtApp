@@ -1,8 +1,10 @@
-import 'package:street_art_ui_kit/street_art_ui_kit.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/modules/home/screen.dart';
 import 'package:street_art_witnesses/modules/intro/intro_auth_page.dart';
 import 'package:street_art_witnesses/modules/intro/intro_page.dart';
+import 'package:street_art_witnesses/widgets/other/slider_dots.dart';
 
 class IntroSlider extends StatefulWidget {
   const IntroSlider({super.key});
@@ -61,7 +63,7 @@ class _IntroSliderState extends State<IntroSlider> {
                   ],
                 ),
               ),
-              SASliderDots(count: 3, activeIndex: pageIndex),
+              SliderDots(count: 3, activeIndex: pageIndex),
             ],
           ),
         ),
@@ -76,7 +78,7 @@ class _IntroSliderState extends State<IntroSlider> {
         const Expanded(child: SizedBox()),
         GestureDetector(
           onTap: () => Get.to(() => const HomeScreen()),
-          child: const Text('Пропустить', style: SATextStyles.textAdditional),
+          child: const Text('Пропустить', style: TextStyles.textAdditional),
         ),
       ]),
     );

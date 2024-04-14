@@ -1,7 +1,8 @@
-import 'package:street_art_ui_kit/street_art_ui_kit.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:street_art_witnesses/modules/auth/controller.dart';
 import 'package:street_art_witnesses/core/utils/validator.dart';
+import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class RegisterView extends GetView<AuthController> {
   const RegisterView({super.key});
@@ -13,25 +14,25 @@ class RegisterView extends GetView<AuthController> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SATextFormField(
+          AppTextFormField(
             controller: controller.usernameCtrl,
             hintText: 'Введите имя',
             validator: Validator.get(Validate.login),
           ),
           const SizedBox(height: 10),
-          SATextFormField(
+          AppTextFormField(
             controller: controller.emailCtrl,
             hintText: 'Введите почту',
             validator: Validator.get(Validate.email),
           ),
           const SizedBox(height: 10),
-          SATextFormField.withToggleEye(
+          AppTextFormField.withToggleEye(
             controller: controller.passwordCtrl,
             hintText: 'Введите пароль',
             validator: Validator.get(Validate.password),
           ),
           const SizedBox(height: 10),
-          SATextFormField.withToggleEye(
+          AppTextFormField.withToggleEye(
             controller: controller.passwordConfirmCtrl,
             hintText: 'Повторите пароль',
             validator: (String? password) {
@@ -42,7 +43,7 @@ class RegisterView extends GetView<AuthController> {
             },
           ),
           const SizedBox(height: 60),
-          SAPrimaryButton(
+          AppButton.primary(
             onTap: () => controller.tryRegister(context),
             label: 'Зарегистрироваться',
           ),

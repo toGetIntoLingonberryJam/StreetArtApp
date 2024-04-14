@@ -1,4 +1,6 @@
-import 'package:street_art_ui_kit/street_art_ui_kit.dart';
+import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/core/values/text_styles.dart';
+import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class ArtistInfoCard extends StatelessWidget {
   const ArtistInfoCard({super.key, required this.artistName});
@@ -7,12 +9,12 @@ class ArtistInfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SAContainer(
+    return AppContainer(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(artistName, style: SATextStyles.headline1),
-          // const SizedBox(height: 8),
+          Text(artistName, style: TextStyles.headline1),
+          const SizedBox(height: 8),
         ],
       ),
     );

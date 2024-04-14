@@ -1,8 +1,9 @@
-import 'package:street_art_ui_kit/street_art_ui_kit.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/modules/home/modules/map/controller.dart';
 import 'package:street_art_witnesses/modules/home/modules/map/layers/controllers/controller.dart';
+import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class MapControllersLayer extends GetView<GetMapController> {
   const MapControllersLayer({
@@ -42,7 +43,7 @@ class MapControllersLayer extends GetView<GetMapController> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               if (search)
-                SATextFormField(
+                AppTextFormField(
                   controller: controller.searchController,
                   prefixIcon: const Icon(Icons.search, size: 16),
                   hintText: 'Поиск',
@@ -82,7 +83,7 @@ class MapControllersLayer extends GetView<GetMapController> {
                           ? SizedBox(
                               width: 24,
                               height: 24,
-                              child: SALoadingIndicator(
+                              child: AppLoadingIndicator(
                                 color: Theme.of(context).colorScheme.inverseSurface,
                               ),
                             )

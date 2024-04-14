@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:street_art_ui_kit/street_art_ui_kit.dart';
-import 'package:street_art_witnesses/widgets/snackbars.dart';
+import 'package:street_art_witnesses/core/values/text_styles.dart';
+import 'package:street_art_witnesses/widgets/app_widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Utils {
@@ -9,9 +10,9 @@ class Utils {
     ..closeAllSnackbars()
     ..showSnackbar(snackbar);
 
-  static void showInfo(Object message) => _showSnackbar(InfoSnackbar('$message'));
-  static void showError(Object message) => _showSnackbar(ErrorSnackbar('$message'));
-  static void showSuccess(Object message) => _showSnackbar(SuccessSnackBar('$message'));
+  static void showInfo(String message) => _showSnackbar(InfoSnackbar(message));
+  static void showError(String message) => _showSnackbar(ErrorSnackbar(message));
+  static void showSuccess(String message) => _showSnackbar(SuccessSnackBar(message));
 
   static Future<bool?> showDialog({
     required String title,
@@ -26,20 +27,25 @@ class Utils {
           surfaceTintColor: Colors.transparent,
           title: Text(
             title,
-            style: SATextStyles.title2,
+            style: TextStyles.title2,
             textAlign: TextAlign.center,
           ),
           content: content == null
               ? null
               : Text(
                   content,
-                  style: SATextStyles.text,
+                  style: TextStyles.text,
                   textAlign: TextAlign.center,
                 ),
           actions: [
-            SAPrimaryButton(onTap: () => Get.back(result: true), label: acceptText),
-            const SizedBox(height: Paddings.normal),
-            SASecondaryButton(onTap: () => Get.back(result: false), label: declineText),
+            AppButton.primary(
+              onTap: () => Get.back(result: true),
+              label: acceptText,
+            ),
+            AppButton.secondary(
+              onTap: () => Get.back(result: false),
+              label: declineText,
+            ),
           ],
         ),
         barrierDismissible: barrierDismissible,
@@ -57,7 +63,7 @@ class Utils {
           return null;
         }
       },
-      loadingWidget: const Center(child: SALoadingIndicator()),
+      loadingWidget: const Center(child: AppLoadingIndicator()),
     );
     return result;
   }

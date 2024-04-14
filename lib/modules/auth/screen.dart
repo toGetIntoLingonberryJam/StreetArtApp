@@ -1,7 +1,8 @@
-import 'package:street_art_ui_kit/street_art_ui_kit.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/modules/auth/controller.dart';
+import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class AuthScreen extends StatelessWidget {
   AuthScreen({super.key});
@@ -25,17 +26,17 @@ class AuthScreen extends StatelessWidget {
               children: [
                 const Padding(
                   padding: EdgeInsets.only(top: 20, bottom: 45),
-                  child: SALogo(),
+                  child: AppLogo(),
                 ),
                 Row(
                   children: [
                     Expanded(
                       child: controller.form == AuthForm.login
-                          ? SAPrimaryButton(
+                          ? AppButton.primary(
                               onTap: () => controller.switchForm(AuthForm.login),
                               label: 'Вход',
                             )
-                          : SASecondaryButton(
+                          : AppButton.secondary(
                               onTap: () => controller.switchForm(AuthForm.login),
                               label: 'Вход',
                             ),
@@ -43,11 +44,11 @@ class AuthScreen extends StatelessWidget {
                     const SizedBox(width: 20),
                     Expanded(
                       child: controller.form == AuthForm.register
-                          ? SAPrimaryButton(
+                          ? AppButton.primary(
                               onTap: () => controller.switchForm(AuthForm.register),
                               label: 'Регистрация',
                             )
-                          : SASecondaryButton(
+                          : AppButton.secondary(
                               onTap: () => controller.switchForm(AuthForm.register),
                               label: 'Регистрация',
                             ),

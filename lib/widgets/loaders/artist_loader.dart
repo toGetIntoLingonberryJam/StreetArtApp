@@ -1,20 +1,22 @@
-import 'package:street_art_ui_kit/street_art_ui_kit.dart';
-import 'package:street_art_witnesses/core/values/constants.dart';
+import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class ArtistLoader extends StatelessWidget {
   const ArtistLoader({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SAScaffold(
-      title: '',
-      paddings: kDensePagePadding,
-      body: ListView(
-        children: const [
-          SASkeleton(height: 400),
-          SizedBox(height: Paddings.small),
-          SASkeleton(height: 46),
-        ],
+    return Scaffold(
+      appBar: const AppHeader(title: ''),
+      body: Padding(
+        padding: const EdgeInsets.all(10),
+        child: ListView(
+          children: const [
+            Skeleton(height: 380),
+            SizedBox(height: 10),
+            Skeleton(height: 100),
+          ],
+        ),
       ),
     );
   }

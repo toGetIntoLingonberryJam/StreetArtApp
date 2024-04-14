@@ -1,8 +1,9 @@
-import 'package:street_art_ui_kit/street_art_ui_kit.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:street_art_witnesses/core/values/constants.dart';
+import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/services/settings_service.dart';
 import 'package:street_art_witnesses/modules/user/modules/settings/controller.dart';
+import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -10,15 +11,17 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(SettingsController());
-    return const SAScaffold(
-      title: 'Настройки',
-      paddings: kPagePadding,
-      body: Column(
-        children: [
-          _ThemeSettings(),
-          SizedBox(height: 8),
-          _QualitySettings(),
-        ],
+    return const Scaffold(
+      appBar: AppHeader(title: 'Настройки'),
+      body: Padding(
+        padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+        child: Column(
+          children: [
+            _ThemeSettings(),
+            SizedBox(height: 8),
+            _QualitySettings(),
+          ],
+        ),
       ),
     );
   }
@@ -29,11 +32,11 @@ class _ThemeSettings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SAContainer(
+    return AppContainer(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Тема', style: SATextStyles.headline1),
+          const Text('Тема', style: TextStyles.headline1),
           const SizedBox(height: 8),
           _Option(title: 'Системная', onTap: () {}, isChecked: true),
         ],
@@ -47,13 +50,13 @@ class _QualitySettings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SAContainer(
+    return AppContainer(
       child: GetBuilder<SettingsController>(
         builder: (controller) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Качество изображений', style: SATextStyles.headline1),
+              const Text('Качество изображений', style: TextStyles.headline1),
               const SizedBox(height: 8),
               _Option(
                 onTap: () => controller.setImageQuality(ImageQuality.bad),
@@ -102,7 +105,7 @@ class _Option extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Row(
             children: [
-              Expanded(child: Text(title, style: SATextStyles.text)),
+              Expanded(child: Text(title, style: TextStyles.text)),
               if (isChecked) const Icon(Icons.check),
             ],
           ),
