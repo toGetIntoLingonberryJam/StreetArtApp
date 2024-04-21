@@ -2,6 +2,9 @@ import 'package:ansicolor/ansicolor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/values/colors.dart';
+import 'package:street_art_witnesses/core/values/constants.dart';
+import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/core/values/theme.dart';
 import 'package:street_art_witnesses/data/services/auth_service.dart';
 import 'package:street_art_witnesses/data/services/local_store_service.dart';
@@ -12,30 +15,17 @@ import 'package:street_art_witnesses/modules/home/modules/map/controller.dart';
 import 'package:street_art_witnesses/modules/home/screen.dart';
 import 'package:street_art_witnesses/modules/intro/intro_slider.dart';
 import 'package:street_art_witnesses/modules/user/controller.dart';
+import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final quality = await LocalStoreService.getImageQuality();
   ansiColorDisabled = false;
 
-  await Get.putAsync(() async {
-    final service = AuthService();
-    await service.init();
-    return service;
-  }, permanent: true);
-  Get.put(SettingsService(initImageQuality: quality));
-  Get.put(GetMapController(), permanent: true);
-  Get.put(ProfileController(), permanent: true);
-  Get.put(CollectionController(), permanent: true);
-  Get.put(EmailCounterController(durationInSeconds: 30), permanent: true);
-
-  runApp(MyApp(initImageQuality: quality));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key, required this.initImageQuality});
-
-  final ImageQuality initImageQuality;
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,13 +34,73 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
     ]);
 
-    final user = Get.find<AuthService>().user.value;
-
     return GetMaterialApp(
       title: 'Свидетели',
       debugShowCheckedModeBanner: false,
       theme: darkTheme,
-      home: user.isAuthorized ? const HomeScreen() : const IntroSlider(),
+      home: const InitLoadingScreen(),
+    );
+  }
+}
+
+class InitLoadingScreen extends StatefulWidget {
+  const InitLoadingScreen({super.key});
+
+  @override
+  State<InitLoadingScreen> createState() => _InitLoadingScreenState();
+}
+
+class _InitLoadingScreenState extends State<InitLoadingScreen> {
+  @override
+  void initState() {
+    super.initState();
+    load();
+  }
+
+  void load() async {
+    final quality = await LocalStoreService.getImageQuality();
+
+    await Get.putAsync(() async {
+      final service = AuthService();
+      await service.init();
+      return service;
+    }, permanent: true);
+    Get.put(SettingsService(initImageQuality: quality));
+    Get.put(GetMapController(), permanent: true);
+    Get.put(ProfileController(), permanent: true);
+    Get.put(CollectionController(), permanent: true);
+    Get.put(EmailCounterController(durationInSeconds: 30), permanent: true);
+
+    final user = Get.find<AuthService>().user.value;
+    Get.off(() => user.isAuthorized ? const HomeScreen() : const IntroSlider());
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 64,
+              height: 64,
+              padding: const EdgeInsets.all(12),
+              decoration: const BoxDecoration(
+                color: UIColors.greyButton,
+                borderRadius: BorderRadius.all(Radius.circular(16)),
+              ),
+              child: const AppLogo(),
+            ),
+            const SizedBox(width: Paddings.normal),
+            Text(
+              'Свидетели\nСтрит-Арта',
+              style: TextStyles.title2.copyWith(fontWeight: FontWeight.w600),
+              maxLines: 2,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
