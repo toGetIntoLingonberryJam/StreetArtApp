@@ -21,6 +21,26 @@ linter:
   # `// ignore_for_file: name_of_lint` syntax on the line or in the file
   # producing the lint.
   rules:
+    - cancel_subscriptions
+    - avoid_redundant_argument_values
+    - always_use_package_imports
+    - avoid_empty_else
+    - always_declare_return_types
+    - avoid_final_parameters
+    - type_annotate_public_apis
+    - sort_unnamed_constructors_first
+    - use_named_constants
+    - use_decorated_box
+    - use_colored_box
+    - sort_constructors_first
+    - prefer_null_aware_method_calls
+    - prefer_if_elements_to_conditional_expressions
+    - prefer_final_locals
+    - prefer_final_in_for_each
+    - omit_local_variable_types
+    - avoid_types_on_closure_parameters
+    - directives_ordering
+    - join_return_with_assignment
     # avoid_print: false  # Uncomment to disable the `avoid_print` rule
     # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
 
