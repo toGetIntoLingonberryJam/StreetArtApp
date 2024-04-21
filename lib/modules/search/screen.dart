@@ -12,8 +12,8 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(AppSearchController());
-    return AppScaffold(
-      title: 'Поиск',
+    return Scaffold(
+      appBar: const AppHeader(title: 'Поиск'),
       body: GetBuilder<AppSearchController>(builder: (c) {
         final items = c.items;
 

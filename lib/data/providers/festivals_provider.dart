@@ -18,10 +18,10 @@ abstract class FestivalsProvider {
     String? orderBy,
   }) async {
     return await ApiHandler.handleApiRequest(
-      BackendApi.get('/v1/festivals/locations'),
+      BackendApi.get('/v1/festivals'),
       onResult: (r) {
         final fests = <FestivalPreview>[];
-        for (final json in r.data) {
+        for (final json in r.data['items']) {
           fests.add(FestivalPreview.fromJson(json));
         }
         return fests;
