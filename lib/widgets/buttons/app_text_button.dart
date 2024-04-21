@@ -22,8 +22,7 @@ class AppTextButton extends StatelessWidget {
       borderRadius: kButtonBorderRadius,
       onTap: onTap,
       child: Ink(
-        padding:
-            isFilled ? kContainerPadding : const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+        padding: isFilled ? kButtonPadding : const EdgeInsets.symmetric(vertical: 8),
         decoration: BoxDecoration(
           borderRadius: kButtonBorderRadius,
           color: isFilled ? UIColors.accent : UIColors.backgroundCard,

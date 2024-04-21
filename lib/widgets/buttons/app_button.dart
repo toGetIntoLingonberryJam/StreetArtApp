@@ -10,8 +10,7 @@ class AppButton extends StatelessWidget {
     required this.isPrimary,
     this.label,
     this.child,
-  }) : assert((child != null && label == null) || (child == null && label != null),
-            'You must provide either label or child widget');
+  }) : assert((child != null && label == null) || (child == null && label != null), 'You must provide either label or child widget');
 
   const AppButton.primary({
     super.key,
@@ -19,8 +18,7 @@ class AppButton extends StatelessWidget {
     this.label,
     this.child,
   })  : isPrimary = true,
-        assert((child != null && label == null) || (child == null && label != null),
-            'You must provide either label or child widget');
+        assert((child != null && label == null) || (child == null && label != null), 'You must provide either label or child widget');
 
   const AppButton.secondary({
     super.key,
@@ -28,8 +26,7 @@ class AppButton extends StatelessWidget {
     this.label,
     this.child,
   })  : isPrimary = false,
-        assert((child != null && label == null) || (child == null && label != null),
-            'You must provide either label or child widget');
+        assert((child != null && label == null) || (child == null && label != null), 'You must provide either label or child widget');
 
   final String? label;
   final Widget? child;
@@ -48,7 +45,7 @@ class AppButton extends StatelessWidget {
         onTap: onTap,
         child: Ink(
           width: double.infinity,
-          padding: kContainerPadding,
+          padding: kButtonPadding,
           decoration: BoxDecoration(borderRadius: kButtonBorderRadius, color: btnColor),
           child: child ?? Text(label ?? '', style: TextStyles.button, textAlign: TextAlign.center),
         ),
