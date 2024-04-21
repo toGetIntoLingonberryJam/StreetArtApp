@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:ansicolor/ansicolor.dart';
 import 'package:dio/dio.dart';
+import 'package:street_art_witnesses/core/app_config.dart';
 
 class Log {
   Log({required this.logType, required this.message});
@@ -46,18 +47,31 @@ abstract class Logger {
     }
   }
 
-  static void apiCall(RequestOptions options) => _log(Log.apiCall('[http-request] [${options.method}] ${options.uri}'));
+  static void apiCall(RequestOptions options) {
+    if (AppConfig.showApiOutput) {
+      final buffer = StringBuffer();
+      buffer.write('[http-response] [${options.method}] ${options.uri}');
+      if (options.data != null) {
+        buffer.writeln();
+        buffer.write('Data: ${JsonEncoder.withIndent(' ' * 2).convert(options.data)}');
+      }
+      _log(Log.apiCall(buffer.toString()));
+    } else {
+      _log(Log.apiCall('[http-request] [${options.method}] ${options.uri}'));
+    }
+  }
 
   static void apiResult(Response response) {
-    final buffer = StringBuffer();
-    final encoder = JsonEncoder.withIndent(' ' * 2);
-
-    buffer.writeln('[http-response] [${response.requestOptions.method}] ${response.requestOptions.uri}');
-    buffer.writeln('Status: ${response.statusCode}');
-    buffer.writeln('Message: ${response.statusMessage}');
-    buffer.write('Data: ${encoder.convert(response.data)}');
-
-    _log(Log.apiResult(buffer.toString()));
+    if (AppConfig.showApiOutput) {
+      final buffer = StringBuffer();
+      buffer.writeln('[http-response] [${response.requestOptions.method}] [${response.statusCode}] ${response.requestOptions.uri}');
+      buffer.writeln('Message: ${response.statusMessage}');
+      buffer.write('Data: ${JsonEncoder.withIndent(' ' * 2).convert(response.data)}');
+      _log(Log.apiResult(buffer.toString()));
+    } else {
+      final message = '[http-response] [${response.requestOptions.method}] [${response.statusCode}] ${response.requestOptions.uri}';
+      _log(Log.apiResult(message));
+    }
   }
 
   static void d(Object? message) => _log(Log.message('[debug-message] $message'));
