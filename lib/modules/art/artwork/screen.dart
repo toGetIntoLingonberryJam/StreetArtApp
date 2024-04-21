@@ -47,7 +47,7 @@ class ArtworkScreen extends StatelessWidget {
                       child: Text('Добавлено: ID ${artwork.addedByUserId}', style: TextStyles.text),
                     ),
                     const SizedBox(height: Paddings.small),
-                    const _WriteUsWidget(),
+                    const WriteUsWidget(),
                   ],
                 ),
               ),
@@ -59,8 +59,8 @@ class ArtworkScreen extends StatelessWidget {
   }
 }
 
-class _WriteUsWidget extends StatelessWidget {
-  const _WriteUsWidget();
+class WriteUsWidget extends StatelessWidget {
+  const WriteUsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

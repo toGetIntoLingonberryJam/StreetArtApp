@@ -4,9 +4,10 @@ import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class LinksInfo extends StatelessWidget {
-  const LinksInfo(this.links, {super.key});
+  const LinksInfo(this.links, {super.key, this.title});
 
   final List<String>? links;
+  final String? title;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class LinksInfo extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Интересные ссылки', style: TextStyles.headline1),
+          Text(title ?? 'Интересные ссылки', style: TextStyles.headline1),
           const SizedBox(height: Paddings.small),
           for (int idx = 0; idx < links!.length; idx++)
             Padding(
