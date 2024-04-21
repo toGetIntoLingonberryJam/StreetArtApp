@@ -36,7 +36,8 @@ class _ImageSliderBaseState extends State<ImageSliderBase> {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(SliderController(length: widget.images.length));
+    final tag = imageLoaders.hashCode.toString();
+    final controller = Get.put(SliderController(length: widget.images.length), tag: tag);
 
     return SizedBox(
       height: 400,
@@ -60,6 +61,7 @@ class _ImageSliderBaseState extends State<ImageSliderBase> {
               child: Padding(
                 padding: const EdgeInsets.only(bottom: Paddings.small),
                 child: GetBuilder<SliderController>(
+                  tag: tag,
                   builder: (slider) => SliderDots(count: slider.length, activeIndex: slider.index),
                 ),
               ),
@@ -77,6 +79,11 @@ class LoadingImage extends StatelessWidget {
     // required this.index,
     // required this.length,
   });
+
+  LoadingImage.fromPreviewUrl(
+    String previewUrl, {
+    super.key,
+  }) : imageLoader = ImagesService.loadFromDisk(previewUrl);
 
   final Future<ImageProvider?> imageLoader;
   // final int index;
