@@ -25,6 +25,22 @@ abstract class ArtworksProvider {
     );
   }
 
+  static Future<List<ArtworkPreview>?> getArtworksOfFestival(int festivalId) async {
+    return await ApiHandler.handleApiRequest(
+      BackendApi.get('/v1/festivals/$festivalId/artworks', queryParameters: {
+        'size': 50,
+        'page': 1,
+      }),
+      onResult: (r) {
+        final artworks = <ArtworkPreview>[];
+        for (final json in r.data['items']) {
+          artworks.add(ArtworkPreview.fromJson(json));
+        }
+        return artworks;
+      },
+    );
+  }
+
   static Future<List<ArtworkLocation>?> getArtworkLocations() async {
     return await ApiHandler.handleApiRequest(
       BackendApi.get('/v1/artworks/locations'),

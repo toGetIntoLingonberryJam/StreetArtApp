@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
@@ -9,6 +10,7 @@ import 'package:street_art_witnesses/data/services/images_service.dart';
 import 'package:street_art_witnesses/data/services/settings_service.dart';
 import 'package:street_art_witnesses/modules/art/artwork/screen.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
+import 'package:street_art_witnesses/widgets/art/author_header.dart';
 import 'package:street_art_witnesses/widgets/loaders/loader.dart';
 
 class ArtworkPreviewWidget extends StatelessWidget {
@@ -60,21 +62,7 @@ class _Card extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (showAuthor && preview.artistPreview != null)
-              Row(
-                children: [
-                  SizedBox(
-                    width: 16,
-                    height: 16,
-                    child: ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(16)),
-                      child: preview.artistPreview?.image?.imageUrl == null ? const AppPlaceholder() : LoadingImage.fromPreviewUrl(preview.previewUrl!),
-                    ),
-                  ),
-                  const SizedBox(width: 4),
-                  Text(preview.artistPreview?.name ?? 'Автор', style: TextStyles.textAdditional),
-                ],
-              ),
+            if (showAuthor && preview.artistPreview != null) ArtistHeaderWidget.fromArtistPreview(preview.artistPreview!),
             const Spacer(),
             Text(
               preview.title,

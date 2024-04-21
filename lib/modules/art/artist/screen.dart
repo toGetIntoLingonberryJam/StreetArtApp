@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/artist/artist.dart';
@@ -8,9 +7,8 @@ import 'package:street_art_witnesses/data/providers/artworks_provider.dart';
 import 'package:street_art_witnesses/modules/art/artwork/screen.dart';
 import 'package:street_art_witnesses/modules/art/artwork/widgets/links_info.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
-import 'package:street_art_witnesses/widgets/art/artwork_preview_widget.dart';
+import 'package:street_art_witnesses/widgets/art/artworks_grid_loader.dart';
 import 'package:street_art_witnesses/widgets/buttons/link_button.dart';
-import 'package:street_art_witnesses/widgets/containers/grid_column.dart';
 
 class ArtistScreen extends StatelessWidget {
   const ArtistScreen({super.key, required this.artist});
@@ -34,7 +32,10 @@ class ArtistScreen extends StatelessWidget {
                   if (artist.links != null) const SizedBox(height: Paddings.small),
                   if (artist.links != null) LinksInfo(artist.links, title: 'Ссылки'),
                   const SizedBox(height: Paddings.small),
-                  _ArtworksLoader(artist.id),
+                  ArtworksGridLoader(
+                    artworksFuture: ArtworksProvider.getArtworksOfAuthor(artist.id),
+                    showAuthor: false,
+                  ),
                   const SizedBox(height: Paddings.small),
                   const WriteUsWidget(),
                 ],
@@ -112,58 +113,6 @@ class _DescriptionPage extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class _ArtworksLoader extends StatelessWidget {
-  const _ArtworksLoader(this.artistId);
-
-  final int artistId;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const AppContainer(
-          color: UIColors.background,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('Работы', style: TextStyles.headline1),
-              LinkButton('Показать все'),
-            ],
-          ),
-        ),
-        const SizedBox(height: Paddings.small),
-        FutureBuilder(
-          future: ArtworksProvider.getArtworksOfAuthor(artistId),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const AppLoadingIndicator();
-            } else if (snapshot.hasData) {
-              if (snapshot.data!.isEmpty) {
-                return const Center(
-                  child: Text(
-                    'У этого автора нет работ',
-                    style: TextStyles.headline1,
-                  ),
-                );
-              } else {
-                return GridColumn(
-                  widgetHeight: 240,
-                  itemCount: snapshot.data!.length,
-                  itemBuilder: (context, index) {
-                    final preview = snapshot.data![index];
-                    return ArtworkPreviewWidget(preview, showAuthor: false);
-                  },
-                );
-              }
-            }
-            return const AppErrorWidget();
-          },
-        ),
-      ],
     );
   }
 }

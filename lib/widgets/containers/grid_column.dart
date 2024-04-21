@@ -6,6 +6,7 @@ class GridColumn extends StatelessWidget {
     required this.itemCount,
     required this.itemBuilder,
     this.widgetHeight,
+    this.childAspectRatio = 1.0,
     this.crossAxisCount = 2,
     this.crossAxisSpacing = 8,
     this.mainAxisSpacing = 8,
@@ -14,6 +15,7 @@ class GridColumn extends StatelessWidget {
   final int itemCount;
   final Widget? Function(BuildContext context, int index) itemBuilder;
   final double? widgetHeight;
+  final double childAspectRatio;
   final int crossAxisCount;
   final double crossAxisSpacing;
   final double mainAxisSpacing;
@@ -25,6 +27,7 @@ class GridColumn extends StatelessWidget {
       itemCount: itemCount,
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        childAspectRatio: childAspectRatio,
         crossAxisCount: crossAxisCount,
         crossAxisSpacing: crossAxisSpacing,
         mainAxisSpacing: mainAxisSpacing,
