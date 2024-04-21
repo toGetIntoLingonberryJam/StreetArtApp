@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:street_art_witnesses/core/values/colors.dart';
-import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/image/image.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
@@ -22,14 +20,16 @@ class _NoImagesPlaceholder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
-      height: 400,
-      child: Material(
-        color: UIColors.backgroundCard,
-        child: Center(
-          child: Text('Фотографии отсутствуют', style: TextStyles.headline1),
-        ),
-      ),
-    );
+    return const AppPlaceholder(width: double.infinity, height: 400);
+
+    // return const SizedBox(
+    //   height: 400,
+    //   child: Material(
+    //     color: UIColors.backgroundCard,
+    //     child: Center(
+    //       child: Text('Фотографии отсутствуют', style: TextStyles.headline1),
+    //     ),
+    //   ),
+    // );
   }
 }
