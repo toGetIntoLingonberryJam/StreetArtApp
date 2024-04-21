@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart' hide Response;
 import 'package:street_art_witnesses/core/utils/error_handler.dart';
 import 'package:street_art_witnesses/core/utils/logger.dart';
 import 'package:street_art_witnesses/data/api/ya_disk_api.dart';
@@ -22,7 +23,9 @@ abstract class ImagesService {
   };
   static int loads = 0;
 
-  static Future<ImageProvider?> loadFromDisk(String url, {required ImageQuality quality}) async {
+  static Future<ImageProvider?> loadFromDisk(String url, {ImageQuality? quality}) async {
+    quality ??= Get.find<SettingsService>().imageQuality;
+
     loads += 1;
     if (loads % 10 == 0) Logger.d('LoadFromDisk: $url, count: $loads');
     if (_mapUrlToImage[quality]!.containsKey(url)) {

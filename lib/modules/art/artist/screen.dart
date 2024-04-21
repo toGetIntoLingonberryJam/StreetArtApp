@@ -155,7 +155,7 @@ class _ArtworksLoader extends StatelessWidget {
                   itemCount: snapshot.data!.length,
                   itemBuilder: (context, index) {
                     final preview = snapshot.data![index];
-                    return SmallArtworkPreviewWidget(preview);
+                    return ArtworkPreviewWidget(preview, showAuthor: false);
                   },
                 );
               }

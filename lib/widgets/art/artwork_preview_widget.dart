@@ -11,22 +11,23 @@ import 'package:street_art_witnesses/modules/art/artwork/screen.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 import 'package:street_art_witnesses/widgets/loaders/loader.dart';
 
-class SmallArtworkPreviewWidget extends StatelessWidget {
-  const SmallArtworkPreviewWidget(this.preview, {super.key});
+class ArtworkPreviewWidget extends StatelessWidget {
+  const ArtworkPreviewWidget(this.preview, {super.key, this.showAuthor = true});
 
   final ArtworkPreview preview;
+  final bool showAuthor;
 
   @override
   Widget build(BuildContext context) {
     if (preview.previewUrl == null) {
-      return _Card(image: AppPlaceholder.assetImage(), preview: preview);
+      return _Card(image: AppPlaceholder.assetImage(), preview: preview, showAuthor: showAuthor);
     }
 
     return FutureBuilder(
       future: ImagesService.loadFromDisk(preview.previewUrl!, quality: ImageQuality.good),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return _Card(preview: preview, image: snapshot.data!);
+          return _Card(preview: preview, image: snapshot.data!, showAuthor: showAuthor);
         }
         return const Skeleton();
       },
@@ -35,10 +36,11 @@ class SmallArtworkPreviewWidget extends StatelessWidget {
 }
 
 class _Card extends StatelessWidget {
-  const _Card({required this.image, required this.preview});
+  const _Card({required this.image, required this.preview, required this.showAuthor});
 
   final ImageProvider<Object> image;
   final ArtworkPreview preview;
+  final bool showAuthor;
 
   @override
   Widget build(BuildContext context) {
@@ -57,8 +59,23 @@ class _Card extends StatelessWidget {
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.end,
           children: [
+            if (showAuthor && preview.artistPreview != null)
+              Row(
+                children: [
+                  SizedBox(
+                    width: 16,
+                    height: 16,
+                    child: ClipRRect(
+                      borderRadius: const BorderRadius.all(Radius.circular(16)),
+                      child: preview.artistPreview?.image?.imageUrl == null ? const AppPlaceholder() : LoadingImage.fromPreviewUrl(preview.previewUrl!),
+                    ),
+                  ),
+                  const SizedBox(width: 4),
+                  Text(preview.artistPreview?.name ?? 'Автор', style: TextStyles.textAdditional),
+                ],
+              ),
+            const Spacer(),
             Text(
               preview.title,
               style: TextStyles.headline2,
