@@ -8,11 +8,13 @@ class AppContainer extends StatelessWidget {
     required this.child,
     this.width = double.infinity,
     this.borderRadius = kContainerRadius,
+    this.color,
   });
 
   final Widget child;
   final double borderRadius;
   final double? width;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class AppContainer extends StatelessWidget {
         width: width,
         padding: kContainerPadding,
         decoration: BoxDecoration(
-          color: UIColors.backgroundCard,
+          color: color ?? UIColors.backgroundCard,
           borderRadius: BorderRadius.circular(borderRadius),
         ),
         child: child,
