@@ -102,6 +102,7 @@ class _DescriptionPage extends StatelessWidget {
           children: [
             AppContainer(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [

@@ -60,6 +60,7 @@ class _DescriptionPage extends StatelessWidget {
         padding: kDensePagePadding,
         child: AppContainer(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
