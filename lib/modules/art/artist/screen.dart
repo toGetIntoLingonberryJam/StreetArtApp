@@ -13,22 +13,12 @@ import 'package:street_art_witnesses/widgets/other/image_slider/app_image_slider
 import 'package:street_art_witnesses/widgets/skeletons/app_placeholder.dart';
 
 class ArtistScreen extends StatelessWidget {
-  const ArtistScreen({super.key, required Artist artist});
+  const ArtistScreen({super.key, required this.artist});
 
-  // const ArtistScreen({super.key, required this.artist});
-
-  // final Artist artist;
+  final Artist artist;
 
   @override
   Widget build(BuildContext context) {
-    const artist = Artist(
-      id: -1,
-      name: 'Художник',
-      image: null,
-      description: 'Это тестовый художник. Он мега-крутой! А еще он Lorem ipsum и умеет ipsum lorem ipsum',
-      links: ['https://youtu.be'],
-    );
-
     return Scaffold(
       appBar: AppHeader(title: artist.name),
       body: SingleChildScrollView(
@@ -40,7 +30,7 @@ class ArtistScreen extends StatelessWidget {
               child: Column(
                 children: [
                   const SizedBox(height: Paddings.small),
-                  const _Description(artist),
+                  _Description(artist),
                   if (artist.links != null) const SizedBox(height: Paddings.small),
                   if (artist.links != null) LinksInfo(artist.links, title: 'Ссылки'),
                   const SizedBox(height: Paddings.small),
