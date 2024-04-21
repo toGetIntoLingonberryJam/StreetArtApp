@@ -49,8 +49,8 @@ class _ImageSliderBaseState extends State<ImageSliderBase> {
             children: imageLoaders.indexed
                 .map((data) => LoadingImage(
                       imageLoader: data.$2,
-                      index: data.$1 + 1,
-                      length: imageLoaders.length,
+                      // index: data.$1 + 1,
+                      // length: imageLoaders.length,
                     ))
                 .toList(),
           ),
@@ -74,13 +74,13 @@ class LoadingImage extends StatelessWidget {
   const LoadingImage({
     super.key,
     required this.imageLoader,
-    required this.index,
-    required this.length,
+    // required this.index,
+    // required this.length,
   });
 
   final Future<ImageProvider?> imageLoader;
-  final int index;
-  final int length;
+  // final int index;
+  // final int length;
 
   @override
   Widget build(BuildContext context) {
@@ -88,22 +88,23 @@ class LoadingImage extends StatelessWidget {
       future: imageLoader,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return GestureDetector(
-            onTap: () => Get.to(() => _OpenedImage(
-                  image: snapshot.data!,
-                  index: index,
-                  length: length,
-                )),
-            child: Image(
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress == null) {
-                  return child;
-                }
-                return const Skeleton();
-              },
-              image: snapshot.data!,
-              fit: BoxFit.cover,
-            ),
+          // return GestureDetector(
+          //   onTap: () => Get.to(() => _OpenedImage(
+          //         image: snapshot.data!,
+          //         index: index,
+          //         length: length,
+          //       )),
+          //   child:
+          return Image(
+            loadingBuilder: (context, child, loadingProgress) {
+              if (loadingProgress == null) {
+                return child;
+              }
+              return const Skeleton();
+            },
+            image: snapshot.data!,
+            fit: BoxFit.cover,
+            // ),
           );
         }
 
