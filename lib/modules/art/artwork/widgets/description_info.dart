@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
+import 'package:street_art_witnesses/widgets/buttons/link_button.dart';
 
 class ArtworkDescriptionWidget extends StatelessWidget {
   const ArtworkDescriptionWidget(this.artwork, {super.key});
@@ -29,18 +29,7 @@ class ArtworkDescriptionWidget extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(height: Paddings.small),
-          GestureDetector(
-            onTap: () => Get.to(() => _DescriptionPage(artwork)),
-            child: Text(
-              'Подробнее',
-              style: TextStyles.text.copyWith(
-                fontWeight: FontWeight.w500,
-                color: UIColors.accent,
-                decoration: TextDecoration.underline,
-                decorationColor: UIColors.accent,
-              ),
-            ),
-          ),
+          LinkButton('Подробнее', onTap: () => Get.to(() => _DescriptionPage(artwork))),
         ],
       ),
     );

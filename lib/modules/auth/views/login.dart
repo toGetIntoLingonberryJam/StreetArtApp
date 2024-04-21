@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/utils/validator.dart';
-import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/modules/auth/controller.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
+import 'package:street_art_witnesses/widgets/buttons/link_button.dart';
 
 class LoginView extends GetView<AuthController> {
   const LoginView({super.key});
@@ -35,14 +35,5 @@ class LoginView extends GetView<AuthController> {
     );
   }
 
-  GestureDetector _forgotPasswordButton() {
-    return GestureDetector(
-      child: Text(
-        'Забыли пароль?',
-        style: TextStyles.text.copyWith(
-          decoration: TextDecoration.underline,
-        ),
-      ),
-    );
-  }
+  Widget _forgotPasswordButton() => const LinkButton('Забыли пароль');
 }

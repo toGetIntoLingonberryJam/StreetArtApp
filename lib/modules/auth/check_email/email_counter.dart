@@ -5,6 +5,7 @@ import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/services/auth_service.dart';
 import 'package:street_art_witnesses/modules/auth/check_email/controller.dart';
+import 'package:street_art_witnesses/widgets/buttons/link_button.dart';
 
 class EmailCounterWidget extends GetView<EmailCounterController> {
   const EmailCounterWidget({super.key});
@@ -34,16 +35,5 @@ class EmailCounterWidget extends GetView<EmailCounterController> {
     );
   }
 
-  Widget _resendButton(BuildContext context) {
-    return GestureDetector(
-      onTap: () => _sendEmail(context),
-      child: Text(
-        'Отправить повторно',
-        style: TextStyles.text.copyWith(
-          color: UIColors.textPrimary,
-          decoration: TextDecoration.underline,
-        ),
-      ),
-    );
-  }
+  Widget _resendButton(BuildContext context) => LinkButton('Отправить повторно', onTap: () => _sendEmail(context));
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
-import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
@@ -10,6 +9,7 @@ import 'package:street_art_witnesses/modules/art/artwork/widgets/description_inf
 import 'package:street_art_witnesses/modules/art/artwork/widgets/festival_info.dart';
 import 'package:street_art_witnesses/modules/art/artwork/widgets/links_info.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
+import 'package:street_art_witnesses/widgets/buttons/link_button.dart';
 
 class ArtworkScreen extends StatelessWidget {
   const ArtworkScreen({super.key, required this.artwork}) : preview = false;
@@ -74,19 +74,7 @@ class WriteUsWidget extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(width: Paddings.small),
-          GestureDetector(
-            onTap: () => Utils.tryLaunchUrl(reportLink),
-            child: Text(
-              'Напишите',
-              style: TextStyles.headline2.copyWith(
-                fontWeight: FontWeight.w500,
-                color: UIColors.accent,
-                decoration: TextDecoration.underline,
-                decorationColor: UIColors.accent,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ),
+          LinkButton('Напишите', onTap: () => Utils.tryLaunchUrl(reportLink)),
         ],
       ),
     );
