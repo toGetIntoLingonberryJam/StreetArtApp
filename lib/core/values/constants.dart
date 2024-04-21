@@ -13,6 +13,7 @@ abstract class Paddings {
 const kPagePadding = EdgeInsets.fromLTRB(Paddings.normal, 0, Paddings.normal, Paddings.normal);
 const kDensePagePadding = EdgeInsets.fromLTRB(Paddings.small, 0, Paddings.small, Paddings.small);
 const kContainerPadding = EdgeInsets.all(kContainerRadius);
+const kButtonPadding = EdgeInsets.symmetric(vertical: kContainerRadius);
 
 // Radiuses
 final kFieldBorderRadius = BorderRadius.circular(10);

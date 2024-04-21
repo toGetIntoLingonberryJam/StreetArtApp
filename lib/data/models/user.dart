@@ -1,5 +1,6 @@
 class User {
   User({
+    required int id,
     required String username,
     required String? email,
     required String? token,
@@ -7,7 +8,8 @@ class User {
     required bool isVerified,
     required bool isArtist,
     required bool isModerator,
-  })  : _username = username,
+  })  : _id = id,
+        _username = username,
         _email = email,
         _token = token,
         _isAuthorized = isAuthorized,
@@ -16,7 +18,8 @@ class User {
         _isModerator = isModerator;
 
   User.fromJson(Map<String, dynamic> json, {required String token})
-      : _username = json['username'],
+      : _id = json['id'],
+        _username = json['username'],
         _email = json['email'],
         _token = token,
         _isAuthorized = true,
@@ -25,7 +28,8 @@ class User {
         _isModerator = json['is_moderator'] ?? false;
 
   User.guest()
-      : _username = 'Гость',
+      : _id = -1,
+        _username = 'Гость',
         _email = null,
         _token = null,
         _isAuthorized = false,
@@ -33,6 +37,7 @@ class User {
         _isArtist = false,
         _isModerator = false;
 
+  final int _id;
   final String _username;
   final String? _email;
   final String? _token;
@@ -41,6 +46,7 @@ class User {
   final bool _isArtist;
   final bool _isModerator;
 
+  int get id => _id;
   String get username => _username;
   String? get email => _email;
   String? get token => _token;

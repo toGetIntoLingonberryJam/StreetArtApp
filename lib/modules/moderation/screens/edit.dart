@@ -40,10 +40,7 @@ class _ModerationEditScreenState extends State<ModerationEditScreen> {
     return Scaffold(
       appBar: AppHeader(
         title: title,
-        leading: GestureDetector(
-          child: const Icon(Icons.arrow_back),
-          onTap: () => Navigator.pop(context),
-        ),
+        leading: GestureDetector(onTap: Get.back, child: const Icon(Icons.arrow_back)),
       ),
       body: PageView.builder(
         controller: c.pageController,
@@ -110,8 +107,7 @@ class _MainInfoViewState extends State<_MainInfoView> {
         ));
     if (loc != null) {
       location = loc;
-      locationController.text =
-          '${loc.latitude.toStringAsFixed(4)}, ${loc.longitude.toStringAsFixed(4)}';
+      locationController.text = '${loc.latitude.toStringAsFixed(4)}, ${loc.longitude.toStringAsFixed(4)}';
     }
   }
 
@@ -221,9 +217,7 @@ class _AdditionalInfoViewState extends State<_AdditionalInfoView> {
   }
 
   bool allSet() {
-    return yearController.text.isNotEmpty &&
-        descriptionController.text.isNotEmpty &&
-        linksController.text.isNotEmpty;
+    return yearController.text.isNotEmpty && descriptionController.text.isNotEmpty && linksController.text.isNotEmpty;
   }
 
   void save() async {

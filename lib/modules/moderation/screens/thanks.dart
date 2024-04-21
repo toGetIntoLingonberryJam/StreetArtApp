@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
+import 'package:street_art_witnesses/modules/moderation/screens/edit.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class ModerationThanksScreen extends StatelessWidget {
@@ -14,12 +16,12 @@ class ModerationThanksScreen extends StatelessWidget {
         padding: kPagePadding,
         child: Column(
           children: [
-            const SizedBox(height: 60),
+            const Spacer(),
             ClipRRect(
               borderRadius: BorderRadius.circular(kContainerRadius),
-              child: const AppPlaceholder(height: 320),
+              child: const AppPlaceholder(width: double.infinity),
             ),
-            const Expanded(child: SizedBox()),
+            const Spacer(),
             const Text('Спасибо!', style: TextStyles.title1, textAlign: TextAlign.center),
             const SizedBox(height: Paddings.normal),
             const Text(
@@ -28,11 +30,13 @@ class ModerationThanksScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: Paddings.normal),
-            AppTextButton.filled(
-              text: 'На главный экран',
-              onTap: () => Navigator.pop(context),
+            AppButton.primary(
+              label: 'Добавить еще работу',
+              onTap: () => Get.off(() => const ModerationEditScreen()),
             ),
-            const Expanded(child: SizedBox()),
+            const SizedBox(height: 12),
+            AppButton.secondary(label: 'На главный экран', onTap: Get.back),
+            const Spacer(),
           ],
         ),
       ),

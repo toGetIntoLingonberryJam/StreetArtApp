@@ -48,9 +48,7 @@ class ModerationController extends GetxController {
       ),
     );
     final result = await Utils.showLoading(future);
-    result == null
-        ? Get.to(() => const AppErrorScreen())
-        : Get.off(() => const ModerationThanksScreen());
+    result == null ? Get.to(() => const AppErrorScreen()) : Get.off(() => const ModerationThanksScreen());
   }
 
   void saveMainInfo({
@@ -65,8 +63,7 @@ class ModerationController extends GetxController {
     _data.location = location;
   }
 
-  void saveAdditionalInfo(
-      {required String? year, required String? description, required String? link}) {
+  void saveAdditionalInfo({required String? year, required String? description, required String? link}) {
     _data.year = year;
     _data.description = description;
     _data.link = link;
@@ -79,7 +76,7 @@ class ModerationController extends GetxController {
         sourceDescription: '',
         statusCode: ArtworkStatus.existing.name,
         id: -1,
-        addedByUserId: -1,
+        addedByUserId: Get.find<AuthService>().user.value.id,
         updatedAt: '-',
         location: ArtworkLocation(
           address: _data.address ?? 'Адрес работы',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
@@ -17,10 +18,7 @@ class AppErrorScreen extends StatelessWidget {
             const Spacer(),
             const AppErrorWidget(),
             const Spacer(),
-            AppButton.primary(
-              label: 'Назад',
-              onTap: () => Navigator.pop(context),
-            ),
+            AppButton.primary(label: 'Назад', onTap: Get.back),
           ],
         ),
       ),
