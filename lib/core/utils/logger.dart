@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:ansicolor/ansicolor.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:street_art_witnesses/core/app_config.dart';
 
 class Log {
@@ -43,7 +44,9 @@ enum LogType {
 abstract class Logger {
   static void _log(Log log) {
     for (final logline in log.output.split('\n')) {
-      print(logline);
+      if (kDebugMode) {
+        print(logline);
+      }
     }
   }
 

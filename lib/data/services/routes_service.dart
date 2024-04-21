@@ -13,7 +13,7 @@ abstract class RoutesService {
 
     final Map<String, dynamic> data = response.data!;
     final points = data['route'];
-    List<LatLng> route = [];
+    final route = <LatLng>[];
     for (final point in points) {
       route.add(LatLng(point[0], point[1]));
     }

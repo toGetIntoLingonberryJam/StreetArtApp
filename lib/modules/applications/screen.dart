@@ -2,17 +2,17 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:street_art_witnesses/core/utils/error_handler.dart';
+import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/api/backend_api.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/data/models/tickets/artwork_ticket/artwork_ticket.dart';
 import 'package:street_art_witnesses/data/services/auth_service.dart';
+import 'package:street_art_witnesses/data/services/images_service.dart';
 import 'package:street_art_witnesses/data/services/settings_service.dart';
 import 'package:street_art_witnesses/modules/applications/controller.dart';
 import 'package:street_art_witnesses/modules/art/artwork/screen.dart';
-import 'package:street_art_witnesses/data/services/images_service.dart';
-import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class ApplicationsScreen extends StatelessWidget {

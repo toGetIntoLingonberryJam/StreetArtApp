@@ -21,7 +21,7 @@ abstract class ArtistsProvider {
       BackendApi.get('/v1/artists/locations'),
       onResult: (r) {
         final artists = <ArtistPreview>[];
-        for (var json in r.data) {
+        for (final json in r.data) {
           artists.add(ArtistPreview.fromJson(json));
         }
         return artists;

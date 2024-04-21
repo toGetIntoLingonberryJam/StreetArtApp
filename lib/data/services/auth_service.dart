@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:street_art_witnesses/core/utils/error_handler.dart';
+import 'package:street_art_witnesses/core/utils/logger.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/data/api/backend_api.dart';
 import 'package:street_art_witnesses/data/api/local_store_datasource.dart';
 import 'package:street_art_witnesses/data/models/user.dart';
 import 'package:street_art_witnesses/data/services/local_store_service.dart';
-import 'package:street_art_witnesses/core/utils/logger.dart';
 import 'package:street_art_witnesses/modules/auth/check_email/controller.dart';
 
 class AuthService extends GetxService with ApiHandlerMixin {
@@ -36,9 +36,7 @@ class AuthService extends GetxService with ApiHandlerMixin {
       ),
       onResult: (r) => r.data['access_token'] as String,
       onDioError: (e) {
-        return e.response == null
-            ? Utils.showError('Проблемы с интернет-соединением')
-            : Utils.showError(e.response!.data);
+        return e.response == null ? Utils.showError('Проблемы с интернет-соединением') : Utils.showError(e.response!.data);
       },
     );
 

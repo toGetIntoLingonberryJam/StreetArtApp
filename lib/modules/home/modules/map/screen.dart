@@ -3,9 +3,9 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_tile_provider.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/modules/home/modules/map/controller.dart';
-import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/modules/home/modules/map/layers/controllers/layer.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
 

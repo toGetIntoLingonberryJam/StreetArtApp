@@ -16,7 +16,7 @@ abstract class ArtworksProvider {
       BackendApi.get('/v1/artworks/locations'),
       onResult: (r) {
         final locations = <ArtworkLocation>[];
-        for (var json in r.data) {
+        for (final json in r.data) {
           locations.add(ArtworkLocation.fromJson(json));
         }
         return locations;

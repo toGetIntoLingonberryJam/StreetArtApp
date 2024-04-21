@@ -37,7 +37,7 @@ class IntroAuthPage extends StatelessWidget {
               ),
               const Expanded(flex: 2, child: SizedBox()),
               AppButton.primary(
-                onTap: () => Get.to(() => AuthScreen()),
+                onTap: () => Get.to(() => const AuthScreen()),
                 label: 'Войти в профиль',
               ),
               const SizedBox(height: 12),

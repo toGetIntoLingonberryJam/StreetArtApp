@@ -26,8 +26,7 @@ class MapControllersLayer extends GetView<GetMapController> {
   void _fetchUserPosition(BuildContext context) async {
     final position = await Get.find<UserLocationController>().fetchUserPosition(context);
     if (position != null && context.mounted) {
-      controller.mapController.mapController
-          .move(LatLng(position.latitude, position.longitude), 12);
+      controller.mapController.mapController.move(LatLng(position.latitude, position.longitude), 12);
       // context.read<MapCubit>().update();
     }
   }
@@ -84,18 +83,13 @@ class MapControllersLayer extends GetView<GetMapController> {
                           ? const SizedBox(
                               width: 24,
                               height: 24,
-                              child: AppLoadingIndicator(
-                                color: UIColors.textPrimary,
-                              ),
+                              child: AppLoadingIndicator(color: UIColors.textPrimary),
                             )
-                          : const Icon(
-                              Icons.near_me_outlined,
-                              color: UIColors.textPrimary,
-                            ),
+                          : const Icon(Icons.near_me_outlined, color: UIColors.textPrimary),
                     );
                   },
                 ),
-              const Expanded(flex: 1, child: SizedBox()),
+              const Expanded(child: SizedBox()),
             ],
           ),
         ),

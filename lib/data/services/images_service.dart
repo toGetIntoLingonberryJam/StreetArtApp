@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/core/utils/error_handler.dart';
+import 'package:street_art_witnesses/core/utils/logger.dart';
 import 'package:street_art_witnesses/data/api/ya_disk_api.dart';
 import 'package:street_art_witnesses/data/services/settings_service.dart';
-import 'package:street_art_witnesses/core/utils/logger.dart';
 
 // enum ImageQuality { xxxs, xxs, xs, s, m, l, xl, xxl, xxxl, c }
 const _mapQualityToSize = {

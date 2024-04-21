@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
-import 'package:street_art_witnesses/modules/auth/check_email/screen.dart';
 import 'package:street_art_witnesses/modules/auth/check_email/controller.dart';
+import 'package:street_art_witnesses/modules/auth/check_email/screen.dart';
 import 'package:street_art_witnesses/modules/user/controller.dart';
-import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/modules/user/widgets/widgets.dart';
 import 'package:street_art_witnesses/widgets/buttons/app_button.dart';
 

@@ -5,12 +5,11 @@ import 'package:street_art_witnesses/modules/auth/controller.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class AuthScreen extends StatelessWidget {
-  AuthScreen({super.key});
-
-  final controller = Get.put(AuthController());
+  const AuthScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(AuthController());
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -22,36 +21,20 @@ class AuthScreen extends StatelessWidget {
           padding: kPagePadding,
           child: GetBuilder<AuthController>(builder: (_) {
             return Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Padding(
-                  padding: EdgeInsets.only(top: 20, bottom: 45),
-                  child: AppLogo(),
-                ),
+                const Padding(padding: EdgeInsets.only(top: 20, bottom: 45), child: AppLogo()),
                 Row(
                   children: [
                     Expanded(
                       child: controller.form == AuthForm.login
-                          ? AppButton.primary(
-                              onTap: () => controller.switchForm(AuthForm.login),
-                              label: 'Вход',
-                            )
-                          : AppButton.secondary(
-                              onTap: () => controller.switchForm(AuthForm.login),
-                              label: 'Вход',
-                            ),
+                          ? AppButton.primary(onTap: () => controller.switchForm(AuthForm.login), label: 'Вход')
+                          : AppButton.secondary(onTap: () => controller.switchForm(AuthForm.login), label: 'Вход'),
                     ),
                     const SizedBox(width: 20),
                     Expanded(
                       child: controller.form == AuthForm.register
-                          ? AppButton.primary(
-                              onTap: () => controller.switchForm(AuthForm.register),
-                              label: 'Регистрация',
-                            )
-                          : AppButton.secondary(
-                              onTap: () => controller.switchForm(AuthForm.register),
-                              label: 'Регистрация',
-                            ),
+                          ? AppButton.primary(onTap: () => controller.switchForm(AuthForm.register), label: 'Регистрация')
+                          : AppButton.secondary(onTap: () => controller.switchForm(AuthForm.register), label: 'Регистрация'),
                     ),
                   ],
                 ),

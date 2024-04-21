@@ -12,7 +12,6 @@ class AppLoadingIndicator extends StatelessWidget {
     return CircularProgressIndicator(
       value: value,
       color: color ?? UIColors.accent,
-      strokeWidth: 4,
       strokeCap: StrokeCap.round,
     );
   }

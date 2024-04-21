@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/image/image.dart';
-import 'package:street_art_witnesses/data/services/settings_service.dart';
 import 'package:street_art_witnesses/data/services/images_service.dart';
+import 'package:street_art_witnesses/data/services/settings_service.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 import 'package:street_art_witnesses/widgets/other/image_slider/controller.dart';
 

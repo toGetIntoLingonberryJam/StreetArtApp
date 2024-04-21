@@ -21,7 +21,7 @@ abstract class FestivalsProvider {
       BackendApi.get('/v1/festivals/locations'),
       onResult: (r) {
         final fests = <FestivalPreview>[];
-        for (var json in r.data) {
+        for (final json in r.data) {
           fests.add(FestivalPreview.fromJson(json));
         }
         return fests;

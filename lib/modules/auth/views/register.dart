@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:street_art_witnesses/modules/auth/controller.dart';
 import 'package:street_art_witnesses/core/utils/validator.dart';
+import 'package:street_art_witnesses/modules/auth/controller.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class RegisterView extends GetView<AuthController> {
@@ -35,7 +35,7 @@ class RegisterView extends GetView<AuthController> {
           AppTextFormField.withToggleEye(
             controller: controller.passwordConfirmCtrl,
             hintText: 'Повторите пароль',
-            validator: (String? password) {
+            validator: (password) {
               if (controller.passwordCtrl.text != controller.passwordConfirmCtrl.text) {
                 return 'Пароли не совпадают';
               }

@@ -16,7 +16,7 @@ class ArtworkLoader extends StatelessWidget {
           SizedBox(height: Paddings.small),
           Skeleton(height: 96),
           SizedBox(height: Paddings.small),
-          Skeleton(height: 50, borderRadius: kContainerRadius),
+          Skeleton(height: 50),
           SizedBox(height: Paddings.small),
           Skeleton(height: 70),
           SizedBox(height: Paddings.small),

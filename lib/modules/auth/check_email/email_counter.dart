@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/services/auth_service.dart';
 import 'package:street_art_witnesses/modules/auth/check_email/controller.dart';
-import 'package:street_art_witnesses/core/utils/utils.dart';
 
 class EmailCounterWidget extends GetView<EmailCounterController> {
   const EmailCounterWidget({super.key});
 
   Future<void> _sendEmail(BuildContext context) async {
-    await Utils.showLoading(
-      controller.sendEmail(context, Get.find<AuthService>().user.value.email!),
-    );
+    await Utils.showLoading(controller.sendEmail(context, Get.find<AuthService>().user.value.email!));
   }
 
   @override
@@ -22,8 +20,8 @@ class EmailCounterWidget extends GetView<EmailCounterController> {
         alignment: WrapAlignment.center,
         spacing: 10,
         children: [
-          counter.canSend ? _resendButton(context) : _resendText(context),
-          Text('Через ${counter.count} сек', style: TextStyles.text)
+          if (counter.canSend) _resendButton(context) else _resendText(context),
+          Text('Через ${counter.count} сек', style: TextStyles.text),
         ],
       ),
     );

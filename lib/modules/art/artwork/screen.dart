@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/modules/art/artwork/widgets/address_info.dart';
+import 'package:street_art_witnesses/modules/art/artwork/widgets/artwork_info.dart';
 import 'package:street_art_witnesses/modules/art/artwork/widgets/description_info.dart';
 import 'package:street_art_witnesses/modules/art/artwork/widgets/festival_info.dart';
-import 'package:street_art_witnesses/modules/art/artwork/widgets/artwork_info.dart';
 import 'package:street_art_witnesses/modules/art/artwork/widgets/links_info.dart';
-import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class ArtworkScreen extends StatelessWidget {
@@ -40,8 +40,7 @@ class ArtworkScreen extends StatelessWidget {
                     AddressInfo(artwork: artwork, preview: preview),
                     const SizedBox(height: Paddings.small),
                     ArtworkDescriptionWidget(artwork),
-                    if (artwork.description != null && artwork.description!.isNotEmpty)
-                      const SizedBox(height: Paddings.small),
+                    if (artwork.description != null && artwork.description!.isNotEmpty) const SizedBox(height: Paddings.small),
                     LinksInfo(artwork.links),
                     if (artwork.links != null) const SizedBox(height: Paddings.small),
                     AppContainer(

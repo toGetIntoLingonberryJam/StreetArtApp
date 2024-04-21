@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/user.dart';
 import 'package:street_art_witnesses/modules/user/controller.dart';
 import 'package:street_art_witnesses/modules/user/widgets/profile_list_tiles.dart';
-import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class UserInfoScreen extends StatelessWidget {

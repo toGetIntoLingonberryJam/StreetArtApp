@@ -1,5 +1,5 @@
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:street_art_witnesses/data/models/user.dart';
 import 'package:street_art_witnesses/data/services/auth_service.dart';
 import 'package:street_art_witnesses/modules/user/views/views.dart';

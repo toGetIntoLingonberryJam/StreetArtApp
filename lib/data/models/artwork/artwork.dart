@@ -1,10 +1,10 @@
 // ignore_for_file: invalid_annotation_target
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:street_art_witnesses/data/models/artist/preview/artist_preview.dart';
+import 'package:street_art_witnesses/data/models/artwork/artwork_location/artwork_location.dart';
 import 'package:street_art_witnesses/data/models/festival/preview/festival_preview.dart';
 import 'package:street_art_witnesses/data/models/image/image.dart';
-import 'package:street_art_witnesses/data/models/artwork/artwork_location/artwork_location.dart';
-import 'package:street_art_witnesses/data/models/artist/preview/artist_preview.dart';
 
 part 'artwork.freezed.dart';
 part 'artwork.g.dart';
@@ -21,8 +21,6 @@ enum ArtworkStatus {
 
 @freezed
 class Artwork with _$Artwork {
-  const Artwork._();
-
   const factory Artwork({
     required int id,
     required int addedByUserId,
@@ -41,13 +39,6 @@ class Artwork with _$Artwork {
     List<String>? links,
   }) = _Artwork;
 
-  ArtworkStatus get status {
-    for (final status in ArtworkStatus.values) {
-      if (statusCode == status.name) return status;
-    }
-    return ArtworkStatus.unknown;
-  }
-
   factory Artwork.fromTicket(Map<String, dynamic> data) {
     final artworkData = data['artwork_data'];
     artworkData['id'] = data['artwork_id'] ?? -1;
@@ -58,4 +49,12 @@ class Artwork with _$Artwork {
   }
 
   factory Artwork.fromJson(Map<String, dynamic> json) => _$ArtworkFromJson(json);
+  const Artwork._();
+
+  ArtworkStatus get status {
+    for (final status in ArtworkStatus.values) {
+      if (statusCode == status.name) return status;
+    }
+    return ArtworkStatus.unknown;
+  }
 }

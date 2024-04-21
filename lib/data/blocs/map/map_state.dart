@@ -11,11 +11,11 @@ final class MapTaskState extends MapState {
 }
 
 final class MapNavigator extends MapState {
-  final List<LatLng> route;
   MapNavigator(this.route);
+  final List<LatLng> route;
 }
 
 final class MapError extends MapState {
-  final String error;
   MapError(this.error);
+  final String error;
 }

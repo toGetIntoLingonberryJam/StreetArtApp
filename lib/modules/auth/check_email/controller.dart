@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:street_art_witnesses/data/services/auth_service.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
+import 'package:street_art_witnesses/data/services/auth_service.dart';
 
 class EmailCounterController extends GetxController {
   EmailCounterController({required this.durationInSeconds});
@@ -38,8 +38,7 @@ class EmailCounterController extends GetxController {
 
   void _initCounting() {
     subscription?.cancel();
-    subscription =
-        Stream.periodic(const Duration(seconds: 1)).take(durationInSeconds).listen((e) => _tick());
+    subscription = Stream.periodic(const Duration(seconds: 1)).take(durationInSeconds).listen((e) => _tick());
     _count = durationInSeconds;
   }
 

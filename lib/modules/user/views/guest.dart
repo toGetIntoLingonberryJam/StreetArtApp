@@ -17,7 +17,7 @@ class GuestView extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          _LoginContainer(login: () => Get.to(() => AuthScreen())),
+          _LoginContainer(login: () => Get.to(() => const AuthScreen())),
           const SizedBox(height: 24),
           UserTiles.settings(context),
           const SizedBox(height: Paddings.small),

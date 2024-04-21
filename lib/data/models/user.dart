@@ -1,12 +1,4 @@
 class User {
-  final String _username;
-  final String? _email;
-  final String? _token;
-  final bool _isAuthorized;
-  final bool _isVerified;
-  final bool _isArtist;
-  final bool _isModerator;
-
   User({
     required String username,
     required String? email,
@@ -40,6 +32,14 @@ class User {
         _isVerified = false,
         _isArtist = false,
         _isModerator = false;
+
+  final String _username;
+  final String? _email;
+  final String? _token;
+  final bool _isAuthorized;
+  final bool _isVerified;
+  final bool _isArtist;
+  final bool _isModerator;
 
   String get username => _username;
   String? get email => _email;

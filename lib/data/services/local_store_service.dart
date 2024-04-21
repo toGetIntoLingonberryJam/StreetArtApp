@@ -1,6 +1,6 @@
+import 'package:street_art_witnesses/core/utils/logger.dart';
 import 'package:street_art_witnesses/data/api/local_store_datasource.dart';
 import 'package:street_art_witnesses/data/services/settings_service.dart';
-import 'package:street_art_witnesses/core/utils/logger.dart';
 
 abstract class LocalStoreService {
   static Future<String?> retrieveToken() async {
@@ -25,7 +25,7 @@ abstract class LocalStoreService {
   static Future<ImageQuality> getImageQuality() async {
     final settingsJson = await LocalStoreDataSource.settingsDoc.get();
     final String? qualityName = settingsJson?['image_quality'];
-    final ImageQuality? quality = _mapNameToImgQuality[qualityName];
+    final quality = _mapNameToImgQuality[qualityName];
 
     return quality ?? ImageQuality.good;
   }

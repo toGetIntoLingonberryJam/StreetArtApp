@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
-import 'artist_loader.dart';
-import 'artwork_loader.dart';
+import 'package:street_art_witnesses/widgets/loaders/artist_loader.dart';
+import 'package:street_art_witnesses/widgets/loaders/artwork_loader.dart';
 
 abstract class Loaders {
   static const Widget defaultLoader = Scaffold(body: Center(child: AppLoadingIndicator()));

@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/core/utils/logger.dart';
+import 'package:street_art_witnesses/core/utils/utils.dart';
+import 'package:street_art_witnesses/core/utils/validator.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/artist/preview/artist_preview.dart';
 import 'package:street_art_witnesses/modules/art/artwork/screen.dart';
-import 'package:street_art_witnesses/core/utils/utils.dart';
-import 'package:street_art_witnesses/core/utils/validator.dart';
 import 'package:street_art_witnesses/modules/moderation/controller.dart';
 import 'package:street_art_witnesses/modules/search/screen.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
@@ -106,7 +105,7 @@ class _MainInfoViewState extends State<_MainInfoView> {
   }
 
   void _showLocationPicker() async {
-    final LatLng? loc = await Get.to(() => LocationPicker(
+    final loc = await Get.to(() => LocationPicker(
           initLocation: location ?? const LatLng(56.8519, 60.6122),
         ));
     if (loc != null) {
@@ -117,7 +116,7 @@ class _MainInfoViewState extends State<_MainInfoView> {
   }
 
   void _pickArtist() async {
-    final ArtistPreview? pickedArtist = await Get.to(() => const SearchScreen());
+    final pickedArtist = await Get.to(() => const SearchScreen());
     Logger.d('picked artist: ${pickedArtist?.name}');
     artist = pickedArtist;
     artistController.text = pickedArtist?.name ?? '';

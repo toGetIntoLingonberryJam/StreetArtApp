@@ -77,8 +77,6 @@ class ModerationController extends GetxController {
         yearCreated: int.tryParse(_data.year ?? ''),
         description: _data.description,
         sourceDescription: '',
-        artistId: null,
-        festivalId: null,
         statusCode: ArtworkStatus.existing.name,
         id: -1,
         addedByUserId: -1,
@@ -91,9 +89,7 @@ class ModerationController extends GetxController {
           previewUrl: null,
         ),
         artistPreview: _data.artist,
-        festivalPreview: null,
         links: _data.link == null ? null : [_data.link!],
-        images: null,
       );
 }
 
