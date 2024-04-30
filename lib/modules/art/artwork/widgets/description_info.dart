@@ -53,7 +53,7 @@ class _DescriptionPage extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  AppCircleAvatar(radius: 16, image: AppPlaceholder.assetImage()),
+                  LoadingImageCircleAvatar(imageUrl: artwork.location.previewUrl),
                   const SizedBox(width: Paddings.small),
                   Text(artwork.title, style: TextStyles.headline1),
                 ],

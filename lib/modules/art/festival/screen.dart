@@ -6,13 +6,9 @@ import 'package:street_art_witnesses/data/models/festival/festival.dart';
 import 'package:street_art_witnesses/data/providers/artworks_provider.dart';
 import 'package:street_art_witnesses/modules/art/artwork/screen.dart';
 import 'package:street_art_witnesses/modules/art/artwork/widgets/links_info.dart';
+import 'package:street_art_witnesses/widgets/app_widgets.dart';
 import 'package:street_art_witnesses/widgets/art/artworks_grid_loader.dart';
 import 'package:street_art_witnesses/widgets/buttons/link_button.dart';
-import 'package:street_art_witnesses/widgets/containers/app_circle_avatar.dart';
-import 'package:street_art_witnesses/widgets/containers/app_container.dart';
-import 'package:street_art_witnesses/widgets/other/app_header.dart';
-import 'package:street_art_witnesses/widgets/other/image_slider/app_image_slider.dart';
-import 'package:street_art_witnesses/widgets/skeletons/app_placeholder.dart';
 
 class FestivalScreen extends StatelessWidget {
   const FestivalScreen({super.key, required this.festival});
@@ -99,7 +95,7 @@ class _DescriptionPage extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      AppCircleAvatar(radius: 16, image: AppPlaceholder.assetImage()),
+                      LoadingImageCircleAvatar(imageUrl: fest.image?.imageUrl),
                       const SizedBox(width: Paddings.small),
                       Text(fest.name, style: TextStyles.headline1),
                     ],

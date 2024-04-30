@@ -28,10 +28,7 @@ class FestivalInfoWidget extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            if (festival!.image == null)
-              AppCircleAvatar(image: AppPlaceholder.assetImage())
-            else
-              AppCircleAvatar(image: NetworkImage(festival!.image!.imageUrl)),
+            LoadingImageCircleAvatar(imageUrl: festival?.image?.imageUrl, radius: 10),
             const SizedBox(width: 8),
             Expanded(child: Text(festival!.name, style: TextStyles.headline1)),
             const Icon(Icons.chevron_right),

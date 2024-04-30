@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/festival/preview/festival_preview.dart';
-import 'package:street_art_witnesses/widgets/containers/app_container.dart';
-import 'package:street_art_witnesses/widgets/other/app_loading_indicator.dart';
-import 'package:street_art_witnesses/widgets/skeletons/app_placeholder.dart';
+import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class FestivalsView extends StatelessWidget {
   const FestivalsView({super.key, required this.festsPrevs});
@@ -43,10 +41,7 @@ class FestCard extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CircleAvatar(
-            radius: 50,
-            backgroundImage: AppPlaceholder.assetImage(),
-          ),
+          LoadingImageCircleAvatar(imageUrl: preview.image?.imageUrl, radius: 50),
           const SizedBox(width: 8),
           Expanded(
             child: Container(

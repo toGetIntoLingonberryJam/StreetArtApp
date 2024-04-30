@@ -68,10 +68,7 @@ class _ArtistInfo extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (artist!.image == null)
-            AppCircleAvatar(image: AppPlaceholder.assetImage(), radius: 10)
-          else
-            AppCircleAvatar(image: NetworkImage(artist!.image!.imageUrl), radius: 10),
+          LoadingImageCircleAvatar(imageUrl: artist?.image?.imageUrl, radius: 10),
           const SizedBox(width: 8),
           Expanded(
             child: Text(artist!.name, style: TextStyles.headline2),
