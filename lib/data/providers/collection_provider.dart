@@ -37,8 +37,11 @@ abstract class CollectionProvider {
   }
 
   static Future<List<ArtistPreview>?> loadArtists() async {
+    final token = Get.find<AuthService>().user.value.token;
+    if (token == null) return null;
+
     return await handleRequest(
-      BackendApi.get('/v1/collection/artists'),
+      BackendApi.get('/v1/collection/artists', options: Options(headers: {'Authorization': 'Bearer $token'})),
       onResult: (r) {
         final previews = <ArtistPreview>[];
         for (final json in r.data) {
@@ -50,8 +53,11 @@ abstract class CollectionProvider {
   }
 
   static Future<List<FestivalPreview>?> loadFestivals() async {
+    final token = Get.find<AuthService>().user.value.token;
+    if (token == null) return null;
+
     return await handleRequest(
-      BackendApi.get('/v1/collection/festivals'),
+      BackendApi.get('/v1/collection/festivals', options: Options(headers: {'Authorization': 'Bearer $token'})),
       onResult: (r) {
         final previews = <FestivalPreview>[];
         for (final json in r.data) {

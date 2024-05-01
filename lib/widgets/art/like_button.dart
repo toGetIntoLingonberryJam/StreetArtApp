@@ -51,7 +51,10 @@ class _LikeButtonState extends State<LikeButton> {
 
     // update like status
     isLiked = res;
-    collection.loadArtworks();
+
+    if (collType == CollectionType.artworks) collection.loadArtworks();
+    if (collType == CollectionType.artists) collection.loadArtists();
+    if (collType == CollectionType.festivals) collection.loadFestivals();
 
     Utils.showSuccess(res ? 'Добавили в коллекцию' : 'Убрали из коллекции');
     return setState(() => isLoading = false);

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
@@ -33,7 +32,7 @@ class SearchScreen extends StatelessWidget {
                         itemCount: items.length,
                         itemBuilder: (_, i) => GestureDetector(
                           onTap: () => Get.back(result: items[i]),
-                          child: ArtistCard(artist: items[i]),
+                          child: ArtistCard(items[i]),
                         ),
                         separatorBuilder: (_, __) => const SizedBox(height: Paddings.normal),
                       ),

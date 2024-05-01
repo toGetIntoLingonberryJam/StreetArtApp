@@ -1,31 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/festival/preview/festival_preview.dart';
+import 'package:street_art_witnesses/modules/home/modules/collection/controller.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
+import 'package:street_art_witnesses/widgets/art/festival_preview_widget.dart';
+import 'package:street_art_witnesses/widgets/containers/grid_column.dart';
+import 'package:street_art_witnesses/widgets/loaders.dart';
 
 class FestivalsView extends StatelessWidget {
-  const FestivalsView({super.key, required this.festsPrevs});
-
-  final List<FestivalPreview>? festsPrevs;
+  const FestivalsView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    if (festsPrevs == null) {
-      return const Center(child: AppLoadingIndicator());
-    }
-    if (festsPrevs!.isEmpty) {
-      return const Center(
-          child: Text(
-        'У вас нет сохраненных фестивалей',
-        style: TextStyles.headline2,
-      ));
-    }
+    return Padding(
+      padding: kPagePadding,
+      child: GetBuilder<CollectionController>(
+        builder: (controller) {
+          if (controller.isLoadingFestivals) return Loaders.collection;
 
-    return ListView.separated(
-      itemCount: festsPrevs!.length,
-      itemBuilder: (_, index) => FestCard(festsPrevs![index]),
-      separatorBuilder: (_, __) => const SizedBox(height: Paddings.small),
+          if (controller.festivals.isEmpty) {
+            return const Center(child: Text('Здесь будут ваши любимые фестивали', style: TextStyles.headline2));
+          }
+
+          final previews = controller.festivals.values;
+          return GridColumn(
+            isScrollable: true,
+            itemCount: previews.length,
+            itemBuilder: (context, index) => FestivalPreviewWidget(previews.elementAt(index), showLike: true),
+            crossAxisCount: 1,
+            childAspectRatio: 1.5,
+            // childAspectRatio: 2.23,
+            // widgetHeight: 120,
+          );
+        },
+      ),
     );
   }
 }

@@ -12,7 +12,7 @@ import 'package:street_art_witnesses/modules/art/artwork/screen.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 import 'package:street_art_witnesses/widgets/art/author_header.dart';
 import 'package:street_art_witnesses/widgets/art/like_button.dart';
-import 'package:street_art_witnesses/widgets/loaders/loader.dart';
+import 'package:street_art_witnesses/widgets/loaders.dart';
 
 class ArtworkPreviewWidget extends StatelessWidget {
   const ArtworkPreviewWidget(this.preview, {super.key, this.showAuthor = true, this.showLike = false});
@@ -24,14 +24,14 @@ class ArtworkPreviewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (preview.previewUrl == null) {
-      return _Card(AppPlaceholder.assetImage(), preview, showAuthor, showLike);
+      return _ArtworkCard(AppPlaceholder.assetImage(), preview, showAuthor, showLike);
     }
 
     return FutureBuilder(
       future: ImagesService.loadFromDisk(preview.previewUrl!, quality: ImageQuality.good),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return _Card(snapshot.data!, preview, showAuthor, showLike);
+          return _ArtworkCard(snapshot.data!, preview, showAuthor, showLike);
         }
         return const Skeleton();
       },
@@ -39,8 +39,8 @@ class ArtworkPreviewWidget extends StatelessWidget {
   }
 }
 
-class _Card extends StatelessWidget {
-  const _Card(this.image, this.preview, this.showAuthor, this.showLike);
+class _ArtworkCard extends StatelessWidget {
+  const _ArtworkCard(this.image, this.preview, this.showAuthor, this.showLike);
 
   final ImageProvider<Object> image;
   final ArtworkPreview preview;

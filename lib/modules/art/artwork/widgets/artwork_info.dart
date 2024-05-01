@@ -10,7 +10,7 @@ import 'package:street_art_witnesses/data/providers/artists_provider.dart';
 import 'package:street_art_witnesses/modules/art/artist/screen.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 import 'package:street_art_witnesses/widgets/containers/app_badge.dart';
-import 'package:street_art_witnesses/widgets/loaders/loader.dart';
+import 'package:street_art_witnesses/widgets/loaders.dart';
 
 class ArtworkInfo extends StatelessWidget {
   const ArtworkInfo({super.key, required this.artwork});

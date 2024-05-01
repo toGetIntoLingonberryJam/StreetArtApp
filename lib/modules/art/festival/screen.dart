@@ -4,10 +4,12 @@ import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/festival/festival.dart';
 import 'package:street_art_witnesses/data/providers/artworks_provider.dart';
+import 'package:street_art_witnesses/data/providers/collection_provider.dart';
 import 'package:street_art_witnesses/modules/art/artwork/screen.dart';
 import 'package:street_art_witnesses/modules/art/artwork/widgets/links_info.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 import 'package:street_art_witnesses/widgets/art/artworks_grid_loader.dart';
+import 'package:street_art_witnesses/widgets/art/like_button.dart';
 import 'package:street_art_witnesses/widgets/buttons/link_button.dart';
 
 class FestivalScreen extends StatelessWidget {
@@ -18,7 +20,10 @@ class FestivalScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppHeader(title: festival.name),
+      appBar: AppHeader(
+        title: festival.name,
+        action: LikeButton(collType: CollectionType.festivals, id: festival.id),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [

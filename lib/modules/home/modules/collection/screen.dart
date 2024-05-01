@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
+import 'package:street_art_witnesses/modules/home/modules/collection/views/artists.dart';
 import 'package:street_art_witnesses/modules/home/modules/collection/views/artworks.dart';
+import 'package:street_art_witnesses/modules/home/modules/collection/views/festivals.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class CollectionScreen extends StatelessWidget {
@@ -19,7 +21,8 @@ class CollectionScreen extends StatelessWidget {
           // action: GestureDetector(onTap: () {}, child: const Icon(Icons.search)),
         ),
         body: Padding(
-          padding: kPagePadding,
+          // padding: kPagePadding,
+          padding: EdgeInsets.zero,
           child: Column(
             children: [
               TabBar(
@@ -27,9 +30,10 @@ class CollectionScreen extends StatelessWidget {
                 labelStyle: TextStyles.text.copyWith(fontWeight: FontWeight.w500),
                 padding: EdgeInsets.zero,
                 indicatorSize: TabBarIndicatorSize.tab,
-                indicatorPadding: const EdgeInsets.symmetric(horizontal: 20),
+                indicatorPadding: const EdgeInsets.symmetric(horizontal: Paddings.normal),
                 labelColor: UIColors.textPrimary,
                 unselectedLabelColor: UIColors.textSecondary,
+                dividerHeight: 0,
                 tabs: const [
                   Tab(text: 'Работы'),
                   Tab(text: 'Авторы'),
@@ -41,10 +45,8 @@ class CollectionScreen extends StatelessWidget {
                 child: TabBarView(
                   children: [
                     ArtworksView(),
-                    Icon(Icons.person),
-                    Icon(Icons.festival),
-                    // ArtistsView(artists: artists),
-                    // FestivalsView(festsPrevs: festsPrevs),
+                    ArtistsView(),
+                    FestivalsView(),
                   ],
                 ),
               ),

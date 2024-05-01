@@ -68,7 +68,7 @@ class _InitLoadingScreenState extends State<InitLoadingScreen> {
     Get.put(SettingsService(initImageQuality: quality));
     Get.put(GetMapController(), permanent: true);
     Get.put(ProfileController(), permanent: true);
-    Get.put(CollectionController()..loadArtworks(), permanent: true);
+    Get.put(CollectionController()..loadAll(), permanent: true);
     Get.put(EmailCounterController(durationInSeconds: 30), permanent: true);
 
     final user = Get.find<AuthService>().user.value;

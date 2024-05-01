@@ -5,7 +5,7 @@ import 'package:street_art_witnesses/data/models/festival/preview/festival_previ
 import 'package:street_art_witnesses/data/providers/festivals_provider.dart';
 import 'package:street_art_witnesses/modules/art/festival/screen.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
-import 'package:street_art_witnesses/widgets/loaders/loader.dart';
+import 'package:street_art_witnesses/widgets/loaders.dart';
 
 class FestivalInfoWidget extends StatelessWidget {
   const FestivalInfoWidget(this.festival, {super.key, this.includeBottomPadding = true});

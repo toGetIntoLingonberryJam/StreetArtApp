@@ -1,37 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/artist/preview/artist_preview.dart';
+import 'package:street_art_witnesses/modules/home/modules/collection/controller.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
+import 'package:street_art_witnesses/widgets/art/artist_preview_widget.dart';
+import 'package:street_art_witnesses/widgets/containers/grid_column.dart';
+import 'package:street_art_witnesses/widgets/loaders.dart';
 
 class ArtistsView extends StatelessWidget {
-  const ArtistsView({super.key, required this.artists});
-
-  final List<ArtistPreview>? artists;
+  const ArtistsView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    if (artists == null) {
-      return const Center(child: AppLoadingIndicator());
-    }
-    if (artists!.isEmpty) {
-      return const Center(
-          child: Text(
-        'У вас нет сохраненных авторов',
-        style: TextStyles.headline2,
-      ));
-    }
+    return Padding(
+      padding: kPagePadding,
+      child: GetBuilder<CollectionController>(
+        builder: (controller) {
+          if (controller.isLoadingArtists) return Loaders.collection;
 
-    return ListView.separated(
-      itemCount: artists!.length,
-      itemBuilder: (_, index) => ArtistCard(artist: artists![index]),
-      separatorBuilder: (_, __) => const SizedBox(height: Paddings.small),
+          if (controller.artists.isEmpty) {
+            return const Center(child: Text('Здесь будут ваши любимые авторы', style: TextStyles.headline2));
+          }
+
+          final previews = controller.artists.values;
+          return GridColumn(
+            isScrollable: true,
+            itemCount: previews.length,
+            itemBuilder: (context, index) => ArtistPreviewWidget(previews.elementAt(index), showLike: true),
+            crossAxisCount: 1,
+            childAspectRatio: 2.23,
+            // widgetHeight: 120,
+          );
+        },
+      ),
     );
   }
 }
 
 class ArtistCard extends StatelessWidget {
-  const ArtistCard({super.key, required this.artist});
+  const ArtistCard(this.artist, {super.key});
 
   final ArtistPreview artist;
 
