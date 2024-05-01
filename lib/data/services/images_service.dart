@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Response;
-import 'package:street_art_witnesses/core/utils/error_handler.dart';
 import 'package:street_art_witnesses/core/utils/logger.dart';
+import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/data/api/ya_disk_api.dart';
 import 'package:street_art_witnesses/data/services/settings_service.dart';
 
@@ -32,14 +32,10 @@ abstract class ImagesService {
       return _mapUrlToImage[quality]![url];
     }
 
-    final response = await ApiHandler.handleApiRequest<Response>(
+    final response = await handleRequest<Response>(
       YaDiskApi.dio.get(
         '/v1/disk/public/resources/',
-        queryParameters: {
-          'public_key': url,
-          'preview_size': _mapQualityToSize[quality],
-          'fields': 'preview',
-        },
+        queryParameters: {'public_key': url, 'preview_size': _mapQualityToSize[quality], 'fields': 'preview'},
       ),
     );
     try {

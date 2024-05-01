@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Response;
-import 'package:street_art_witnesses/core/utils/error_handler.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
@@ -105,7 +104,7 @@ class _ApplicationPage extends StatelessWidget {
 
   void _approve(BuildContext context) async {
     final token = Get.find<AuthService>().user.value.token!;
-    final future = ApiHandler.handleApiRequest<Response>(BackendApi.patch(
+    final future = handleRequest<Response>(BackendApi.patch(
       '/v1/tickets/approve/${ticket.id}',
       options: Options(headers: {'Authorization': 'Bearer $token'}),
     ));

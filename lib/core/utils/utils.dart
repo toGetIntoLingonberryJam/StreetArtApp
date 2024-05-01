@@ -1,5 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide Response;
+import 'package:street_art_witnesses/core/utils/logger.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
@@ -81,5 +83,27 @@ class Utils {
       }
     }
     return true;
+  }
+}
+
+Future<T?> handleRequest<T>(
+  Future<Response> request, {
+  void Function(DioException e)? onDioError,
+  T Function(Response r)? onResult,
+}) async {
+  assert(T == Response || onResult != null, 'You should either explicitly set <Response> as T or provide an onResult method');
+
+  try {
+    final result = await request;
+    return onResult != null ? onResult(result) : result as T?;
+  } on DioException catch (e) {
+    Logger.dioException(e);
+    onDioError?.call(e);
+    return null;
+  } catch (e) {
+    Logger.w('handleRequest method error fallback');
+    if (e is Exception) Logger.exception(e, where: 'handleRequest');
+    if (e is Error) Logger.error(e);
+    return null;
   }
 }

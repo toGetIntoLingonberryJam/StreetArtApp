@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
-import 'package:street_art_witnesses/core/utils/error_handler.dart';
 import 'package:street_art_witnesses/core/utils/logger.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/data/api/backend_api.dart';
@@ -9,7 +8,7 @@ import 'package:street_art_witnesses/data/models/user.dart';
 import 'package:street_art_witnesses/data/services/local_store_service.dart';
 import 'package:street_art_witnesses/modules/auth/check_email/controller.dart';
 
-class AuthService extends GetxService with ApiHandlerMixin {
+class AuthService extends GetxService {
   late final Rx<User> _user;
   Rx<User> get user => _user;
 
@@ -28,7 +27,7 @@ class AuthService extends GetxService with ApiHandlerMixin {
     required String email,
     required String password,
   }) async {
-    final token = await handleApiRequest(
+    final token = await handleRequest(
       BackendApi.post(
         '/v1/auth/login',
         data: {'username': email, 'password': password},
@@ -54,7 +53,7 @@ class AuthService extends GetxService with ApiHandlerMixin {
     required String email,
     required String password,
   }) async {
-    await handleApiRequest<Response>(
+    await handleRequest<Response>(
       BackendApi.post(
         '/v1/auth/register',
         data: {'username': username, 'email': email, 'password': password},
@@ -65,7 +64,7 @@ class AuthService extends GetxService with ApiHandlerMixin {
   }
 
   Future<User> _authenticate({required String token}) async {
-    final user = await handleApiRequest(
+    final user = await handleRequest(
       BackendApi.get('/v1/users/me', options: Options(headers: {'Authorization': 'Bearer $token'})),
       onResult: (r) => User.fromJson(r.data, token: token),
     );
@@ -78,7 +77,7 @@ class AuthService extends GetxService with ApiHandlerMixin {
   }
 
   Future<bool> verify({required String email}) async {
-    final response = await handleApiRequest<Response>(
+    final response = await handleRequest<Response>(
       BackendApi.post('/v1/users/request-verify-token', data: {'email': email}),
     );
     return response != null;
