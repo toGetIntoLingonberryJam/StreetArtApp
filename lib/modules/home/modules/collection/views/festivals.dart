@@ -18,7 +18,7 @@ class FestivalsView extends StatelessWidget {
       padding: kPagePadding,
       child: GetBuilder<CollectionController>(
         builder: (controller) {
-          if (controller.isLoadingFestivals) return Loaders.collection;
+          if (controller.isLoadingFestivals) return Loaders.collection(controller.festivals.length);
 
           if (controller.festivals.isEmpty) {
             return const Center(child: Text('Здесь будут ваши любимые фестивали', style: TextStyles.headline2));

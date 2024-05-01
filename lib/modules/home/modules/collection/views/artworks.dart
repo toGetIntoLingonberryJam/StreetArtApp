@@ -19,7 +19,7 @@ class ArtworksView extends StatelessWidget {
       padding: kPagePadding,
       child: GetBuilder<CollectionController>(
         builder: (controller) {
-          if (controller.isLoadingArtworks) return Loaders.collection;
+          if (controller.isLoadingArtworks) return Loaders.collection(controller.artworks.length);
 
           if (controller.artworks.isEmpty) {
             return const Center(child: Text('Здесь будут ваши любимые работы', style: TextStyles.headline2));

@@ -26,7 +26,10 @@ class ArtworkScreen extends StatelessWidget {
       appBar: AppHeader(
         title: artwork.title,
         autoImplyLeading: !preview,
-        action: LikeButton(collType: CollectionType.artworks, id: artwork.id),
+        action: IgnorePointer(
+          ignoring: preview,
+          child: LikeButton(collType: CollectionType.artworks, id: artwork.id),
+        ),
       ),
       body: SingleChildScrollView(
         child: IgnorePointer(

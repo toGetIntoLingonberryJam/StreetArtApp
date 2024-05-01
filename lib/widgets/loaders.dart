@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
@@ -8,7 +10,7 @@ abstract class Loaders {
   static const Widget artwork = _ArtworkLoader();
   static const Widget artist = _ArtistLoader();
   static const Widget festival = _ArtistLoader();
-  static const Widget collection = _CollectionLoader();
+  static Widget collection(int length) => _CollectionLoader(length);
 }
 
 class Loader<T> extends StatelessWidget {
@@ -88,13 +90,17 @@ class _ArtistLoader extends StatelessWidget {
 }
 
 class _CollectionLoader extends StatelessWidget {
-  const _CollectionLoader();
+  const _CollectionLoader(this.length);
+
+  final int length;
 
   @override
   Widget build(BuildContext context) {
+    if (length == 0) return const Center(child: AppLoadingIndicator());
+
     return GridColumn(
       isScrollable: true,
-      itemCount: 6,
+      itemCount: min(length, 6),
       itemBuilder: (context, index) => const Skeleton(),
       crossAxisCount: 1,
       childAspectRatio: 2.23,

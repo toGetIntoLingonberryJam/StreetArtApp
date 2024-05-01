@@ -18,7 +18,7 @@ class ArtistsView extends StatelessWidget {
       padding: kPagePadding,
       child: GetBuilder<CollectionController>(
         builder: (controller) {
-          if (controller.isLoadingArtists) return Loaders.collection;
+          if (controller.isLoadingArtists) return Loaders.collection(controller.artists.length);
 
           if (controller.artists.isEmpty) {
             return const Center(child: Text('Здесь будут ваши любимые авторы', style: TextStyles.headline2));
