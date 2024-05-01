@@ -31,11 +31,11 @@ dependencies:
   shimmer: ^3.0.0
 
 flutter_launcher_icons:
-  image_path: 'assets/logo.png'
+  image_path: 'assets/logo_default.png'
   android: true
   ios: false
-  adaptive_icon_background: '#1e1e1c'
-  adaptive_icon_foreground: 'assets/logo.png'
+  adaptive_icon_background: '#1c1c1c'
+  adaptive_icon_foreground: 'assets/logo_adaptive.png'
 
 dev_dependencies:
   flutter_test:

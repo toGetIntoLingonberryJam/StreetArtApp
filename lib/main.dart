@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
     ]);
 
     return GetMaterialApp(
-      title: 'Свидетели',
+      title: 'Стрит-Арт',
       debugShowCheckedModeBanner: false,
       theme: darkTheme,
       home: const InitLoadingScreen(),
