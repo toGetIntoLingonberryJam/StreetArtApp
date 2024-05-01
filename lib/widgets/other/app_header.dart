@@ -48,10 +48,7 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
-  Widget? _backButton(BuildContext context) => GestureDetector(
-        onTap: Get.back,
-        child: const Icon(Icons.arrow_back),
-      );
+  Widget? _backButton(BuildContext context) => GestureDetector(onTap: Get.back, child: const Icon(Icons.arrow_back));
 
   @override
   // TODO: implement preferredSize

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/data/providers/collection_provider.dart';
+import 'package:street_art_witnesses/data/services/auth_service.dart';
+import 'package:street_art_witnesses/modules/auth/screen.dart';
 import 'package:street_art_witnesses/modules/home/modules/collection/controller.dart';
 
 class LikeButton extends StatefulWidget {
@@ -22,7 +24,24 @@ class _LikeButtonState extends State<LikeButton> {
   bool isLoading = false;
   late bool isLiked = collection.isLiked(collType, id);
 
+  void showAuthDialog() async {
+    final authAccepted = await Utils.showDialog(
+      title: 'Вход в аккаунт',
+      content: 'Войдите в аккаунт, чтобы сохранять работы в избранное',
+      acceptText: 'Хорошо',
+      declineText: 'Позже',
+    );
+    if (authAccepted ?? false) {
+      Get.offUntil(MaterialPageRoute(builder: (context) => const AuthScreen()), (route) => route.isFirst);
+    }
+  }
+
   void onTap() {
+    // If user not authed, show info message
+    if (!Get.find<AuthService>().user.value.isAuthorized) {
+      return showAuthDialog();
+    }
+
     // If like is currently loading, abort mission
     if (isLoading) return;
 

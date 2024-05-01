@@ -57,8 +57,7 @@ class _IntroSliderState extends State<IntroSlider> {
                       content: 'Откройте для себя удивительный мир стрит-арта с нашим приложением!',
                     ),
                     const IntroAuthPage(
-                      content:
-                          "Присоединяйтесь к нам, чтобы сохранять и делиться своими впечатлениями о стрит-арте",
+                      content: "Присоединяйтесь к нам, чтобы сохранять и делиться своими впечатлениями о стрит-арте",
                     ),
                   ],
                 ),
@@ -77,7 +76,7 @@ class _IntroSliderState extends State<IntroSlider> {
       child: Row(children: [
         const Expanded(child: SizedBox()),
         GestureDetector(
-          onTap: () => Get.to(() => const HomeScreen()),
+          onTap: () => Get.off(() => const HomeScreen()),
           child: const Text('Пропустить', style: TextStyles.textAdditional),
         ),
       ]),

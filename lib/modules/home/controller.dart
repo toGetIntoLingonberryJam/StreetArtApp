@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:street_art_witnesses/data/services/auth_service.dart';
 import 'package:street_art_witnesses/modules/home/modules/collection/screen.dart';
+import 'package:street_art_witnesses/modules/home/modules/collection/views/not_authorized_collection_screen.dart';
 import 'package:street_art_witnesses/modules/home/modules/map/screen.dart';
 import 'package:street_art_witnesses/modules/user/screen.dart';
 
 class HomeController extends GetxController {
   int _pageIndex = 0;
   int get pageIndex => _pageIndex;
-  late final pageController = PageController(
-    initialPage: _pageIndex,
-  );
-  final pages = [const MapScreen(), const CollectionScreen(), const ProfileScreen()];
+  late final pageController = PageController(initialPage: _pageIndex);
+  List<Widget> get pages => Get.find<AuthService>().user.value.isAuthorized ? authedPages : guestPages;
 
   @override
   void dispose() {
@@ -25,3 +25,6 @@ class HomeController extends GetxController {
     update();
   }
 }
+
+const authedPages = [MapScreen(), CollectionScreen(), ProfileScreen()];
+const guestPages = [MapScreen(), NotAuthorizedCollectionScreen(), ProfileScreen()];

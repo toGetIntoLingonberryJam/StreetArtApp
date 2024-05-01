@@ -4,6 +4,7 @@ import 'package:street_art_witnesses/data/models/artist/preview/artist_preview.d
 import 'package:street_art_witnesses/data/models/artwork/artwork_preview/artwork_preview.dart';
 import 'package:street_art_witnesses/data/models/festival/preview/festival_preview.dart';
 import 'package:street_art_witnesses/data/providers/collection_provider.dart';
+import 'package:street_art_witnesses/data/services/auth_service.dart';
 
 class CollectionController extends GetxController {
   // Artworks
@@ -84,6 +85,7 @@ class CollectionController extends GetxController {
   }
 
   void loadAll() {
+    if (!Get.find<AuthService>().user.value.isAuthorized) return;
     loadArtworks();
     loadArtists();
     loadFestivals();
