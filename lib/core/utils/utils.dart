@@ -97,7 +97,7 @@ Future<T?> handleRequest<T>(
     final result = await request;
     return onResult != null ? onResult(result) : result as T?;
   } on DioException catch (e) {
-    Logger.dioException(e);
+    // Logger.dioException(e);
     onDioError?.call(e);
     return null;
   } catch (e) {
