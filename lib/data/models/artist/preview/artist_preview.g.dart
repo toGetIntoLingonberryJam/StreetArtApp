@@ -10,14 +10,12 @@ _$ArtistPreviewImpl _$$ArtistPreviewImplFromJson(Map<String, dynamic> json) =>
     _$ArtistPreviewImpl(
       id: json['id'] as int,
       name: json['name'] as String,
-      image: json['image'] == null
-          ? null
-          : ImageModel.fromJson(json['image'] as Map<String, dynamic>),
+      previewUrl: json['preview_image'] as String?,
     );
 
 Map<String, dynamic> _$$ArtistPreviewImplToJson(_$ArtistPreviewImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'image': instance.image,
+      'preview_image': instance.previewUrl,
     };

@@ -50,7 +50,7 @@ class ArtistCard extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          LoadingImageCircleAvatar(imageUrl: artist.image?.imageUrl, radius: 50),
+          LoadingImageCircleAvatar(imageUrl: artist.previewUrl, radius: 50),
           const SizedBox(width: 8),
           Expanded(
             child: Container(
