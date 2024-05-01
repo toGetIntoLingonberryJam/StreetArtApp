@@ -45,7 +45,7 @@ const _navbarItems = [
   //   icon: Icon(Icons.directions_walk),
   // ),
   BottomNavigationBarItem(
-    label: 'Коллекция',
+    label: 'Избранное',
     icon: Icon(Icons.favorite_outline),
   ),
   BottomNavigationBarItem(

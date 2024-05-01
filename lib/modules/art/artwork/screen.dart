@@ -3,12 +3,14 @@ import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
+import 'package:street_art_witnesses/data/providers/collection_provider.dart';
 import 'package:street_art_witnesses/modules/art/artwork/widgets/address_info.dart';
 import 'package:street_art_witnesses/modules/art/artwork/widgets/artwork_info.dart';
 import 'package:street_art_witnesses/modules/art/artwork/widgets/description_info.dart';
 import 'package:street_art_witnesses/modules/art/artwork/widgets/festival_info.dart';
 import 'package:street_art_witnesses/modules/art/artwork/widgets/links_info.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
+import 'package:street_art_witnesses/widgets/art/like_button.dart';
 import 'package:street_art_witnesses/widgets/buttons/link_button.dart';
 
 class ArtworkScreen extends StatelessWidget {
@@ -21,7 +23,11 @@ class ArtworkScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppHeader(title: artwork.title, autoImplyLeading: !preview),
+      appBar: AppHeader(
+        title: artwork.title,
+        autoImplyLeading: !preview,
+        action: LikeButton(collType: CollectionType.artworks, id: artwork.id),
+      ),
       body: SingleChildScrollView(
         child: IgnorePointer(
           ignoring: preview,

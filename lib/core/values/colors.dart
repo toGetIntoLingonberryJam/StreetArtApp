@@ -11,5 +11,6 @@ abstract class UIColors {
   static const background = Color.fromRGBO(11, 11, 11, 1);
   static const textPrimary = Color.fromRGBO(255, 255, 255, 1);
   static const greyButton = Color.fromRGBO(47, 47, 47, 1);
+  static const greyButtonLight = Color.fromRGBO(191, 191, 191, 1);
   static const textSecondary = Color.fromRGBO(131, 131, 131, 1);
 }

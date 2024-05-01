@@ -10,6 +10,7 @@ class GridColumn extends StatelessWidget {
     this.crossAxisCount = 2,
     this.crossAxisSpacing = 8,
     this.mainAxisSpacing = 8,
+    this.isScrollable = false,
   });
 
   final int itemCount;
@@ -19,13 +20,14 @@ class GridColumn extends StatelessWidget {
   final int crossAxisCount;
   final double crossAxisSpacing;
   final double mainAxisSpacing;
+  final bool isScrollable;
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
       shrinkWrap: true,
       itemCount: itemCount,
-      physics: const NeverScrollableScrollPhysics(),
+      physics: isScrollable ? null : const NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         childAspectRatio: childAspectRatio,
         crossAxisCount: crossAxisCount,
