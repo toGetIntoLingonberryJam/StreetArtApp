@@ -90,4 +90,11 @@ class CollectionController extends GetxController {
     loadArtists();
     loadFestivals();
   }
+
+  void clearAll() {
+    artworks.clear();
+    artists.clear();
+    festivals.clear();
+    update();
+  }
 }
