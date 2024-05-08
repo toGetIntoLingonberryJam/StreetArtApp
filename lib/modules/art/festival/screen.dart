@@ -37,7 +37,10 @@ class FestivalScreen extends StatelessWidget {
                   if (festival.links != null) const SizedBox(height: Paddings.small),
                   if (festival.links != null) LinksInfo(festival.links, title: 'Ссылки'),
                   const SizedBox(height: Paddings.small),
-                  ArtworksGridLoader(artworksFuture: ArtworksProvider.getArtworksOfFestival(festival.id)),
+                  ArtworksGridLoader(
+                    artworksFuture: ArtworksProvider.getArtworksOfFestival(festival.id),
+                    title: festival.name,
+                  ),
                   const SizedBox(height: Paddings.small),
                   const WriteUsWidget(),
                 ],

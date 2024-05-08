@@ -39,6 +39,7 @@ class ArtistScreen extends StatelessWidget {
                   const SizedBox(height: Paddings.small),
                   ArtworksGridLoader(
                     artworksFuture: ArtworksProvider.getArtworksOfAuthor(artist.id),
+                    title: artist.name,
                     showAuthor: false,
                   ),
                   const SizedBox(height: Paddings.small),
