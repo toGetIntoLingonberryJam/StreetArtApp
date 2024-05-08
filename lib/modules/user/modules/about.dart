@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
+import 'package:street_art_witnesses/data/services/package_service.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class AboutPage extends StatelessWidget {
@@ -48,13 +50,13 @@ class _VersionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AppContainer(
+    return AppContainer(
       child: Row(
         children: [
-          Text('Версия приложения:', style: TextStyles.headline2),
-          SizedBox(width: 10),
+          const Text('Версия приложения:', style: TextStyles.headline2),
+          const SizedBox(width: 10),
           // TODO: Change VERSION name
-          Text('0.12.0', style: TextStyles.text),
+          Text(Get.find<PackageInfoService>().packageInfo.version, style: TextStyles.text),
         ],
       ),
     );

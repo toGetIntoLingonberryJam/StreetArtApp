@@ -2,12 +2,14 @@ import 'package:ansicolor/ansicolor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/core/values/theme.dart';
 import 'package:street_art_witnesses/data/services/auth_service.dart';
 import 'package:street_art_witnesses/data/services/local_store_service.dart';
+import 'package:street_art_witnesses/data/services/package_service.dart';
 import 'package:street_art_witnesses/data/services/settings_service.dart';
 import 'package:street_art_witnesses/modules/auth/check_email/controller.dart';
 import 'package:street_art_witnesses/modules/home/modules/collection/controller.dart';
@@ -59,12 +61,14 @@ class _InitLoadingScreenState extends State<InitLoadingScreen> {
 
   void load() async {
     final quality = await LocalStoreService.getImageQuality();
+    final packageInfo = await PackageInfo.fromPlatform();
 
     await Get.putAsync(() async {
       final service = AuthService();
       await service.init();
       return service;
     }, permanent: true);
+    Get.put(PackageInfoService(initInfo: packageInfo));
     Get.put(SettingsService(initImageQuality: quality));
     Get.put(GetMapController(), permanent: true);
     Get.put(ProfileController(), permanent: true);
@@ -86,18 +90,11 @@ class _InitLoadingScreenState extends State<InitLoadingScreen> {
               width: 64,
               height: 64,
               padding: const EdgeInsets.all(12),
-              decoration: const BoxDecoration(
-                color: UIColors.greyButton,
-                borderRadius: BorderRadius.all(Radius.circular(16)),
-              ),
+              decoration: const BoxDecoration(color: UIColors.greyButton, borderRadius: BorderRadius.all(Radius.circular(16))),
               child: const AppLogo(),
             ),
             const SizedBox(width: Paddings.normal),
-            Text(
-              'Свидетели\nСтрит-Арта',
-              style: TextStyles.title2.copyWith(fontWeight: FontWeight.w600),
-              maxLines: 2,
-            ),
+            Text('Свидетели\nСтрит-Арта', style: TextStyles.title2.copyWith(fontWeight: FontWeight.w600), maxLines: 2),
           ],
         ),
       ),
