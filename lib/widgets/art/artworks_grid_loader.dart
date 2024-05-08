@@ -40,7 +40,7 @@ class ArtworksGridLoader extends StatelessWidget {
         } else if (snapshot.hasData) {
           if (snapshot.data!.isEmpty) {
             return const Center(
-              child: Text('Работы отсутствуют', style: TextStyles.headline1),
+              child: Text('Работы отсутствуют', style: NewTextStyles.title3Regular),
             );
           } else {
             return Column(
@@ -50,7 +50,7 @@ class ArtworksGridLoader extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('Работы', style: TextStyles.headline1),
+                      const Text('Работы', style: NewTextStyles.title3Regular),
                       LinkButton('Показать все', onTap: () => showAll(context, snapshot.data!)),
                     ],
                   ),

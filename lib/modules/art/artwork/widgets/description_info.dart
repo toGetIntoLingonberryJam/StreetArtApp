@@ -20,11 +20,11 @@ class ArtworkDescriptionWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Text('Описание:', style: TextStyles.headline1),
+          const Text('Описание:', style: NewTextStyles.title3Regular),
           const SizedBox(height: Paddings.small),
           Text(
             description,
-            style: TextStyles.text,
+            style: NewTextStyles.bodyRegular,
             maxLines: 4,
             overflow: TextOverflow.ellipsis,
           ),
@@ -55,11 +55,11 @@ class _DescriptionPage extends StatelessWidget {
                 children: [
                   LoadingImageCircleAvatar(imageUrl: artwork.location.previewUrl),
                   const SizedBox(width: Paddings.small),
-                  Text(artwork.title, style: TextStyles.headline1),
+                  Text(artwork.title, style: NewTextStyles.title3Regular),
                 ],
               ),
               const SizedBox(height: Paddings.small),
-              Text(artwork.description!, style: TextStyles.text),
+              Text(artwork.description!, style: NewTextStyles.bodyRegular),
             ],
           ),
         ),

@@ -75,7 +75,7 @@ class _ArtworkCard extends StatelessWidget {
             const Spacer(),
             Text(
               preview.title,
-              style: TextStyles.headline2,
+              style: NewTextStyles.bodyRegular,
               textAlign: TextAlign.start,
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
@@ -88,7 +88,7 @@ class _ArtworkCard extends StatelessWidget {
                 Expanded(
                   child: Text(
                     preview.address,
-                    style: TextStyles.caption.copyWith(fontWeight: FontWeight.w500, color: UIColors.greyButtonLight),
+                    style: NewTextStyles.caption1Semibold.copyWith(color: UIColors.greyButtonLight),
                     textAlign: TextAlign.start,
                     overflow: TextOverflow.ellipsis,
                   ),

@@ -19,7 +19,7 @@ class NotAuthorizedCollectionScreen extends StatelessWidget {
         child: Center(
           child: Text(
             'Войдите в аккаунт, чтобы сохранять\nработы в избранное',
-            style: TextStyles.headline2,
+            style: NewTextStyles.bodyRegular,
             textAlign: TextAlign.center,
           ),
         ),

@@ -28,7 +28,7 @@ class ArtistHeaderWidget extends StatelessWidget {
         ),
         const SizedBox(width: 4),
         Expanded(
-          child: Text(name, style: TextStyles.textAdditional, maxLines: 1, overflow: TextOverflow.ellipsis),
+          child: Text(name, style: NewTextStyles.footnoteRegular, maxLines: 1, overflow: TextOverflow.ellipsis),
         ),
       ],
     );

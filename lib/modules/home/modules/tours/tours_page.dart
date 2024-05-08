@@ -10,7 +10,7 @@ class ToursPage extends StatelessWidget {
       body: Center(
         child: Text(
           'Экскурсии',
-          style: TextStyles.headline1,
+          style: NewTextStyles.title3Regular,
         ),
       ),
     );

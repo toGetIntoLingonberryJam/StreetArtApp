@@ -27,7 +27,7 @@ class _NoImagesPlaceholder extends StatelessWidget {
     //   child: Material(
     //     color: UIColors.backgroundCard,
     //     child: Center(
-    //       child: Text('Фотографии отсутствуют', style: TextStyles.headline1),
+    //       child: Text('Фотографии отсутствуют', style: NewTextStyles.title3Regular),
     //     ),
     //   ),
     // );

@@ -37,7 +37,7 @@ class _ThemeSettings extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Тема', style: TextStyles.headline1),
+          const Text('Тема', style: NewTextStyles.title3Regular),
           const SizedBox(height: Paddings.small),
           _Option(title: 'Системная', onTap: () {}, isChecked: true),
         ],
@@ -57,7 +57,7 @@ class _QualitySettings extends StatelessWidget {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Качество изображений', style: TextStyles.headline1),
+              const Text('Качество изображений', style: NewTextStyles.title3Regular),
               const SizedBox(height: Paddings.small),
               _Option(
                 onTap: () => controller.setImageQuality(ImageQuality.bad),
@@ -106,7 +106,7 @@ class _Option extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Row(
             children: [
-              Expanded(child: Text(title, style: TextStyles.text)),
+              Expanded(child: Text(title, style: NewTextStyles.bodyRegular)),
               if (isChecked) const Icon(Icons.check),
             ],
           ),

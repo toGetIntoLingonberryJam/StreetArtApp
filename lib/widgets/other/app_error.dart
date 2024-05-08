@@ -34,7 +34,7 @@ class AppErrorWidget extends StatelessWidget {
     return const Center(
       child: Text(
         'Что-то пошло не так. :(',
-        style: TextStyles.headline1,
+        style: NewTextStyles.title3Regular,
       ),
     );
   }

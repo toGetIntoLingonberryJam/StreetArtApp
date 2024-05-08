@@ -8,7 +8,7 @@ class InfoSnackbar extends GetSnackBar {
       : super(
           messageText: Text(
             message,
-            style: TextStyles.headline2.copyWith(color: Get.theme.colorScheme.inverseSurface),
+            style: NewTextStyles.bodyRegular.copyWith(color: Get.theme.colorScheme.inverseSurface),
           ),
           icon: Icon(
             Icons.done_all,
@@ -41,7 +41,7 @@ class ErrorSnackbar extends GetSnackBar {
       : super(
           messageText: Text(
             message,
-            style: TextStyles.headline2.copyWith(color: Get.theme.colorScheme.inverseSurface),
+            style: NewTextStyles.bodyRegular.copyWith(color: Get.theme.colorScheme.inverseSurface),
           ),
           icon: Icon(
             Icons.done_all,
@@ -74,7 +74,7 @@ class SuccessSnackBar extends GetSnackBar {
       : super(
           messageText: Text(
             message,
-            style: TextStyles.headline2.copyWith(color: Get.theme.colorScheme.inverseSurface),
+            style: NewTextStyles.bodyRegular.copyWith(color: Get.theme.colorScheme.inverseSurface),
           ),
           icon: Icon(
             Icons.done_all,

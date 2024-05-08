@@ -50,14 +50,14 @@ class _UserInfo extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('Личные данные', style: TextStyles.headline1),
+        const Text('Личные данные', style: NewTextStyles.title3Regular),
         const SizedBox(height: 10),
-        AppContainer(child: Text(user.username, style: TextStyles.text)),
+        AppContainer(child: Text(user.username, style: NewTextStyles.bodyRegular)),
         if (user.email != null)
           Padding(
             padding: const EdgeInsets.only(top: 10),
             child: AppContainer(
-              child: Text(user.email!, style: TextStyles.text),
+              child: Text(user.email!, style: NewTextStyles.bodyRegular),
             ),
           ),
       ],

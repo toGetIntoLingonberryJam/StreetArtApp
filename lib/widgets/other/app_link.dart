@@ -20,7 +20,7 @@ class AppLink extends StatelessWidget {
         children: [
           const Icon(Icons.link),
           const SizedBox(width: 8),
-          Text(name, style: TextStyles.text.copyWith(decoration: TextDecoration.underline)),
+          Text(name, style: NewTextStyles.bodyRegular.copyWith(decoration: TextDecoration.underline)),
         ],
       ),
     );

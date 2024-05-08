@@ -77,7 +77,7 @@ class _IntroSliderState extends State<IntroSlider> {
         const Expanded(child: SizedBox()),
         GestureDetector(
           onTap: () => Get.off(() => const HomeScreen()),
-          child: const Text('Пропустить', style: TextStyles.textAdditional),
+          child: const Text('Пропустить', style: NewTextStyles.footnoteRegular),
         ),
       ]),
     );

@@ -16,7 +16,7 @@ class ChangePasswordPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Пароль', style: TextStyles.headline1),
+            Text('Пароль', style: NewTextStyles.title3Regular),
             SizedBox(height: 10),
             _ChangePasswordForm(),
           ],
@@ -45,15 +45,15 @@ class __ChangePasswordFormState extends State<_ChangePasswordForm> {
         child: Column(
       children: [
         const AppContainer(
-          child: Text('Введите старый пароль', style: TextStyles.text),
+          child: Text('Введите старый пароль', style: NewTextStyles.bodyRegular),
         ),
         const SizedBox(height: 10),
         const AppContainer(
-          child: Text('Введите новый пароль', style: TextStyles.text),
+          child: Text('Введите новый пароль', style: NewTextStyles.bodyRegular),
         ),
         const SizedBox(height: 10),
         const AppContainer(
-          child: Text('Повторите новый пароль', style: TextStyles.text),
+          child: Text('Повторите новый пароль', style: NewTextStyles.bodyRegular),
         ),
         const SizedBox(height: 40),
         AppButton.primary(

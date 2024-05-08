@@ -21,7 +21,7 @@ class FestivalsView extends StatelessWidget {
           if (controller.isLoadingFestivals) return Loaders.collection(controller.festivals.length);
 
           if (controller.festivals.isEmpty) {
-            return const Center(child: Text('Здесь будут ваши любимые фестивали', style: TextStyles.headline2));
+            return const Center(child: Text('Здесь будут ваши любимые фестивали', style: NewTextStyles.bodyRegular));
           }
 
           final previews = controller.festivals.values;
@@ -57,7 +57,7 @@ class FestCard extends StatelessWidget {
             child: Container(
               height: 100,
               alignment: Alignment.centerLeft,
-              child: Text(preview.name, style: TextStyles.headline1),
+              child: Text(preview.name, style: NewTextStyles.title3Regular),
             ),
           ),
           const Padding(

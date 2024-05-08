@@ -22,11 +22,11 @@ class ModerationThanksScreen extends StatelessWidget {
               child: const AppPlaceholder(width: double.infinity),
             ),
             const Spacer(),
-            const Text('Спасибо!', style: TextStyles.title1, textAlign: TextAlign.center),
+            const Text('Спасибо!', style: NewTextStyles.largeTitleRegular, textAlign: TextAlign.center),
             const SizedBox(height: Paddings.normal),
             const Text(
               'Ваша заявка на добавление работы отправлена на модерацию.',
-              style: TextStyles.text,
+              style: NewTextStyles.bodyRegular,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: Paddings.normal),

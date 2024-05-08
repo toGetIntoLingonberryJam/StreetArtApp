@@ -47,7 +47,7 @@ class AppButton extends StatelessWidget {
           width: double.infinity,
           padding: kButtonPadding,
           decoration: BoxDecoration(borderRadius: kButtonBorderRadius, color: btnColor),
-          child: child ?? Text(label ?? '', style: TextStyles.button, textAlign: TextAlign.center),
+          child: child ?? Text(label ?? '', style: NewTextStyles.headlineMedium, textAlign: TextAlign.center),
         ),
       ),
     );

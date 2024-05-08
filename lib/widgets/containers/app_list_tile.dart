@@ -34,7 +34,7 @@ class AppListTile extends StatelessWidget {
             Expanded(
               child: Text(
                 text,
-                style: TextStyles.text.copyWith(
+                style: NewTextStyles.bodyRegular.copyWith(
                   color: foregroundColor,
                 ),
               ),
@@ -67,7 +67,7 @@ class _Badge extends StatelessWidget {
       ),
       child: Text(
         '$count',
-        style: TextStyles.textAdditional.copyWith(
+        style: NewTextStyles.footnoteRegular.copyWith(
           color: Colors.white,
         ),
       ),

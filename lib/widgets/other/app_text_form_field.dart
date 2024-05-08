@@ -53,8 +53,7 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
           filled: true,
           fillColor: UIColors.backgroundCard,
           contentPadding: const EdgeInsets.only(right: 16),
-          prefix:
-              widget.prefixIcon == null ? const Padding(padding: EdgeInsets.only(left: 16)) : null,
+          prefix: widget.prefixIcon == null ? const Padding(padding: EdgeInsets.only(left: 16)) : null,
           prefixIcon: widget.prefixIcon,
           suffixIcon: widget.withToggleEye
               ? IconButton(
@@ -79,7 +78,7 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
             ),
           ),
           hintText: widget.hintText,
-          hintStyle: TextStyles.input.copyWith(color: UIColors.textPrimary)),
+          hintStyle: NewTextStyles.bodyRegular.copyWith(color: UIColors.textPrimary)),
     );
   }
 }

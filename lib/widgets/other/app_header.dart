@@ -35,7 +35,7 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
               Expanded(
                 child: Text(
                   title,
-                  style: TextStyles.headline1,
+                  style: NewTextStyles.title3Regular,
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
                 ),

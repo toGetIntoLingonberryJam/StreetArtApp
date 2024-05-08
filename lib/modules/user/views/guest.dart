@@ -47,13 +47,13 @@ class _LoginContainer extends StatelessWidget {
         children: [
           const Text(
             'Войдите в профиль',
-            style: TextStyles.headline1,
+            style: NewTextStyles.title3Regular,
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: Paddings.small),
           const Text(
             'Чтобы пользоваться всеми функциями приложения',
-            style: TextStyles.text,
+            style: NewTextStyles.bodyRegular,
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: Paddings.normal),

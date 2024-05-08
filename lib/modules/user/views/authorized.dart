@@ -71,13 +71,13 @@ class _LoginWarningTile extends GetView<ProfileController> {
                   children: [
                     const Text(
                       'Чтобы пользоваться всеми функциями приложения, подтвердите почту.',
-                      style: TextStyles.text,
+                      style: NewTextStyles.bodyRegular,
                     ),
                     GestureDetector(
                       onTap: () => _sendEmail(context),
                       child: Text(
                         'Отправить письмо',
-                        style: TextStyles.text.copyWith(
+                        style: NewTextStyles.bodyRegular.copyWith(
                           color: UIColors.slider,
                           decoration: TextDecoration.underline,
                           decorationColor: UIColors.slider,

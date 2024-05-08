@@ -50,9 +50,9 @@ class AddressInfo extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Адрес:', style: TextStyles.text.copyWith(color: UIColors.textSecondary)),
+                Text('Адрес:', style: NewTextStyles.bodyRegular.copyWith(color: UIColors.textSecondary)),
                 const SizedBox(height: Paddings.small),
-                Text(artwork.location.address, style: TextStyles.headline2),
+                Text(artwork.location.address, style: NewTextStyles.bodyRegular),
               ],
             ),
           ),

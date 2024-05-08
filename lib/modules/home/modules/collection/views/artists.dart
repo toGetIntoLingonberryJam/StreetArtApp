@@ -21,7 +21,7 @@ class ArtistsView extends StatelessWidget {
           if (controller.isLoadingArtists) return Loaders.collection(controller.artists.length);
 
           if (controller.artists.isEmpty) {
-            return const Center(child: Text('Здесь будут ваши любимые авторы', style: TextStyles.headline2));
+            return const Center(child: Text('Здесь будут ваши любимые авторы', style: NewTextStyles.bodyRegular));
           }
 
           final previews = controller.artists.values;
@@ -56,7 +56,7 @@ class ArtistCard extends StatelessWidget {
             child: Container(
               height: 100,
               alignment: Alignment.centerLeft,
-              child: Text(artist.name, style: TextStyles.headline1),
+              child: Text(artist.name, style: NewTextStyles.title3Regular),
             ),
           ),
           const Padding(

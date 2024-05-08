@@ -23,7 +23,7 @@ class AboutPage extends StatelessWidget {
               const AppContainer(
                   child: Text(
                 'Приложение разработано командой (to) Get Into Lingonberry Jam в рамках Проектного Практикума УрФУ.\n\nВ проекте принимали участие:\nРоманов Вадим Юрьевич\nПотехин Николай Андреевич\nБиккужина Полина Дмитриевна\nЧислов Степан Игоревич\n\nИз Екб, с любовью <3',
-                style: TextStyles.text,
+                style: NewTextStyles.bodyRegular,
               )),
               const SizedBox(height: Paddings.normal),
               const _VersionWidget(),
@@ -53,10 +53,10 @@ class _VersionWidget extends StatelessWidget {
     return AppContainer(
       child: Row(
         children: [
-          const Text('Версия приложения:', style: TextStyles.headline2),
+          const Text('Версия приложения:', style: NewTextStyles.bodyRegular),
           const SizedBox(width: 10),
           // TODO: Change VERSION name
-          Text(Get.find<PackageInfoService>().packageInfo.version, style: TextStyles.text),
+          Text(Get.find<PackageInfoService>().packageInfo.version, style: NewTextStyles.bodyRegular),
         ],
       ),
     );

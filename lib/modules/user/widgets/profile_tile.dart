@@ -42,12 +42,12 @@ class ProfileTile extends StatelessWidget {
                 children: [
                   Text(
                     username,
-                    style: TextStyles.headline1,
+                    style: NewTextStyles.title3Regular,
                     overflow: TextOverflow.ellipsis,
                   ),
                   Text(
                     email,
-                    style: TextStyles.text.copyWith(color: context.colors.secondaryContainer),
+                    style: NewTextStyles.bodyRegular.copyWith(color: context.colors.secondaryContainer),
                     overflow: TextOverflow.ellipsis,
                   ),
                 ],

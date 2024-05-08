@@ -30,7 +30,7 @@ class FestivalInfoWidget extends StatelessWidget {
           children: [
             LoadingImageCircleAvatar(imageUrl: festival?.image?.imageUrl, radius: 10),
             const SizedBox(width: 8),
-            Expanded(child: Text(festival!.name, style: TextStyles.headline1)),
+            Expanded(child: Text(festival!.name, style: NewTextStyles.title3Regular)),
             const Icon(Icons.chevron_right),
           ],
         ),

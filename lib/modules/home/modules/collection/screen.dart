@@ -12,10 +12,10 @@ class CollectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
+    return const DefaultTabController(
       length: 3,
       child: Scaffold(
-        appBar: const AppHeader(
+        appBar: AppHeader(
           title: 'Избранное',
           autoImplyLeading: false,
           // action: GestureDetector(onTap: () {}, child: const Icon(Icons.search)),
@@ -27,21 +27,21 @@ class CollectionScreen extends StatelessWidget {
             children: [
               TabBar(
                 labelPadding: EdgeInsets.zero,
-                labelStyle: TextStyles.text.copyWith(fontWeight: FontWeight.w500),
+                labelStyle: NewTextStyles.bodyBold,
                 padding: EdgeInsets.zero,
                 indicatorSize: TabBarIndicatorSize.tab,
-                indicatorPadding: const EdgeInsets.symmetric(horizontal: Paddings.normal),
+                indicatorPadding: EdgeInsets.symmetric(horizontal: Paddings.normal),
                 labelColor: UIColors.textPrimary,
                 unselectedLabelColor: UIColors.textSecondary,
                 dividerHeight: 0,
-                tabs: const [
+                tabs: [
                   Tab(text: 'Работы'),
                   Tab(text: 'Авторы'),
                   Tab(text: 'Фестивали'),
                 ],
               ),
-              const SizedBox(height: Paddings.normal),
-              const Expanded(
+              SizedBox(height: Paddings.normal),
+              Expanded(
                 child: TabBarView(
                   children: [
                     ArtworksView(),

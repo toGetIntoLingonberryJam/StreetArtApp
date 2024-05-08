@@ -20,13 +20,13 @@ class ModerationWarningScreen extends StatelessWidget {
             Spacer(),
             Text(
               'Добавление работы',
-              style: TextStyles.title1,
+              style: NewTextStyles.largeTitleRegular,
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 24),
             Text(
               'Перед публикацией, все заявки на добавление работ проходят проверку. Это помогает поддерживать высокое качество контента в нашем приложении.\n\nКак только ваша заявка будет одобрена, ваша работа будет опубликована и станет доступна для всех пользователей.\n\nСпасибо за понимание!',
-              style: TextStyles.text,
+              style: NewTextStyles.bodyRegular,
               textAlign: TextAlign.center,
             ),
             Spacer(),
@@ -67,7 +67,7 @@ class _ConfirmWidgetState extends State<_ConfirmWidget> {
           children: [
             AppCheckBox(value: dontShowAgain, onChanged: (v) => setState(() => dontShowAgain = v)),
             const SizedBox(width: 10),
-            const Text('Не показывать снова', style: TextStyles.button),
+            const Text('Не показывать снова', style: NewTextStyles.headlineMedium),
           ],
         ),
       ],

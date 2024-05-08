@@ -23,7 +23,7 @@ class RoleTile extends StatelessWidget {
           Expanded(
             child: Text(
               role,
-              style: TextStyles.text.copyWith(fontWeight: FontWeight.w500),
+              style: NewTextStyles.bodyBold,
               overflow: TextOverflow.ellipsis,
             ),
           ),

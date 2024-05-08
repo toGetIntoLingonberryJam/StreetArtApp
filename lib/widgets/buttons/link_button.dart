@@ -14,7 +14,7 @@ class LinkButton extends StatelessWidget {
       onTap: onTap,
       child: Text(
         label,
-        style: TextStyles.text.copyWith(
+        style: NewTextStyles.bodyRegular.copyWith(
           fontWeight: FontWeight.w500,
           color: UIColors.accent,
           decoration: TextDecoration.underline,

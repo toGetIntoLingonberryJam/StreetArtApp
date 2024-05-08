@@ -119,7 +119,7 @@ class LoadingImage extends StatelessWidget {
           return const Center(
             child: Text(
               'Не удалось загрузить картинку',
-              style: TextStyles.headline1,
+              style: NewTextStyles.title3Regular,
               textAlign: TextAlign.center,
             ),
           );

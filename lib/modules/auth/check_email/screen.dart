@@ -21,18 +21,17 @@ class CheckEmailScreen extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text('Ссылка отправлена на почту',
-                          style: TextStyles.title1, textAlign: TextAlign.center),
+                      Text('Ссылка отправлена на почту', style: NewTextStyles.largeTitleRegular, textAlign: TextAlign.center),
                       SizedBox(height: 24),
                       Text(
                         'Перейдите по ссылке из письма для подтверждения аккаунта',
-                        style: TextStyles.text,
+                        style: NewTextStyles.bodyRegular,
                         textAlign: TextAlign.center,
                       ),
                       SizedBox(height: 24),
                       Text(
                         'Если письмо не пришло - проверьте "Спам"',
-                        style: TextStyles.caption,
+                        style: NewTextStyles.caption1Regular,
                         textAlign: TextAlign.center,
                       ),
                     ],

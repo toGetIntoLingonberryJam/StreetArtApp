@@ -132,11 +132,11 @@ class _MainInfoViewState extends State<_MainInfoView> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('Фото', style: TextStyles.headline1),
+                      const Text('Фото', style: NewTextStyles.title3Regular),
                       const SizedBox(height: Paddings.small),
                       const AppButton.primary(label: 'Выбрать фото', onTap: null),
                       const SizedBox(height: 40),
-                      const Text('Название', style: TextStyles.headline1),
+                      const Text('Название', style: NewTextStyles.title3Regular),
                       const SizedBox(height: Paddings.small),
                       AppTextFormField(
                         controller: nameController,
@@ -144,7 +144,7 @@ class _MainInfoViewState extends State<_MainInfoView> {
                         validator: Validator.get(Validate.notEmpty),
                       ),
                       const SizedBox(height: Paddings.normal),
-                      const Text('Автор', style: TextStyles.headline1),
+                      const Text('Автор', style: NewTextStyles.title3Regular),
                       const SizedBox(height: Paddings.small),
                       GestureDetector(
                         onTap: _pickArtist,
@@ -156,7 +156,7 @@ class _MainInfoViewState extends State<_MainInfoView> {
                         ),
                       ),
                       const SizedBox(height: Paddings.normal),
-                      const Text('Адрес работы', style: TextStyles.headline1),
+                      const Text('Адрес работы', style: NewTextStyles.title3Regular),
                       const SizedBox(height: Paddings.small),
                       AppTextFormField(
                         controller: addressController,
@@ -164,7 +164,7 @@ class _MainInfoViewState extends State<_MainInfoView> {
                         validator: Validator.get(Validate.notEmpty),
                       ),
                       const SizedBox(height: Paddings.normal),
-                      const Text('Местоположение', style: TextStyles.headline1),
+                      const Text('Местоположение', style: NewTextStyles.title3Regular),
                       const SizedBox(height: Paddings.small),
                       GestureDetector(
                         onTap: _showLocationPicker,
@@ -258,7 +258,7 @@ class _AdditionalInfoViewState extends State<_AdditionalInfoView> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('Год создания работы', style: TextStyles.headline1),
+                      const Text('Год создания работы', style: NewTextStyles.title3Regular),
                       const SizedBox(height: Paddings.small),
                       AppTextFormField(
                         controller: yearController,
@@ -266,11 +266,11 @@ class _AdditionalInfoViewState extends State<_AdditionalInfoView> {
                         validator: Validator.get(Validate.year),
                       ),
                       const SizedBox(height: Paddings.normal),
-                      const Text('Фестиваль (при наличии)', style: TextStyles.headline1),
+                      const Text('Фестиваль (при наличии)', style: NewTextStyles.title3Regular),
                       const SizedBox(height: Paddings.small),
                       const AppButton.primary(label: 'Выбрать фестиваль', onTap: null),
                       const SizedBox(height: 40),
-                      const Text('Описание работы', style: TextStyles.headline1),
+                      const Text('Описание работы', style: NewTextStyles.title3Regular),
                       const SizedBox(height: Paddings.small),
                       AppTextFormField(
                         controller: descriptionController,
@@ -278,7 +278,7 @@ class _AdditionalInfoViewState extends State<_AdditionalInfoView> {
                         validator: null,
                       ),
                       const SizedBox(height: Paddings.normal),
-                      const Text('Интересные ссылки', style: TextStyles.headline1),
+                      const Text('Интересные ссылки', style: NewTextStyles.title3Regular),
                       const SizedBox(height: Paddings.small),
                       AppTextFormField(
                         controller: linksController,

@@ -94,7 +94,7 @@ class _InitLoadingScreenState extends State<InitLoadingScreen> {
               child: const AppLogo(),
             ),
             const SizedBox(width: Paddings.normal),
-            Text('Свидетели\nСтрит-Арта', style: TextStyles.title2.copyWith(fontWeight: FontWeight.w600), maxLines: 2),
+            const Text('Свидетели\nСтрит-Арта', style: NewTextStyles.title2Semibold, maxLines: 2),
           ],
         ),
       ),

@@ -26,13 +26,13 @@ class IntroAuthPage extends StatelessWidget {
               const SizedBox(height: 40),
               const Text(
                 'Свидетели Стрит-Арта',
-                style: TextStyles.title1,
+                style: NewTextStyles.largeTitleRegular,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 30),
               Text(
                 content,
-                style: TextStyles.text,
+                style: NewTextStyles.bodyRegular,
                 textAlign: TextAlign.center,
               ),
               const Expanded(flex: 2, child: SizedBox()),

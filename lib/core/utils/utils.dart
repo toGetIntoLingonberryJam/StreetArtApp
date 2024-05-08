@@ -30,14 +30,14 @@ class Utils {
           surfaceTintColor: Colors.transparent,
           title: Text(
             title,
-            style: TextStyles.title2,
+            style: NewTextStyles.title2Regular,
             textAlign: TextAlign.center,
           ),
           content: content == null
               ? null
               : Text(
                   content,
-                  style: TextStyles.text,
+                  style: NewTextStyles.bodyRegular,
                   textAlign: TextAlign.center,
                 ),
           actions: [

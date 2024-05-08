@@ -28,11 +28,11 @@ class IntroPage extends StatelessWidget {
               const SizedBox(height: 40),
               const Text(
                 'Свидетели Стрит-Арта',
-                style: TextStyles.title1,
+                style: NewTextStyles.largeTitleRegular,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 30),
-              Text(content, style: TextStyles.text, textAlign: TextAlign.center),
+              Text(content, style: NewTextStyles.bodyRegular, textAlign: TextAlign.center),
               const Expanded(flex: 2, child: SizedBox()),
               AppButton.primary(onTap: onButtonClicked, label: 'Далее'),
               const Expanded(flex: 2, child: SizedBox()),

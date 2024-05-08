@@ -11,7 +11,7 @@ class AppTextButton extends StatelessWidget {
   const AppTextButton.outlined({super.key, required this.onTap, this.text}) : isFilled = false;
 
   final String? text;
-  final TextStyle? style = TextStyles.button;
+  final TextStyle? style = NewTextStyles.headlineMedium;
   final VoidCallback? onTap;
   final bool isFilled;
 

@@ -22,7 +22,7 @@ class EmailCounterWidget extends GetView<EmailCounterController> {
         spacing: 10,
         children: [
           if (counter.canSend) _resendButton(context) else _resendText(context),
-          Text('Через ${counter.count} сек', style: TextStyles.text),
+          Text('Через ${counter.count} сек', style: NewTextStyles.bodyRegular),
         ],
       ),
     );
@@ -31,7 +31,7 @@ class EmailCounterWidget extends GetView<EmailCounterController> {
   Text _resendText(BuildContext context) {
     return Text(
       'Отправить повторно',
-      style: TextStyles.text.copyWith(color: UIColors.textSecondary),
+      style: NewTextStyles.bodyRegular.copyWith(color: UIColors.textSecondary),
     );
   }
 

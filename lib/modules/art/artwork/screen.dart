@@ -53,7 +53,7 @@ class ArtworkScreen extends StatelessWidget {
                     LinksInfo(artwork.links),
                     if (artwork.links != null) const SizedBox(height: Paddings.small),
                     AppContainer(
-                      child: Text('Добавлено: ID ${artwork.addedByUserId}', style: TextStyles.text),
+                      child: Text('Добавлено: ID ${artwork.addedByUserId}', style: NewTextStyles.bodyRegular),
                     ),
                     const SizedBox(height: Paddings.small),
                     const WriteUsWidget(),
@@ -79,7 +79,7 @@ class WriteUsWidget extends StatelessWidget {
         children: [
           const Text(
             'Есть неточности?',
-            style: TextStyles.headline2,
+            style: NewTextStyles.bodyRegular,
             textAlign: TextAlign.center,
           ),
           const SizedBox(width: Paddings.small),

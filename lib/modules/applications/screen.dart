@@ -71,19 +71,19 @@ class _ApplicationCard extends StatelessWidget {
                 children: [
                   Text(
                     'Заявка ${ticket.id}',
-                    style: TextStyles.headline2,
+                    style: NewTextStyles.bodyRegular,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 4),
                   Text(
                     'User Id: ${ticket.artwork.addedByUserId}',
-                    style: TextStyles.textAdditional,
+                    style: NewTextStyles.footnoteRegular,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 4),
                   Text(
                     ticket.artwork.updatedAt,
-                    style: TextStyles.caption,
+                    style: NewTextStyles.caption1Regular,
                     overflow: TextOverflow.ellipsis,
                   ),
                 ],

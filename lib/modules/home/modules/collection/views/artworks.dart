@@ -22,7 +22,7 @@ class ArtworksView extends StatelessWidget {
           if (controller.isLoadingArtworks) return Loaders.collection(controller.artworks.length);
 
           if (controller.artworks.isEmpty) {
-            return const Center(child: Text('Здесь будут ваши любимые работы', style: TextStyles.headline2));
+            return const Center(child: Text('Здесь будут ваши любимые работы', style: NewTextStyles.bodyRegular));
           }
 
           final previews = controller.artworks.values;
@@ -73,7 +73,7 @@ class ArtworkCard extends StatelessWidget {
                       Expanded(
                         child: Text(
                           preview.artistPreview?.name ?? 'Автор неизвестен',
-                          style: TextStyles.text,
+                          style: NewTextStyles.bodyRegular,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -81,9 +81,9 @@ class ArtworkCard extends StatelessWidget {
                       const Padding(padding: EdgeInsets.all(5), child: Icon(Icons.favorite)),
                     ],
                   ),
-                  Text(preview.title, style: TextStyles.headline1, maxLines: 2, overflow: TextOverflow.ellipsis),
+                  Text(preview.title, style: NewTextStyles.title3Regular, maxLines: 2, overflow: TextOverflow.ellipsis),
                   const Expanded(child: SizedBox()),
-                  Text(preview.address, style: TextStyles.caption, maxLines: 1, overflow: TextOverflow.ellipsis),
+                  Text(preview.address, style: NewTextStyles.caption1Regular, maxLines: 1, overflow: TextOverflow.ellipsis),
                 ],
               ),
             ),

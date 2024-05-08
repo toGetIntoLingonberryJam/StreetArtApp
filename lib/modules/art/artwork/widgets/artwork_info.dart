@@ -25,14 +25,14 @@ class ArtworkInfo extends StatelessWidget {
         children: [
           _ArtistInfo(artwork.artistPreview),
           const SizedBox(height: Paddings.small),
-          Text(artwork.title, style: TextStyles.headline1),
+          Text(artwork.title, style: NewTextStyles.title3Regular),
           const SizedBox(height: 24),
           Row(
             children: [
               Expanded(
                 child: Text(
                   'Год создания: ${artwork.yearCreated ?? 'неизвестен'}',
-                  style: TextStyles.text.copyWith(color: UIColors.textSecondary),
+                  style: NewTextStyles.bodyRegular.copyWith(color: UIColors.textSecondary),
                 ),
               ),
               AppBadge(artwork.status.label),
@@ -54,7 +54,7 @@ class _ArtistInfo extends StatelessWidget {
     if (artist == null) {
       return const Text(
         'Автор неизвестен',
-        style: TextStyles.headline2,
+        style: NewTextStyles.bodyRegular,
       );
     }
 
@@ -71,7 +71,7 @@ class _ArtistInfo extends StatelessWidget {
           LoadingImageCircleAvatar(imageUrl: artist?.previewUrl, radius: 10),
           const SizedBox(width: 8),
           Expanded(
-            child: Text(artist!.name, style: TextStyles.headline2),
+            child: Text(artist!.name, style: NewTextStyles.bodyRegular),
           ),
         ],
       ),
