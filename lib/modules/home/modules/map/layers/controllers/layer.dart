@@ -9,7 +9,7 @@ import 'package:street_art_witnesses/widgets/app_widgets.dart';
 class MapControllersLayer extends GetView<GetMapController> {
   const MapControllersLayer({
     super.key,
-    this.search = true,
+    this.search = false,
     this.zoom = true,
     this.geopostion = true,
     this.mapTag,
