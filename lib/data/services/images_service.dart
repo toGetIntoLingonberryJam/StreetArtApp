@@ -26,8 +26,6 @@ abstract class ImagesService {
   static Future<ImageProvider?> loadFromDisk(String url, {ImageQuality? quality}) async {
     quality ??= Get.find<SettingsService>().imageQuality;
 
-    loads += 1;
-    if (loads % 10 == 0) Logger.d('LoadFromDisk: $url, count: $loads');
     if (_mapUrlToImage[quality]!.containsKey(url)) {
       return _mapUrlToImage[quality]![url];
     }
@@ -39,6 +37,9 @@ abstract class ImagesService {
       ),
     );
     try {
+      loads += 1;
+      if (loads % 10 == 0) Logger.d('LoadFromDisk: $url, count: $loads');
+
       final String imageUrl = response?.data!['preview'];
       _mapUrlToImage[quality]![url] = NetworkImage(imageUrl);
       return _mapUrlToImage[quality]![url];
