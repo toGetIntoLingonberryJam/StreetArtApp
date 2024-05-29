@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/utils/logger.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/image/image.dart';
@@ -116,12 +117,9 @@ class LoadingImage extends StatelessWidget {
         }
 
         if (snapshot.hasError) {
+          Logger.e(snapshot.error!);
           return const Center(
-            child: Text(
-              'Не удалось загрузить картинку',
-              style: NewTextStyles.title3Regular,
-              textAlign: TextAlign.center,
-            ),
+            child: Text('Не удалось загрузить картинку', style: NewTextStyles.title3Regular, textAlign: TextAlign.center),
           );
         }
         return const Skeleton();

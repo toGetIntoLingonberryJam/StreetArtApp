@@ -9,7 +9,7 @@ class ArtistHeaderWidget extends StatelessWidget {
 
   ArtistHeaderWidget.fromArtistPreview(ArtistPreview preview, {super.key})
       : name = preview.name,
-        previewUrl = preview.previewUrl;
+        previewUrl = preview.image?.imageUrl;
 
   final String? previewUrl;
   final String name;

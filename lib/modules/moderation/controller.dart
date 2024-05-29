@@ -85,7 +85,7 @@ class ModerationController extends GetxController {
           longitude: _data.location?.longitude ?? 0,
           previewUrl: null,
         ),
-        artistPreview: _data.artist,
+        artistPreviews: _data.artist == null ? null : [_data.artist!],
         links: _data.link == null ? null : [_data.link!],
       );
 }

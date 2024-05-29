@@ -21,7 +21,8 @@ ImageModel _$ImageModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ImageModel {
   String get imageUrl => throw _privateConstructorUsedError;
-  String get createdAt => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError; // required int artworkId,
+  String? get blurhash => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +37,7 @@ abstract class $ImageModelCopyWith<$Res> {
           ImageModel value, $Res Function(ImageModel) then) =
       _$ImageModelCopyWithImpl<$Res, ImageModel>;
   @useResult
-  $Res call({String imageUrl, String createdAt, String? description});
+  $Res call({String imageUrl, int id, String? blurhash, String? description});
 }
 
 /// @nodoc
@@ -53,7 +54,8 @@ class _$ImageModelCopyWithImpl<$Res, $Val extends ImageModel>
   @override
   $Res call({
     Object? imageUrl = null,
-    Object? createdAt = null,
+    Object? id = null,
+    Object? blurhash = freezed,
     Object? description = freezed,
   }) {
     return _then(_value.copyWith(
@@ -61,10 +63,14 @@ class _$ImageModelCopyWithImpl<$Res, $Val extends ImageModel>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      blurhash: freezed == blurhash
+          ? _value.blurhash
+          : blurhash // ignore: cast_nullable_to_non_nullable
+              as String?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -81,7 +87,7 @@ abstract class _$$ImageModelImplCopyWith<$Res>
       __$$ImageModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String imageUrl, String createdAt, String? description});
+  $Res call({String imageUrl, int id, String? blurhash, String? description});
 }
 
 /// @nodoc
@@ -96,7 +102,8 @@ class __$$ImageModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? imageUrl = null,
-    Object? createdAt = null,
+    Object? id = null,
+    Object? blurhash = freezed,
     Object? description = freezed,
   }) {
     return _then(_$ImageModelImpl(
@@ -104,10 +111,14 @@ class __$$ImageModelImplCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      blurhash: freezed == blurhash
+          ? _value.blurhash
+          : blurhash // ignore: cast_nullable_to_non_nullable
+              as String?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -120,7 +131,10 @@ class __$$ImageModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ImageModelImpl implements _ImageModel {
   const _$ImageModelImpl(
-      {required this.imageUrl, required this.createdAt, this.description});
+      {required this.imageUrl,
+      required this.id,
+      this.blurhash,
+      this.description});
 
   factory _$ImageModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ImageModelImplFromJson(json);
@@ -128,13 +142,16 @@ class _$ImageModelImpl implements _ImageModel {
   @override
   final String imageUrl;
   @override
-  final String createdAt;
+  final int id;
+// required int artworkId,
+  @override
+  final String? blurhash;
   @override
   final String? description;
 
   @override
   String toString() {
-    return 'ImageModel(imageUrl: $imageUrl, createdAt: $createdAt, description: $description)';
+    return 'ImageModel(imageUrl: $imageUrl, id: $id, blurhash: $blurhash, description: $description)';
   }
 
   @override
@@ -144,8 +161,9 @@ class _$ImageModelImpl implements _ImageModel {
             other is _$ImageModelImpl &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.blurhash, blurhash) ||
+                other.blurhash == blurhash) &&
             (identical(other.description, description) ||
                 other.description == description));
   }
@@ -153,7 +171,7 @@ class _$ImageModelImpl implements _ImageModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, imageUrl, createdAt, description);
+      Object.hash(runtimeType, imageUrl, id, blurhash, description);
 
   @JsonKey(ignore: true)
   @override
@@ -172,7 +190,8 @@ class _$ImageModelImpl implements _ImageModel {
 abstract class _ImageModel implements ImageModel {
   const factory _ImageModel(
       {required final String imageUrl,
-      required final String createdAt,
+      required final int id,
+      final String? blurhash,
       final String? description}) = _$ImageModelImpl;
 
   factory _ImageModel.fromJson(Map<String, dynamic> json) =
@@ -181,7 +200,9 @@ abstract class _ImageModel implements ImageModel {
   @override
   String get imageUrl;
   @override
-  String get createdAt;
+  int get id;
+  @override // required int artworkId,
+  String? get blurhash;
   @override
   String? get description;
   @override

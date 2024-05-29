@@ -23,7 +23,7 @@ class ArtworkInfo extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _ArtistInfo(artwork.artistPreview),
+          _ArtistInfo(artwork.artistPreviews?.first),
           const SizedBox(height: Paddings.small),
           Text(artwork.title, style: NewTextStyles.title3Regular),
           const SizedBox(height: 24),
@@ -68,7 +68,7 @@ class _ArtistInfo extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          LoadingImageCircleAvatar(imageUrl: artist?.previewUrl, radius: 10),
+          LoadingImageCircleAvatar(imageUrl: artist?.image?.imageUrl, radius: 10),
           const SizedBox(width: 8),
           Expanded(
             child: Text(artist!.name, style: NewTextStyles.bodyRegular),

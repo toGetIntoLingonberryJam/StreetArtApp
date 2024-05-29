@@ -15,7 +15,7 @@ abstract class CollectionProvider {
     if (token == null) return null;
 
     return await handleRequest(
-      BackendApi.post('/v1/${collType.name}/$id/toggle_like', options: Options(headers: {'Authorization': 'Bearer $token'})),
+      BackendApi.post('/v1/${collType.name}/$id/switch_like', options: Options(headers: {'Authorization': 'Bearer $token'})),
       onResult: (r) => r.data as bool,
     );
   }

@@ -20,12 +20,12 @@ class ArtistPreviewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (preview.previewUrl == null) {
+    if (preview.image == null) {
       return _ArtistCard(AppPlaceholder.assetImage(), preview, showLike);
     }
 
     return FutureBuilder(
-      future: ImagesService.loadFromDisk(preview.previewUrl!, quality: ImageQuality.good),
+      future: ImagesService.loadFromDisk(preview.image!.imageUrl, quality: ImageQuality.good),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return _ArtistCard(snapshot.data!, preview, showLike);

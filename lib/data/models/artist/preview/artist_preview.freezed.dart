@@ -22,8 +22,7 @@ ArtistPreview _$ArtistPreviewFromJson(Map<String, dynamic> json) {
 mixin _$ArtistPreview {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  @JsonKey(name: 'preview_image')
-  String? get previewUrl => throw _privateConstructorUsedError;
+  ImageModel? get image => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,10 +36,9 @@ abstract class $ArtistPreviewCopyWith<$Res> {
           ArtistPreview value, $Res Function(ArtistPreview) then) =
       _$ArtistPreviewCopyWithImpl<$Res, ArtistPreview>;
   @useResult
-  $Res call(
-      {int id,
-      String name,
-      @JsonKey(name: 'preview_image') String? previewUrl});
+  $Res call({int id, String name, ImageModel? image});
+
+  $ImageModelCopyWith<$Res>? get image;
 }
 
 /// @nodoc
@@ -58,7 +56,7 @@ class _$ArtistPreviewCopyWithImpl<$Res, $Val extends ArtistPreview>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? previewUrl = freezed,
+    Object? image = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -69,11 +67,23 @@ class _$ArtistPreviewCopyWithImpl<$Res, $Val extends ArtistPreview>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      previewUrl: freezed == previewUrl
-          ? _value.previewUrl
-          : previewUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as ImageModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ImageModelCopyWith<$Res>? get image {
+    if (_value.image == null) {
+      return null;
+    }
+
+    return $ImageModelCopyWith<$Res>(_value.image!, (value) {
+      return _then(_value.copyWith(image: value) as $Val);
+    });
   }
 }
 
@@ -85,10 +95,10 @@ abstract class _$$ArtistPreviewImplCopyWith<$Res>
       __$$ArtistPreviewImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int id,
-      String name,
-      @JsonKey(name: 'preview_image') String? previewUrl});
+  $Res call({int id, String name, ImageModel? image});
+
+  @override
+  $ImageModelCopyWith<$Res>? get image;
 }
 
 /// @nodoc
@@ -104,7 +114,7 @@ class __$$ArtistPreviewImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? previewUrl = freezed,
+    Object? image = freezed,
   }) {
     return _then(_$ArtistPreviewImpl(
       id: null == id
@@ -115,10 +125,10 @@ class __$$ArtistPreviewImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      previewUrl: freezed == previewUrl
-          ? _value.previewUrl
-          : previewUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as ImageModel?,
     ));
   }
 }
@@ -126,10 +136,7 @@ class __$$ArtistPreviewImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ArtistPreviewImpl implements _ArtistPreview {
-  const _$ArtistPreviewImpl(
-      {required this.id,
-      required this.name,
-      @JsonKey(name: 'preview_image') required this.previewUrl});
+  const _$ArtistPreviewImpl({required this.id, required this.name, this.image});
 
   factory _$ArtistPreviewImpl.fromJson(Map<String, dynamic> json) =>
       _$$ArtistPreviewImplFromJson(json);
@@ -139,12 +146,11 @@ class _$ArtistPreviewImpl implements _ArtistPreview {
   @override
   final String name;
   @override
-  @JsonKey(name: 'preview_image')
-  final String? previewUrl;
+  final ImageModel? image;
 
   @override
   String toString() {
-    return 'ArtistPreview(id: $id, name: $name, previewUrl: $previewUrl)';
+    return 'ArtistPreview(id: $id, name: $name, image: $image)';
   }
 
   @override
@@ -154,13 +160,12 @@ class _$ArtistPreviewImpl implements _ArtistPreview {
             other is _$ArtistPreviewImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.previewUrl, previewUrl) ||
-                other.previewUrl == previewUrl));
+            (identical(other.image, image) || other.image == image));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, previewUrl);
+  int get hashCode => Object.hash(runtimeType, id, name, image);
 
   @JsonKey(ignore: true)
   @override
@@ -178,10 +183,9 @@ class _$ArtistPreviewImpl implements _ArtistPreview {
 
 abstract class _ArtistPreview implements ArtistPreview {
   const factory _ArtistPreview(
-          {required final int id,
-          required final String name,
-          @JsonKey(name: 'preview_image') required final String? previewUrl}) =
-      _$ArtistPreviewImpl;
+      {required final int id,
+      required final String name,
+      final ImageModel? image}) = _$ArtistPreviewImpl;
 
   factory _ArtistPreview.fromJson(Map<String, dynamic> json) =
       _$ArtistPreviewImpl.fromJson;
@@ -191,8 +195,7 @@ abstract class _ArtistPreview implements ArtistPreview {
   @override
   String get name;
   @override
-  @JsonKey(name: 'preview_image')
-  String? get previewUrl;
+  ImageModel? get image;
   @override
   @JsonKey(ignore: true)
   _$$ArtistPreviewImplCopyWith<_$ArtistPreviewImpl> get copyWith =>

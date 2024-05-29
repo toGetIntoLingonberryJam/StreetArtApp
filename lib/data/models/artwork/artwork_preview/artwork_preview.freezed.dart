@@ -23,14 +23,13 @@ mixin _$ArtworkPreview {
   int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
+  ImageModel? get image => throw _privateConstructorUsedError;
   @JsonKey(name: 'status')
   String get statusCode => throw _privateConstructorUsedError;
   @JsonKey(name: 'artist')
-  ArtistPreview? get artistPreview => throw _privateConstructorUsedError;
+  List<ArtistPreview>? get artistsPreview => throw _privateConstructorUsedError;
   @JsonKey(name: 'festival')
   FestivalPreview? get festivalPreview => throw _privateConstructorUsedError;
-  @JsonKey(name: 'preview_image')
-  String? get previewUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,12 +47,12 @@ abstract class $ArtworkPreviewCopyWith<$Res> {
       {int id,
       String title,
       String address,
+      ImageModel? image,
       @JsonKey(name: 'status') String statusCode,
-      @JsonKey(name: 'artist') ArtistPreview? artistPreview,
-      @JsonKey(name: 'festival') FestivalPreview? festivalPreview,
-      @JsonKey(name: 'preview_image') String? previewUrl});
+      @JsonKey(name: 'artist') List<ArtistPreview>? artistsPreview,
+      @JsonKey(name: 'festival') FestivalPreview? festivalPreview});
 
-  $ArtistPreviewCopyWith<$Res>? get artistPreview;
+  $ImageModelCopyWith<$Res>? get image;
   $FestivalPreviewCopyWith<$Res>? get festivalPreview;
 }
 
@@ -73,10 +72,10 @@ class _$ArtworkPreviewCopyWithImpl<$Res, $Val extends ArtworkPreview>
     Object? id = null,
     Object? title = null,
     Object? address = null,
+    Object? image = freezed,
     Object? statusCode = null,
-    Object? artistPreview = freezed,
+    Object? artistsPreview = freezed,
     Object? festivalPreview = freezed,
-    Object? previewUrl = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -91,34 +90,34 @@ class _$ArtworkPreviewCopyWithImpl<$Res, $Val extends ArtworkPreview>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as ImageModel?,
       statusCode: null == statusCode
           ? _value.statusCode
           : statusCode // ignore: cast_nullable_to_non_nullable
               as String,
-      artistPreview: freezed == artistPreview
-          ? _value.artistPreview
-          : artistPreview // ignore: cast_nullable_to_non_nullable
-              as ArtistPreview?,
+      artistsPreview: freezed == artistsPreview
+          ? _value.artistsPreview
+          : artistsPreview // ignore: cast_nullable_to_non_nullable
+              as List<ArtistPreview>?,
       festivalPreview: freezed == festivalPreview
           ? _value.festivalPreview
           : festivalPreview // ignore: cast_nullable_to_non_nullable
               as FestivalPreview?,
-      previewUrl: freezed == previewUrl
-          ? _value.previewUrl
-          : previewUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ArtistPreviewCopyWith<$Res>? get artistPreview {
-    if (_value.artistPreview == null) {
+  $ImageModelCopyWith<$Res>? get image {
+    if (_value.image == null) {
       return null;
     }
 
-    return $ArtistPreviewCopyWith<$Res>(_value.artistPreview!, (value) {
-      return _then(_value.copyWith(artistPreview: value) as $Val);
+    return $ImageModelCopyWith<$Res>(_value.image!, (value) {
+      return _then(_value.copyWith(image: value) as $Val);
     });
   }
 
@@ -147,13 +146,13 @@ abstract class _$$ArtworkPreviewImplCopyWith<$Res>
       {int id,
       String title,
       String address,
+      ImageModel? image,
       @JsonKey(name: 'status') String statusCode,
-      @JsonKey(name: 'artist') ArtistPreview? artistPreview,
-      @JsonKey(name: 'festival') FestivalPreview? festivalPreview,
-      @JsonKey(name: 'preview_image') String? previewUrl});
+      @JsonKey(name: 'artist') List<ArtistPreview>? artistsPreview,
+      @JsonKey(name: 'festival') FestivalPreview? festivalPreview});
 
   @override
-  $ArtistPreviewCopyWith<$Res>? get artistPreview;
+  $ImageModelCopyWith<$Res>? get image;
   @override
   $FestivalPreviewCopyWith<$Res>? get festivalPreview;
 }
@@ -172,10 +171,10 @@ class __$$ArtworkPreviewImplCopyWithImpl<$Res>
     Object? id = null,
     Object? title = null,
     Object? address = null,
+    Object? image = freezed,
     Object? statusCode = null,
-    Object? artistPreview = freezed,
+    Object? artistsPreview = freezed,
     Object? festivalPreview = freezed,
-    Object? previewUrl = freezed,
   }) {
     return _then(_$ArtworkPreviewImpl(
       id: null == id
@@ -190,22 +189,22 @@ class __$$ArtworkPreviewImplCopyWithImpl<$Res>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as ImageModel?,
       statusCode: null == statusCode
           ? _value.statusCode
           : statusCode // ignore: cast_nullable_to_non_nullable
               as String,
-      artistPreview: freezed == artistPreview
-          ? _value.artistPreview
-          : artistPreview // ignore: cast_nullable_to_non_nullable
-              as ArtistPreview?,
+      artistsPreview: freezed == artistsPreview
+          ? _value._artistsPreview
+          : artistsPreview // ignore: cast_nullable_to_non_nullable
+              as List<ArtistPreview>?,
       festivalPreview: freezed == festivalPreview
           ? _value.festivalPreview
           : festivalPreview // ignore: cast_nullable_to_non_nullable
               as FestivalPreview?,
-      previewUrl: freezed == previewUrl
-          ? _value.previewUrl
-          : previewUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -217,11 +216,12 @@ class _$ArtworkPreviewImpl extends _ArtworkPreview {
       {required this.id,
       required this.title,
       required this.address,
+      this.image,
       @JsonKey(name: 'status') required this.statusCode,
-      @JsonKey(name: 'artist') this.artistPreview,
-      @JsonKey(name: 'festival') this.festivalPreview,
-      @JsonKey(name: 'preview_image') required this.previewUrl})
-      : super._();
+      @JsonKey(name: 'artist') final List<ArtistPreview>? artistsPreview,
+      @JsonKey(name: 'festival') this.festivalPreview})
+      : _artistsPreview = artistsPreview,
+        super._();
 
   factory _$ArtworkPreviewImpl.fromJson(Map<String, dynamic> json) =>
       _$$ArtworkPreviewImplFromJson(json);
@@ -233,21 +233,28 @@ class _$ArtworkPreviewImpl extends _ArtworkPreview {
   @override
   final String address;
   @override
+  final ImageModel? image;
+  @override
   @JsonKey(name: 'status')
   final String statusCode;
+  final List<ArtistPreview>? _artistsPreview;
   @override
   @JsonKey(name: 'artist')
-  final ArtistPreview? artistPreview;
+  List<ArtistPreview>? get artistsPreview {
+    final value = _artistsPreview;
+    if (value == null) return null;
+    if (_artistsPreview is EqualUnmodifiableListView) return _artistsPreview;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   @JsonKey(name: 'festival')
   final FestivalPreview? festivalPreview;
-  @override
-  @JsonKey(name: 'preview_image')
-  final String? previewUrl;
 
   @override
   String toString() {
-    return 'ArtworkPreview(id: $id, title: $title, address: $address, statusCode: $statusCode, artistPreview: $artistPreview, festivalPreview: $festivalPreview, previewUrl: $previewUrl)';
+    return 'ArtworkPreview(id: $id, title: $title, address: $address, image: $image, statusCode: $statusCode, artistsPreview: $artistsPreview, festivalPreview: $festivalPreview)';
   }
 
   @override
@@ -258,20 +265,26 @@ class _$ArtworkPreviewImpl extends _ArtworkPreview {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.address, address) || other.address == address) &&
+            (identical(other.image, image) || other.image == image) &&
             (identical(other.statusCode, statusCode) ||
                 other.statusCode == statusCode) &&
-            (identical(other.artistPreview, artistPreview) ||
-                other.artistPreview == artistPreview) &&
+            const DeepCollectionEquality()
+                .equals(other._artistsPreview, _artistsPreview) &&
             (identical(other.festivalPreview, festivalPreview) ||
-                other.festivalPreview == festivalPreview) &&
-            (identical(other.previewUrl, previewUrl) ||
-                other.previewUrl == previewUrl));
+                other.festivalPreview == festivalPreview));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, address, statusCode,
-      artistPreview, festivalPreview, previewUrl);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      title,
+      address,
+      image,
+      statusCode,
+      const DeepCollectionEquality().hash(_artistsPreview),
+      festivalPreview);
 
   @JsonKey(ignore: true)
   @override
@@ -293,10 +306,10 @@ abstract class _ArtworkPreview extends ArtworkPreview {
           {required final int id,
           required final String title,
           required final String address,
+          final ImageModel? image,
           @JsonKey(name: 'status') required final String statusCode,
-          @JsonKey(name: 'artist') final ArtistPreview? artistPreview,
-          @JsonKey(name: 'festival') final FestivalPreview? festivalPreview,
-          @JsonKey(name: 'preview_image') required final String? previewUrl}) =
+          @JsonKey(name: 'artist') final List<ArtistPreview>? artistsPreview,
+          @JsonKey(name: 'festival') final FestivalPreview? festivalPreview}) =
       _$ArtworkPreviewImpl;
   const _ArtworkPreview._() : super._();
 
@@ -310,17 +323,16 @@ abstract class _ArtworkPreview extends ArtworkPreview {
   @override
   String get address;
   @override
+  ImageModel? get image;
+  @override
   @JsonKey(name: 'status')
   String get statusCode;
   @override
   @JsonKey(name: 'artist')
-  ArtistPreview? get artistPreview;
+  List<ArtistPreview>? get artistsPreview;
   @override
   @JsonKey(name: 'festival')
   FestivalPreview? get festivalPreview;
-  @override
-  @JsonKey(name: 'preview_image')
-  String? get previewUrl;
   @override
   @JsonKey(ignore: true)
   _$$ArtworkPreviewImplCopyWith<_$ArtworkPreviewImpl> get copyWith =>

@@ -7,7 +7,9 @@ part 'image.g.dart';
 class ImageModel with _$ImageModel {
   const factory ImageModel({
     required String imageUrl,
-    required String createdAt,
+    required int id,
+    // required int artworkId,
+    String? blurhash,
     String? description,
   }) = _ImageModel;
 

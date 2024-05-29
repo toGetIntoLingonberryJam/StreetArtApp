@@ -23,12 +23,12 @@ class ArtworkPreviewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (preview.previewUrl == null) {
+    if (preview.image == null) {
       return _ArtworkCard(AppPlaceholder.assetImage(), preview, showAuthor, showLike);
     }
 
     return FutureBuilder(
-      future: ImagesService.loadFromDisk(preview.previewUrl!, quality: ImageQuality.good),
+      future: ImagesService.loadFromDisk(preview.image!.imageUrl, quality: ImageQuality.good),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return _ArtworkCard(snapshot.data!, preview, showAuthor, showLike);
@@ -68,7 +68,7 @@ class _ArtworkCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                if (showAuthor && preview.artistPreview != null) Expanded(child: ArtistHeaderWidget.fromArtistPreview(preview.artistPreview!)),
+                if (showAuthor && preview.artistsPreview != null) Expanded(child: ArtistHeaderWidget.fromArtistPreview(preview.artistsPreview!.first)),
                 if (showLike) LikeButton(collType: CollectionType.artworks, id: preview.id),
               ],
             ),

@@ -33,7 +33,7 @@ class Artwork with _$Artwork {
     int? festivalId,
     String? description,
     String? sourceDescription,
-    @JsonKey(name: 'artist') ArtistPreview? artistPreview,
+    @JsonKey(name: 'artist') List<ArtistPreview>? artistPreviews,
     @JsonKey(name: 'festival') FestivalPreview? festivalPreview,
     List<ImageModel>? images,
     List<String>? links,

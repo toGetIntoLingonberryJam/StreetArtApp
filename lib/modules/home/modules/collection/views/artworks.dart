@@ -60,7 +60,7 @@ class ArtworkCard extends StatelessWidget {
                 width: 100,
                 height: 100,
                 color: UIColors.slider,
-                child: preview.previewUrl == null ? const AppPlaceholder() : LoadingImage.fromPreviewUrl(preview.previewUrl!),
+                child: preview.image == null ? const AppPlaceholder() : LoadingImage.fromPreviewUrl(preview.image!.imageUrl),
               ),
             ),
             const SizedBox(width: 8),
@@ -72,7 +72,7 @@ class ArtworkCard extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          preview.artistPreview?.name ?? 'Автор неизвестен',
+                          preview.artistsPreview?.first.name ?? 'Автор неизвестен',
                           style: NewTextStyles.bodyRegular,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
