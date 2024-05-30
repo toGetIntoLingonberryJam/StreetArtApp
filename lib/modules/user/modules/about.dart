@@ -55,7 +55,6 @@ class _VersionWidget extends StatelessWidget {
         children: [
           const Text('Версия приложения:', style: NewTextStyles.bodyRegular),
           const SizedBox(width: 10),
-          // TODO: Change VERSION name
           Text(Get.find<PackageInfoService>().packageInfo.version, style: NewTextStyles.bodyRegular),
         ],
       ),

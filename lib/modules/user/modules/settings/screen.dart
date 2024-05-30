@@ -28,24 +28,6 @@ class SettingsScreen extends StatelessWidget {
   }
 }
 
-class _ThemeSettings extends StatelessWidget {
-  const _ThemeSettings();
-
-  @override
-  Widget build(BuildContext context) {
-    return AppContainer(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text('Тема', style: NewTextStyles.title3Regular),
-          const SizedBox(height: Paddings.small),
-          _Option(title: 'Системная', onTap: () {}, isChecked: true),
-        ],
-      ),
-    );
-  }
-}
-
 class _QualitySettings extends StatelessWidget {
   const _QualitySettings();
 

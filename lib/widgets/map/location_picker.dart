@@ -51,18 +51,13 @@ class LocationPicker extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const MapControllersLayer(
-                        geopostion: false,
-                        search: false,
-                        mapTag: 'location_picker',
-                      ),
+                      const MapControllersLayer(geopostion: false, mapTag: 'location_picker'),
                       const _PickerMarker(),
                       Align(
                         alignment: Alignment.bottomCenter,
                         child: Padding(
                           padding: kPagePadding,
-                          child: AppButton.primary(
-                              onTap: () => Get.back(result: c.mapCenter), label: 'Выбрать'),
+                          child: AppButton.primary(onTap: () => Get.back(result: c.mapCenter), label: 'Выбрать'),
                         ),
                       ),
                     ],
