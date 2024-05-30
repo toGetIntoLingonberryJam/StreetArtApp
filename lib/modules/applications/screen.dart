@@ -8,8 +8,6 @@ import 'package:street_art_witnesses/data/api/backend_api.dart';
 import 'package:street_art_witnesses/data/models/artwork/artwork.dart';
 import 'package:street_art_witnesses/data/models/tickets/artwork_ticket/artwork_ticket.dart';
 import 'package:street_art_witnesses/data/services/auth_service.dart';
-import 'package:street_art_witnesses/data/services/images_service.dart';
-import 'package:street_art_witnesses/data/services/settings_service.dart';
 import 'package:street_art_witnesses/modules/applications/controller.dart';
 import 'package:street_art_witnesses/modules/art/artwork/screen.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
@@ -181,12 +179,7 @@ class _CardImage extends StatelessWidget {
       child: SizedBox(
         width: 56,
         height: 56,
-        child: LoadingImage(
-          imageLoader: ImagesService.loadFromDisk(
-            artwork.images!.first.imageUrl,
-            quality: ImageQuality.preview,
-          ),
-        ),
+        child: LoadingImage(artwork.images!.first),
       ),
     );
   }

@@ -5,14 +5,9 @@ import 'package:street_art_witnesses/widgets/other/image_slider/image_slider_bas
 import 'package:street_art_witnesses/widgets/skeletons/app_placeholder.dart';
 
 class ArtistHeaderWidget extends StatelessWidget {
-  const ArtistHeaderWidget({super.key, required this.name, required this.previewUrl});
+  const ArtistHeaderWidget(this.preview, {super.key});
 
-  ArtistHeaderWidget.fromArtistPreview(ArtistPreview preview, {super.key})
-      : name = preview.name,
-        previewUrl = preview.image?.imageUrl;
-
-  final String? previewUrl;
-  final String name;
+  final ArtistPreview preview;
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +18,12 @@ class ArtistHeaderWidget extends StatelessWidget {
           height: 16,
           child: ClipRRect(
             borderRadius: const BorderRadius.all(Radius.circular(16)),
-            child: previewUrl == null ? const AppPlaceholder() : LoadingImage.fromPreviewUrl(previewUrl!),
+            child: preview.image == null ? const AppPlaceholder() : LoadingImage(preview.image!),
           ),
         ),
         const SizedBox(width: 4),
         Expanded(
-          child: Text(name, style: NewTextStyles.footnoteRegular, maxLines: 1, overflow: TextOverflow.ellipsis),
+          child: Text(preview.name, style: NewTextStyles.footnoteRegular, maxLines: 1, overflow: TextOverflow.ellipsis),
         ),
       ],
     );

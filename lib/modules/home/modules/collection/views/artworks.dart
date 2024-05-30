@@ -60,7 +60,7 @@ class ArtworkCard extends StatelessWidget {
                 width: 100,
                 height: 100,
                 color: UIColors.slider,
-                child: preview.image == null ? const AppPlaceholder() : LoadingImage.fromPreviewUrl(preview.image!.imageUrl),
+                child: preview.image == null ? const AppPlaceholder() : LoadingImage(preview.image!),
               ),
             ),
             const SizedBox(width: 8),

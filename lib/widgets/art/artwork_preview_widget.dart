@@ -68,7 +68,7 @@ class _ArtworkCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                if (showAuthor && preview.artistsPreview != null) Expanded(child: ArtistHeaderWidget.fromArtistPreview(preview.artistsPreview!.first)),
+                if (showAuthor && preview.artistsPreview != null) Expanded(child: ArtistHeaderWidget(preview.artistsPreview!.first)),
                 if (showLike) LikeButton(collType: CollectionType.artworks, id: preview.id),
               ],
             ),

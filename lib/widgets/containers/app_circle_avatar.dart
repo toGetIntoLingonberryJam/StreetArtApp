@@ -13,7 +13,7 @@ class LoadingImageCircleAvatar extends StatelessWidget {
     if (imageUrl == null) return AppCircleAvatar(image: AppPlaceholder.assetImage(), radius: radius);
     return ClipRRect(
       borderRadius: BorderRadius.all(Radius.circular(radius)),
-      child: SizedBox(width: radius * 2, height: radius * 2, child: LoadingImage.fromPreviewUrl(imageUrl!)),
+      child: SizedBox(width: radius * 2, height: radius * 2, child: LoadingImage.fromUrl(imageUrl!)),
     );
   }
 }

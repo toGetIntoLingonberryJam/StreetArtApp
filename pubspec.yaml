@@ -30,6 +30,7 @@ dependencies:
   json_annotation: ^4.8.1
   shimmer: ^3.0.0
   package_info_plus: ^5.0.1
+  flutter_blurhash: ^0.8.2
 
 flutter_launcher_icons:
   image_path: 'assets/logo_default.png'

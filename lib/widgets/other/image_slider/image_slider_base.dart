@@ -1,44 +1,25 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/utils/logger.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/image/image.dart';
 import 'package:street_art_witnesses/data/services/images_service.dart';
-import 'package:street_art_witnesses/data/services/settings_service.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 import 'package:street_art_witnesses/widgets/other/image_slider/controller.dart';
 
-class ImageSliderBase extends StatefulWidget {
+class ImageSliderBase extends StatelessWidget {
   const ImageSliderBase({super.key, required this.images});
 
   final List<ImageModel> images;
 
   @override
-  State<ImageSliderBase> createState() => _ImageSliderBaseState();
-}
-
-class _ImageSliderBaseState extends State<ImageSliderBase> {
-  late List<Future<ImageProvider?>> imageLoaders;
-
-  @override
-  void initState() {
-    imageLoaders = List.generate(
-      widget.images.length,
-      (i) => ImagesService.loadFromDisk(
-        widget.images[i].imageUrl,
-        quality: Get.find<SettingsService>().imageQuality,
-      ),
-    );
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final tag = imageLoaders.hashCode.toString();
-    final controller = Get.put(SliderController(length: widget.images.length), tag: tag);
+    final tag = images.hashCode.toString();
+    final controller = Get.put(SliderController(length: images.length), tag: tag);
 
     return SizedBox(
       height: 400,
@@ -48,15 +29,9 @@ class _ImageSliderBaseState extends State<ImageSliderBase> {
             controller: PageController(viewportFraction: 0.99999),
             physics: const ClampingScrollPhysics(),
             onPageChanged: (value) => controller.updateIndex(value),
-            children: imageLoaders.indexed
-                .map((data) => LoadingImage(
-                      imageLoader: data.$2,
-                      // index: data.$1 + 1,
-                      // length: imageLoaders.length,
-                    ))
-                .toList(),
+            children: images.map((image) => LoadingImage(image)).toList(),
           ),
-          if (widget.images.length > 1)
+          if (images.length > 1)
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
@@ -74,21 +49,18 @@ class _ImageSliderBaseState extends State<ImageSliderBase> {
 }
 
 class LoadingImage extends StatelessWidget {
-  const LoadingImage({
-    super.key,
-    required this.imageLoader,
-    // required this.index,
-    // required this.length,
-  });
+  LoadingImage(ImageModel image, {super.key})
+      : imageLoader = ImagesService.loadFromDisk(image.imageUrl),
+        blurhash = image.blurhash;
 
-  LoadingImage.fromPreviewUrl(
-    String previewUrl, {
+  LoadingImage.fromUrl(
+    String url, {
     super.key,
-  }) : imageLoader = ImagesService.loadFromDisk(previewUrl);
+  })  : imageLoader = ImagesService.loadFromDisk(url),
+        blurhash = null;
 
   final Future<ImageProvider?> imageLoader;
-  // final int index;
-  // final int length;
+  final String? blurhash;
 
   @override
   Widget build(BuildContext context) {
@@ -96,23 +68,15 @@ class LoadingImage extends StatelessWidget {
       future: imageLoader,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          // return GestureDetector(
-          //   onTap: () => Get.to(() => _OpenedImage(
-          //         image: snapshot.data!,
-          //         index: index,
-          //         length: length,
-          //       )),
-          //   child:
           return Image(
             loadingBuilder: (context, child, loadingProgress) {
-              if (loadingProgress == null) {
-                return child;
+              if (loadingProgress != null) {
+                return blurhash == null ? const SizedBox() : BlurHash(hash: blurhash!);
               }
-              return const Skeleton();
+              return child;
             },
             image: snapshot.data!,
             fit: BoxFit.cover,
-            // ),
           );
         }
 
@@ -122,7 +86,7 @@ class LoadingImage extends StatelessWidget {
             child: Text('Не удалось загрузить картинку', style: NewTextStyles.title3Regular, textAlign: TextAlign.center),
           );
         }
-        return const Skeleton();
+        return blurhash == null ? const SizedBox() : BlurHash(hash: blurhash!);
       },
     );
   }
