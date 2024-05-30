@@ -29,14 +29,14 @@ class ArtworkInfo extends StatelessWidget {
           else
             _MultiArtistsInfo(artwork.artistPreviews!),
           const SizedBox(height: Paddings.small),
-          Text(artwork.title, style: NewTextStyles.title3Regular),
+          Text(artwork.title, style: NewTextStyles.title2Semibold),
           const SizedBox(height: 24),
           Row(
             children: [
               Expanded(
                 child: Text(
                   'Год создания: ${artwork.yearCreated ?? 'неизвестен'}',
-                  style: NewTextStyles.bodyRegular.copyWith(color: UIColors.textSecondary),
+                  style: NewTextStyles.subheadMedium.copyWith(color: UIColors.textSecondary),
                 ),
               ),
               AppBadge(artwork.status.label),

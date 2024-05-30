@@ -17,7 +17,7 @@ class LinksInfo extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title ?? 'Интересные ссылки', style: NewTextStyles.title3Regular),
+          Text(title ?? 'Интересные ссылки', style: NewTextStyles.title3Bold),
           const SizedBox(height: Paddings.small),
           for (int idx = 0; idx < links!.length; idx++)
             Padding(

@@ -16,7 +16,7 @@ class AppBadge extends StatelessWidget {
         color: color ?? context.colors.surface,
         borderRadius: BorderRadius.circular(8),
       ),
-      child: Text(label, style: NewTextStyles.headlineBold),
+      child: Text(label, style: NewTextStyles.footnoteSemibold),
     );
   }
 }

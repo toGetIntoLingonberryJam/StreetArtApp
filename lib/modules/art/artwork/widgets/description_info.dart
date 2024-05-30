@@ -20,7 +20,7 @@ class ArtworkDescriptionWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Text('Описание:', style: NewTextStyles.title3Regular),
+          const Text('Описание:', style: NewTextStyles.title3Bold),
           const SizedBox(height: Paddings.small),
           Text(
             description,

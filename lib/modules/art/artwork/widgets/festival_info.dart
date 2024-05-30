@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/festival/preview/festival_preview.dart';
 import 'package:street_art_witnesses/data/providers/festivals_provider.dart';
@@ -30,8 +31,8 @@ class FestivalInfoWidget extends StatelessWidget {
           children: [
             LoadingImageCircleAvatar(imageUrl: festival?.image?.imageUrl, radius: 10),
             const SizedBox(width: 8),
-            Expanded(child: Text(festival!.name, style: NewTextStyles.title3Regular)),
-            const Icon(Icons.chevron_right),
+            Expanded(child: Text(festival!.name, style: NewTextStyles.title3Bold)),
+            const Icon(Icons.chevron_right, color: UIColors.textSecondary, size: 20),
           ],
         ),
       ),
