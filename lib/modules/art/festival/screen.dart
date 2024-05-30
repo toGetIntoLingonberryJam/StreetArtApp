@@ -61,13 +61,13 @@ class _Description extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (fest.description == null || fest.description!.isEmpty) {
-      return AppContainer(child: Text(fest.name, style: NewTextStyles.title3Regular));
+      return AppContainer(child: Text(fest.name, style: NewTextStyles.title3Bold));
     }
     return AppContainer(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(fest.name, style: NewTextStyles.title3Regular),
+          Text(fest.name, style: NewTextStyles.title3Bold),
           const SizedBox(height: 24),
           const SizedBox(height: Paddings.small),
           Text(
@@ -105,7 +105,7 @@ class _DescriptionPage extends StatelessWidget {
                     children: [
                       LoadingImageCircleAvatar(imageUrl: fest.image?.imageUrl),
                       const SizedBox(width: Paddings.small),
-                      Text(fest.name, style: NewTextStyles.title3Regular),
+                      Text(fest.name, style: NewTextStyles.title3Bold),
                     ],
                   ),
                   const SizedBox(height: Paddings.small),

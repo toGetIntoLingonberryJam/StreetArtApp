@@ -70,7 +70,7 @@ class _FestivalCard extends StatelessWidget {
             const Spacer(),
             Text(
               preview.name,
-              style: NewTextStyles.bodyRegular,
+              style: NewTextStyles.headlineBold,
               textAlign: TextAlign.start,
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
