@@ -4,11 +4,10 @@ import 'package:street_art_witnesses/data/services/settings_service.dart';
 
 abstract class LocalStoreService {
   static Future<String?> retrieveToken() async {
-    final userJson = await LocalStoreDataSource.userDoc.get();
-    final String? token = userJson?['token'];
+    final token = LocalStoreDataSource.instance.getToken();
 
     if (token != null) {
-      Logger.s('local token: ${userJson?['token']}');
+      Logger.s('local token: $token');
       return token;
     }
     Logger.w('could not find local token');
@@ -16,24 +15,18 @@ abstract class LocalStoreService {
   }
 
   static Future<void> saveToken(String token) async {
-    await LocalStoreDataSource.userDoc.set({
-      'token': token,
-    });
+    LocalStoreDataSource.instance.setToken(token);
     Logger.s('token saved to local: $token');
   }
 
   static Future<ImageQuality> getImageQuality() async {
-    final settingsJson = await LocalStoreDataSource.settingsDoc.get();
-    final String? qualityName = settingsJson?['image_quality'];
+    final qualityName = LocalStoreDataSource.instance.getImageQuality();
     final quality = _mapNameToImgQuality[qualityName];
-
     return quality ?? ImageQuality.good;
   }
 
-  static Future<void> setImageQuality(ImageQuality quality) async {
-    await LocalStoreDataSource.settingsDoc.set({
-      'image_quality': quality.name,
-    });
+  static void setImageQuality(ImageQuality quality) {
+    LocalStoreDataSource.instance.setImageQuality(quality.name);
     Logger.d('image-quality set to $quality');
   }
 }

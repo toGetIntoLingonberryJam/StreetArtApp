@@ -2,11 +2,13 @@ import 'package:ansicolor/ansicolor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/core/values/theme.dart';
+import 'package:street_art_witnesses/data/api/local_store_datasource.dart';
 import 'package:street_art_witnesses/data/services/auth_service.dart';
 import 'package:street_art_witnesses/data/services/local_store_service.dart';
 import 'package:street_art_witnesses/data/services/package_service.dart';
@@ -22,6 +24,9 @@ import 'package:street_art_witnesses/widgets/app_widgets.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   ansiColorDisabled = false;
+
+  await Hive.initFlutter();
+  await LocalStoreDataSource.init();
 
   runApp(const MyApp());
 }

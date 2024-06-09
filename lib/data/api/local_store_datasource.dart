@@ -1,11 +1,25 @@
-import 'package:localstore/localstore.dart';
+import 'package:hive/hive.dart';
 
-abstract class LocalStoreDataSource {
-  static final _db = Localstore.instance;
-  static CollectionRef get _collection =>
-      _db.collection('street_art_witnesses');
+enum _Keys { token, imageQuality }
 
-  static DocumentRef get userDoc => _collection.doc('user');
+class LocalStoreDataSource {
+  LocalStoreDataSource._(this._settingsBox);
+  final Box<String> _settingsBox;
 
-  static DocumentRef get settingsDoc => _collection.doc('settings');
+  static Future<void> init() async {
+    final box = await Hive.openBox<String>('settings');
+    instance = LocalStoreDataSource._(box);
+  }
+
+  static late final LocalStoreDataSource instance;
+
+  void deleteData() {
+    _settingsBox.clear();
+  }
+
+  String? getToken() => _settingsBox.get(_Keys.token.name);
+  void setToken(String token) => _settingsBox.put(_Keys.token.name, token);
+
+  String? getImageQuality() => _settingsBox.get(_Keys.imageQuality.name);
+  void setImageQuality(String quality) => _settingsBox.put(_Keys.imageQuality.name, quality);
 }

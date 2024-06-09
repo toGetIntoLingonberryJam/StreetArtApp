@@ -99,7 +99,7 @@ class AuthService extends GetxService {
 
   Future<void> deleteUserLocalData() async {
     Get.find<CollectionController>().clearAll();
-    await LocalStoreDataSource.userDoc.delete();
+    LocalStoreDataSource.instance.deleteData();
     Logger.d('deleted user local data');
   }
 }

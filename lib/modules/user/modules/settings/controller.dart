@@ -6,8 +6,8 @@ class SettingsController extends GetxController {
 
   ImageQuality get imageQuality => _settingsService.imageQuality;
 
-  void setImageQuality(ImageQuality quality) async {
-    await _settingsService.setImageQuality(quality);
+  void setImageQuality(ImageQuality quality) {
+    _settingsService.setImageQuality(quality);
     update();
   }
 }

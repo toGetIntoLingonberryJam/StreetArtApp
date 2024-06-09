@@ -12,8 +12,8 @@ class SettingsService extends GetxService {
   final Rx<ImageQuality> _imageQuality;
   ImageQuality get imageQuality => _imageQuality.value;
 
-  Future<void> setImageQuality(ImageQuality quality) async {
-    await LocalStoreService.setImageQuality(quality);
+  void setImageQuality(ImageQuality quality) {
+    LocalStoreService.setImageQuality(quality);
     _imageQuality.value = quality;
   }
 
