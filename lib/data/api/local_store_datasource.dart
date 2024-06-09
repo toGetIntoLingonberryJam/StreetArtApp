@@ -1,14 +1,18 @@
+import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 
 enum _Keys { token, imageQuality }
 
 class LocalStoreDataSource {
-  LocalStoreDataSource._(this._settingsBox);
+  LocalStoreDataSource._(this._settingsBox, this.cacheDirectoryPath);
   final Box<String> _settingsBox;
+  final String cacheDirectoryPath;
 
   static Future<void> init() async {
     final box = await Hive.openBox<String>('settings');
-    instance = LocalStoreDataSource._(box);
+    final cacheDir = kIsWeb ? '/assets' : (await getTemporaryDirectory()).path;
+    instance = LocalStoreDataSource._(box, cacheDir);
   }
 
   static late final LocalStoreDataSource instance;
