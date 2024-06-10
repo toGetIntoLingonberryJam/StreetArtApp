@@ -4,6 +4,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_cache/flutter_map_cache.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:street_art_witnesses/core/extensions.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
@@ -13,9 +14,10 @@ import 'package:street_art_witnesses/modules/home/modules/map/layers/controllers
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class LocationPicker extends StatelessWidget {
-  const LocationPicker({super.key, required this.initLocation});
+  const LocationPicker({super.key, required this.initLocation, this.onLocationPicked});
 
   final LatLng initLocation;
+  final void Function(LatLng location)? onLocationPicked;
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +68,13 @@ class LocationPicker extends StatelessWidget {
                         alignment: Alignment.bottomCenter,
                         child: Padding(
                           padding: kPagePadding,
-                          child: AppButton.primary(onTap: () => Get.back(result: c.mapCenter), label: 'Выбрать'),
+                          child: AppButton.primary(
+                            onTap: () {
+                              onLocationPicked?.call(c.mapCenter);
+                              closeScreen();
+                            },
+                            label: 'Выбрать',
+                          ),
                         ),
                       ),
                     ],

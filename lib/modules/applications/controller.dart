@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/extensions.dart';
 import 'package:street_art_witnesses/data/api/backend_api.dart';
 import 'package:street_art_witnesses/data/models/tickets/artwork_ticket/artwork_ticket.dart';
 import 'package:street_art_witnesses/data/services/auth_service.dart';
@@ -17,7 +18,7 @@ class ApplicationsController extends GetxController {
   @override
   void onInit() {
     ever(_authService.user, (user) {
-      if (!user.isModerator) Get.off(() => const AppErrorScreen());
+      if (!user.isModerator) replaceScreen(const AppErrorScreen());
     });
     super.onInit();
   }
@@ -32,9 +33,7 @@ class ApplicationsController extends GetxController {
       return update();
     }
 
-    final List filtered = response.data
-        .where((e) => e['ticket_type'] == 'create' && e['status'] == 'pending')
-        .toList();
+    final List filtered = response.data.where((e) => e['ticket_type'] == 'create' && e['status'] == 'pending').toList();
     tickets = filtered.map((e) => ArtworkTicket.fromJson(e)).toList();
     isLoading = false;
     update();

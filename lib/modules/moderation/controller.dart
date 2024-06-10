@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide FormData;
 import 'package:latlong2/latlong.dart';
+import 'package:street_art_witnesses/core/extensions.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/data/api/backend_api.dart';
 import 'package:street_art_witnesses/data/models/artist/preview/artist_preview.dart';
@@ -48,7 +49,7 @@ class ModerationController extends GetxController {
       ),
     );
     final result = await Utils.showLoading(future);
-    result == null ? Get.to(() => const AppErrorScreen()) : Get.off(() => const ModerationThanksScreen());
+    result == null ? openScreen(const AppErrorScreen()) : replaceScreen(const ModerationThanksScreen());
   }
 
   void saveMainInfo({

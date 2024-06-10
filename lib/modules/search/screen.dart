@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/extensions.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
+import 'package:street_art_witnesses/data/models/artist/preview/artist_preview.dart';
 import 'package:street_art_witnesses/modules/home/modules/collection/views/artists.dart';
 import 'package:street_art_witnesses/modules/search/controller.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 class SearchScreen extends StatelessWidget {
-  const SearchScreen({super.key});
+  const SearchScreen({super.key, this.onItemPicked});
+
+  final void Function(ArtistPreview preview)? onItemPicked;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +35,10 @@ class SearchScreen extends StatelessWidget {
                     : ListView.separated(
                         itemCount: items.length,
                         itemBuilder: (_, i) => GestureDetector(
-                          onTap: () => Get.back(result: items[i]),
+                          onTap: () {
+                            onItemPicked?.call(items[i]);
+                            closeScreen();
+                          },
                           child: ArtistCard(items[i]),
                         ),
                         separatorBuilder: (_, __) => const SizedBox(height: Paddings.normal),

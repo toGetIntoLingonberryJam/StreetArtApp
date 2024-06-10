@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/extensions.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/data/providers/collection_provider.dart';
 import 'package:street_art_witnesses/data/services/auth_service.dart';
@@ -24,16 +26,20 @@ class _LikeButtonState extends State<LikeButton> {
   bool isLoading = false;
   late bool isLiked = collection.isLiked(collType, id);
 
-  void showAuthDialog() async {
-    final authAccepted = await Utils.showDialog(
+  void showAuthDialog() {
+    Utils.showDialog(
       title: 'Вход в аккаунт',
       content: 'Войдите в аккаунт, чтобы сохранять работы в избранное',
       acceptText: 'Хорошо',
       declineText: 'Позже',
+      onAccept: () {
+        if (kIsWeb) {
+          openScreen(const AuthScreen());
+        } else {
+          Get.offUntil(MaterialPageRoute(builder: (context) => const AuthScreen()), (route) => route.isFirst);
+        }
+      },
     );
-    if (authAccepted ?? false) {
-      Get.offUntil(MaterialPageRoute(builder: (context) => const AuthScreen()), (route) => route.isFirst);
-    }
   }
 
   void onTap() {

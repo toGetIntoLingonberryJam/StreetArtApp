@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/extensions.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/modules/moderation/screens/edit.dart';
@@ -32,10 +32,10 @@ class ModerationThanksScreen extends StatelessWidget {
             const SizedBox(height: Paddings.normal),
             AppButton.primary(
               label: 'Добавить еще работу',
-              onTap: () => Get.off(() => const ModerationEditScreen()),
+              onTap: () => replaceScreen(const ModerationEditScreen()),
             ),
             const SizedBox(height: 12),
-            AppButton.secondary(label: 'На главный экран', onTap: Get.back),
+            const AppButton.secondary(label: 'На главный экран', onTap: closeScreen),
             const Spacer(),
           ],
         ),

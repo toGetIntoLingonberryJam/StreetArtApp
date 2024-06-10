@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/extensions.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/festival/preview/festival_preview.dart';
@@ -46,12 +47,12 @@ class _FestivalCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Get.to(() => Loader(
-            future: FestivalsProvider.getFestivalById(preview.id),
-            builder: (festival) => FestivalScreen(festival: festival),
-            loader: Loaders.festival,
-            onError: () => Get.back(),
-          )),
+      onTap: () => openScreen(Loader(
+        future: FestivalsProvider.getFestivalById(preview.id),
+        builder: (festival) => FestivalScreen(festival: festival),
+        loader: Loaders.festival,
+        onError: () => closeScreen,
+      )),
       child: Container(
         padding: const EdgeInsets.all(Paddings.normal),
         decoration: BoxDecoration(

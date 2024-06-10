@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/extensions.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/modules/home/screen.dart';
 import 'package:street_art_witnesses/modules/intro/intro_auth_page.dart';
@@ -76,7 +76,7 @@ class _IntroSliderState extends State<IntroSlider> {
       child: Row(children: [
         const Expanded(child: SizedBox()),
         GestureDetector(
-          onTap: () => Get.off(() => const HomeScreen()),
+          onTap: () => replaceScreen(const HomeScreen()),
           child: const Text('Пропустить', style: NewTextStyles.footnoteRegular),
         ),
       ]),

@@ -9,10 +9,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(HomeController());
-    // listener: (context, state) {
-    //   _pageController.jumpToPage(state.pageIndex);
-    //   if (state is MainMenuMap) context.read<MapCubit>().loadMarkers();
-    // },
+
     return GetBuilder<HomeController>(
       builder: (c) => Scaffold(
         body: PageView(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/extensions.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/festival/festival.dart';
@@ -77,7 +77,7 @@ class _Description extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(height: Paddings.small),
-          LinkButton('Подробнее', onTap: () => Get.to(() => _DescriptionPage(fest)))
+          LinkButton('Подробнее', onTap: () => openScreen(_DescriptionPage(fest)))
         ],
       ),
     );

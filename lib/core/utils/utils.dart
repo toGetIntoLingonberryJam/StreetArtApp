@@ -19,6 +19,8 @@ class Utils {
 
   static Future<bool?> showDialog({
     required String title,
+    required VoidCallback onAccept,
+    VoidCallback? onDecline,
     String? content,
     bool barrierDismissible = true,
     String acceptText = 'Да',
@@ -26,7 +28,8 @@ class Utils {
   }) async =>
       Get.dialog(
         AlertDialog(
-          backgroundColor: Get.theme.colorScheme.surface,
+          // ignore: deprecated_member_use
+          backgroundColor: Get.theme.colorScheme.background,
           surfaceTintColor: Colors.transparent,
           title: Text(
             title,
@@ -41,9 +44,21 @@ class Utils {
                   textAlign: TextAlign.center,
                 ),
           actions: [
-            AppButton.primary(onTap: () => Get.back(result: true), label: acceptText),
+            AppButton.primary(
+              onTap: () {
+                onAccept();
+                Get.back();
+              },
+              label: acceptText,
+            ),
             const SizedBox(height: Paddings.normal),
-            AppButton.secondary(onTap: () => Get.back(result: false), label: declineText),
+            AppButton.secondary(
+              onTap: () {
+                onDecline?.call();
+                Get.back();
+              },
+              label: declineText,
+            ),
           ],
         ),
         barrierDismissible: barrierDismissible,
@@ -66,23 +81,19 @@ class Utils {
     return result;
   }
 
-  static Future<bool> tryLaunchUrl(Uri url) async {
-    final response = await showDialog(
+  static Future<void> tryLaunchUrl(Uri url) async {
+    await showDialog(
       title: 'Переход по ссылке',
       content: 'Вы собираетесь перейти по ссылке:\n$url',
       acceptText: 'Перейти',
       declineText: 'Отмена',
+      onAccept: () async {
+        final success = await showLoading(launchUrl(url)) ?? false;
+        if (!success) {
+          showError('Не удалось открыть ссылку $url');
+        }
+      },
     );
-
-    if (response == true) {
-      final success = await showLoading(launchUrl(url)) ?? false;
-
-      if (!success) {
-        showError('Не удалось открыть ссылку $url');
-        return false;
-      }
-    }
-    return true;
   }
 }
 

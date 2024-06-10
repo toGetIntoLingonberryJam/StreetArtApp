@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/extensions.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/modules/auth/check_email/email_counter.dart';
@@ -10,13 +10,13 @@ class CheckEmailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(Paddings.normal),
+          padding: EdgeInsets.all(Paddings.normal),
           child: Column(
             children: [
-              const Expanded(
+              Expanded(
                 child: Center(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -40,9 +40,9 @@ class CheckEmailScreen extends StatelessWidget {
               ),
               Column(
                 children: [
-                  AppButton.primary(label: 'Перейти на главную', onTap: Get.back),
-                  const SizedBox(height: 12),
-                  const EmailCounterWidget(),
+                  AppButton.primary(label: 'Перейти на главную', onTap: closeScreen),
+                  SizedBox(height: 12),
+                  EmailCounterWidget(),
                 ],
               ),
             ],

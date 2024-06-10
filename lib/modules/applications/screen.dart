@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Response;
+import 'package:street_art_witnesses/core/extensions.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
@@ -55,8 +56,10 @@ class _ApplicationCard extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(kContainerRadius),
       onTap: () async {
-        await Get.to(() => _ApplicationPage(ticket));
-        Get.find<ApplicationsController>().loadTickets();
+        openScreen(_ApplicationPage(
+          ticket,
+          onPop: () => Get.find<ApplicationsController>().loadTickets(),
+        ));
       },
       child: AppContainer(
         child: Row(
@@ -96,9 +99,10 @@ class _ApplicationCard extends StatelessWidget {
 }
 
 class _ApplicationPage extends StatelessWidget {
-  const _ApplicationPage(this.ticket);
+  const _ApplicationPage(this.ticket, {this.onPop});
 
   final ArtworkTicket ticket;
+  final VoidCallback? onPop;
 
   void _approve(BuildContext context) async {
     final token = Get.find<AuthService>().user.value.token!;
@@ -111,7 +115,8 @@ class _ApplicationPage extends StatelessWidget {
       Utils.showError('Не удалось выполнить запрос');
     } else if (context.mounted) {
       Utils.showSuccess('Работа одобрена');
-      Get.back();
+      onPop?.call();
+      closeScreen();
     }
   }
 
@@ -125,7 +130,8 @@ class _ApplicationPage extends StatelessWidget {
     if (result == null && context.mounted) {
       Utils.showError('Не удалось выполнить запрос');
     } else if (context.mounted) {
-      Get.back();
+      onPop?.call();
+      closeScreen();
       Utils.showError('Работа отклонена');
     }
   }

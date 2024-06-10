@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/extensions.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/data/services/auth_service.dart';
@@ -12,13 +13,13 @@ import 'package:street_art_witnesses/widgets/containers/app_list_tile.dart';
 
 abstract class UserTiles {
   static AppListTile settings(BuildContext context) => AppListTile(
-        onTap: () => Get.to(() => const SettingsScreen()),
+        onTap: () => openScreen(const SettingsScreen()),
         iconData: Icons.settings_outlined,
         text: 'Настройки',
       );
 
   static AppListTile about(BuildContext context) => AppListTile(
-        onTap: () => Get.to(() => const AboutPage()),
+        onTap: () => openScreen(const AboutPage()),
         iconData: Icons.info_outline,
         text: 'О нас',
       );
@@ -37,33 +38,29 @@ abstract class UserTiles {
       );
 
   static AppListTile applications(BuildContext context) => AppListTile(
-        onTap: () => Get.to(() => const ApplicationsScreen()),
+        onTap: () => openScreen(const ApplicationsScreen()),
         iconData: Icons.filter_list,
         text: 'Заявки на публикацию',
         notificationsCount: 100,
       );
 
   static AppListTile addArtwork(BuildContext context) => AppListTile(
-        onTap: () => Get.to(() => const ModerationWarningScreen()),
+        onTap: () => openScreen(const ModerationWarningScreen()),
         iconData: Icons.add_circle_outline,
         text: 'Добавить работу',
       );
 
   static AppListTile changePassword(BuildContext context) => AppListTile(
-        onTap: () => Get.to(() => const ChangePasswordPage()),
+        onTap: () => openScreen(const ChangePasswordPage()),
         iconData: Icons.lock_person_outlined,
         text: 'Изменить пароль',
       );
 }
 
 void _logout(BuildContext context) async {
-  final isLogout = await Utils.showDialog(
-        title: 'Выйти из аккаунта',
-        content: 'Вы уверены, что хотите выйти из аккаунта?',
-      ) ??
-      false;
-
-  if (context.mounted && isLogout) {
-    await Utils.showLoading(Get.find<AuthService>().logout());
-  }
+  Utils.showDialog(
+    title: 'Выйти из аккаунта',
+    content: 'Вы уверены, что хотите выйти из аккаунта?',
+    onAccept: () async => await Utils.showLoading(Get.find<AuthService>().logout()),
+  );
 }

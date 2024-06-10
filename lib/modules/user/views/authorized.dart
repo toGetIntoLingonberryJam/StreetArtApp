@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/extensions.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
@@ -45,7 +46,7 @@ class _LoginWarningTile extends GetView<ProfileController> {
     await Utils.showLoading(
       Get.find<EmailCounterController>().sendEmail(context, controller.user.email!),
     );
-    Get.to(() => const CheckEmailScreen());
+    openScreen(const CheckEmailScreen());
   }
 
   void _updateUser(BuildContext context) async => await Utils.showLoading(controller.updateUser());

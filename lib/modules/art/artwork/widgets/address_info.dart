@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:street_art_witnesses/core/extensions.dart';
 import 'package:street_art_witnesses/core/utils/logger.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
@@ -28,7 +29,7 @@ class AddressInfo extends StatelessWidget {
     if (!context.mounted) return;
 
     Get.find<GetMapController>().navigator.setRouteToArtwork(artwork.id);
-    Get.back();
+    closeScreen();
   }
 
   void _showPreviewWarning(BuildContext context) {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/extensions.dart';
 import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
@@ -17,7 +17,7 @@ class GuestView extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          _LoginContainer(login: () => Get.to(() => const AuthScreen())),
+          _LoginContainer(login: () => openScreen(const AuthScreen())),
           const SizedBox(height: 24),
           UserTiles.settings(context),
           const SizedBox(height: Paddings.small),

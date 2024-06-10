@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:street_art_witnesses/core/extensions.dart';
 import 'package:street_art_witnesses/core/utils/logger.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/core/utils/validator.dart';
@@ -40,7 +41,7 @@ class _ModerationEditScreenState extends State<ModerationEditScreen> {
     return Scaffold(
       appBar: AppHeader(
         title: title,
-        leading: GestureDetector(onTap: Get.back, child: const Icon(Icons.arrow_back)),
+        leading: GestureDetector(onTap: closeScreen, child: const Icon(Icons.arrow_back)),
       ),
       body: PageView.builder(
         controller: c.pageController,
@@ -102,20 +103,23 @@ class _MainInfoViewState extends State<_MainInfoView> {
   }
 
   void _showLocationPicker() async {
-    final loc = await Get.to(() => LocationPicker(
-          initLocation: location ?? const LatLng(56.8519, 60.6122),
-        ));
-    if (loc != null) {
-      location = loc;
-      locationController.text = '${loc.latitude.toStringAsFixed(4)}, ${loc.longitude.toStringAsFixed(4)}';
-    }
+    openScreen(LocationPicker(
+      initLocation: location ?? const LatLng(56.8519, 60.6122),
+      onLocationPicked: (loc) {
+        location = loc;
+        locationController.text = '${loc.latitude.toStringAsFixed(4)}, ${loc.longitude.toStringAsFixed(4)}';
+      },
+    ));
   }
 
   void _pickArtist() async {
-    final pickedArtist = await Get.to(() => const SearchScreen());
-    Logger.d('picked artist: ${pickedArtist?.name}');
-    artist = pickedArtist;
-    artistController.text = pickedArtist?.name ?? '';
+    openScreen(SearchScreen(
+      onItemPicked: (preview) {
+        Logger.d('picked artist: ${preview.name}');
+        artist = preview;
+        artistController.text = preview.name;
+      },
+    ));
   }
 
   @override
@@ -220,28 +224,31 @@ class _AdditionalInfoViewState extends State<_AdditionalInfoView> {
     return yearController.text.isNotEmpty && descriptionController.text.isNotEmpty && linksController.text.isNotEmpty;
   }
 
-  void save() async {
+  void trySave() async {
     if (formKey.currentState?.validate() ?? false) {
       if (!allSet()) {
-        final proceed = await Utils.showDialog(
+        Utils.showDialog(
           title: 'Продолжить?',
           content: 'Вы не заполнили все дополнительные поля. Уверены, что хотите продолжить?',
           acceptText: 'Продолжить',
           declineText: 'Отмена',
+          onAccept: _save,
         );
-        if (proceed != true || !context.mounted) return;
       }
-      final year = yearController.text.trim();
-      final desciption = descriptionController.text.trim();
-      final link = linksController.text.trim();
-
-      Get.find<ModerationController>().saveAdditionalInfo(
-        year: year.isEmpty ? null : year,
-        description: desciption.isEmpty ? null : desciption,
-        link: link.isEmpty ? null : link,
-      );
-      widget.onTapNext();
     }
+  }
+
+  void _save() {
+    final year = yearController.text.trim();
+    final desciption = descriptionController.text.trim();
+    final link = linksController.text.trim();
+
+    Get.find<ModerationController>().saveAdditionalInfo(
+      year: year.isEmpty ? null : year,
+      description: desciption.isEmpty ? null : desciption,
+      link: link.isEmpty ? null : link,
+    );
+    widget.onTapNext();
   }
 
   @override
@@ -294,7 +301,7 @@ class _AdditionalInfoViewState extends State<_AdditionalInfoView> {
               padding: const EdgeInsets.all(Paddings.normal),
               child: AppButton.primary(
                 label: 'Перейти к проверке',
-                onTap: save,
+                onTap: trySave,
               ),
             ),
           ],
@@ -313,15 +320,13 @@ class _PreviewView extends StatelessWidget implements _ModerationEditView {
   String get title => 'Предпросмотр';
 
   void send0(BuildContext context) async {
-    final send = await Utils.showDialog(
-          title: 'Отправление на модерацию',
-          content: 'Пожалуйста, убедитесь в правильности заполненных данных перед отправкой',
-          acceptText: 'Отправить',
-          declineText: 'Отмена',
-        ) ??
-        false;
-
-    if (send && context.mounted) onTapNext();
+    Utils.showDialog(
+      title: 'Отправление на модерацию',
+      content: 'Пожалуйста, убедитесь в правильности заполненных данных перед отправкой',
+      acceptText: 'Отправить',
+      declineText: 'Отмена',
+      onAccept: onTapNext,
+    );
   }
 
   @override

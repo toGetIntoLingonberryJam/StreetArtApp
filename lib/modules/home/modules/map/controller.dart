@@ -3,6 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_animations/flutter_map_animations.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:street_art_witnesses/core/extensions.dart';
 import 'package:street_art_witnesses/data/providers/artworks_provider.dart';
 import 'package:street_art_witnesses/modules/art/artwork/screen.dart';
 import 'package:street_art_witnesses/widgets/loaders.dart';
@@ -48,11 +49,11 @@ class GetMapController extends GetxController with GetTickerProviderStateMixin {
     update();
   }
 
-  void openArtwork(int id) => Get.to(() => Loader(
+  void openArtwork(int id) => openScreen(Loader(
         future: ArtworksProvider.getArtworkById(id),
         builder: (a) => ArtworkScreen(artwork: a),
         loader: Loaders.artwork,
-        onError: () => Get.back(),
+        onError: () => closeScreen,
       ));
 }
 

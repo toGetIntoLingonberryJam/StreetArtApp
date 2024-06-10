@@ -1,4 +1,5 @@
 import 'package:ansicolor/ansicolor.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -19,6 +20,7 @@ import 'package:street_art_witnesses/modules/home/modules/map/controller.dart';
 import 'package:street_art_witnesses/modules/home/screen.dart';
 import 'package:street_art_witnesses/modules/intro/intro_slider.dart';
 import 'package:street_art_witnesses/modules/user/controller.dart';
+import 'package:street_art_witnesses/modules/wide_screen/wide_home_screen.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
 
 void main() async {
@@ -81,7 +83,11 @@ class _InitLoadingScreenState extends State<InitLoadingScreen> {
     Get.put(EmailCounterController(durationInSeconds: 30), permanent: true);
 
     final user = Get.find<AuthService>().user.value;
-    Get.off(() => user.isAuthorized ? const HomeScreen() : const IntroSlider());
+    if (kIsWeb) {
+      Get.off(const WideHomeScreen());
+    } else {
+      Get.off(user.isAuthorized ? const HomeScreen() : const IntroSlider());
+    }
   }
 
   @override

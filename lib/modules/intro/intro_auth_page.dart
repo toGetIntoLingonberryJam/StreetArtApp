@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/extensions.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/modules/auth/screen.dart';
 import 'package:street_art_witnesses/modules/home/screen.dart';
@@ -37,12 +37,12 @@ class IntroAuthPage extends StatelessWidget {
               ),
               const Expanded(flex: 2, child: SizedBox()),
               AppButton.primary(
-                onTap: () => Get.to(() => const AuthScreen()),
+                onTap: () => openScreen(const AuthScreen()),
                 label: 'Войти в профиль',
               ),
               const SizedBox(height: 12),
               AppButton.secondary(
-                onTap: () => Get.to(() => const HomeScreen()),
+                onTap: () => openScreen(const HomeScreen()),
                 label: 'Позже',
               ),
               const Expanded(flex: 2, child: SizedBox()),

@@ -21,7 +21,7 @@ class ProfileTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(kContainerRadius),
-      onTap: () => Get.to(() => const UserInfoScreen()),
+      onTap: () => openScreen(const UserInfoScreen()),
       child: Ink(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         decoration: BoxDecoration(

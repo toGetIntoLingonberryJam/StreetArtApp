@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/extensions.dart';
 import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
@@ -60,12 +60,12 @@ class _ArtistInfo extends StatelessWidget {
     }
 
     return GestureDetector(
-      onTap: () => Get.to(() => Loader(
-            future: ArtistsProvider.getArtistById(artist!.id),
-            builder: (artist) => ArtistScreen(artist: artist),
-            loader: Loaders.artist,
-            onError: () => Get.back(),
-          )),
+      onTap: () => openScreen(Loader(
+        future: ArtistsProvider.getArtistById(artist!.id),
+        builder: (artist) => ArtistScreen(artist: artist),
+        loader: Loaders.artist,
+        onError: () => closeScreen,
+      )),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -89,12 +89,12 @@ class _MultiArtistsInfo extends StatelessWidget {
       onTap: () async {
         final artist = await ArtMbs.showArtistsPicker(context, artists);
         if (artist != null) {
-          Get.to(() => Loader(
-                future: ArtistsProvider.getArtistById(artist.id),
-                builder: (artist) => ArtistScreen(artist: artist),
-                loader: Loaders.artist,
-                onError: () => Get.back(),
-              ));
+          openScreen(Loader(
+            future: ArtistsProvider.getArtistById(artist.id),
+            builder: (artist) => ArtistScreen(artist: artist),
+            loader: Loaders.artist,
+            onError: () => closeScreen,
+          ));
         }
       },
       child: Row(

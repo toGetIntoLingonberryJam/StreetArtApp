@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/extensions.dart';
 import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
 import 'package:street_art_witnesses/data/models/festival/preview/festival_preview.dart';
@@ -19,12 +20,12 @@ class FestivalInfoWidget extends StatelessWidget {
     if (festival == null) return const SizedBox();
 
     return GestureDetector(
-      onTap: () => Get.to(() => Loader(
-            future: FestivalsProvider.getFestivalById(festival!.id),
-            builder: (fest) => FestivalScreen(festival: fest),
-            loader: Loaders.festival,
-            onError: () => Get.back(),
-          )),
+      onTap: () => openScreen(Loader(
+        future: FestivalsProvider.getFestivalById(festival!.id),
+        builder: (fest) => FestivalScreen(festival: fest),
+        loader: Loaders.festival,
+        onError: () => closeScreen,
+      )),
       child: AppContainer(
         child: Row(
           mainAxisSize: MainAxisSize.min,

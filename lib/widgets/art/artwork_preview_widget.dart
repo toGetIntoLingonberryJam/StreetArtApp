@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:street_art_witnesses/core/extensions.dart';
 import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
@@ -50,12 +51,12 @@ class _ArtworkCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Get.to(() => Loader(
-            future: ArtworksProvider.getArtworkById(preview.id),
-            builder: (artwork) => ArtworkScreen(artwork: artwork),
-            loader: Loaders.artwork,
-            onError: () => Get.back(),
-          )),
+      onTap: () => openScreen(Loader(
+        future: ArtworksProvider.getArtworkById(preview.id),
+        builder: (artwork) => ArtworkScreen(artwork: artwork),
+        loader: Loaders.artwork,
+        onError: () => closeScreen,
+      )),
       child: Container(
         padding: const EdgeInsets.all(Paddings.normal),
         decoration: BoxDecoration(
