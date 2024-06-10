@@ -1,10 +1,13 @@
+import 'package:dio_cache_interceptor_hive_store/dio_cache_interceptor_hive_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_map_cache/flutter_map_cache.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
 import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
+import 'package:street_art_witnesses/data/api/local_store_datasource.dart';
 import 'package:street_art_witnesses/modules/home/modules/map/controller.dart';
 import 'package:street_art_witnesses/modules/home/modules/map/layers/controllers/layer.dart';
 import 'package:street_art_witnesses/widgets/app_widgets.dart';
@@ -35,7 +38,13 @@ class LocationPicker extends StatelessWidget {
                       initialCenter: initLocation,
                     ),
                     children: [
-                      TileLayer(urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'),
+                      TileLayer(
+                        urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                        tileProvider: CachedTileProvider(
+                          maxStale: const Duration(days: 30),
+                          store: HiveCacheStore(LocalStoreDataSource.instance.cacheDirectoryPath, hiveBoxName: 'HiveCacheStore'),
+                        ),
+                      ),
                       const MarkerLayer(
                         markers: [],
                         // markers: context.read<MapCubit>().markers,

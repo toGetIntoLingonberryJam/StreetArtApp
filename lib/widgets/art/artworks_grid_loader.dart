@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:street_art_witnesses/core/values/colors.dart';
 import 'package:street_art_witnesses/core/values/constants.dart';
 import 'package:street_art_witnesses/core/values/text_styles.dart';
@@ -27,7 +28,7 @@ class ArtworksGridLoader extends StatelessWidget {
   final int? maxItems;
 
   void showAll(BuildContext context, List<ArtworkPreview> previews) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (_) => _ShowAllScreen(title, previews)));
+    Get.to((_) => _ShowAllScreen(title, previews));
   }
 
   @override

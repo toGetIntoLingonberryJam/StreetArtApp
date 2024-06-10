@@ -26,7 +26,7 @@ class Utils {
   }) async =>
       Get.dialog(
         AlertDialog(
-          backgroundColor: Get.theme.colorScheme.background,
+          backgroundColor: Get.theme.colorScheme.surface,
           surfaceTintColor: Colors.transparent,
           title: Text(
             title,

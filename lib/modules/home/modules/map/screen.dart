@@ -33,13 +33,9 @@ class MapScreen extends StatelessWidget {
               children: [
                 TileLayer(
                   urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                  // tileProvider: CancellableNetworkTileProvider(),
                   tileProvider: CachedTileProvider(
                     maxStale: const Duration(days: 30),
-                    store: HiveCacheStore(
-                      LocalStoreDataSource.instance.cacheDirectoryPath,
-                      hiveBoxName: 'HiveCacheStore',
-                    ),
+                    store: HiveCacheStore(LocalStoreDataSource.instance.cacheDirectoryPath, hiveBoxName: 'HiveCacheStore'),
                   ),
                 ),
                 if (c.navigator.show)

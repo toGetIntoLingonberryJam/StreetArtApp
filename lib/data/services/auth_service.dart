@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:street_art_witnesses/core/utils/logger.dart';
 import 'package:street_art_witnesses/core/utils/utils.dart';
@@ -41,7 +42,13 @@ class AuthService extends GetxService {
       ),
       onResult: (r) => r.data['access_token'] as String,
       onDioError: (e) {
-        return e.response == null ? Utils.showError('Проблемы с интернет-соединением') : Utils.showError(e.response!.data);
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (e.response == null) {
+            Utils.showError('Проблемы с интернет-соединением');
+          } else {
+            Utils.showError(e.response!.data['detail']);
+          }
+        });
       },
     );
 
