@@ -4,7 +4,7 @@ import 'package:street_art_witnesses/core/dio_interceptor.dart';
 abstract class BackendApi {
   static final _dio = Dio(
     BaseOptions(
-      baseUrl: 'https://streetartwitnesses.fvds.ru',
+      baseUrl: 'https://streetartwitnesses.fvds.ru/api',
       connectTimeout: const Duration(seconds: 8),
     ),
   )..interceptors.add(LoggerDioInterceptor());
